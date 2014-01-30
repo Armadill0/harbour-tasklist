@@ -1,10 +1,10 @@
 Name: harbour-tasklist
 Summary: harbour-tasklist
-Version: 0.5
+Version: 0.5.0
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
-License: LICENSE
+License: GPL v3
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
@@ -19,12 +19,12 @@ PkgConfigBR:
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 Files:
-- /usr/share/icons/hicolor/86x86/apps
+- '%attr(644,root,root) /usr/share/icons/hicolor/86x86/apps'
 - /usr/share/applications
 - /usr/share/harbour-tasklist
 - /usr/bin
 - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
 - '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/%{name}/qml'
+- '%attr(644,root,root) %{_datadir}/%{name}/qml'
 - '%{_bindir}'
 PkgBR: []

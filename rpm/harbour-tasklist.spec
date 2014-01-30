@@ -13,10 +13,10 @@ Name:       harbour-tasklist
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    harbour-tasklist
-Version:    0.5
+Version:    0.5.0
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
+License:    GPL v3
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-tasklist.yaml
@@ -62,13 +62,13 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-/usr/share/icons/hicolor/86x86/apps
+%attr(644,root,root) /usr/share/icons/hicolor/86x86/apps
 /usr/share/applications
 /usr/share/harbour-tasklist
 /usr/bin
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/%{name}/qml
+%attr(644,root,root) %{_datadir}/%{name}/qml
 %{_bindir}
 # >> files
 # << files

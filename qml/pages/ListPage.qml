@@ -92,11 +92,6 @@ Page {
             }
         }
 
-        // remorse item for all remorse actions
-        RemorseItem {
-            id: listRemorse
-        }
-
         delegate: ListItem {
             id: listListItem
             height: menuOpen ? listContextMenu.height + listLabel.height : listLabel.height
@@ -117,21 +112,27 @@ Page {
                 }, 5000)
             }
 
-            Label {
-                id: listLabel
-                width: parent.width
-                height: 65
-                text: (defaultlist === listid) ? listname + " (default)" : listname
-                anchors.fill: parent
-                anchors.leftMargin: 25
-                anchors.verticalCenter: parent.verticalCenter
+            // remorse item for all remorse actions
+            RemorseItem {
+                id: listRemorse
             }
 
-            TextField {
+            Label {
+                id: listLabel
+                text: (defaultlist === listid) ? listname + " (default)" : listname
+                width: parent.width - 25
+                height: 65
+                anchors.leftMargin: 25
+                verticalAlignment: Text.AlignVCenter
+            }
+
+            /*TextField {
                 id: editListLabel
                 width: parent.width
                 text: listname
                 visible: false
+                anchors.top: listLabel.bottom
+                height: 0
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: editListLabel.text.length > 0
 
@@ -164,7 +165,7 @@ Page {
                         listLabel.visible = true
                     }
                 }
-            }
+            }*/
 
             onPressAndHold: {
                 if (!listContextMenu) {
