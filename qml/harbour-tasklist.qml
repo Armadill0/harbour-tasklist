@@ -35,4 +35,8 @@ ApplicationWindow
     property int defaultlist
     // save list name in a global context
     property string listname
+    // helper varable if list has been changed
+    property bool listchanged: false
+    // helper varable for adding directly through coveraction
+    property bool coverAddTask: false
 }

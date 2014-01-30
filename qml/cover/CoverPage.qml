@@ -123,8 +123,9 @@ CoverBackground {
             CoverAction {
                 iconSource: "image://theme/icon-cover-new"
                 onTriggered: {
-                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"), {"coverAddTask": true})
+                    taskListWindow.coverAddTask = true
                     taskListWindow.activate()
+                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"), {}, PageStackAction.Immediate)
                 }
             }
 

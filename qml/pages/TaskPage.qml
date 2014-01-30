@@ -65,22 +65,30 @@ Page {
 
     // reload tasklist on activating first page
     onStatusChanged: {
-        if (status === PageStatus.Activating) {
-            reloadTaskList()
-        }
+        console.log(status + " - " + taskListWindow.coverAddTask)
+        switch(status) {
+        case PageStatus.Activating:
+            // reload tasklist if navigateBack was used from list page
+            if (taskListWindow.listchanged === true) {
+                reloadTaskList()
+                taskListWindow.listchanged = false
+            }
 
-        // jump directly into the TextField to add new tasks from cover
-        if (status === PageStatus.Active) {
+            break
+        case PageStatus.Active:
             // add the list page to the pagestack
             pageStack.pushAttached(Qt.resolvedUrl("ListPage.qml"))
 
             // if the activation was started by the covers add function, directly focus to the textfield
-            if (taskPage.coverAddTask === true) {
-                taskAdd.forceActiveFocus()
-                taskPage.coverAddTask = false
+            if (taskListWindow.coverAddTask === true) {
+                taskList.headerItem.children[1].forceActiveFocus()
+                taskListWindow.coverAddTask = false
             }
+            break
         }
     }
+
+
 
     // read all tasks after start
     Component.onCompleted: {

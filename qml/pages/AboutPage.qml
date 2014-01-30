@@ -33,16 +33,6 @@ Page {
             height: 60
         }
 
-        // PullDownMenu
-        PullDownMenu {
-            MenuItem {
-                text: "Close"
-                onClicked: {
-                    pageStack.navigateBack()
-                }
-            }
-        }
-
         SilicaListView {
             id: aboutTaskList
             anchors.top: aboutHeader.bottom

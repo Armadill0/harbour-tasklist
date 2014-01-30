@@ -177,6 +177,7 @@ Page {
                 // set current global list and jump to taskPage
                 taskListWindow.listid = listListModel.get(index).listid
                 taskListWindow.listname = listListModel.get(index).listname
+                taskListWindow.listchanged = true
                 pageStack.navigateBack()
             }
 
