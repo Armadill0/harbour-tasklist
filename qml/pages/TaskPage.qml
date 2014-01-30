@@ -65,7 +65,6 @@ Page {
 
     // reload tasklist on activating first page
     onStatusChanged: {
-        console.log(status + " - " + taskListWindow.coverAddTask)
         switch(status) {
         case PageStatus.Activating:
             // reload tasklist if navigateBack was used from list page
