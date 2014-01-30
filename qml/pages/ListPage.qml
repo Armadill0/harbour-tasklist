@@ -119,20 +119,19 @@ Page {
 
             Label {
                 id: listLabel
-                text: (defaultlist === listid) ? listname + " (default)" : listname
+                text: (taskListWindow.defaultlist === listid) ? listname + " (default)" : listname
                 width: parent.width - 25
-                height: 65
-                anchors.leftMargin: 25
+                x: 25
+                height: 80
                 verticalAlignment: Text.AlignVCenter
             }
 
-            /*TextField {
+            TextField {
                 id: editListLabel
                 width: parent.width
                 text: listname
                 visible: false
-                anchors.top: listLabel.bottom
-                height: 0
+                anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: editListLabel.text.length > 0
 
@@ -165,7 +164,7 @@ Page {
                         listLabel.visible = true
                     }
                 }
-            }*/
+            }
 
             onPressAndHold: {
                 if (!listContextMenu) {
@@ -204,7 +203,7 @@ Page {
                     MenuItem {
                         height: 65
                         text: "Set as default list"
-                        visible: (defaultlist !== listid) ? true : false
+                        visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
@@ -219,7 +218,7 @@ Page {
                     MenuItem {
                         height: 65
                         text: "Delete"
-                        visible: (defaultlist !== listid) ? true : false
+                        visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
