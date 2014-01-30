@@ -3,9 +3,6 @@ harbour-tasklist
 
 A small but mighty program to manage your daily tasks.
 
-Known bugs:
-================
-
 Roadmap for Version 1.0
 ================
 - settings
