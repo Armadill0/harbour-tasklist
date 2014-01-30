@@ -5,7 +5,6 @@ A small but mighty program to manage your daily tasks.
 
 Known bugs:
 ================
-- cover action "add" doesn't work because textfield element cannot be reached within the List header
 
 Roadmap for Version 1.0
 ================

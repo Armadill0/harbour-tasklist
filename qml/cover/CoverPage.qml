@@ -125,7 +125,8 @@ CoverBackground {
                 onTriggered: {
                     taskListWindow.coverAddTask = true
                     taskListWindow.activate()
-                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"), {}, PageStackAction.Immediate)
+                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+                    //pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"), {}, PageStackAction.Immediate)
                 }
             }
 
