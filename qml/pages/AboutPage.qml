@@ -51,7 +51,7 @@ Page {
 
             Image {
                 id: taskListLogo
-                source: "../harbour-tasklist.png"
+                source: "../images/harbour-tasklist.png"
                 width: parent.width
                 fillMode: Image.PreserveAspectFit
                 anchors.top: parent.top
@@ -69,7 +69,7 @@ Page {
 
             Label {
                 id: appDescription
-                text: "A small but mighty program to manage your daily tasks.\nIt supports multiple lists and is easy to use. New features will be added step by step."
+                text: "A small but mighty program to manage your daily tasks."
                 width: parent.width - 40
                 anchors.top: appName.bottom
                 anchors.topMargin: 20

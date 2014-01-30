@@ -31,7 +31,7 @@ CoverBackground {
             id: coverBgImage
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            source: "../TaskList_CoverBG.png"
+            source: "../images/coverbg.png"
             opacity: 0.2
             horizontalAlignment: Image.AlignHCenter
             verticalAlignment: Image.AlignVCenter

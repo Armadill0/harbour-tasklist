@@ -17,9 +17,7 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     rpm/harbour-tasklist.spec \
     rpm/harbour-tasklist.yaml \
     harbour-tasklist.desktop \
-    TODO.txt \
     qml/localdb.js \
-    BUGS.txt \
     qml/pages/AboutPage.qml \
     qml/pages/EditPage.qml \
     qml/pages/TaskPage.qml \
