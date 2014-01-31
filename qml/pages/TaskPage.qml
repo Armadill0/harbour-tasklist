@@ -48,7 +48,7 @@ Page {
     }
 
     function deleteDoneTasks() {
-        tasklistRemorse.execute("Deleting all done tasks",function(){
+        tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
                 if (taskListModel.get(i).taskstatus === 0) {
@@ -123,8 +123,8 @@ Page {
             TextField {
                 id: taskAdd
                 width: parent.width
-                placeholderText: "Enter unique task name"
-                label: "Press Enter/Return to add the new task"
+                placeholderText: qsTr("Enter unique task name")
+                label: qsTr("Press Enter/Return to add the new task")
                 // enable enter key if minimum task length has been reached
                 EnterKey.enabled: taskAdd.text.length > 0
 
@@ -158,27 +158,27 @@ Page {
         // show playholder if there are no tasks available
         ViewPlaceholder {
             enabled: taskList.count === 0
-            text: "no tasks available"
+            text: qsTr("no tasks available")
         }
 
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
-                text: "About TaskList"
+                text: qsTr("About") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                text: "Delete all done tasks"
+                text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }
             MenuItem {
-                text: "Scroll to Bottom"
+                text: qsTr("Scroll to Bottom")
                 onClicked: taskList.scrollToBottom()
             }
         }
         PushUpMenu {
             MenuItem {
-                text: "Scroll to Top"
+                text: qsTr("Scroll to Top")
                 onClicked: taskList.scrollToTop()
             }
         }
@@ -194,7 +194,7 @@ Page {
             // helper function to remove current item
             function remove() {
                 // run remove via a silica remorse item
-                taskRemorse.execute(taskListItem, "Deleting '" + task + "'", function() {
+                taskRemorse.execute(taskListItem, qsTr("Deleting") + " '" + task + "'", function() {
                     DB.removeTask(listid, taskListModel.get(index).taskid)
                     taskListModel.remove(index)
                 }, 5000)
@@ -202,7 +202,7 @@ Page {
 
             // helper function to mark current item as done
             function changeStatus(checkStatus) {
-                var changeStatusString = (checkStatus === true) ? "mark as open" : "mark as done"
+                var changeStatusString = (checkStatus === true) ? qsTr("mark as open") : qsTr("mark as done")
                 // copy status into string because resukts from sqlite are also strings
                 var movestatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
@@ -242,10 +242,6 @@ Page {
                 id: taskRemorse
             }
 
-            /*ListView.onRemove: RemoveAnimation {
-                target: taskListItem
-            }*/
-
             TextSwitch {
                 id: taskLabel
                 x: Theme.paddingSmall
@@ -276,7 +272,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: "Edit"
+                        text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()
@@ -286,7 +282,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: "Delete"
+                        text: qsTr("Delete")
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()

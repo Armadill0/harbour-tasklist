@@ -45,7 +45,7 @@ Page {
         anchors.left: parent.left
         PageHeader {
             id: editTaskHeader
-            title: "Edit - TaskList"
+            title: qsTr("Edit") + " - TaskList"
         }
 
         VerticalScrollDecorator {}
@@ -53,7 +53,7 @@ Page {
         // PullDownMenu
         PullDownMenu {
             MenuItem {
-                text: "Save"
+                text: qsTr("Save")
                 onClicked: {
                     var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, (taskStatus.checked === true) ? 1 : 0, 0, 0)
                     // catch sql errors
@@ -79,7 +79,7 @@ Page {
 
         TextSwitch {
             id: taskStatus
-            text: "task is done"
+            text: qsTr("task is done")
             anchors.top: taskName.bottom
             checked: (editTaskPage.taskstatus === 1) ? true : false
         }
@@ -90,7 +90,7 @@ Page {
             anchors.topMargin: 100
             anchors.left: parent.left
             anchors.leftMargin: 20
-            text: "Created at: " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MMMM.yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+            text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MMMM.yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
         }
     }
 }

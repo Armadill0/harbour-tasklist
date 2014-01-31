@@ -87,7 +87,7 @@ CoverBackground {
             // show playholder if there are no tasks available
             ViewPlaceholder {
                 enabled: taskList.count === 0
-                text: "no tasks available"
+                text: qsTr("no tasks available")
             }
 
             delegate: Row {

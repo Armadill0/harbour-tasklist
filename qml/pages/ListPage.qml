@@ -55,14 +55,14 @@ Page {
 
             PageHeader {
                 width: parent.width
-                title: "Manage lists - TaskList"
+                title: qsTr("Manage lists") + " - TaskList"
             }
 
             TextField {
                 id: listAdd
                 width: parent.width
-                placeholderText: "Enter unique list name"
-                label: "Press Enter/Return to add the new list"
+                placeholderText: qsTr("Enter unique list name")
+                label: qsTr("Press Enter/Return to add the new list")
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: listAdd.text.length > 0
 
@@ -102,7 +102,7 @@ Page {
             // helper function to remove current item
             function remove() {
                 // run remove via a silica remorse item
-                listRemorse.execute(listListItem, "Deleting '" + listListModel.get(index).listname + "'", function() {
+                listRemorse.execute(listListItem, qsTr("Deleting") + " '" + listListModel.get(index).listname + "'", function() {
                     if (taskListWindow.listid === listListModel.get(index).listid) {
                         taskListWindow.listid = taskListWindow.defaultlist
                         taskListWindow.listname = DB.getListProperty(taskListWindow.defaultlist, "ListName")
@@ -119,7 +119,7 @@ Page {
 
             Label {
                 id: listLabel
-                text: (taskListWindow.defaultlist === listid) ? listname + " (default)" : listname
+                text: (taskListWindow.defaultlist === listid) ? listname + " (" + qsTr("default") + ")" : listname
                 width: parent.width - 25
                 x: 25
                 height: 80
@@ -189,7 +189,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: "Edit"
+                        text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
@@ -202,7 +202,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: "Set as default list"
+                        text: qsTr("Set as default list")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu
@@ -217,7 +217,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: "Delete"
+                        text: qsTr("Delete")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu

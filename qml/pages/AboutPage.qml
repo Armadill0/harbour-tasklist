@@ -29,7 +29,7 @@ Page {
         anchors.left: parent.left
         PageHeader {
             id: aboutHeader
-            title: "About - TaskList"
+            title: qsTr("About") + " - TaskList"
             height: 60
         }
 
@@ -59,7 +59,7 @@ Page {
 
             Label {
                 id: appDescription
-                text: "A small but mighty program to manage your daily tasks."
+                text: qsTr("A small but mighty program to manage your daily tasks.")
                 width: parent.width - 40
                 anchors.top: appName.bottom
                 anchors.topMargin: 20
@@ -70,7 +70,7 @@ Page {
 
             Label {
                 id: copyrightText
-                text: "Copyright by Thomas Amler\nLicense: GPL v3"
+                text: qsTr("Copyright by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - 40
                 anchors.top: appDescription.bottom
@@ -81,7 +81,7 @@ Page {
 
             Label {
                 id: sourcecodeText
-                text: "Source code: <a href='https://github.com/Armadill0/harbour-tasklist'>www.github.com</a>"
+                text: qsTr("Source code") + ": <a href='https://github.com/Armadill0/harbour-tasklist'>www.github.com</a>"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - 40
                 anchors.top: copyrightText.bottom
