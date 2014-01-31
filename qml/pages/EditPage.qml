@@ -58,6 +58,7 @@ Page {
                     var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, (taskStatus.checked === true) ? 1 : 0, 0, 0)
                     // catch sql errors
                     if (result !== "ERROR_DUPLICATE_ENTRY") {
+                        taskListWindow.listchanged = true
                         pageStack.navigateBack()
                     }
                 }
