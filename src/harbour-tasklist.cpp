@@ -22,6 +22,10 @@
 #endif
 
 #include <sailfishapp.h>
+#include <QTranslator>
+#include <QLocale>
+#include <QGuiApplication>
+#include <QtGui>
 
 
 int main(int argc, char *argv[])
@@ -34,6 +38,14 @@ int main(int argc, char *argv[])
     //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
     //
     // To display the view, call "show()" (will show fullscreen on device).
+
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+    QString locale = QLocale::system().name();
+    QTranslator translator;
+
+    translator.load(locale,SailfishApp::pathTo(QString("localization")).toLocalFile());
+    app->installTranslator(&translator);
+
 
     return SailfishApp::main(argc, argv);
 }

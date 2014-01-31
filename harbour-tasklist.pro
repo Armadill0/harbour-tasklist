@@ -23,3 +23,15 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/TaskPage.qml \
     qml/pages/ListPage.qml
 
+localization.files = localization
+localization.path = /usr/share/$${TARGET}
+
+INSTALLS += localization
+
+lupdate_only {
+    SOURCES = qml/*.qml \
+                qml/pages/*.qml
+    TRANSLATIONS = localization/fr.ts \
+                    localization/en.ts
+}
+
