@@ -105,6 +105,7 @@ Page {
                 listRemorse.execute(listListItem, qsTr("Deleting") + " '" + listListModel.get(index).listname + "'", function() {
                     if (taskListWindow.listid === listListModel.get(index).listid) {
                         taskListWindow.listid = taskListWindow.defaultlist
+                        taskListWindow.listchanged = true
                         taskListWindow.listname = DB.getListProperty(taskListWindow.defaultlist, "ListName")
                     }
                     DB.removeList(listListModel.get(index).listid)
