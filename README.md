@@ -15,7 +15,6 @@ Roadmap for Version 1.0
 ================
 - settings
     - time and date display options
-    - coverlist current list or defaultlist or seperate coverlist
 - give visual feedback
     - if not allowed char is entered
     - if sql error occured
