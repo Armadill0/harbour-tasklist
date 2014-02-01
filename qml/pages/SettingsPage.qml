@@ -17,30 +17,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef QT_QML_DEBUG
-#include <QtQuick>
-#endif
+import QtQuick 2.1
+import Sailfish.Silica 1.0
+import "../localdb.js" as DB
+import "."
 
-#include <sailfishapp.h>
-#include <QTranslator>
-#include <QLocale>
-#include <QGuiApplication>
-#include <QtGui>
+Page {
+    id: settingsPage
 
-
-int main(int argc, char *argv[])
-{
-    /*  Internationalization Support
-        thanks to Antoine Reversat who mentioned this here:
-        https://www.mail-archive.com/devel@lists.sailfishos.org/msg02602.html */
-    QGuiApplication* app = SailfishApp::application(argc, argv);
-    QString locale = QLocale::system().name();
-    QTranslator translator;
-
-    translator.load(locale,SailfishApp::pathTo(QString("localization")).toLocalFile());
-    app->installTranslator(&translator);
+    SilicaListView {
+        header: PageHeader {
+            width: parent.width
+            title: qsTr("Settings") + " - TaskList"
+        }
 
 
-    return SailfishApp::main(argc, argv);
+    }
 }
-

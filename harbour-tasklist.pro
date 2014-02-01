@@ -21,7 +21,8 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/AboutPage.qml \
     qml/pages/EditPage.qml \
     qml/pages/TaskPage.qml \
-    qml/pages/ListPage.qml
+    qml/pages/ListPage.qml \
+    qml/pages/SettingsPage.qml
 
 localization.files = localization
 localization.path = /usr/share/$${TARGET}

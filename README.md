@@ -3,6 +3,10 @@ harbour-tasklist
 
 A small but mighty program to manage your daily tasks.
 
+Internationalization
+================
+- current languages: English (default), German
+
 Known Bugs
 ================
 
@@ -20,7 +24,6 @@ Roadmap for Version 1.0
 - duedate
     - task alarms
     - dispatch calendar item
-- internationalization
 
 Roadmap for Version 2.0
 ================

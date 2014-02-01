@@ -43,7 +43,7 @@ Page {
         id: editTaskList
         anchors.fill: parent
         anchors.left: parent.left
-        PageHeader {
+        header: PageHeader {
             id: editTaskHeader
             title: qsTr("Edit") + " - TaskList"
         }
@@ -65,32 +65,42 @@ Page {
             }
         }
 
-        TextField {
-            id: taskName
-            width: parent.width
-            text: editTaskPage.taskname
-            focus: true
+        Column {
             anchors.top: editTaskHeader.bottom
-            anchors.topMargin: 20
+            width: parent.width
 
-            // set allowed chars and task length
-            validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
-        }
+            SectionHeader {
+                text: qsTr("Task")
+            }
 
-        TextSwitch {
-            id: taskStatus
-            text: qsTr("task is done")
-            anchors.top: taskName.bottom
-            checked: (editTaskPage.taskstatus === 1) ? true : false
-        }
+            TextField {
+                id: taskName
+                width: parent.width
+                text: editTaskPage.taskname
+                focus: true
+                anchors.topMargin: 20
 
-        Label {
-            id: taskCreationDate
-            anchors.top: taskStatus.bottom
-            anchors.topMargin: 100
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd. MMMM yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+                // set allowed chars and task length
+                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
+            }
+
+            TextSwitch {
+                id: taskStatus
+                text: qsTr("task is done")
+                checked: (editTaskPage.taskstatus === 1) ? true : false
+            }
+
+            SectionHeader {
+                text: qsTr("Information")
+            }
+
+            Label {
+                id: taskCreationDate
+                anchors.topMargin: 100
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd. MMMM yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+            }
         }
     }
 }

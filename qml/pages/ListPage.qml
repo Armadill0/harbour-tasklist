@@ -103,11 +103,13 @@ Page {
             function remove() {
                 // run remove via a silica remorse item
                 listRemorse.execute(listListItem, qsTr("Deleting") + " '" + listListModel.get(index).listname + "'", function() {
+                    // if current list is deleted, change trigger variables to reload list and list name
                     if (taskListWindow.listid === listListModel.get(index).listid) {
                         taskListWindow.listid = taskListWindow.defaultlist
                         taskListWindow.listchanged = true
                         taskListWindow.listname = DB.getListProperty(taskListWindow.defaultlist, "ListName")
                     }
+                    // remove deleted list from database and list page
                     DB.removeList(listListModel.get(index).listid)
                     listListModel.remove(index)
                 }, 5000)
