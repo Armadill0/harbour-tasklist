@@ -43,8 +43,8 @@ ApplicationWindow {
     property int coverListSelection
     property int coverListChoose
     property int coverListOrder
-    property int dateFormat
-    property int timeFormat
+    property string dateFormat
+    property string timeFormat
     property int remorseOnDelete
     property int remorseOnMark
 }

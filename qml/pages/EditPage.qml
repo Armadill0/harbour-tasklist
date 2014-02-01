@@ -99,7 +99,7 @@ Page {
                 anchors.topMargin: 100
                 anchors.left: parent.left
                 anchors.leftMargin: 20
-                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd. MMMM yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
             }
         }
     }

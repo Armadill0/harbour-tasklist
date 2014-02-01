@@ -46,16 +46,16 @@ Page {
                     // update settings in database
                     DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
                     DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
-                    DB.updateSetting("dateFormat", dateFormat.currentIndex)
-                    DB.updateSetting("timeFormat", timeFormat.currentIndex)
+                    /*DB.updateSetting("dateFormat", dateFormat.value)
+                    DB.updateSetting("timeFormat", timeFormat.value)*/
                     DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
                     DB.updateSetting("remorseOnMark", remorseOnMark.value)
 
                     // push new settings to runtime variables
                     taskListWindow.coverListSelection = coverListSelection.currentIndex
                     taskListWindow.coverListOrder = coverListOrder.currentIndex
-                    taskListWindow.dateFormat = dateFormat.currentIndex
-                    taskListWindow.timeFormat = timeFormat.currentIndex
+                    /*taskListWindow.dateFormat = dateFormat.value
+                    taskListWindow.timeFormat = timeFormat.value*/
                     taskListWindow.remorseOnDelete = remorseOnDelete.value
                     taskListWindow.remorseOnMark = remorseOnMark.value
 
@@ -126,7 +126,7 @@ Page {
                 valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
             }
 
-            SectionHeader {
+            /*SectionHeader {
                 text: qsTr("Time and Date options")
             }
 
@@ -135,10 +135,15 @@ Page {
                 width: parent.width
                 label: qsTr("Date format") + ":"
                 currentIndex: taskListWindow.dateFormat
-                enabled: false
 
                 menu: ContextMenu {
                     MenuItem { text: "default"}
+                    MenuItem { text: "dd-MM-yyyy"}
+                    MenuItem { text: "dd/MM/yyyy"}
+                    MenuItem { text: "yyyy-MM-dd"}
+                    MenuItem { text: "yyyy/MM/dd"}
+                    MenuItem { text: "MM/dd/yyyy"}
+                    MenuItem { text: "MM-dd-yyyy"}
                 }
             }
 
@@ -147,12 +152,12 @@ Page {
                 width: parent.width
                 label: qsTr("Time format") + ":"
                 currentIndex: taskListWindow.timeFormat
-                enabled: false
 
                 menu: ContextMenu {
                     MenuItem { text: "default" }
+                    MenuItem { text: "hh:mm" }
                 }
-            }
+            }*/
         }
     }
 }
