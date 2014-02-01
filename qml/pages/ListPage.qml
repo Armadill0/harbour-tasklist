@@ -74,7 +74,7 @@ Page {
                         // add list to db
                         var newid = DB.writeList(listNew)
                         // catch sql errors
-                        if (newid !== "ERROR_DUPLICATE_ENTRY") {
+                        if (newid !== "ERROR") {
                             listPage.appendList(newid, listNew)
                             // reset textfield
                             listAdd.text = ""
@@ -112,7 +112,7 @@ Page {
                     // remove deleted list from database and list page
                     DB.removeList(listListModel.get(index).listid)
                     listListModel.remove(index)
-                }, 5000)
+                }, taskListWindow.remorseOnDelete * 1000)
             }
 
             // remorse item for all remorse actions

@@ -43,7 +43,7 @@ Page {
         id: editTaskList
         anchors.fill: parent
         anchors.left: parent.left
-        header: PageHeader {
+        PageHeader {
             id: editTaskHeader
             title: qsTr("Edit") + " - TaskList"
         }
@@ -57,7 +57,7 @@ Page {
                 onClicked: {
                     var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, (taskStatus.checked === true) ? 1 : 0, 0, 0)
                     // catch sql errors
-                    if (result !== "ERROR_DUPLICATE_ENTRY") {
+                    if (result !== "ERROR") {
                         taskListWindow.listchanged = true
                         pageStack.navigateBack()
                     }
@@ -70,7 +70,7 @@ Page {
             width: parent.width
 
             SectionHeader {
-                text: qsTr("Task")
+                text: qsTr("Task properties")
             }
 
             TextField {

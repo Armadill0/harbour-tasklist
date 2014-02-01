@@ -44,7 +44,7 @@ Page {
 
     function reloadTaskList() {
         wipeTaskList()
-        DB.readTasks(listid, "");
+        DB.readTasks(listid, "", "");
     }
 
     function deleteDoneTasks() {
@@ -60,7 +60,7 @@ Page {
                     break
                 }
             }
-        } , 5000)
+        } , taskListWindow.remorseOnDelete * 1000)
     }
 
     // reload tasklist on activating first page
@@ -95,6 +95,15 @@ Page {
         taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
         taskListWindow.defaultlist = listid
         taskListWindow.listname = DB.getListProperty(listid, "ListName")
+
+        // initialize application settings
+        taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
+        taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
+        taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
+        taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
+        taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
+        taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
+
         reloadTaskList()
     }
 
@@ -137,7 +146,7 @@ Page {
                         // add task to db and tasklist
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
                         // catch sql errors
-                        if (newid !== "ERROR_DUPLICATE_ENTRY") {
+                        if (newid !== "ERROR") {
                             taskPage.insertTask(0, newid, taskNew, 1)
                             // reset textfield
                             taskAdd.text = ""
@@ -166,6 +175,10 @@ Page {
             MenuItem {
                 text: qsTr("About") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
                 text: qsTr("Delete all done tasks")
@@ -197,7 +210,7 @@ Page {
                 taskRemorse.execute(taskListItem, qsTr("Deleting") + " '" + task + "'", function() {
                     DB.removeTask(listid, taskListModel.get(index).taskid)
                     taskListModel.remove(index)
-                }, 5000)
+                }, taskListWindow.remorseOnDelete * 1000)
             }
 
             // helper function to mark current item as done
@@ -234,7 +247,7 @@ Page {
                             }
                         }
                     }
-                }, 2000)
+                }, taskListWindow.remorseOnMark * 1000)
             }
 
             // remorse item for all remorse actions

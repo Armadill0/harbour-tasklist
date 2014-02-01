@@ -26,11 +26,129 @@ Page {
     id: settingsPage
 
     SilicaListView {
-        header: PageHeader {
+        id: settingsContent
+        anchors.fill: parent
+
+        PageHeader {
+            id: settingsPageHeader
             width: parent.width
             title: qsTr("Settings") + " - TaskList"
         }
 
+        // PullDownMenu
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Save")
+                onClicked: {
+                    // update settings in database
+                    DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
+                    DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
+                    DB.updateSetting("dateFormat", dateFormat.currentIndex)
+                    DB.updateSetting("timeFormat", timeFormat.currentIndex)
+                    DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
+                    DB.updateSetting("remorseOnMark", remorseOnMark.value)
 
+                    // push new settings to runtime variables
+                    taskListWindow.coverListSelection = coverListSelection.currentIndex
+                    taskListWindow.coverListOrder = coverListOrder.currentIndex
+                    taskListWindow.dateFormat = dateFormat.currentIndex
+                    taskListWindow.timeFormat = timeFormat.currentIndex
+                    taskListWindow.remorseOnDelete = remorseOnDelete.value
+                    taskListWindow.remorseOnMark = remorseOnMark.value
+
+                    // change trigger variables to reload list
+                    taskListWindow.listchanged = true
+                    pageStack.navigateBack()
+                }
+            }
+        }
+
+        Column {
+            anchors.top: settingsPageHeader.bottom
+            width: parent.width
+
+            SectionHeader {
+                text: qsTr("Cover options")
+            }
+
+            ComboBox {
+                id: coverListSelection
+                width: parent.width
+                label: qsTr("Cover list") + ":"
+                currentIndex: taskListWindow.coverListSelection
+
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Default list") }
+                    MenuItem { text: qsTr("Selected list") }
+                }
+            }
+
+            ComboBox {
+                id: coverListOrder
+                width: parent.width
+                label: qsTr("Cover task order") + ":"
+                currentIndex: taskListWindow.coverListOrder
+
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Last updated first") }
+                    MenuItem { text: qsTr("Sort by name ascending") }
+                    MenuItem { text: qsTr("Sort by name descending") }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Time and Date options")
+            }
+
+            ComboBox {
+                id: dateFormat
+                width: parent.width
+                label: qsTr("Date format") + ":"
+                currentIndex: taskListWindow.dateFormat
+                enabled: false
+
+                menu: ContextMenu {
+                    MenuItem { text: "default"}
+                }
+            }
+
+            ComboBox {
+                id: timeFormat
+                width: parent.width
+                label: qsTr("Time format") + ":"
+                currentIndex: taskListWindow.timeFormat
+                enabled: false
+
+                menu: ContextMenu {
+                    MenuItem { text: "default" }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Remorse options")
+            }
+
+            Slider {
+                id: remorseOnDelete
+                width: parent.width
+                label: qsTr("on Delete")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnDelete
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+
+            Slider {
+                id: remorseOnMark
+                width: parent.width
+                label: qsTr("on Mark task")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnMark
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+        }
     }
 }

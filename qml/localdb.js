@@ -37,6 +37,17 @@ function initializeDB() {
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('defaultList', '1')");
             }
+
+            // if no default settings are set
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection' OR Setting='coverListOrder' OR Setting='dateFormat' OR Setting='timeFormat' OR Setting='remorseOnDelete' OR Setting='remorseOnMark'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListSelection', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListOrder', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('dateFormat', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('timeFormat', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnDelete', '5')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnMark', '2')");
+            }
         }
     );
 
@@ -48,9 +59,10 @@ function initializeDB() {
 /***************************************/
 
 // select tasks and push them into the tasklist
-function readTasks(listid, status) {
+function readTasks(listid, status, sort) {
     var db = connectDB();
     var statusSql;
+    var orderby;
 
     if (status != "") {
         statusSql = " AND Status='" + status + "'"
@@ -58,9 +70,17 @@ function readTasks(listid, status) {
     else {
         statusSql = ""
     }
+
+    if (sort != "") {
+        orderby = sort;
+    }
+    else {
+        orderby = ", LastUpdate DESC";
+    }
+
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID='" + listid + "'" + statusSql + " ORDER BY Status DESC, LastUpdate DESC");
+        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID='" + listid + "'" + statusSql + " ORDER BY Status DESC" + orderby);
         for(var i = 0; i < result.rows.length; i++) {
             taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status);
         }
@@ -81,7 +101,7 @@ function writeTask(listid, task, status, dueDate, duration) {
 
         return result.rows.item(0).ID;
     } catch (sqlErr) {
-        return "ERROR_DUPLICATE_ENTRY";
+        return "ERROR";
     }
 }
 
@@ -107,7 +127,7 @@ function updateTask(listid, id, task, status, dueDate, duration) {
 
         return result.rows.count;
     } catch (sqlErr) {
-       return "ERROR_DUPLICATE_ENTRY";
+       return "ERROR";
     }
 }
 
@@ -153,7 +173,7 @@ function writeList(listname) {
 
         return result.rows.item(0).ID;
     } catch (sqlErr) {
-        return "ERROR_DUPLICATE_ENTRY";
+        return "ERROR";
     }
 }
 
@@ -179,7 +199,7 @@ function updateList(id, listname) {
 
         return result.rows.count;
     } catch (sqlErr) {
-       return "ERROR_DUPLICATE_ENTRY";
+       return "ERROR";
     }
 }
 
@@ -212,7 +232,7 @@ function writeSetting(settingname, settingvalue) {
 
         return result.rows.item(0).Value;
     } catch (sqlErr) {
-        return "ERROR_DUPLICATE_ENTRY";
+        return "ERROR";
     }
 }
 
@@ -229,7 +249,7 @@ function updateSetting(settingname, settingvalue) {
 
         return result.rows.item(0).Value;
     } catch (sqlErr) {
-        return "ERROR_DUPLICATE_ENTRY";
+        return "ERROR";
     }
 }
 

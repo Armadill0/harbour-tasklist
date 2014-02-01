@@ -39,4 +39,12 @@ ApplicationWindow
     property bool listchanged: false
     // helper varable for adding directly through coveraction
     property bool coverAddTask: false
+
+
+    property int coverListSelection
+    property int coverListOrder
+    property int dateFormat
+    property int timeFormat
+    property int remorseOnDelete
+    property int remorseOnMark
 }

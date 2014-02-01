@@ -49,8 +49,30 @@ CoverBackground {
     }
 
     function reloadTaskList() {
+        var listorder;
+
+
+        switch(taskListWindow.coverListOrder) {
+        case 0:
+            listorder = ", LastUpdate DESC";
+            break;
+        case 1:
+            listorder = ", Task ASC";
+            break;
+        case 2:
+            listorder = ", Task DESC";
+            break;
+        }
+
         wipeTaskList()
-        DB.readTasks(listid, 1);
+        switch(taskListWindow.coverListSelection) {
+        case 0:
+            DB.readTasks(defaultlist, 1, listorder);
+            break
+        case 1:
+            DB.readTasks(listid, 1, listorder);
+            break
+        }
     }
 
     // read all tasks after start
@@ -70,11 +92,19 @@ CoverBackground {
         anchors.fill: parent
         Label {
             id: coverHeader
-            text: listname
+            text: {
+                switch(taskListWindow.coverListSelection) {
+                case 0:
+                    DB.getListProperty(defaultlist, "ListName");
+                    break
+                case 1:
+                    DB.getListProperty(listid, "ListName");
+                    break
+                }
+            }
             width: parent.width
             anchors.top: parent.top
             horizontalAlignment: Text.Center
-            //color: Theme.secondaryColor
         }
 
         ListView {
