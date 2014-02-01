@@ -44,7 +44,7 @@ Page {
 
     function reloadTaskList() {
         wipeTaskList()
-        DB.readTasks(listid, "", "");
+        DB.readTasks(listid, "", "")
     }
 
     function deleteDoneTasks() {
@@ -98,6 +98,7 @@ Page {
 
         // initialize application settings
         taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
+        taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
         taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
         taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
         taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
@@ -265,6 +266,7 @@ Page {
                 checked: (taskstatus === 1) ? true : false
                 anchors.verticalCenter: parent.verticalCenter
 
+                // show context menu
                 onPressAndHold: {
                     if (!taskContextMenu) {
                         taskContextMenu = contextMenuComponent.createObject(taskList)

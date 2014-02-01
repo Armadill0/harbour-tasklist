@@ -49,28 +49,31 @@ CoverBackground {
     }
 
     function reloadTaskList() {
-        var listorder;
+        var listorder
 
 
         switch(taskListWindow.coverListOrder) {
         case 0:
-            listorder = ", LastUpdate DESC";
-            break;
+            listorder = ", LastUpdate DESC"
+            break
         case 1:
-            listorder = ", Task ASC";
-            break;
+            listorder = ", Task ASC"
+            break
         case 2:
-            listorder = ", Task DESC";
-            break;
+            listorder = ", Task DESC"
+            break
         }
 
         wipeTaskList()
         switch(taskListWindow.coverListSelection) {
         case 0:
-            DB.readTasks(defaultlist, 1, listorder);
+            DB.readTasks(taskListWindow.defaultlist, 1, listorder)
             break
         case 1:
-            DB.readTasks(listid, 1, listorder);
+            DB.readTasks(taskListWindow.listid, 1, listorder)
+            break
+        case 2:
+            DB.readTasks(taskListWindow.coverListChoose, 1, listorder)
             break
         }
     }
@@ -95,10 +98,13 @@ CoverBackground {
             text: {
                 switch(taskListWindow.coverListSelection) {
                 case 0:
-                    DB.getListProperty(defaultlist, "ListName");
+                    DB.getListProperty(taskListWindow.defaultlist, "ListName")
                     break
                 case 1:
-                    DB.getListProperty(listid, "ListName");
+                    DB.getListProperty(taskListWindow.listid, "ListName")
+                    break
+                case 2:
+                    DB.getListProperty(taskListWindow.coverListChoose, "ListName")
                     break
                 }
             }

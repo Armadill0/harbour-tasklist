@@ -24,6 +24,7 @@ import "."
 
 Page {
     id: settingsPage
+    allowedOrientations: Orientation.All
 
     SilicaListView {
         id: settingsContent
@@ -80,6 +81,7 @@ Page {
                 menu: ContextMenu {
                     MenuItem { text: qsTr("Default list") }
                     MenuItem { text: qsTr("Selected list") }
+                    MenuItem { text: qsTr("Choose in list management") }
                 }
             }
 
@@ -94,6 +96,32 @@ Page {
                     MenuItem { text: qsTr("Sort by name ascending") }
                     MenuItem { text: qsTr("Sort by name descending") }
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Remorse options")
+            }
+
+            Slider {
+                id: remorseOnDelete
+                width: parent.width
+                label: qsTr("on Delete")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnDelete
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+
+            Slider {
+                id: remorseOnMark
+                width: parent.width
+                label: qsTr("on Mark task")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnMark
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
             }
 
             SectionHeader {
@@ -122,32 +150,6 @@ Page {
                 menu: ContextMenu {
                     MenuItem { text: "default" }
                 }
-            }
-
-            SectionHeader {
-                text: qsTr("Remorse options")
-            }
-
-            Slider {
-                id: remorseOnDelete
-                width: parent.width
-                label: qsTr("on Delete")
-                minimumValue: 1
-                maximumValue: 10
-                stepSize: 1
-                value: taskListWindow.remorseOnDelete
-                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
-            }
-
-            Slider {
-                id: remorseOnMark
-                width: parent.width
-                label: qsTr("on Mark task")
-                minimumValue: 1
-                maximumValue: 10
-                stepSize: 1
-                value: taskListWindow.remorseOnMark
-                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
             }
         }
     }

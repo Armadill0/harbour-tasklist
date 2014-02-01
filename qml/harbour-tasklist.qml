@@ -23,8 +23,7 @@ import "pages"
 import "cover"
 import "localdb.js" as DB
 
-ApplicationWindow
-{
+ApplicationWindow {
     id: taskListWindow
     initialPage: Component { TaskPage {} }
     cover: Component { CoverPage {} }
@@ -42,6 +41,7 @@ ApplicationWindow
 
 
     property int coverListSelection
+    property int coverListChoose
     property int coverListOrder
     property int dateFormat
     property int timeFormat

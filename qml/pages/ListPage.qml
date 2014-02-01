@@ -23,6 +23,7 @@ import "../localdb.js" as DB
 
 Page {
     id: listPage
+    allowedOrientations: Orientation.All
 
     // helper function to add lists to the list
     function appendList(id, listname) {
@@ -36,7 +37,7 @@ Page {
 
     function reloadListList() {
         wipeListList()
-        DB.readLists();
+        DB.readLists()
     }
 
     Component.onCompleted: {
@@ -92,6 +93,18 @@ Page {
             }
         }
 
+        // PullDownMenu and PushUpMenu
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("About") + " TaskList"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+        }
+
         delegate: ListItem {
             id: listListItem
             height: menuOpen ? listContextMenu.height + listLabel.height : listLabel.height
@@ -109,6 +122,11 @@ Page {
                         taskListWindow.listchanged = true
                         taskListWindow.listname = DB.getListProperty(taskListWindow.defaultlist, "ListName")
                     }
+
+                    // if deleted list is chosen as cover list it needs to be set to the default list
+                    if (taskListWindow.coverListChoose === listListModel.get(index).listid)
+                        taskListWindow.coverListChoose = taskListWindow.defaultlist
+
                     // remove deleted list from database and list page
                     DB.removeList(listListModel.get(index).listid)
                     listListModel.remove(index)
@@ -122,7 +140,7 @@ Page {
 
             Label {
                 id: listLabel
-                text: (taskListWindow.defaultlist === listid) ? listname + " (" + qsTr("default") + ")" : listname
+                text: listname + ((taskListWindow.defaultlist === listid) ? " (" + qsTr("default") + ")" : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? " (Cover)" : "")
                 width: parent.width - 25
                 x: 25
                 height: 80
@@ -145,7 +163,7 @@ Page {
                     // update list in db
                     DB.updateList(listid, listNew)
                     // update global listname property if the changed list is the current one
-                    if (taskListWindow.listid === listListModel.get(index).listid) {
+                    if (taskListWindow.listid === listid) {
                         taskListWindow.listname = listNew
                     }
                     // finally reload list overview to update the items
@@ -169,6 +187,7 @@ Page {
                 }
             }
 
+            // show context menu
             onPressAndHold: {
                 if (!listContextMenu) {
                     listContextMenu = contextMenuComponent.createObject(listList)
@@ -178,8 +197,8 @@ Page {
 
             onClicked: {
                 // set current global list and jump to taskPage
-                taskListWindow.listid = listListModel.get(index).listid
-                taskListWindow.listname = listListModel.get(index).listname
+                taskListWindow.listid = listid
+                taskListWindow.listname = listname
                 taskListWindow.listchanged = true
                 pageStack.navigateBack()
             }
@@ -205,14 +224,30 @@ Page {
 
                     MenuItem {
                         height: 65
-                        text: qsTr("Set as default list")
+                        text: qsTr("Set as Default list")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
-                            DB.updateSetting("defaultList", listListModel.get(index).listid);
+                            DB.updateSetting("defaultList", listid)
                             // update global defaultlist property
-                            taskListWindow.defaultlist = listListModel.get(index).listid
+                            taskListWindow.defaultlist = listid
+                            // reload lists
+                            reloadListList()
+                        }
+                    }
+
+                    MenuItem {
+                        height: 65
+                        text: qsTr("Set as Cover list")
+                        // only show if choose cover list is active and list is not the current chosen one
+                        visible: (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose !== listid) ? true : false
+                        onClicked: {
+                            // close contextmenu
+                            listContextMenu.hide()
+                            DB.updateSetting("coverListChoose", listid)
+                            // update global defaultlist property
+                            taskListWindow.coverListChoose = listid
                             // reload lists
                             reloadListList()
                         }
@@ -221,6 +256,7 @@ Page {
                     MenuItem {
                         height: 65
                         text: qsTr("Delete")
+                        // default list must not be deleted
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu

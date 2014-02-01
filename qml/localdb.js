@@ -39,9 +39,10 @@ function initializeDB() {
             }
 
             // if no default settings are set
-            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection' OR Setting='coverListOrder' OR Setting='dateFormat' OR Setting='timeFormat' OR Setting='remorseOnDelete' OR Setting='remorseOnMark'");
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection' OR Setting='coverListChoose' OR Setting='coverListOrder' OR Setting='dateFormat' OR Setting='timeFormat' OR Setting='remorseOnDelete' OR Setting='remorseOnMark'");
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListSelection', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListChoose', '1')");
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListOrder', '0')");
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('dateFormat', '0')");
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('timeFormat', '0')");
