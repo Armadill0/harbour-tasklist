@@ -188,7 +188,7 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="104"/>
         <source>Remorse options</source>
-        <translation type="unfinished">Abbrechen Optionen</translation>
+        <translation type="unfinished">Zeit zum Abbrechen</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="110"/>
