@@ -48,7 +48,7 @@ Page {
             title: qsTr("Edit") + " - TaskList"
         }
 
-        VerticalScrollDecorator {}
+        VerticalScrollDecorator { flickable: editTaskList }
 
         // PullDownMenu
         PullDownMenu {

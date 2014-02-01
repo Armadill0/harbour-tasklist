@@ -51,6 +51,8 @@ Page {
             id: listListModel
         }
 
+        VerticalScrollDecorator { flickable: listList }
+
         header: Column {
             width: parent.width
 

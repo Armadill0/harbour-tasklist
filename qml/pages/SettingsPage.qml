@@ -30,6 +30,8 @@ Page {
         id: settingsContent
         anchors.fill: parent
 
+        VerticalScrollDecorator { flickable: settingsContent }
+
         PageHeader {
             id: settingsPageHeader
             width: parent.width

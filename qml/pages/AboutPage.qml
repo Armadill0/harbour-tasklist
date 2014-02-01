@@ -27,6 +27,7 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         anchors.left: parent.left
+
         PageHeader {
             id: aboutHeader
             title: qsTr("About") + " - TaskList"
@@ -38,6 +39,8 @@ Page {
             anchors.top: aboutHeader.bottom
             anchors.bottom: parent.bottom
             width: parent.width
+
+            VerticalScrollDecorator { flickable: aboutTaskList }
 
             Image {
                 id: taskListLogo
