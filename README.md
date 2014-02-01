@@ -5,7 +5,7 @@ A small but mighty program to manage your daily tasks.
 
 Known Bugs
 ================
-- after deleting the currently selected list, the list title in task view changes to the default list, but tasks aren't loaded
+
 
 Roadmap for Version 1.0
 ================
