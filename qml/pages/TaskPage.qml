@@ -137,9 +137,8 @@ Page {
                 label: qsTr("Press Enter/Return to add the new task")
                 // enable enter key if minimum task length has been reached
                 EnterKey.enabled: taskAdd.text.length > 0
-
                 // set allowed chars and task length
-                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
 
                 function addTask() {
                     var taskNew = taskAdd.text

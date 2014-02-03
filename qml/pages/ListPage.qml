@@ -68,9 +68,8 @@ Page {
                 label: qsTr("Press Enter/Return to add the new list")
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: listAdd.text.length > 0
-
                 // set allowed chars and list length
-                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
 
                 function addList(listNew) {
                     if (listNew.length > 0) {

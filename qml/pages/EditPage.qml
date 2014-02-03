@@ -78,16 +78,22 @@ Page {
                 width: parent.width
                 text: editTaskPage.taskname
                 focus: true
-                anchors.topMargin: 20
-
+                label: qsTr("Save changes with the pulldown menu")
                 // set allowed chars and task length
-                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
             }
 
             TextSwitch {
                 id: taskStatus
                 text: qsTr("task is done")
                 checked: (editTaskPage.taskstatus === 1) ? true : false
+            }
+
+            Label {
+                id: listLocatedIn
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
             }
 
             SectionHeader {
@@ -99,7 +105,7 @@ Page {
                 anchors.topMargin: 100
                 anchors.left: parent.left
                 anchors.leftMargin: 20
-                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
             }
         }
     }
