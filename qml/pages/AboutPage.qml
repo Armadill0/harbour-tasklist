@@ -31,7 +31,6 @@ Page {
         PageHeader {
             id: aboutHeader
             title: qsTr("About") + " - TaskList"
-            height: 60
         }
 
         SilicaListView {
@@ -73,7 +72,7 @@ Page {
 
             Label {
                 id: copyrightText
-                text: qsTr("Copyright by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
+                text: qsTr("Copyright © by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - 40
                 anchors.top: appDescription.bottom
@@ -84,12 +83,11 @@ Page {
 
             Label {
                 id: sourcecodeText
-                text: qsTr("Source code") + ": <a href='https://github.com/Armadill0/harbour-tasklist'>www.github.com</a>"
+                text: qsTr("Source code") + ": https://github.com/Armadill0/harbour-tasklist"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - 40
-                anchors.top: copyrightText.bottom
-                anchors.topMargin: 50
-                font.pixelSize: Theme.fontSizeSmall
+                anchors.bottom: parent.bottom
+                font.pixelSize: Theme.fontSizeTiny
                 color: Theme.primaryColor
             }
         }

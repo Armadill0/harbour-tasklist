@@ -9,22 +9,22 @@
         <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="65"/>
+        <location filename="qml/pages/AboutPage.qml" line="64"/>
         <source>A small but mighty program to manage your daily tasks.</source>
         <translation type="unfinished">Ein kleines aber mächtiges Programm um deine täglichen Aufgaben zu verwalten.</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="76"/>
-        <source>Copyright by</source>
-        <translation type="unfinished">Copyright</translation>
-    </message>
-    <message>
-        <location filename="qml/pages/AboutPage.qml" line="76"/>
+        <location filename="qml/pages/AboutPage.qml" line="75"/>
         <source>License</source>
         <translation type="unfinished">Lizenz</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="87"/>
+        <location filename="qml/pages/AboutPage.qml" line="75"/>
+        <source>Copyright © by</source>
+        <translation type="unfinished">Copyright ©</translation>
+    </message>
+    <message>
+        <location filename="qml/pages/AboutPage.qml" line="86"/>
         <source>Source code</source>
         <translation type="unfinished">Quellcode</translation>
     </message>
@@ -211,21 +211,6 @@
         <location filename="qml/pages/SettingsPage.qml" line="121"/>
         <source>on Mark task</source>
         <translation type="unfinished">beim Markieren</translation>
-    </message>
-    <message>
-        <location filename="qml/pages/SettingsPage.qml" line="130"/>
-        <source>Time and Date options</source>
-        <translation type="unfinished">Zeit- und Datumsoptionen</translation>
-    </message>
-    <message>
-        <location filename="qml/pages/SettingsPage.qml" line="136"/>
-        <source>Date format</source>
-        <translation type="unfinished">Datumsformat</translation>
-    </message>
-    <message>
-        <location filename="qml/pages/SettingsPage.qml" line="148"/>
-        <source>Time format</source>
-        <translation type="unfinished">Zeitformat</translation>
     </message>
 </context>
 <context>
