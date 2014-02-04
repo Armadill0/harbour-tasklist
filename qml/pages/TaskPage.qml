@@ -106,7 +106,6 @@ Page {
         taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
         taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
 
-        console.log(taskListWindow.taskOpenAppearance)
         reloadTaskList()
     }
 
@@ -276,8 +275,6 @@ Page {
                 }
 
                 onClicked: {
-                    console.log(taskListModel.get(index).taskstatus + "," + taskListWindow.taskOpenAppearance)
-                    console.log(taskListWindow.statusOpen(taskListModel.get(index).taskstatus) + "," + taskListWindow.taskOpenAppearance)
                     changeStatus(!taskstatus)
                 }
             }

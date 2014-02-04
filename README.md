@@ -26,7 +26,7 @@ Internationalization
 
 Known Bugs
 ================
-
+- task add cover action doesn't navigate back to taskPage when other page is selected
 
 Roadmap for Version 1.0
 ================

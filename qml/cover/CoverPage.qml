@@ -160,8 +160,8 @@ CoverBackground {
                 iconSource: "image://theme/icon-cover-new"
                 onTriggered: {
                     taskListWindow.coverAddTask = true
-                    taskListWindow.activate()
                     pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+                    taskListWindow.activate()
                 }
             }
 
