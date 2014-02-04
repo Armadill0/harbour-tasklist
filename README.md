@@ -18,11 +18,11 @@ Internationalization
 ================
 - current languages: English (default), German
 - new languages tutorial:
-    - copy the harbour-tasklist_plain.ts to harbour-tasklist_<your_country_code>.ts (e.x. harbour-tasklist_fr_FR.ts)
+    - copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)
     - start QT Linguist (part of the Qt SDK)
-    - import the harbour-tasklist_<your_country_code>.ts file
+    - import the harbour-tasklist_[your_country_code].ts file
     - translate all entries and save the file
-    - export the library to <your_country_code>.qm and send both files to me via mail
+    - export the library to [your_country_code].qm and send both files to me via mail
 
 Known Bugs
 ================
