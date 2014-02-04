@@ -22,7 +22,7 @@ Internationalization
     - start QT Linguist (part of the Qt SDK)
     - import the harbour-tasklist_<your_country_code>.ts file
     - translate all entries and save the file
-    - export the library to localization/<your_country_code>.qm or send it to me via mail
+    - export the library to <your_country_code>.qm and send both files to me via mail
 
 Known Bugs
 ================
