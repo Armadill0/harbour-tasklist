@@ -85,8 +85,8 @@ Page {
                 id: sourcecodeText
                 text: qsTr("Source code") + ": https://github.com/Armadill0/harbour-tasklist"
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 40
                 anchors.bottom: parent.bottom
+                anchors.bottomMargin: 20
                 font.pixelSize: Theme.fontSizeTiny
                 color: Theme.primaryColor
             }
