@@ -51,12 +51,12 @@ Page {
         tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
-                if (taskListModel.get(i).taskstatus === (taskListWindow.taskOpenAppearance === 1 ? 0 : 1)) {
+                if (taskListModel.get(i).taskstatus === false) {
                     DB.removeTask(listid, taskListModel.get(i).taskid)
                     taskListModel.remove(i)
                 }
                 // stop if last open task has been reached to save battery power
-                else if (taskListModel.get(i).taskstatus === (taskListWindow.taskOpenAppearance === 1 ? 1 : 0)) {
+                else if (taskListModel.get(i).taskstatus === true) {
                     break
                 }
             }
@@ -100,14 +100,14 @@ Page {
         taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
         taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
         taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
-        taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance"))
+        taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance")) === 1 ? true : false
         taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
         taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
         taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
         taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
 
-        reloadTaskList()
         console.log(taskListWindow.taskOpenAppearance)
+        reloadTaskList()
     }
 
     RemorsePopup {
@@ -149,7 +149,7 @@ Page {
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
                         // catch sql errors
                         if (newid !== "ERROR") {
-                            taskPage.insertTask(0, newid, taskNew, 1)
+                            taskPage.insertTask(0, newid, taskNew, true)
                             // reset textfield
                             taskAdd.text = ""
                         }
@@ -218,7 +218,7 @@ Page {
             // helper function to mark current item as done
             function changeStatus(checkStatus) {
                 var changeStatusString = (checkStatus === true) ? qsTr("mark as open") : qsTr("mark as done")
-                // copy status into string because resukts from sqlite are also strings
+                // copy status into string because results from sqlite are also strings
                 var movestatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
                     // update DB
@@ -231,20 +231,20 @@ Page {
                     taskListModel.remove(index)
                     // catch it list count is zero, so for won't start
                     if (taskListModel.count === 0) {
-                        taskPage.appendTask(moveid, movetask, movestatus)
+                        taskPage.appendTask(moveid, movetask, checkStatus)
                     }
                     else {
                         // insert Item to correct position
                         for(var i = 0; i < taskListModel.count; i++) {
                             // undone tasks are moved to the beginning of the undone tasks
                             // done tasks are moved to the beginning of the done tasks
-                            if ((movestatus === 1) || (movestatus === 0 && taskListModel.get(i).taskstatus === 0)) {
-                                taskPage.insertTask(i, moveid, movetask, movestatus)
+                            if ((checkStatus === true) || (checkStatus === false && taskListModel.get(i).taskstatus === false)) {
+                                taskPage.insertTask(i, moveid, movetask, checkStatus)
                                 break
                             }
                             // if the item should be added to the end of the list it has to be appended, because the insert target of count + 1 doesn't exist at this moment
                             else if (i >= taskListModel.count - 1) {
-                                taskPage.appendTask(moveid, movetask, movestatus)
+                                taskPage.appendTask(moveid, movetask, checkStatus)
                                 break
                             }
                         }
@@ -264,7 +264,7 @@ Page {
                 anchors.fill: parent
                 anchors.top: parent.top
                 automaticCheck: false
-                checked: (taskstatus === 1) ? true : false
+                checked: taskListWindow.statusOpen(taskstatus)
                 anchors.verticalCenter: parent.verticalCenter
 
                 // show context menu
@@ -276,7 +276,9 @@ Page {
                 }
 
                 onClicked: {
-                    changeStatus(!taskLabel.checked)
+                    console.log(taskListModel.get(index).taskstatus + "," + taskListWindow.taskOpenAppearance)
+                    console.log(taskListWindow.statusOpen(taskListModel.get(index).taskstatus) + "," + taskListWindow.taskOpenAppearance)
+                    changeStatus(!taskstatus)
                 }
             }
 

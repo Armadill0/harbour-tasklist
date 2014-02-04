@@ -110,7 +110,7 @@ Page {
                 id: taskOpenAppearance
                 width: parent.width
                 text: qsTr("open task appearance")
-                checked: taskListWindow.taskOpenAppearance === 1 ? true : false
+                checked: taskListWindow.taskOpenAppearance
             }
 
             SectionHeader {

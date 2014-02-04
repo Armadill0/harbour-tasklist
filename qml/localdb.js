@@ -114,7 +114,7 @@ function readTasks(listid, status, sort) {
         // order by sort to get the reactivated tasks to the end of the undone list
         var result = tx.executeSql("SELECT * FROM tasks WHERE ListID='" + listid + "'" + statusSql + " ORDER BY Status DESC" + orderby);
         for(var i = 0; i < result.rows.length; i++) {
-            taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status);
+            taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status == "1" ? true : false);
         }
     });
 }

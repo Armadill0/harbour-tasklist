@@ -27,14 +27,14 @@ Page {
 
     property string taskname
     property string taskid
-    property int taskstatus
+    property bool taskstatus
     property string taskcreationdate
     property string listindex
 
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            editTaskPage.taskstatus = DB.getTaskProperty(listid, taskid, "Status")
+            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(listid, taskid, "Status")) === 1 ? true : false
             editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(listid, taskid, "CreationDate"))
         }
     }
@@ -55,7 +55,7 @@ Page {
             MenuItem {
                 text: qsTr("Save")
                 onClicked: {
-                    var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, (taskStatus.checked === true) ? 1 : 0, 0, 0)
+                    var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
                     // catch sql errors
                     if (result !== "ERROR") {
                         taskListWindow.listchanged = true
@@ -86,7 +86,7 @@ Page {
             TextSwitch {
                 id: taskStatus
                 text: qsTr("task is done")
-                checked: (editTaskPage.taskstatus === 1) ? true : false
+                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
             Label {

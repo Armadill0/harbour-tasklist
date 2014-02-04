@@ -43,9 +43,11 @@ ApplicationWindow {
     property int coverListSelection
     property int coverListChoose
     property int coverListOrder
-    property int taskOpenAppearance
+    property bool taskOpenAppearance
     property string dateFormat
     property string timeFormat
     property int remorseOnDelete
     property int remorseOnMark
+
+    function statusOpen(a) { return a == taskListWindow.taskOpenAppearance ? true : false }
 }

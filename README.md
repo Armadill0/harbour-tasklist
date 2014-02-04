@@ -32,7 +32,6 @@ Roadmap for Version 1.0
 ================
 - settings
     - time and date display options (there are problems to read the correct local time strings)
-    - switch to change done/undone behaviour in settings
 - give visual feedback
     - if not allowed char is entered
     - if sql error occured
