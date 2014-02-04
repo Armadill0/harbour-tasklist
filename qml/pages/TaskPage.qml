@@ -51,12 +51,12 @@ Page {
         tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
-                if (taskListModel.get(i).taskstatus === 0) {
+                if (taskListModel.get(i).taskstatus === (taskListWindow.taskOpenAppearance === 1 ? 0 : 1)) {
                     DB.removeTask(listid, taskListModel.get(i).taskid)
                     taskListModel.remove(i)
                 }
                 // stop if last open task has been reached to save battery power
-                else if (taskListModel.get(i).taskstatus === 1) {
+                else if (taskListModel.get(i).taskstatus === (taskListWindow.taskOpenAppearance === 1 ? 1 : 0)) {
                     break
                 }
             }
@@ -100,12 +100,14 @@ Page {
         taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
         taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
         taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
+        taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance"))
         taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
         taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
         taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
         taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
 
         reloadTaskList()
+        console.log(taskListWindow.taskOpenAppearance)
     }
 
     RemorsePopup {

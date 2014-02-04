@@ -46,6 +46,7 @@ Page {
                     // update settings in database
                     DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
                     DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
+                    DB.updateSetting("taskOpenAppearance", taskOpenAppearance.checked === true ? 1 : 0)
                     /*DB.updateSetting("dateFormat", dateFormat.value)
                     DB.updateSetting("timeFormat", timeFormat.value)*/
                     DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
@@ -54,6 +55,7 @@ Page {
                     // push new settings to runtime variables
                     taskListWindow.coverListSelection = coverListSelection.currentIndex
                     taskListWindow.coverListOrder = coverListOrder.currentIndex
+                    taskListWindow.taskOpenAppearance = taskOpenAppearance.checked === true ? 1 : 0
                     /*taskListWindow.dateFormat = dateFormat.value
                     taskListWindow.timeFormat = timeFormat.value*/
                     taskListWindow.remorseOnDelete = remorseOnDelete.value
@@ -98,6 +100,17 @@ Page {
                     MenuItem { text: qsTr("Sort by name ascending") }
                     MenuItem { text: qsTr("Sort by name descending") }
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Task options")
+            }
+
+            TextSwitch {
+                id: taskOpenAppearance
+                width: parent.width
+                text: qsTr("open task appearance")
+                checked: taskListWindow.taskOpenAppearance === 1 ? true : false
             }
 
             SectionHeader {

@@ -32,21 +32,52 @@ function initializeDB() {
                 tx.executeSql("INSERT INTO lists (ListName) VALUES ('Tasks')");
             }
 
+            /****************************/
+            /*** ADD DEFAULT SETTINGS ***/
+            /****************************/
             // if no default list is set, set to 1
             var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='defaultList'");
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('defaultList', '1')");
             }
-
-            // if no default settings are set
-            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection' OR Setting='coverListChoose' OR Setting='coverListOrder' OR Setting='dateFormat' OR Setting='timeFormat' OR Setting='remorseOnDelete' OR Setting='remorseOnMark'");
+            // coverListSelection
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection'");
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListSelection', '0')");
+            }
+            // coverListChoose
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListChoose'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListChoose', '1')");
+            }
+            // coverListOrder
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListOrder'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListOrder', '0')");
+            }
+            // taskOpenAppearance
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='taskOpenAppearance'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('taskOpenAppearance', '1')");
+            }
+            // dateFormat
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='dateFormat'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('dateFormat', '0')");
+            }
+            // timeFormat
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='timeFormat'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('timeFormat', '0')");
+            }
+            // remorseOnDelete
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='remorseOnDelete'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnDelete', '5')");
+            }
+            // remorseOnMark
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='remorseOnMark'");
+            if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnMark', '2')");
             }
         }
