@@ -95,7 +95,7 @@
     <message>
         <location filename="qml/pages/ListPage.qml" line="68"/>
         <source>Press Enter/Return to add the new list</source>
-        <translation type="unfinished">mit Enter/Return bestätigen</translation>
+        <translation type="unfinished">Neue Liste mit Enter/Return bestätigen</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="100"/>
@@ -118,22 +118,27 @@
         <translation type="unfinished">Standard</translation>
     </message>
     <message>
-        <location filename="qml/pages/ListPage.qml" line="215"/>
+        <location filename="qml/pages/ListPage.qml" line="155"/>
+        <source>Press Enter/Return to save changes</source>
+        <translation type="unfinished">Änderungen mit Enter/Return bestätigen</translation>
+    </message>
+    <message>
+        <location filename="qml/pages/ListPage.qml" line="216"/>
         <source>Edit</source>
         <translation type="unfinished">Bearbeiten</translation>
     </message>
     <message>
-        <location filename="qml/pages/ListPage.qml" line="228"/>
+        <location filename="qml/pages/ListPage.qml" line="229"/>
         <source>Set as Default list</source>
         <translation type="unfinished">Als Standardliste setzen</translation>
     </message>
     <message>
-        <location filename="qml/pages/ListPage.qml" line="243"/>
+        <location filename="qml/pages/ListPage.qml" line="244"/>
         <source>Set as Cover list</source>
         <translation type="unfinished">Als Coverliste setzen</translation>
     </message>
     <message>
-        <location filename="qml/pages/ListPage.qml" line="259"/>
+        <location filename="qml/pages/ListPage.qml" line="260"/>
         <source>Delete</source>
         <translation type="unfinished">Löschen</translation>
     </message>

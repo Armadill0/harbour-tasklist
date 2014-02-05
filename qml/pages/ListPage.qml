@@ -152,6 +152,7 @@ Page {
                 id: editListLabel
                 width: parent.width
                 text: listname
+                label: qsTr("Press Enter/Return to save changes")
                 visible: false
                 anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
