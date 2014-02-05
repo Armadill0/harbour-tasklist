@@ -31,6 +31,8 @@ Known Bugs
 
 Roadmap for Version 1.0
 ================
+- move Tasks between lists (user requested feature)
+- cover actions to switch between lists (user requested feature)
 - settings
     - time and date display options (there are problems to read the correct local time strings)
 - give visual feedback
