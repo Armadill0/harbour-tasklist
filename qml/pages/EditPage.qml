@@ -21,9 +21,10 @@ import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
 
-Page {
+Dialog {
     id: editTaskPage
-    allowedOrientations: Orientation.All
+    anchors.fill: parent
+    canAccept: true
 
     property string taskname
     property string taskid
@@ -39,74 +40,61 @@ Page {
         }
     }
 
-    SilicaListView {
-        id: editTaskList
-        anchors.fill: parent
-        anchors.left: parent.left
-        PageHeader {
-            id: editTaskHeader
-            title: qsTr("Edit") + " - TaskList"
+    onAccepted: {
+        var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
+        // catch sql errors
+        if (result !== "ERROR") {
+            taskListWindow.listchanged = true
+            pageStack.navigateBack()
+        }
+    }
+
+    Column {
+        anchors.top: editTaskHeader.bottom
+        width: parent.width
+
+        DialogHeader {
+            title: qsTr("Settings") + " - TaskList"
+            acceptText: qsTr("Save")
         }
 
-        VerticalScrollDecorator { flickable: editTaskList }
-
-        // PullDownMenu
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Save")
-                onClicked: {
-                    var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
-                    // catch sql errors
-                    if (result !== "ERROR") {
-                        taskListWindow.listchanged = true
-                        pageStack.navigateBack()
-                    }
-                }
-            }
+        SectionHeader {
+            text: qsTr("Task properties")
         }
 
-        Column {
-            anchors.top: editTaskHeader.bottom
+        TextField {
+            id: taskName
             width: parent.width
+            text: editTaskPage.taskname
+            focus: true
+            label: qsTr("Save changes in the upper right corner")
+            // set allowed chars and task length
+            validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+        }
 
-            SectionHeader {
-                text: qsTr("Task properties")
-            }
+        TextSwitch {
+            id: taskStatus
+            text: qsTr("task is done")
+            checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
+        }
 
-            TextField {
-                id: taskName
-                width: parent.width
-                text: editTaskPage.taskname
-                focus: true
-                label: qsTr("Save changes with the pulldown menu")
-                // set allowed chars and task length
-                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
-            }
+        Label {
+            id: listLocatedIn
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
+        }
 
-            TextSwitch {
-                id: taskStatus
-                text: qsTr("task is done")
-                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
-            }
+        SectionHeader {
+            text: qsTr("Information")
+        }
 
-            Label {
-                id: listLocatedIn
-                anchors.left: parent.left
-                anchors.leftMargin: 20
-                text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
-            }
-
-            SectionHeader {
-                text: qsTr("Information")
-            }
-
-            Label {
-                id: taskCreationDate
-                anchors.topMargin: 100
-                anchors.left: parent.left
-                anchors.leftMargin: 20
-                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
-            }
+        Label {
+            id: taskCreationDate
+            anchors.topMargin: 100
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
         }
     }
 }

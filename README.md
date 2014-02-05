@@ -10,6 +10,8 @@ Features
     - set the list which is displayed in the cover
 - task can be marked as done
     - function to delete all done tasks
+    - marking of done/open tasks can be inverted (user requested feature)
+- orientation can be temporary locked (user requested feature)
 - remorse items for all necessary actions (e.x. delete tasks/lists)
     - configurable remorse item times
 - multiple languages supported (depending on system language), for more information see below
@@ -26,7 +28,6 @@ Internationalization
 
 Known Bugs
 ================
-- task add cover action doesn't navigate back to taskPage when other page is selected
 
 Roadmap for Version 1.0
 ================

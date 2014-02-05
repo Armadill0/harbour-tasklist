@@ -181,6 +181,21 @@ Page {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
+            // Item to lock the screen orientation, which has been an user requested feature
+            MenuItem {
+                text: taskListWindow.lockTaskOrientation === false ? qsTr("Lock orientation") : qsTr("Unlock orientation")
+                onClicked: {
+                    if (taskListWindow.lockTaskOrientation === false) {
+                        taskPage.allowedOrientations = taskPage.orientation
+                        taskListWindow.lockTaskOrientation = true
+                    }
+                    else {
+                        taskPage.allowedOrientations = Orientation.All
+                        taskListWindow.lockTaskOrientation = false
+                    }
+
+                }
+            }
             MenuItem {
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()

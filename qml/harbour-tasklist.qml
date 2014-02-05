@@ -38,6 +38,8 @@ ApplicationWindow {
     property bool listchanged: false
     // helper varable for adding directly through coveraction
     property bool coverAddTask: false
+    // helper varable to lock task Page Orientation
+    property bool lockTaskOrientation: false
 
 
     property int coverListSelection
