@@ -28,18 +28,17 @@ Page {
         anchors.fill: parent
         anchors.left: parent.left
 
-        PageHeader {
-            id: aboutHeader
-            title: qsTr("About") + " - TaskList"
-        }
+        VerticalScrollDecorator { flickable: aboutTaskList }
 
-        SilicaListView {
+        Column {
             id: aboutTaskList
-            anchors.top: aboutHeader.bottom
-            anchors.bottom: parent.bottom
-            width: parent.width
+            anchors.fill: parent
 
-            VerticalScrollDecorator { flickable: aboutTaskList }
+
+            PageHeader {
+                id: aboutHeader
+                title: qsTr("About") + " - TaskList"
+            }
 
             Image {
                 id: taskListLogo

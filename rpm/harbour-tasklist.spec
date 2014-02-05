@@ -14,7 +14,7 @@ Name:       harbour-tasklist
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    harbour-tasklist
 Version:    0.8.5
-Release:    1
+Release:    3
 Group:      Qt/Qt
 License:    GPL v3
 URL:        http://example.org/

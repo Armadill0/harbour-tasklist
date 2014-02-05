@@ -23,7 +23,7 @@ import "../localdb.js" as DB
 
 Dialog {
     id: editTaskPage
-    anchors.fill: parent
+    allowedOrientations: Orientation.All
     canAccept: true
 
     property string taskname
@@ -49,52 +49,60 @@ Dialog {
         }
     }
 
-    Column {
-        anchors.top: editTaskHeader.bottom
-        width: parent.width
+    SilicaFlickable {
+        id: editList
+        anchors.fill: parent
+        contentHeight: editColumn.height
 
-        DialogHeader {
-            title: qsTr("Settings") + " - TaskList"
-            acceptText: qsTr("Save")
-        }
+        VerticalScrollDecorator { flickable: editList }
 
-        SectionHeader {
-            text: qsTr("Task properties")
-        }
-
-        TextField {
-            id: taskName
+        Column {
+            id: editColumn
             width: parent.width
-            text: editTaskPage.taskname
-            focus: true
-            label: qsTr("Save changes in the upper right corner")
-            // set allowed chars and task length
-            validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
-        }
 
-        TextSwitch {
-            id: taskStatus
-            text: qsTr("task is done")
-            checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
-        }
+            DialogHeader {
+                title: qsTr("Settings") + " - TaskList"
+                acceptText: qsTr("Save")
+            }
 
-        Label {
-            id: listLocatedIn
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
-        }
+            SectionHeader {
+                text: qsTr("Task properties")
+            }
 
-        SectionHeader {
-            text: qsTr("Information")
-        }
+            TextField {
+                id: taskName
+                width: parent.width
+                text: editTaskPage.taskname
+                focus: true
+                label: qsTr("Save changes in the upper right corner")
+                // set allowed chars and task length
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+            }
 
-        Label {
-            id: taskCreationDate
-            anchors.topMargin: 100
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+            TextSwitch {
+                id: taskStatus
+                text: qsTr("task is done")
+                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
+            }
+
+            Label {
+                id: listLocatedIn
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
+            }
+
+            SectionHeader {
+                text: qsTr("Information")
+            }
+
+            Label {
+                id: taskCreationDate
+                anchors.topMargin: 100
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+            }
         }
     }
 }

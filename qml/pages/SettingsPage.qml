@@ -24,7 +24,7 @@ import "."
 
 Dialog {
     id: settingsPage
-    anchors.fill: parent
+    allowedOrientations: Orientation.All
     canAccept: true
 
     onAccepted: {
@@ -50,83 +50,90 @@ Dialog {
         taskListWindow.listchanged = true
     }
 
-    Column {
-        id: settingsDialog
+    SilicaFlickable {
+        id: settingsList
         anchors.fill: parent
+        contentHeight: settingsColumn.height
 
-        DialogHeader {
-            title: qsTr("Settings") + " - TaskList"
-            acceptText: qsTr("Save")
-        }
+        VerticalScrollDecorator { flickable: settingsList }
 
-        SectionHeader {
-            text: qsTr("Cover options")
-        }
-
-        ComboBox {
-            id: coverListSelection
+        Column {
+            id: settingsColumn
             width: parent.width
-            label: qsTr("Cover list") + ":"
-            currentIndex: taskListWindow.coverListSelection
 
-            menu: ContextMenu {
-                MenuItem { text: qsTr("Default list") }
-                MenuItem { text: qsTr("Selected list") }
-                MenuItem { text: qsTr("Choose in list management") }
+            DialogHeader {
+                title: qsTr("Settings") + " - TaskList"
+                acceptText: qsTr("Save")
             }
-        }
 
-        ComboBox {
-            id: coverListOrder
-            width: parent.width
-            label: qsTr("Cover task order") + ":"
-            currentIndex: taskListWindow.coverListOrder
-
-            menu: ContextMenu {
-                MenuItem { text: qsTr("Last updated first") }
-                MenuItem { text: qsTr("Sort by name ascending") }
-                MenuItem { text: qsTr("Sort by name descending") }
+            SectionHeader {
+                text: qsTr("Cover options")
             }
-        }
 
-        SectionHeader {
-            text: qsTr("Task options")
-        }
+            ComboBox {
+                id: coverListSelection
+                width: parent.width
+                label: qsTr("Cover list") + ":"
+                currentIndex: taskListWindow.coverListSelection
 
-        TextSwitch {
-            id: taskOpenAppearance
-            width: parent.width
-            text: qsTr("open task appearance")
-            checked: taskListWindow.taskOpenAppearance
-        }
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Default list") }
+                    MenuItem { text: qsTr("Selected list") }
+                    MenuItem { text: qsTr("Choose in list management") }
+                }
+            }
 
-        SectionHeader {
-            text: qsTr("Remorse options")
-        }
+            ComboBox {
+                id: coverListOrder
+                width: parent.width
+                label: qsTr("Cover task order") + ":"
+                currentIndex: taskListWindow.coverListOrder
 
-        Slider {
-            id: remorseOnDelete
-            width: parent.width
-            label: qsTr("on Delete")
-            minimumValue: 1
-            maximumValue: 10
-            stepSize: 1
-            value: taskListWindow.remorseOnDelete
-            valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
-        }
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Last updated first") }
+                    MenuItem { text: qsTr("Sort by name ascending") }
+                    MenuItem { text: qsTr("Sort by name descending") }
+                }
+            }
 
-        Slider {
-            id: remorseOnMark
-            width: parent.width
-            label: qsTr("on Mark task")
-            minimumValue: 1
-            maximumValue: 10
-            stepSize: 1
-            value: taskListWindow.remorseOnMark
-            valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
-        }
+            SectionHeader {
+                text: qsTr("Task options")
+            }
 
-        /*SectionHeader {
+            TextSwitch {
+                id: taskOpenAppearance
+                width: parent.width
+                text: qsTr("open task appearance")
+                checked: taskListWindow.taskOpenAppearance
+            }
+
+            SectionHeader {
+                text: qsTr("Remorse options")
+            }
+
+            Slider {
+                id: remorseOnDelete
+                width: parent.width
+                label: qsTr("on Delete")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnDelete
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+
+            Slider {
+                id: remorseOnMark
+                width: parent.width
+                label: qsTr("on Mark task")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnMark
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+
+            /*SectionHeader {
                 text: qsTr("Time and Date options")
             }
 
@@ -158,5 +165,6 @@ Dialog {
                     MenuItem { text: "hh:mm" }
                 }
             }*/
+        }
     }
 }

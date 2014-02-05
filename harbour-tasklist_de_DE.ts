@@ -4,27 +4,27 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="33"/>
+        <location filename="qml/pages/AboutPage.qml" line="40"/>
         <source>About</source>
         <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="64"/>
+        <location filename="qml/pages/AboutPage.qml" line="63"/>
         <source>A small but mighty program to manage your daily tasks.</source>
         <translation type="unfinished">Ein kleines aber mächtiges Programm um deine täglichen Aufgaben zu verwalten.</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="75"/>
+        <location filename="qml/pages/AboutPage.qml" line="74"/>
         <source>License</source>
         <translation type="unfinished">Lizenz</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="75"/>
+        <location filename="qml/pages/AboutPage.qml" line="74"/>
         <source>Copyright © by</source>
         <translation type="unfinished">Copyright ©</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="86"/>
+        <location filename="qml/pages/AboutPage.qml" line="85"/>
         <source>Source code</source>
         <translation type="unfinished">Quellcode</translation>
     </message>
@@ -40,42 +40,42 @@
 <context>
     <name>EditPage</name>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="58"/>
+        <location filename="qml/pages/EditPage.qml" line="65"/>
         <source>Save</source>
         <translation type="unfinished">Speichern</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="62"/>
+        <location filename="qml/pages/EditPage.qml" line="69"/>
         <source>Task properties</source>
         <translation type="unfinished">Eigenschaften</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="57"/>
+        <location filename="qml/pages/EditPage.qml" line="64"/>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="70"/>
+        <location filename="qml/pages/EditPage.qml" line="77"/>
         <source>Save changes in the upper right corner</source>
         <translation type="unfinished">Einstellungen rechts oben speichern</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="77"/>
+        <location filename="qml/pages/EditPage.qml" line="84"/>
         <source>task is done</source>
         <translation type="unfinished">Aufgabe erledigt</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="85"/>
+        <location filename="qml/pages/EditPage.qml" line="92"/>
         <source>List</source>
         <translation type="unfinished">Liste</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="89"/>
+        <location filename="qml/pages/EditPage.qml" line="96"/>
         <source>Information</source>
         <translation type="unfinished">Informationen</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="97"/>
+        <location filename="qml/pages/EditPage.qml" line="104"/>
         <source>Created at</source>
         <translation type="unfinished">Erstellt am</translation>
     </message>
@@ -141,94 +141,94 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="58"/>
+        <location filename="qml/pages/SettingsPage.qml" line="65"/>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="qml/pages/SettingsPage.qml" line="66"/>
         <source>Save</source>
         <translation type="unfinished">Speichern</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="63"/>
+        <location filename="qml/pages/SettingsPage.qml" line="70"/>
         <source>Cover options</source>
         <translation type="unfinished">Cover Optionen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="69"/>
+        <location filename="qml/pages/SettingsPage.qml" line="76"/>
         <source>Cover list</source>
         <translation type="unfinished">Coverliste</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="73"/>
+        <location filename="qml/pages/SettingsPage.qml" line="80"/>
         <source>Default list</source>
         <translation type="unfinished">Standardliste</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="qml/pages/SettingsPage.qml" line="81"/>
         <source>Selected list</source>
         <translation type="unfinished">Aktuelle Liste</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="75"/>
+        <location filename="qml/pages/SettingsPage.qml" line="82"/>
         <source>Choose in list management</source>
         <translation type="unfinished">Im Listenmanager wählen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="82"/>
+        <location filename="qml/pages/SettingsPage.qml" line="89"/>
         <source>Cover task order</source>
         <translation type="unfinished">Cover Sortierung</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="86"/>
+        <location filename="qml/pages/SettingsPage.qml" line="93"/>
         <source>Last updated first</source>
         <translation type="unfinished">Zuletzt Aktualisierte oben</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="87"/>
+        <location filename="qml/pages/SettingsPage.qml" line="94"/>
         <source>Sort by name ascending</source>
         <translation type="unfinished">Nach Name aufsteigend</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="88"/>
+        <location filename="qml/pages/SettingsPage.qml" line="95"/>
         <source>Sort by name descending</source>
         <translation type="unfinished">Nach Name absteigend</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="93"/>
+        <location filename="qml/pages/SettingsPage.qml" line="100"/>
         <source>Task options</source>
         <translation type="unfinished">Aufgaben Optionen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="99"/>
+        <location filename="qml/pages/SettingsPage.qml" line="106"/>
         <source>open task appearance</source>
         <translation type="unfinished">Markierung für offene Aufgaben</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="104"/>
+        <location filename="qml/pages/SettingsPage.qml" line="111"/>
         <source>Remorse options</source>
         <translation type="unfinished">Zeit zum Abbrechen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="110"/>
+        <location filename="qml/pages/SettingsPage.qml" line="117"/>
         <source>on Delete</source>
         <translation type="unfinished">beim Löschen</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="115"/>
-        <location filename="qml/pages/SettingsPage.qml" line="126"/>
+        <location filename="qml/pages/SettingsPage.qml" line="122"/>
+        <location filename="qml/pages/SettingsPage.qml" line="133"/>
         <source>seconds</source>
         <translation type="unfinished">Sekunden</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="115"/>
-        <location filename="qml/pages/SettingsPage.qml" line="126"/>
+        <location filename="qml/pages/SettingsPage.qml" line="122"/>
+        <location filename="qml/pages/SettingsPage.qml" line="133"/>
         <source>second</source>
         <translation type="unfinished">Sekunde</translation>
     </message>
     <message>
-        <location filename="qml/pages/SettingsPage.qml" line="121"/>
+        <location filename="qml/pages/SettingsPage.qml" line="128"/>
         <source>on Mark task</source>
         <translation type="unfinished">beim Markieren</translation>
     </message>
