@@ -32,6 +32,14 @@ Dialog {
     property string taskcreationdate
     property string listindex
 
+    // helper function to add lists to the listLocation field
+    function appendList(id, listname) {
+        listLocationModel.append({"listid": id, "listname": listname})
+        if (id === listid) {
+            listLocatedIn.currentIndex = listLocationModel.count - 1
+        }
+    }
+
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
@@ -41,12 +49,21 @@ Dialog {
     }
 
     onAccepted: {
-        var result = DB.updateTask(listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
+        console.log(listLocationModel.get(listLocatedIn.currentIndex).listid)
+        var result = DB.updateTask(listid, listLocationModel.get(listLocatedIn.currentIndex).listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
         // catch sql errors
         if (result !== "ERROR") {
             taskListWindow.listchanged = true
             pageStack.navigateBack()
         }
+    }
+
+    Component.onCompleted: {
+        DB.readLists()
+    }
+
+    ListModel {
+        id: listLocationModel
     }
 
     SilicaFlickable {
@@ -85,11 +102,33 @@ Dialog {
                 checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
-            Label {
+            ComboBox {
                 id: listLocatedIn
                 anchors.left: parent.left
-                anchors.leftMargin: 20
-                text: qsTr("List") + ": " + DB.getListProperty(listid, "ListName")
+                label: qsTr("List") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                         model: listLocationModel
+                         MenuItem {
+                             text: model.listname
+                         }
+                    }
+                }
+
+                onCurrentIndexChanged: {
+                    var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+                    if (parseInt(DB.checkTask(changeListID, editTaskPage.taskname)) >= 1) {
+                        for (var i = 0; i < listLocationModel.count; i++) {
+                            console.log(listLocationModel.get(i).listid)
+                            console.log(listid)
+                            if (listLocationModel.get(i).listid === listid) {
+                                listLocatedIn.currentIndex = 0
+                                break
+                            }
+                        }
+                    }
+                }
             }
 
             SectionHeader {
@@ -100,7 +139,7 @@ Dialog {
                 id: taskCreationDate
                 anchors.topMargin: 100
                 anchors.left: parent.left
-                anchors.leftMargin: 20
+                anchors.leftMargin: 25
                 text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
             }
         }

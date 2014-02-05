@@ -119,6 +119,19 @@ function readTasks(listid, status, sort) {
     });
 }
 
+// select task and return count
+function checkTask(listid, taskname) {
+    var db = connectDB();
+    var result;
+
+    db.transaction(function(tx) {
+        // order by sort to get the reactivated tasks to the end of the undone list
+        result = tx.executeSql("SELECT count(ID) as cID FROM tasks WHERE ListID='" + listid + "' AND Task='" + taskname + "'");
+    });
+
+    return result.rows.item(0).cID;
+}
+
 // insert new task and return id
 function writeTask(listid, task, status, dueDate, duration) {
     var db = connectDB();
@@ -147,14 +160,14 @@ function removeTask(listid, id) {
 }
 
 // update task
-function updateTask(listid, id, task, status, dueDate, duration) {
+function updateTask(listid, newlistid, id, task, status, dueDate, duration) {
     var db = connectDB();
     var result;
     var lastUpdate = getUnixTime();
 
     try {
         db.transaction(function(tx) {
-            result = tx.executeSql("UPDATE tasks SET Task='" + task + "', Status='" + status + "', LastUpdate='" + lastUpdate + "', DueDate='" + dueDate + "', Duration='" + duration + "' WHERE ID='" + id + "' AND ListID='" + listid + "'");
+            result = tx.executeSql("UPDATE tasks SET ListID='" + newlistid + "', Task='" + task + "', Status='" + status + "', LastUpdate='" + lastUpdate + "', DueDate='" + dueDate + "', Duration='" + duration + "' WHERE ID='" + id + "' AND ListID='" + listid + "'");
         });
 
         return result.rows.count;
@@ -187,7 +200,7 @@ function readLists() {
         // order by sort to get the reactivated tasks to the end of the undone list
         var result = tx.executeSql("SELECT * FROM lists ORDER BY ID ASC");
         for(var i = 0; i < result.rows.length; i++) {
-            listPage.appendList(result.rows.item(i).ID, result.rows.item(i).ListName);
+            appendList(result.rows.item(i).ID, result.rows.item(i).ListName);
         }
     });
 }
