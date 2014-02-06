@@ -40,6 +40,7 @@ ApplicationWindow {
     property bool coverAddTask: false
     // helper varable to lock task Page Orientation
     property bool lockTaskOrientation: false
+    property bool justStarted: true
 
 
     property int coverListSelection

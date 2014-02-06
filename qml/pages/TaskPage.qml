@@ -70,6 +70,7 @@ Page {
             // reload tasklist if navigateBack was used from list page
             if (taskListWindow.listchanged === true) {
                 reloadTaskList()
+                console.log(taskListWindow.listid)
                 taskListWindow.listchanged = false
             }
 
@@ -91,20 +92,24 @@ Page {
 
     // read all tasks after start
     Component.onCompleted: {
-        DB.initializeDB()
-        taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
-        taskListWindow.defaultlist = listid
-        taskListWindow.listname = DB.getListProperty(listid, "ListName")
+        if (taskListWindow.justStarted === true) {
+            DB.initializeDB()
+            console.log("oncompleted")
+            taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
+            taskListWindow.defaultlist = listid
+            taskListWindow.justStarted = false
 
-        // initialize application settings
-        taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
-        taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
-        taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
-        taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance")) === 1 ? true : false
-        taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
-        taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
-        taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
-        taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
+            // initialize application settings
+            taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
+            taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
+            taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
+            taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance")) === 1 ? true : false
+            taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
+            taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
+            taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
+            taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
+        }
+        taskListWindow.listname = DB.getListProperty(listid, "ListName")
 
         reloadTaskList()
     }

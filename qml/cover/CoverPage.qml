@@ -24,6 +24,8 @@ import "../localdb.js" as DB
 CoverBackground {
     id: taskPage
 
+    property int currentList
+
     BackgroundItem {
         anchors.fill: parent
 
@@ -68,12 +70,15 @@ CoverBackground {
         switch(taskListWindow.coverListSelection) {
         case 0:
             DB.readTasks(taskListWindow.defaultlist, 1, listorder)
+            currentList = taskListWindow.defaultlist
             break
         case 1:
             DB.readTasks(taskListWindow.listid, 1, listorder)
+            currentList = taskListWindow.listid
             break
         case 2:
             DB.readTasks(taskListWindow.coverListChoose, 1, listorder)
+            currentList = taskListWindow.coverListChoose
             break
         }
     }
@@ -95,19 +100,7 @@ CoverBackground {
         anchors.fill: parent
         Label {
             id: coverHeader
-            text: {
-                switch(taskListWindow.coverListSelection) {
-                case 0:
-                    DB.getListProperty(taskListWindow.defaultlist, "ListName")
-                    break
-                case 1:
-                    DB.getListProperty(taskListWindow.listid, "ListName")
-                    break
-                case 2:
-                    DB.getListProperty(taskListWindow.coverListChoose, "ListName")
-                    break
-                }
-            }
+            text: DB.getListProperty(currentList, "ListName")
             width: parent.width
             anchors.top: parent.top
             horizontalAlignment: Text.Center
@@ -160,6 +153,11 @@ CoverBackground {
                 iconSource: "image://theme/icon-cover-new"
                 onTriggered: {
                     taskListWindow.coverAddTask = true
+                    // set current global list and jump to taskPage
+                    console.log(currentList)
+                    taskListWindow.listid = currentList
+                    taskListWindow.listname = DB.getListProperty(currentList, "ListName")
+                    taskListWindow.listchanged = true
                     pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
                     taskListWindow.activate()
                 }
