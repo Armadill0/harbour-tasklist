@@ -141,8 +141,8 @@ CoverBackground {
         }
 
         OpacityRampEffect {
-            slope: 1.5
-            offset: 0.35
+            slope: 1
+            offset: 0.5
             sourceItem: taskList
         }
 
@@ -154,10 +154,7 @@ CoverBackground {
                 onTriggered: {
                     taskListWindow.coverAddTask = true
                     // set current global list and jump to taskPage
-                    console.log(currentList)
                     taskListWindow.listid = currentList
-                    taskListWindow.listname = DB.getListProperty(currentList, "ListName")
-                    taskListWindow.listchanged = true
                     pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
                     taskListWindow.activate()
                 }
@@ -165,9 +162,10 @@ CoverBackground {
 
             // not needed atm
             /*CoverAction {
-            iconSource: "image://theme/icon-cover-sync"
-            onTriggered: {
-                taskListWindow.activate()
+                iconSource: "image://theme/icon-cover-next"
+                onTriggered: {
+                    taskListWindow.activate()
+                }
             }*/
         }
     }

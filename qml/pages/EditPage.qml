@@ -59,23 +59,6 @@ Dialog {
     }
 
     onDone: {
-        var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
-        // if task already exists in target list, switch back to current list
-        var changeListCheck = parseInt(DB.checkTask(changeListID, editTaskPage.taskname))
-        if (changeListCheck >= 1) {
-            for (var i = 0; i < listLocationModel.count; i++) {
-                console.log(listLocationModel.get(i).listid)
-                console.log(listid)
-                if (listLocationModel.get(i).listid === listid && changeListID !== listid) {
-                    listLocatedIn.currentIndex = 0
-                    break
-                }
-            }
-            console.log("duplicate found")
-        }
-        else {
-            editTaskPage.accept()
-        }
     }
 
     Component.onCompleted: {
@@ -137,6 +120,20 @@ Dialog {
                 }
 
                 onCurrentIndexChanged: {
+                    var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+                    // if task already exists in target list, switch back to current list
+                    var changeListCheck = parseInt(DB.checkTask(changeListID, editTaskPage.taskname))
+                    if (changeListCheck >= 1 && changeListID !== listid) {
+                        for (var i = 0; i < listLocationModel.count; i++) {
+                            console.log(listLocationModel.get(i).listid)
+                            console.log(listid)
+                            if (listLocationModel.get(i).listid === listid) {
+                                listLocatedIn.currentIndex = 0
+                                break
+                            }
+                        }
+                        console.log("duplicate found")
+                    }
                 }
             }
 
