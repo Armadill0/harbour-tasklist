@@ -24,7 +24,7 @@ import "../localdb.js" as DB
 Dialog {
     id: editTaskPage
     allowedOrientations: Orientation.All
-    canAccept: true
+    canAccept: false
 
     property string taskname
     property string taskid
@@ -55,6 +55,26 @@ Dialog {
         if (result !== "ERROR") {
             taskListWindow.listchanged = true
             pageStack.navigateBack()
+        }
+    }
+
+    onDone: {
+        var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        // if task already exists in target list, switch back to current list
+        var changeListCheck = parseInt(DB.checkTask(changeListID, editTaskPage.taskname))
+        if (changeListCheck >= 1) {
+            for (var i = 0; i < listLocationModel.count; i++) {
+                console.log(listLocationModel.get(i).listid)
+                console.log(listid)
+                if (listLocationModel.get(i).listid === listid && changeListID !== listid) {
+                    listLocatedIn.currentIndex = 0
+                    break
+                }
+            }
+            console.log("duplicate found")
+        }
+        else {
+            editTaskPage.accept()
         }
     }
 
@@ -117,17 +137,6 @@ Dialog {
                 }
 
                 onCurrentIndexChanged: {
-                    var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
-                    if (parseInt(DB.checkTask(changeListID, editTaskPage.taskname)) >= 1) {
-                        for (var i = 0; i < listLocationModel.count; i++) {
-                            console.log(listLocationModel.get(i).listid)
-                            console.log(listid)
-                            if (listLocationModel.get(i).listid === listid) {
-                                listLocatedIn.currentIndex = 0
-                                break
-                            }
-                        }
-                    }
                 }
             }
 
