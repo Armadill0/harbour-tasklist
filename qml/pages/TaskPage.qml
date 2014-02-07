@@ -70,7 +70,6 @@ Page {
             // reload tasklist if navigateBack was used from list page
             if (taskListWindow.listchanged === true) {
                 reloadTaskList()
-                console.log(taskListWindow.listid)
                 taskListWindow.listchanged = false
             }
 
@@ -94,7 +93,6 @@ Page {
     Component.onCompleted: {
         if (taskListWindow.justStarted === true) {
             DB.initializeDB()
-            console.log("oncompleted")
             taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
             taskListWindow.defaultlist = listid
             taskListWindow.justStarted = false

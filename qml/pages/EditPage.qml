@@ -24,7 +24,7 @@ import "../localdb.js" as DB
 Dialog {
     id: editTaskPage
     allowedOrientations: Orientation.All
-    canAccept: false
+    canAccept: true
 
     property string taskname
     property string taskid
@@ -40,6 +40,23 @@ Dialog {
         }
     }
 
+    function checkTaskUnique (newListID) {
+        return parseInt(DB.checkTask(newListID, taskName.text))
+    }
+
+    function checkContent () {
+        var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        // if task already exists in target list, display warning
+        if (checkTaskUnique(changeListID) >= 1 && changeListID !== listid) {
+            taskName.errorHighlight = true
+            editTaskPage.canAccept = false
+        }
+        else {
+            taskName.errorHighlight = false
+            editTaskPage.canAccept = true
+        }
+    }
+
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
@@ -49,16 +66,12 @@ Dialog {
     }
 
     onAccepted: {
-        console.log(listLocationModel.get(listLocatedIn.currentIndex).listid)
         var result = DB.updateTask(listid, listLocationModel.get(listLocatedIn.currentIndex).listid, editTaskPage.taskid, taskName.text, taskStatus.checked === true ? 1 : 0, 0, 0)
         // catch sql errors
         if (result !== "ERROR") {
             taskListWindow.listchanged = true
             pageStack.navigateBack()
         }
-    }
-
-    onDone: {
     }
 
     Component.onCompleted: {
@@ -93,10 +106,12 @@ Dialog {
                 id: taskName
                 width: parent.width
                 text: editTaskPage.taskname
-                focus: true
-                label: qsTr("Save changes in the upper right corner")
+                label: errorHighlight === false ? qsTr("Save changes in the upper right corner") : qsTr("task already exists on this list!")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+                onTextChanged: {
+                    checkContent()
+                }
             }
 
             TextSwitch {
@@ -120,20 +135,7 @@ Dialog {
                 }
 
                 onCurrentIndexChanged: {
-                    var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
-                    // if task already exists in target list, switch back to current list
-                    var changeListCheck = parseInt(DB.checkTask(changeListID, editTaskPage.taskname))
-                    if (changeListCheck >= 1 && changeListID !== listid) {
-                        for (var i = 0; i < listLocationModel.count; i++) {
-                            console.log(listLocationModel.get(i).listid)
-                            console.log(listid)
-                            if (listLocationModel.get(i).listid === listid) {
-                                listLocatedIn.currentIndex = 0
-                                break
-                            }
-                        }
-                        console.log("duplicate found")
-                    }
+                    checkContent()
                 }
             }
 

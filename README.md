@@ -8,6 +8,7 @@ Features
 - multiple task lists
     - set default list which is displayed on application start
     - set the list which is displayed in the cover
+    - move tasks between lists (user requested feature)
 - task can be marked as done
     - function to delete all done tasks
     - marking of done/open tasks can be inverted (user requested feature)
@@ -31,7 +32,6 @@ Known Bugs
 
 Roadmap for Version 1.0
 ================
-- move Tasks between lists (user requested feature)
 - cover actions to switch between lists (user requested feature)
 - settings
     - time and date display options (there are problems to read the correct local time strings)

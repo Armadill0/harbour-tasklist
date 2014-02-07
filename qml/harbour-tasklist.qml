@@ -42,7 +42,7 @@ ApplicationWindow {
     property bool lockTaskOrientation: false
     property bool justStarted: true
 
-
+    // initilize default settings properties
     property int coverListSelection
     property int coverListChoose
     property int coverListOrder
@@ -52,5 +52,6 @@ ApplicationWindow {
     property int remorseOnDelete
     property int remorseOnMark
 
-    function statusOpen(a) { return a == taskListWindow.taskOpenAppearance ? true : false }
+    // a function to check which appearance should be used by open tasks
+    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }
 }
