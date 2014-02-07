@@ -20,72 +20,74 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 
-Page {
+Dialog {
     id: aboutPage
     allowedOrientations: Orientation.All
+    canAccept: true
 
     SilicaFlickable {
+        id: aboutTaskList
         anchors.fill: parent
-        anchors.left: parent.left
+        contentHeight: aboutRectangle.height
 
         VerticalScrollDecorator { flickable: aboutTaskList }
 
-        Column {
-            id: aboutTaskList
-            anchors.fill: parent
+        Rectangle {
+            id: aboutRectangle
+            width: parent.width
 
-
-            PageHeader {
+            DialogHeader {
                 id: aboutHeader
                 title: qsTr("About") + " - TaskList"
+                acceptText: qsTr("Back")
             }
 
             Image {
-                id: taskListLogo
+                id: logoTaskList
                 source: "../images/harbour-tasklist.png"
                 width: parent.width
+                anchors.top: aboutHeader.bottom
                 fillMode: Image.PreserveAspectFit
-                anchors.top: parent.top
-                anchors.topMargin: 100
                 horizontalAlignment: Image.AlignHCenter
             }
 
             Label {
-                id: appName
+                id: labelTaskList
                 text: "TaskList"
                 horizontalAlignment: Text.Center
                 width: parent.width
-                anchors.top: taskListLogo.bottom
+                anchors.top: logoTaskList.bottom
             }
 
             Label {
-                id: appDescription
+                id: descTaskList
                 text: qsTr("A small but mighty program to manage your daily tasks.")
-                width: parent.width - 40
-                anchors.top: appName.bottom
-                anchors.topMargin: 20
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.top: labelTaskList.bottom
+                anchors.topMargin: Theme.paddingLarge * 2
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
             Label {
-                id: copyrightText
+                id: copyTaskList
                 text: qsTr("Copyright © by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 40
-                anchors.top: appDescription.bottom
-                anchors.topMargin: 50
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.top: descTaskList.bottom
+                anchors.topMargin: Theme.paddingLarge * 2
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.primaryColor
             }
 
             Label {
-                id: sourcecodeText
+                id: sourceTaskList
                 text: qsTr("Source code") + ": https://github.com/Armadill0/harbour-tasklist"
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 20
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.top: copyTaskList.bottom
+                anchors.topMargin: Theme.paddingLarge * 2
                 font.pixelSize: Theme.fontSizeTiny
                 color: Theme.primaryColor
             }

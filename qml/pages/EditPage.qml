@@ -110,7 +110,9 @@ Dialog {
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
                 onTextChanged: {
-                    checkContent()
+                    // check Content only if page is active because of the dynamic loading of listLocatedIn
+                    if (editTaskPage.status === PageStatus.Active)
+                        checkContent()
                 }
             }
 

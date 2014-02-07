@@ -177,10 +177,6 @@ Page {
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
-                text: qsTr("About") + " TaskList"
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-            MenuItem {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
@@ -206,12 +202,18 @@ Page {
             MenuItem {
                 text: qsTr("Scroll to Bottom")
                 onClicked: taskList.scrollToBottom()
+                visible: taskList.contentHeight > Screen.height * 1.1 ? true : false
             }
         }
         PushUpMenu {
             MenuItem {
                 text: qsTr("Scroll to Top")
                 onClicked: taskList.scrollToTop()
+                visible: taskList.contentHeight > Screen.height * 1.1 ? true : false
+            }
+            MenuItem {
+                text: qsTr("About") + " TaskList"
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
 
