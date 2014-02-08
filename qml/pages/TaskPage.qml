@@ -241,7 +241,7 @@ Page {
                 var movestatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
                     // update DB
-                    DB.updateTask(listid, taskListModel.get(index).taskid, taskListModel.get(index).task, movestatus, 0, 0)
+                    DB.updateTask(listid, listid, taskListModel.get(index).taskid, taskListModel.get(index).task, movestatus, 0, 0)
                     // copy item properties before deletion
                     var moveindex = index
                     var moveid = taskListModel.get(index).taskid
