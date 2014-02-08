@@ -38,9 +38,6 @@ Roadmap for Version 1.0
 ================
 - settings
     - time and date display options (there are problems to read the correct local time strings)
-- give visual feedback
-    - if not allowed char is entered
-    - if sql error occured
 - duedate (no API available atm)
     - task alarms
     - dispatch calendar item
