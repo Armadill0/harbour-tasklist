@@ -9,6 +9,10 @@ Features
     - set default list which is displayed on application start
     - set the list which is displayed in the cover
     - move tasks between lists (user requested feature)
+    - lock/unlock orientation on demand (user requested feature)
+- cover shows current, it's own or the default task list
+    - cover action to add task to list shown in cover
+    - cover action to switch between lists (user requested feature)
 - task can be marked as done
     - function to delete all done tasks
     - marking of done/open tasks can be inverted (user requested feature)
@@ -32,7 +36,6 @@ Known Bugs
 
 Roadmap for Version 1.0
 ================
-- cover actions to switch between lists (user requested feature)
 - settings
     - time and date display options (there are problems to read the correct local time strings)
 - give visual feedback

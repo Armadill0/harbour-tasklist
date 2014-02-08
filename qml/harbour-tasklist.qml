@@ -40,7 +40,10 @@ ApplicationWindow {
     property bool coverAddTask: false
     // helper varable to lock task Page Orientation
     property bool lockTaskOrientation: false
+    // indicator variable when app just started
     property bool justStarted: true
+    // variable to save the list of lists as a string
+    property string listOfLists
 
     // initilize default settings properties
     property int coverListSelection

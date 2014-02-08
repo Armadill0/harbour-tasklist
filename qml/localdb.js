@@ -193,16 +193,25 @@ function getTaskProperty(listid, id, taskproperty) {
 /***************************************/
 
 // select lists and push them into the listList
-function readLists() {
+function readLists(listArt) {
     var db = connectDB();
+    var resultString = "";
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
         var result = tx.executeSql("SELECT * FROM lists ORDER BY ID ASC");
         for(var i = 0; i < result.rows.length; i++) {
-            appendList(result.rows.item(i).ID, result.rows.item(i).ListName);
+            if (listArt == "string") {
+                resultString += (resultString == "" ? result.rows.item(i).ID : "," + result.rows.item(i).ID)
+            }
+            else {
+                appendList(result.rows.item(i).ID, result.rows.item(i).ListName);
+            }
         }
     });
+
+    if (resultString != "")
+        return resultString;
 }
 
 // insert new list and return id

@@ -25,6 +25,7 @@ CoverBackground {
     id: taskPage
 
     property int currentList
+    property string listorder
 
     BackgroundItem {
         anchors.fill: parent
@@ -51,9 +52,6 @@ CoverBackground {
     }
 
     function reloadTaskList() {
-        var listorder
-
-
         switch(taskListWindow.coverListOrder) {
         case 0:
             listorder = ", LastUpdate DESC"
@@ -89,7 +87,16 @@ CoverBackground {
     }
 
     onStatusChanged: {
-        reloadTaskList()
+        switch(status) {
+        case PageStatus.Activating:
+            // load lists into variable for coveraction "switch"
+            taskListWindow.listOfLists = DB.readLists("string")
+
+            // reload tasklist if navigateBack was used from list page
+            reloadTaskList()
+
+            break
+        }
     }
 
     ListModel {
@@ -160,13 +167,27 @@ CoverBackground {
                 }
             }
 
-            // not needed atm
-            /*CoverAction {
+            CoverAction {
                 iconSource: "image://theme/icon-cover-next"
                 onTriggered: {
-                    taskListWindow.activate()
+                    var listArray = taskListWindow.listOfLists.split(",")
+
+                    for (var i = 0; i < listArray.length; i++) {
+                        if (listArray[i] == currentList) {
+                            if (i == listArray.length - 1)
+                                currentList = listArray[0]
+                            else
+                                currentList = listArray[i + 1]
+
+                            // wipe list and read ne tasks
+                            wipeTaskList()
+                            DB.readTasks(currentList, 1, listorder)
+
+                            break
+                        }
+                    }
                 }
-            }*/
+            }
         }
     }
 }
