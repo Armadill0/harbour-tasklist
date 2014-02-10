@@ -152,8 +152,10 @@ Page {
                         // catch sql errors
                         if (newid !== "ERROR") {
                             taskPage.insertTask(0, newid, taskNew, true)
+                            taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""
+                            taskAdd.forceActiveFocus()
                         }
                     }
                 }
@@ -164,6 +166,13 @@ Page {
                 }
                 Keys.onReturnPressed: {
                     addTask()
+                }
+
+                onFocusChanged: {
+                    if (taskListWindow.coverAddTask === true) {
+                        taskAdd.forceActiveFocus()
+                        taskListWindow.coverAddTask = false
+                    }
                 }
             }
         }
