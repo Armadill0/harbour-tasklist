@@ -83,13 +83,18 @@ Dialog {
 
             Label {
                 id: sourceTaskList
-                text: qsTr("Source code") + ": https://github.com/Armadill0/harbour-tasklist"
+                textFormat: Text.RichText;
+                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + qsTr("Source code") + ": <a href=\"https://github.com/Armadill0/harbour-tasklist\">https://github.com/Armadill0/harbour-tasklist</a>"
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.top: copyTaskList.bottom
                 anchors.topMargin: Theme.paddingLarge * 2
                 font.pixelSize: Theme.fontSizeTiny
                 color: Theme.primaryColor
+
+                onLinkActivated: {
+                    Qt.openUrlExternally(link)
+                }
             }
         }
     }
