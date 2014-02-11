@@ -313,12 +313,12 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="239"/>
         <source>mark as open</source>
-        <translation type="unfinished">markiere als erledigt</translation>
+        <translation type="unfinished">markiere als offen</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="239"/>
         <source>mark as done</source>
-        <translation type="unfinished">markiere als offen</translation>
+        <translation type="unfinished">markiere als erledigt</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="310"/>
