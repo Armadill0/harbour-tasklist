@@ -3,6 +3,10 @@ harbour-tasklist
 
 A small but mighty program to manage your daily tasks.
 
+Contact
+================
+Email: tasklist [at] penguinfriends [dot] org
+
 Features
 ================
 - multiple task lists
@@ -25,11 +29,17 @@ Internationalization
 ================
 - current languages: English (default), German
 - new languages tutorial:
+    - download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/harbour-tasklist_plain.ts
     - copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)
-    - start QT Linguist (part of the Qt SDK)
-    - import the harbour-tasklist_[your_country_code].ts file
-    - translate all entries and save the file
-    - export the library to [your_country_code].qm and send both files to me via mail
+    - using text editor:
+        - translate everything in the <source></source> Tag into the <translation type="unfinished"></translation> Tag one line below
+        - send me the file via mail
+    - using QT Linguist:
+        - start QT Linguist (part of the Qt SDK)
+        - import the harbour-tasklist_[your_country_code].ts file
+        - translate all entries and save your changes
+        - send me the file via mail
+    - every contributor will be mentioned in the About page :-)
 
 Known Bugs
 ================
