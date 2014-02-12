@@ -155,7 +155,6 @@ Page {
                             taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""
-                            taskAdd.forceActiveFocus()
                         }
                     }
                 }

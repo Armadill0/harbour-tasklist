@@ -29,7 +29,7 @@
         <translation type="unfinished">Copyright ©</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="86"/>
+        <location filename="qml/pages/AboutPage.qml" line="87"/>
         <source>Source code</source>
         <translation type="unfinished">Quellcode</translation>
     </message>
@@ -37,7 +37,7 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="qml/cover/CoverPage.qml" line="125"/>
+        <location filename="qml/cover/CoverPage.qml" line="126"/>
         <source>no tasks available</source>
         <translation type="unfinished">keine Aufgaben vorhanden</translation>
     </message>
@@ -266,67 +266,67 @@
         <translation type="unfinished">mit Enter/Return bestätigen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="174"/>
+        <location filename="qml/pages/TaskPage.qml" line="182"/>
         <source>no tasks available</source>
         <translation type="unfinished">keine Aufgaben verfügbar</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="215"/>
+        <location filename="qml/pages/TaskPage.qml" line="223"/>
         <source>About</source>
         <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="180"/>
+        <location filename="qml/pages/TaskPage.qml" line="188"/>
         <source>Settings</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="185"/>
+        <location filename="qml/pages/TaskPage.qml" line="193"/>
         <source>Lock orientation</source>
         <translation type="unfinished">Ausrichtung deaktivieren</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="185"/>
+        <location filename="qml/pages/TaskPage.qml" line="193"/>
         <source>Unlock orientation</source>
         <translation type="unfinished">Ausrichtung aktivieren</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="199"/>
+        <location filename="qml/pages/TaskPage.qml" line="207"/>
         <source>Delete all done tasks</source>
         <translation type="unfinished">Alle erledigten Aufgaben löschen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="203"/>
+        <location filename="qml/pages/TaskPage.qml" line="211"/>
         <source>Scroll to Bottom</source>
         <translation type="unfinished">Zum Ende scrollen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="210"/>
+        <location filename="qml/pages/TaskPage.qml" line="218"/>
         <source>Scroll to Top</source>
         <translation type="unfinished">Zum Anfang scrollen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="231"/>
+        <location filename="qml/pages/TaskPage.qml" line="239"/>
         <source>Deleting</source>
         <translation type="unfinished">Lösche</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="239"/>
+        <location filename="qml/pages/TaskPage.qml" line="247"/>
         <source>mark as open</source>
         <translation type="unfinished">markiere als offen</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="239"/>
+        <location filename="qml/pages/TaskPage.qml" line="247"/>
         <source>mark as done</source>
         <translation type="unfinished">markiere als erledigt</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="310"/>
+        <location filename="qml/pages/TaskPage.qml" line="318"/>
         <source>Edit</source>
         <translation type="unfinished">Bearbeiten</translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="320"/>
+        <location filename="qml/pages/TaskPage.qml" line="328"/>
         <source>Delete</source>
         <translation type="unfinished">Löschen</translation>
     </message>
