@@ -46,7 +46,8 @@ Known Bugs
 
 Roadmap for Version 1.0
 ================
-- jump back to task input field after adding one by default
+- jump back to task input field after adding one by default (currently the keyboard doesn't slide out)
+- add multiple tasks from the clipboard, devided by new lines
 - settings
     - ability to disable jump back to task in put field after adding one
     - time and date display options (there are problems to read the correct local time strings)
