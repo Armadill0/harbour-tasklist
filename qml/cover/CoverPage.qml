@@ -105,12 +105,15 @@ CoverBackground {
 
     ListView {
         anchors.fill: parent
+        anchors.margins: Theme.paddingSmall
+
         Label {
             id: coverHeader
             text: DB.getListProperty(currentList, "ListName")
             width: parent.width
             anchors.top: parent.top
             horizontalAlignment: Text.Center
+            color: Theme.highlightColor
         }
 
         ListView {
