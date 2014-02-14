@@ -159,20 +159,14 @@ Page {
                     }
                 }
 
-                // if enter or return is pressed add the new task
-                Keys.onEnterPressed: {
-                    addTask()
-                }
-                Keys.onReturnPressed: {
-                    addTask()
-                }
+                EnterKey.onClicked: addTask()
 
-                onFocusChanged: {
+                /*onFocusChanged: {
                     if (taskListWindow.coverAddTask === true) {
-                        taskAdd.forceActiveFocus()
+                        taskList.headerItem.children[1].forceActiveFocus()
                         taskListWindow.coverAddTask = false
                     }
-                }
+                }*/
             }
         }
 

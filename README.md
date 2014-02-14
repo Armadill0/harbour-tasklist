@@ -60,3 +60,7 @@ Roadmap for Version 2.0
 - online accounting
 - share lists
 - csv import/export
+
+Contributors
+================
+- Manuel Soriano (manu007)

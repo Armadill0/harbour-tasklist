@@ -32,65 +32,76 @@ Dialog {
 
         VerticalScrollDecorator { flickable: aboutTaskList }
 
-        Rectangle {
+        Column {
             id: aboutRectangle
+            anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
+            spacing: Theme.paddingSmall
 
             DialogHeader {
-                id: aboutHeader
                 title: qsTr("About") + " - TaskList"
                 acceptText: qsTr("Back")
             }
 
             Image {
-                id: logoTaskList
                 source: "../images/harbour-tasklist.png"
                 width: parent.width
-                anchors.top: aboutHeader.bottom
                 fillMode: Image.PreserveAspectFit
                 horizontalAlignment: Image.AlignHCenter
             }
 
             Label {
-                id: labelTaskList
                 text: "TaskList"
                 horizontalAlignment: Text.Center
-                width: parent.width
-                anchors.top: logoTaskList.bottom
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            SectionHeader {
+                text: qsTr("Description")
             }
 
             Label {
-                id: descTaskList
                 text: qsTr("A small but mighty program to manage your daily tasks.")
                 width: parent.width - Theme.paddingLarge * 2
-                anchors.top: labelTaskList.bottom
-                anchors.topMargin: Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
-                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            SectionHeader {
+                text: qsTr("Licensing")
             }
 
             Label {
-                id: copyTaskList
                 text: qsTr("Copyright © by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
-                anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width - Theme.paddingLarge * 2
-                anchors.top: descTaskList.bottom
-                anchors.topMargin: Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
-                color: Theme.primaryColor
+            }
+
+            SectionHeader {
+                text: qsTr("Contributors")
             }
 
             Label {
-                id: sourceTaskList
-                textFormat: Text.RichText;
-                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + qsTr("Source code") + ": <a href=\"https://github.com/Armadill0/harbour-tasklist\">https://github.com/Armadill0/harbour-tasklist</a>"
-                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Manuel Soriano (manu007)")
                 width: parent.width - Theme.paddingLarge * 2
-                anchors.top: copyTaskList.bottom
-                anchors.topMargin: Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            SectionHeader {
+                text: qsTr("Project information")
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                textFormat: Text.RichText;
+                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style><a href=\"https://github.com/Armadill0/harbour-tasklist\">https://github.com/Armadill0/harbour-tasklist</a>"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeTiny
-                color: Theme.primaryColor
 
                 onLinkActivated: {
                     Qt.openUrlExternally(link)
