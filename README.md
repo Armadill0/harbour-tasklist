@@ -27,7 +27,7 @@ Features
 
 Internationalization
 ================
-- current languages: English (default), German, Spanish
+- current languages: English (default), German, Spanish, Russian
 - new languages tutorial:
     - download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/harbour-tasklist_plain.ts
     - copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)
