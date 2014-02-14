@@ -64,3 +64,4 @@ Roadmap for Version 2.0
 Contributors
 ================
 - Manuel Soriano (manu007)
+- Ilja Balanov

@@ -85,7 +85,7 @@ Dialog {
             }
 
             Label {
-                text: qsTr("Manuel Soriano (manu007)")
+                text: "Manuel Soriano (manu007)\nIlja Balonov"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
