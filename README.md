@@ -43,6 +43,7 @@ Internationalization
 
 Known Bugs
 ================
+- Edit task with direct save moves task to default list
 
 Roadmap for Version 1.0
 ================
