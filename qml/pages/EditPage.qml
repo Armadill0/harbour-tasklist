@@ -30,13 +30,16 @@ Dialog {
     property string taskid
     property bool taskstatus
     property string taskcreationdate
-    property string listindex
+    property int listid
+    property int listindex
 
     // helper function to add lists to the listLocation field
     function appendList(id, listname) {
         listLocationModel.append({"listid": id, "listname": listname})
+        console.log(id+"#"+listid)
         if (id === listid) {
-            listLocatedIn.currentIndex = listLocationModel.count - 1
+            console.log("true"+ (listLocationModel.count - 1))
+            listindex = listLocationModel.count - 1
         }
     }
 
@@ -60,8 +63,8 @@ Dialog {
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(listid, taskid, "Status")) === 1 ? true : false
-            editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(listid, taskid, "CreationDate"))
+            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(taskid, "Status")) === 1 ? true : false
+            editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(taskid, "CreationDate"))
         }
     }
 
@@ -75,7 +78,9 @@ Dialog {
     }
 
     Component.onCompleted: {
+        listid = parseInt(DB.getTaskProperty(taskid, "ListID"))
         DB.readLists()
+        listLocatedIn.currentIndex = listindex
     }
 
     ListModel {

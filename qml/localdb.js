@@ -177,12 +177,12 @@ function updateTask(listid, newlistid, id, task, status, dueDate, duration) {
 }
 
 // get task property from database
-function getTaskProperty(listid, id, taskproperty) {
+function getTaskProperty(id, taskproperty) {
     var db = connectDB();
     var result;
 
     db.transaction(function(tx) {
-        result = tx.executeSql("SELECT " + taskproperty + " FROM tasks WHERE ID='" + id + "' AND ListID='" + listid + "'");
+        result = tx.executeSql("SELECT " + taskproperty + " FROM tasks WHERE ID='" + id + "'");
     });
 
     return eval("result.rows.item(0)." + taskproperty);
