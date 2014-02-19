@@ -32,7 +32,7 @@ Internationalization
     - download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/harbour-tasklist_plain.ts
     - copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)
     - using text editor:
-        - translate everything in the <source></source> Tag into the <translation type="unfinished"></translation> Tag one line below
+        - translate everything in the \<source\>\</source\> Tag into the \<translation type="unfinished"\>\</translation\> Tag one line below
         - send me the file via mail
     - using QT Linguist:
         - start QT Linguist (part of the Qt SDK)
