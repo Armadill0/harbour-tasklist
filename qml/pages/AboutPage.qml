@@ -85,7 +85,21 @@ Dialog {
             }
 
             Label {
-                text: "Manuel Soriano (manu007)\nIlja Balonov"
+                text: "Manuel Soriano (manu007)"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                text: "Ilja Balonov"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                text: "Léonard Meyer"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall

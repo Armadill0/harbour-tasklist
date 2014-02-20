@@ -47,10 +47,15 @@ Known Bugs
 
 Roadmap for Version 1.0
 ================
+- change to a better sql injection protection, because this currently conflicts with languages which use special chars
 - jump back to task input field after adding one by default (currently the keyboard doesn't slide out)
 - add multiple tasks from the clipboard, devided by new lines
 - settings
     - ability to disable jump back to task in put field after adding one
+
+Roadmap for Version 1.5
+================
+- settings
     - time and date display options (there are problems to read the correct local time strings)
 - duedate (no API available atm)
     - task alarms
@@ -66,3 +71,4 @@ Contributors
 ================
 - Manuel Soriano (manu007)
 - Ilja Balonov
+- Léonard Meyer
