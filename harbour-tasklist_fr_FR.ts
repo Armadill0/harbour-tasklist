@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE" sourcelanguage="en_US">
+<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="42"/>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="43"/>
         <source>Back</source>
-        <translation>Zurück</translation>
+        <translation>Retour</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="61"/>
         <source>Description</source>
-        <translation>Beschreibung</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="65"/>
         <source>A small but mighty program to manage your daily tasks.</source>
-        <translation>Ein kleines aber mächtiges Programm um deine täglichen Aufgaben zu verwalten.</translation>
+        <translation>Un petit mais puissant programme pour gérer vos tâches quotidiennes.</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="73"/>
         <source>Licensing</source>
-        <translation>Lizensierung</translation>
-    </message>
-    <message>
-        <location filename="qml/pages/AboutPage.qml" line="77"/>
-        <source>License</source>
-        <translation>Lizenz</translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="77"/>
         <source>Copyright © by</source>
-        <translation>Copyright ©</translation>
+        <translation>Copyright © par</translation>
+    </message>
+    <message>
+        <location filename="qml/pages/AboutPage.qml" line="77"/>
+        <source>License</source>
+        <translation>Licence</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="84"/>
         <source>Contributors</source>
-        <translation>Helfer</translation>
+        <translation>Contributeurs</translation>
     </message>
     <message>
         <location filename="qml/pages/AboutPage.qml" line="95"/>
         <source>Project information</source>
-        <translation>Projektinformationen</translation>
+        <translation>Information sur le projet</translation>
     </message>
 </context>
 <context>
@@ -54,7 +54,7 @@
     <message>
         <location filename="qml/cover/CoverPage.qml" line="129"/>
         <source>no tasks available</source>
-        <translation>keine Aufgaben vorhanden</translation>
+        <translation>aucune tâche disponible</translation>
     </message>
 </context>
 <context>
@@ -62,32 +62,32 @@
     <message>
         <location filename="qml/pages/EditPage.qml" line="103"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="107"/>
         <source>Task properties</source>
-        <translation>Eigenschaften</translation>
+        <translation>Propriétés</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="102"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="114"/>
         <source>Save changes in the upper right corner</source>
-        <translation>Einstellungen rechts oben speichern</translation>
+        <translation>Enregistrer les modifications dans le coin supérieur droit</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="114"/>
         <source>task already exists on this list!</source>
-        <translation>Aufgabe existiert bereits in dieser Liste!</translation>
+        <translation>la tâche existe déjà dans cette liste</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="126"/>
         <source>task is done</source>
-        <translation>Aufgabe erledigt</translation>
+        <translation>tâche terminée</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="133"/>
@@ -97,12 +97,12 @@
     <message>
         <location filename="qml/pages/EditPage.qml" line="150"/>
         <source>Information</source>
-        <translation>Informationen</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="158"/>
         <source>Created at</source>
-        <translation>Erstellt am</translation>
+        <translation>Crée le</translation>
     </message>
 </context>
 <context>
@@ -110,62 +110,62 @@
     <message>
         <location filename="qml/pages/ListPage.qml" line="61"/>
         <source>Manage lists</source>
-        <translation>Deine Listen</translation>
+        <translation>Gérer les listes</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="67"/>
         <source>Enter unique list name</source>
-        <translation>Eindeutige Liste angeben</translation>
+        <translation>Entrez un nom de liste unique</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="68"/>
         <source>Press Enter/Return to add the new list</source>
-        <translation>Neue Liste mit Enter/Return bestätigen</translation>
+        <translation>Tapez Entrer/Retour pour ajouter la liste</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="100"/>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="104"/>
         <source>Settings</source>
-        <translation>Eintellungen</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="119"/>
         <source>Deleting</source>
-        <translation>Lösche</translation>
+        <translation>Suppression</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="144"/>
         <source>default</source>
-        <translation>Standard</translation>
+        <translation>défauts</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="155"/>
         <source>Press Enter/Return to save changes</source>
-        <translation>Änderungen mit Enter/Return bestätigen</translation>
+        <translation>Tapez Entrer/Retour pour enregistrer les changements</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="216"/>
         <source>Edit</source>
-        <translation>Bearbeiten</translation>
+        <translation>Éditer</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="229"/>
         <source>Set as Default list</source>
-        <translation>Als Standardliste setzen</translation>
+        <translation>Définir comme liste par défaut</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="244"/>
         <source>Set as Cover list</source>
-        <translation>Als Coverliste setzen</translation>
+        <translation>Définir comme liste en couverture</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="260"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation>Supprimer</translation>
     </message>
 </context>
 <context>
@@ -173,94 +173,94 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="64"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="65"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="69"/>
         <source>Cover options</source>
-        <translation>Cover Optionen</translation>
+        <translation>Options de la couverture</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="75"/>
         <source>Cover list</source>
-        <translation>Coverliste</translation>
+        <translation>Liste en couverture</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="79"/>
         <source>Default list</source>
-        <translation>Standardliste</translation>
+        <translation>Liste par défaut</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="80"/>
         <source>Selected list</source>
-        <translation>Aktuelle Liste</translation>
+        <translation>Liste sélectionnée</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="81"/>
         <source>Choose in list management</source>
-        <translation>Im Listenmanager wählen</translation>
+        <translation>Choisissez une liste</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="88"/>
         <source>Cover task order</source>
-        <translation>Cover Sortierung</translation>
+        <translation>Ordre des tâches en couverture</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="92"/>
         <source>Last updated first</source>
-        <translation>Zuletzt Aktualisierte oben</translation>
+        <translation>Dernière mise à jour en premier</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="93"/>
         <source>Sort by name ascending</source>
-        <translation>Nach Name aufsteigend</translation>
+        <translation>Trier par nom croissant</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="94"/>
         <source>Sort by name descending</source>
-        <translation>Nach Name absteigend</translation>
+        <translation>Trier par nom décroissant</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="99"/>
         <source>Task options</source>
-        <translation>Aufgaben Optionen</translation>
+        <translation>Options de la tâche</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="105"/>
         <source>open task appearance</source>
-        <translation>Markierung für offene Aufgaben</translation>
+        <translation>Apparence des tâches ouvertes</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="110"/>
         <source>Remorse options</source>
-        <translation>Zeit zum Abbrechen</translation>
+        <translation>Options des delais</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="116"/>
         <source>on Delete</source>
-        <translation>beim Löschen</translation>
+        <translation>pour supprimer</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="121"/>
         <location filename="qml/pages/SettingsPage.qml" line="132"/>
         <source>seconds</source>
-        <translation>Sekunden</translation>
+        <translation>secondes</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="121"/>
         <location filename="qml/pages/SettingsPage.qml" line="132"/>
         <source>second</source>
-        <translation>Sekunde</translation>
+        <translation>seconde</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="127"/>
         <source>on Mark task</source>
-        <translation>beim Markieren</translation>
+        <translation>pour terminer une tâche</translation>
     </message>
 </context>
 <context>
@@ -268,82 +268,82 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="51"/>
         <source>Deleting all done tasks</source>
-        <translation>Lösche erledigte Aufgaben</translation>
+        <translation>Supprimer toutes les tâches terminées</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="140"/>
         <source>Enter unique task name</source>
-        <translation>Eindeutige Aufgabe eingeben</translation>
+        <translation>Entrez un nom de tâche unique</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="141"/>
         <source>Press Enter/Return to add the new task</source>
-        <translation>mit Enter/Return bestätigen</translation>
+        <translation>Tapez Entrer/Retour pour ajouter une nouvelle tâche</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="176"/>
         <source>no tasks available</source>
-        <translation>keine Aufgaben verfügbar</translation>
+        <translation>aucune tâche disponible</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="217"/>
         <source>About</source>
-        <translation>Über</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="182"/>
         <source>Settings</source>
-        <translation>Einstellungen</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="187"/>
         <source>Lock orientation</source>
-        <translation>Ausrichtung deaktivieren</translation>
+        <translation>Verrouiller l&apos;orientation</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="187"/>
         <source>Unlock orientation</source>
-        <translation>Ausrichtung aktivieren</translation>
+        <translation>Déverrouiller l&apos;orientation</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="201"/>
         <source>Delete all done tasks</source>
-        <translation>Alle erledigten Aufgaben löschen</translation>
+        <translation>Supprimer toutes les tâches terminées</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="205"/>
         <source>Scroll to Bottom</source>
-        <translation>Zum Ende scrollen</translation>
+        <translation>Défiler vers le bas</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="212"/>
         <source>Scroll to Top</source>
-        <translation>Zum Anfang scrollen</translation>
+        <translation>Défiler vers le haut</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="233"/>
         <source>Deleting</source>
-        <translation>Lösche</translation>
+        <translation>Suppression</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="241"/>
         <source>mark as open</source>
-        <translation>markiere als offen</translation>
+        <translation>marquer ouvert</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="241"/>
         <source>mark as done</source>
-        <translation>markiere als erledigt</translation>
+        <translation>marquer terminé</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="312"/>
         <source>Edit</source>
-        <translation>Bearbeiten</translation>
+        <translation>Éditer</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="322"/>
         <source>Delete</source>
-        <translation>Löschen</translation>
+        <translation>Supprimer</translation>
     </message>
 </context>
 </TS>

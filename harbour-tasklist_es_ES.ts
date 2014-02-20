@@ -44,11 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="88"/>
-        <source>Manuel Soriano (manu007)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="qml/pages/AboutPage.qml" line="95"/>
         <source>Project information</source>
         <translation type="unfinished"></translation>
@@ -65,47 +60,47 @@
 <context>
     <name>EditPage</name>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="98"/>
+        <location filename="qml/pages/EditPage.qml" line="103"/>
         <source>Save</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="102"/>
+        <location filename="qml/pages/EditPage.qml" line="107"/>
         <source>Task properties</source>
         <translation>Propiedades de las tareas</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="97"/>
+        <location filename="qml/pages/EditPage.qml" line="102"/>
         <source>Settings</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="109"/>
+        <location filename="qml/pages/EditPage.qml" line="114"/>
         <source>Save changes in the upper right corner</source>
         <translation>Salvar cambios en la parte superior derecha</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="109"/>
+        <location filename="qml/pages/EditPage.qml" line="114"/>
         <source>task already exists on this list!</source>
         <translation>Esta tarea ya existe!</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="121"/>
+        <location filename="qml/pages/EditPage.qml" line="126"/>
         <source>task is done</source>
         <translation>Tarea terminada</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="128"/>
+        <location filename="qml/pages/EditPage.qml" line="133"/>
         <source>List</source>
         <translation>Lista</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="145"/>
+        <location filename="qml/pages/EditPage.qml" line="150"/>
         <source>Information</source>
         <translation>Información</translation>
     </message>
     <message>
-        <location filename="qml/pages/EditPage.qml" line="153"/>
+        <location filename="qml/pages/EditPage.qml" line="158"/>
         <source>Created at</source>
         <translation>Creado en</translation>
     </message>

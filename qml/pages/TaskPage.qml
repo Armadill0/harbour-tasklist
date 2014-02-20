@@ -170,7 +170,7 @@ Page {
             }
         }
 
-        // show playholder if there are no tasks available
+        // show placeholder if there are no tasks available
         ViewPlaceholder {
             enabled: taskList.count === 0
             text: qsTr("no tasks available")
