@@ -44,7 +44,7 @@
         <translation>Contributeurs</translation>
     </message>
     <message>
-        <location filename="qml/pages/AboutPage.qml" line="95"/>
+        <location filename="qml/pages/AboutPage.qml" line="109"/>
         <source>Project information</source>
         <translation>Information sur le projet</translation>
     </message>
