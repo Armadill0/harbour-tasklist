@@ -94,18 +94,6 @@ Page {
             }
         }
 
-        // PullDownMenu and PushUpMenu
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("About") + " TaskList"
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-            MenuItem {
-                text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
-        }
-
         delegate: ListItem {
             id: listListItem
             height: menuOpen ? listContextMenu.height + listLabel.height : listLabel.height
