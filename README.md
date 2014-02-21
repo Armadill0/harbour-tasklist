@@ -72,3 +72,4 @@ Contributors
 - Manuel Soriano (manu007)
 - Ilja Balonov
 - Léonard Meyer
+- Anatoly Shipitsin
