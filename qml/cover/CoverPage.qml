@@ -110,7 +110,8 @@ CoverBackground {
         Label {
             id: coverHeader
             text: DB.getListProperty(currentList, "ListName")
-            width: parent.width
+            width: parent.width - Theme.paddingLarge
+            anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             horizontalAlignment: Text.Center
             color: Theme.highlightColor
@@ -119,8 +120,9 @@ CoverBackground {
         ListView {
             id: taskList
             anchors.top: coverHeader.bottom
-            anchors.bottom: parent.bottom
-            width: parent.width
+            height: parent.height -130
+            width: parent.width - Theme.paddingSmall
+            anchors.horizontalCenter: parent.horizontalCenter
             model: taskListModel
 
             // show playholder if there are no tasks available
@@ -129,23 +131,18 @@ CoverBackground {
                 text: qsTr("no tasks available")
             }
 
-            delegate: Row {
+            delegate: Item {
                 id: taskListItem
                 width: parent.width
+                height: 32
 
-                BackgroundItem {
-                    id: taskContainerItem
-                    width: parent.width
-                    height: 32
-
-                    Label {
-                        id: taskLabel
-                        x: Theme.paddingSmall
-                        text: task
-                        height: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pixelSize: Theme.fontSizeSmall
-                    }
+                Label {
+                    id: taskLabel
+                    x: Theme.paddingSmall
+                    text: task
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: Theme.fontSizeSmall
                 }
             }
         }
