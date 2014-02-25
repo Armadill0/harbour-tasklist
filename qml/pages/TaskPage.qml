@@ -144,8 +144,8 @@ Page {
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
 
-                function addTask() {
-                    var taskNew = taskAdd.text
+                function addTask(newTask) {
+                    var taskNew = newTask !== undefined ? newTask : taskAdd.text
                     if (taskNew.length > 0) {
                         // add task to db and tasklist
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
@@ -159,6 +159,7 @@ Page {
                     }
                 }
 
+
                 EnterKey.onClicked: addTask()
 
                 /*onFocusChanged: {
@@ -167,6 +168,20 @@ Page {
                         taskListWindow.coverAddTask = false
                     }
                 }*/
+
+                onTextChanged: {
+                    // devide text by new line characters
+                    var textSplit = taskAdd.text.split(/\r\n|\r|\n/)
+                    // if there are new lines
+                    if (textSplit.length > 1) {
+                        // add all of them to the DB and the list
+                        for (var i = 0; i < textSplit.length; i++) {
+                            // add task if it doesn't already exist
+                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0)
+                                addTask(textSplit[i])
+                        }
+                    }
+                }
             }
         }
 
