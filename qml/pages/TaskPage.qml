@@ -162,7 +162,8 @@ Page {
 
                 EnterKey.onClicked: addTask()
 
-                /*onFocusChanged: {
+                /* test implementation for automatic switch to textfield after adding a new task
+                onFocusChanged: {
                     if (taskListWindow.coverAddTask === true) {
                         taskList.headerItem.children[1].forceActiveFocus()
                         taskListWindow.coverAddTask = false
