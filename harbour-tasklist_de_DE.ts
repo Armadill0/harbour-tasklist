@@ -287,7 +287,7 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="199"/>
         <source>Adding multiple tasks</source>
-        <translation>Meherre Aufgaben hinzufügen</translation>
+        <translation>Mehrere Aufgaben hinzufügen</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="225"/>
