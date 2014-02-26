@@ -50,7 +50,6 @@ Known Issues
 
 Roadmap for Version 1.0
 ================
-- add better solution for displaying only that much tasks on cover to not hide them behind the cover actions
 - change to a better sql injection protection, because this currently conflicts with languages which use special chars
 - jump back to task input field after adding one by default (currently the keyboard doesn't slide out)
 - settings
