@@ -54,6 +54,7 @@ ApplicationWindow {
     property string timeFormat
     property int remorseOnDelete
     property int remorseOnMark
+    property int remorseOnMultiAdd
 
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }

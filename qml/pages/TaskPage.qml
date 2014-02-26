@@ -106,6 +106,7 @@ Page {
             taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
             taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
             taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
+            taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
         }
         taskListWindow.listname = DB.getListProperty(listid, "ListName")
 
@@ -159,7 +160,6 @@ Page {
                     }
                 }
 
-
                 EnterKey.onClicked: addTask()
 
                 /* test implementation for automatic switch to textfield after adding a new task
@@ -175,11 +175,33 @@ Page {
                     var textSplit = taskAdd.text.split(/\r\n|\r|\n/)
                     // if there are new lines
                     if (textSplit.length > 1) {
-                        // add all of them to the DB and the list
+                        // clear textfield
+                        taskAdd.text = ""
+                        // helper array to check task's uniqueness before adding them
+                        var tasksArray = []
+
+                        // check if the tasks are unique
                         for (var i = 0; i < textSplit.length; i++) {
-                            // add task if it doesn't already exist
-                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0)
-                                addTask(textSplit[i])
+                            var taskDouble = 0
+                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0) {
+                                // if task is duplicated in the list of multiple tasks change helper variable
+                                for (var j = 0; j < tasksArray.length; j++) {
+                                    if (tasksArray[j] === textSplit[i])
+                                        taskDouble = 1
+                                }
+
+                                // if helper variable has been changed, tasks already is on the multiple tasks list and won't be added a second time
+                                if (taskDouble === 0)
+                                    tasksArray.push(textSplit[i])
+                            }
+                        }
+                        if (tasksArray.length > 0) {
+                            tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")",function() {
+                                // add all of them to the DB and the list
+                                for (var i = 0; i < tasksArray.length; i++) {
+                                    addTask(tasksArray[i])
+                                }
+                            } , taskListWindow.remorseOnMultiAdd * 1000)
                         }
                     }
                 }

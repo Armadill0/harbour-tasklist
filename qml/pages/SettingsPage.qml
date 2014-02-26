@@ -35,6 +35,7 @@ Dialog {
         //DB.updateSetting("timeFormat", timeFormat.value)
         DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
         DB.updateSetting("remorseOnMark", remorseOnMark.value)
+        DB.updateSetting("remorseOnMultiAdd", remorseOnMultiAdd.value)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
@@ -44,6 +45,7 @@ Dialog {
         //taskListWindow.timeFormat = timeFormat.value
         taskListWindow.remorseOnDelete = remorseOnDelete.value
         taskListWindow.remorseOnMark = remorseOnMark.value
+        taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
 
         // change trigger variables to reload list
         taskListWindow.listchanged = true
@@ -129,6 +131,17 @@ Dialog {
                 maximumValue: 10
                 stepSize: 1
                 value: taskListWindow.remorseOnMark
+                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+            }
+
+            Slider {
+                id: remorseOnMultiAdd
+                width: parent.width
+                label: qsTr("on Adding multiple tasks")
+                minimumValue: 1
+                maximumValue: 10
+                stepSize: 1
+                value: taskListWindow.remorseOnMultiAdd
                 valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
             }
 

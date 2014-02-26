@@ -80,6 +80,11 @@ function initializeDB() {
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnMark', '2')");
             }
+            // remorseOnMultiAdd
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='remorseOnMultiAdd'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnMultiAdd', '5')");
+            }
         }
     );
 

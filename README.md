@@ -14,6 +14,8 @@ Features
     - set the list which is displayed in the cover
     - move tasks between lists (user requested feature)
     - lock/unlock orientation on demand (user requested feature)
+- add multiple tasks from the clipboard, devided by new lines (user requested feature)
+    - to avoid invalid massive task additions this is done via a remorse action
 - cover shows current, it's own or the default task list
     - cover action to add task to list shown in cover
     - cover action to switch between lists (user requested feature)
@@ -41,16 +43,16 @@ Internationalization
         - send me the file via mail
     - every contributor will be mentioned in the About page :-)
 
-Known Bugs
+Known Issues
 ================
 - Edit task with direct save moves task to default list
+- some translations are not complete, I'll try collect new complete ones on each rollout on the roadmap
 
 Roadmap for Version 1.0
 ================
 - add better solution for displaying only that much tasks on cover to not hide them behind the cover actions
 - change to a better sql injection protection, because this currently conflicts with languages which use special chars
 - jump back to task input field after adding one by default (currently the keyboard doesn't slide out)
-- add multiple tasks from the clipboard, devided by new lines
 - settings
     - ability to disable jump back to task in put field after adding one
 

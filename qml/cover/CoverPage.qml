@@ -120,27 +120,21 @@ CoverBackground {
         ListView {
             id: taskList
             anchors.top: coverHeader.bottom
-            height: parent.height -130
+            height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall)
             width: parent.width - Theme.paddingSmall
             anchors.horizontalCenter: parent.horizontalCenter
             model: taskListModel
 
-            // show playholder if there are no tasks available
-            ViewPlaceholder {
-                enabled: taskList.count === 0
-                text: qsTr("no tasks available")
-            }
-
             delegate: Item {
                 id: taskListItem
                 width: parent.width
-                height: 32
+                height: taskLabel.height
 
                 Label {
                     id: taskLabel
                     x: Theme.paddingSmall
-                    text: task
-                    height: parent.height
+                    text: task + Theme.fontSizeSmall
+                    height: font.pixelSize + Theme.paddingSmall
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeSmall
                 }
