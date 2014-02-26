@@ -120,7 +120,7 @@ CoverBackground {
         ListView {
             id: taskList
             anchors.top: coverHeader.bottom
-            height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall)
+            height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall) + 2
             width: parent.width - Theme.paddingSmall
             anchors.horizontalCenter: parent.horizontalCenter
             model: taskListModel
@@ -133,7 +133,7 @@ CoverBackground {
                 Label {
                     id: taskLabel
                     x: Theme.paddingSmall
-                    text: task + Theme.fontSizeSmall
+                    text: task
                     height: font.pixelSize + Theme.paddingSmall
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeSmall
