@@ -47,7 +47,6 @@ Known Issues
 ================
 - Edit task with direct save moves task to default list
 - some translations are not complete, I'll try collect new complete ones on each rollout on the roadmap
-- add notifications if there are some/all tasks not added within multiadd function
 
 Roadmap for Version 1.0
 ================
