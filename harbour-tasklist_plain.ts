@@ -255,87 +255,97 @@
 <context>
     <name>TaskPage</name>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="51"/>
+        <location filename="qml/pages/TaskPage.qml" line="52"/>
         <source>Deleting all done tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="141"/>
+        <location filename="qml/pages/TaskPage.qml" line="148"/>
         <source>Enter unique task name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="142"/>
+        <location filename="qml/pages/TaskPage.qml" line="149"/>
         <source>Press Enter/Return to add the new task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="214"/>
+        <location filename="qml/pages/TaskPage.qml" line="227"/>
         <source>no tasks available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="255"/>
+        <location filename="qml/pages/TaskPage.qml" line="268"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="220"/>
+        <location filename="qml/pages/TaskPage.qml" line="233"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="199"/>
+        <location filename="qml/pages/TaskPage.qml" line="206"/>
         <source>Adding multiple tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="225"/>
+        <location filename="qml/pages/TaskPage.qml" line="215"/>
+        <source>All tasks already existed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/pages/TaskPage.qml" line="216"/>
+        <source>No new tasks have been added to the list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qml/pages/TaskPage.qml" line="238"/>
         <source>Lock orientation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="225"/>
+        <location filename="qml/pages/TaskPage.qml" line="238"/>
         <source>Unlock orientation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="239"/>
+        <location filename="qml/pages/TaskPage.qml" line="252"/>
         <source>Delete all done tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="243"/>
+        <location filename="qml/pages/TaskPage.qml" line="256"/>
         <source>Scroll to Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="250"/>
+        <location filename="qml/pages/TaskPage.qml" line="263"/>
         <source>Scroll to Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="271"/>
+        <location filename="qml/pages/TaskPage.qml" line="284"/>
         <source>Deleting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="279"/>
+        <location filename="qml/pages/TaskPage.qml" line="292"/>
         <source>mark as open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="279"/>
+        <location filename="qml/pages/TaskPage.qml" line="292"/>
         <source>mark as done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="350"/>
+        <location filename="qml/pages/TaskPage.qml" line="363"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qml/pages/TaskPage.qml" line="360"/>
+        <location filename="qml/pages/TaskPage.qml" line="373"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
