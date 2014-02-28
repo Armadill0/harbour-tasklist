@@ -74,7 +74,7 @@
     <message>
         <location filename="qml/pages/EditPage.qml" line="114"/>
         <source>task already exists on this list!</source>
-        <translation>la tâche existe déjà dans cette liste</translation>
+        <translation>cette tâche existe déjà dans cette liste !</translation>
     </message>
     <message>
         <location filename="qml/pages/EditPage.qml" line="126"/>
@@ -107,12 +107,12 @@
     <message>
         <location filename="qml/pages/ListPage.qml" line="67"/>
         <source>Enter unique list name</source>
-        <translation>Entrez un nom de liste unique</translation>
+        <translation>Ajoutez une liste unique</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="68"/>
         <source>Press Enter/Return to add the new list</source>
-        <translation>Tapez Entrer/Retour pour ajouter la liste</translation>
+        <translation>Tapez Entrer/Retour enregistrer</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="107"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="qml/pages/ListPage.qml" line="143"/>
         <source>Press Enter/Return to save changes</source>
-        <translation>Tapez Entrer/Retour pour enregistrer les changements</translation>
+        <translation>Tapez Entrer/Retour pour enregistrer</translation>
     </message>
     <message>
         <location filename="qml/pages/ListPage.qml" line="204"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="77"/>
         <source>Cover list</source>
-        <translation>Liste en couverture</translation>
+        <translation>Liste affichée</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="81"/>
@@ -190,12 +190,12 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="90"/>
         <source>Cover task order</source>
-        <translation>Ordre des tâches en couverture</translation>
+        <translation>Ordre des tâches</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="94"/>
         <source>Last updated first</source>
-        <translation>Dernière mise à jour en premier</translation>
+        <translation>Trier par date de mise à jour</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="95"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="101"/>
         <source>Task options</source>
-        <translation>Options de la tâche</translation>
+        <translation>Options d&apos;affichage</translation>
     </message>
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="107"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="qml/pages/SettingsPage.qml" line="140"/>
         <source>on Adding multiple tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>pour ajouter plusieurs tâches</translation>
     </message>
 </context>
 <context>
@@ -257,17 +257,17 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="52"/>
         <source>Deleting all done tasks</source>
-        <translation>Supprimer toutes les tâches terminées</translation>
+        <translation>Supprimer les tâches terminées</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="148"/>
         <source>Enter unique task name</source>
-        <translation>Entrez un nom de tâche unique</translation>
+        <translation>Ajoutez une tâche unique</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="149"/>
         <source>Press Enter/Return to add the new task</source>
-        <translation>Tapez Entrer/Retour pour ajouter une nouvelle tâche</translation>
+        <translation>Tapez Entrer/Retour pour enregistrer</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="227"/>
@@ -287,17 +287,17 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="206"/>
         <source>Adding multiple tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajoutez plusieurs tâches</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="215"/>
         <source>All tasks already existed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ces tâches existent déjà !</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="216"/>
         <source>No new tasks have been added to the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune nouvelle tâche n&apos;a été ajouté.</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="238"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="qml/pages/TaskPage.qml" line="252"/>
         <source>Delete all done tasks</source>
-        <translation>Supprimer toutes les tâches terminées</translation>
+        <translation>Supprimer les tâches terminées</translation>
     </message>
     <message>
         <location filename="qml/pages/TaskPage.qml" line="256"/>
