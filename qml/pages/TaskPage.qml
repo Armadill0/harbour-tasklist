@@ -19,7 +19,7 @@
 
 import QtQuick 2.1
 import Sailfish.Silica 1.0
-import org.nemomobile.notifications 1.0
+//import org.nemomobile.notifications 1.0
 import "../localdb.js" as DB
 import "."
 
@@ -88,11 +88,11 @@ Page {
         }
     }
 
-    Notification {
+    /*Notification {
         id: notification
         category: "x-nemo.tasklist"
         itemCount: 1
-    }
+    }*/
 
     // read all tasks after start
     Component.onCompleted: {
@@ -212,9 +212,9 @@ Page {
                         }
                         else {
                             // display notification if no task has been added, because all of them already existed on the list
-                            notification.previewSummary = qsTr("All tasks already existed!")
+                            /*notification.previewSummary = qsTr("All tasks already existed!")
                             notification.previewBody = qsTr("No new tasks have been added to the list.")
-                            notification.publish()
+                            notification.publish()*/
                         }
                     }
                 }
