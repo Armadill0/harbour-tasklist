@@ -150,7 +150,7 @@ Page {
                 // enable enter key if minimum task length has been reached
                 EnterKey.enabled: taskAdd.text.length > 0
                 // set allowed chars and task length
-                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
 
                 function addTask(newTask) {
                     var taskNew = newTask !== undefined ? newTask : taskAdd.text

@@ -113,7 +113,7 @@ Dialog {
                 text: editTaskPage.taskname
                 label: errorHighlight === false ? qsTr("Save changes in the upper right corner") : qsTr("task already exists on this list!")
                 // set allowed chars and task length
-                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
                 onTextChanged: {
                     // check Content only if page is active because of the dynamic loading of listLocatedIn
                     if (editTaskPage.status === PageStatus.Active)

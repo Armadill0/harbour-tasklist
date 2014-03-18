@@ -69,7 +69,7 @@ Page {
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: listAdd.text.length > 0
                 // set allowed chars and list length
-                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
 
                 function addList(listNew) {
                     if (listNew.length > 0) {
@@ -147,7 +147,7 @@ Page {
                 EnterKey.enabled: editListLabel.text.length > 0
 
                 // set allowed chars and list length
-                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,30}$/ }
+                validator: RegExpValidator { regExp: /^([^(\'|\;|\")]){,60}$/ }
 
                 function changeList(listNew) {
                     // update list in db
