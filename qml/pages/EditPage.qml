@@ -124,7 +124,7 @@ Dialog {
             TextSwitch {
                 id: taskStatus
                 text: qsTr("task is done")
-                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
+                checked: !taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
             ComboBox {
