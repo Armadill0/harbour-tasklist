@@ -64,6 +64,12 @@ Page {
         } , taskListWindow.remorseOnDelete * 1000)
     }
 
+    Timer {
+        id: startPageTimer
+        interval: 500; running: false; repeat: false
+        onTriggered: taskListWindow.deactivate()
+    }
+
     // reload tasklist on activating first page
     onStatusChanged: {
         switch(status) {
@@ -83,6 +89,17 @@ Page {
             if (taskListWindow.coverAddTask === true) {
                 taskList.headerItem.children[1].forceActiveFocus()
                 taskListWindow.coverAddTask = false
+            }
+
+            if (taskListWindow.switchStartPage === true) {
+                taskListWindow.switchStartPage = false
+
+                if (taskListWindow.startPage === 1) {
+                    pageStack.navigateForward(PageStackAction.Immediate)
+                }
+                else if (taskListWindow.startPage === 2) {
+                    startPageTimer.start()
+                }
             }
             break
         }
@@ -112,9 +129,10 @@ Page {
             taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
             taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
             taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
+            taskListWindow.startPage = parseInt(DB.getSetting("startPage"))
         }
-        taskListWindow.listname = DB.getListProperty(listid, "ListName")
 
+        taskListWindow.listname = DB.getListProperty(listid, "ListName")
         reloadTaskList()
     }
 

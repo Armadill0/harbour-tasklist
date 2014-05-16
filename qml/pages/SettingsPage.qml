@@ -36,6 +36,7 @@ Dialog {
         DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
         DB.updateSetting("remorseOnMark", remorseOnMark.value)
         DB.updateSetting("remorseOnMultiAdd", remorseOnMultiAdd.value)
+        DB.updateSetting("startPage", startPage.currentIndex)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
@@ -94,6 +95,23 @@ Dialog {
                     MenuItem { text: qsTr("Last updated first") }
                     MenuItem { text: qsTr("Sort by name ascending") }
                     MenuItem { text: qsTr("Sort by name descending") }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("General options")
+            }
+
+            ComboBox {
+                id: startPage
+                width: parent.width
+                label: qsTr("Start page") + ":"
+                currentIndex: taskListWindow.startPage
+
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Default list") }
+                    MenuItem { text: qsTr("List overview") }
+                    MenuItem { text: qsTr("Minimize to cover") }
                 }
             }
 

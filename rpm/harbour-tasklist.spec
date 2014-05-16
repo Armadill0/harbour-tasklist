@@ -13,11 +13,11 @@ Name:       harbour-tasklist
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    harbour-tasklist
-Version:    0.9.7
+Version:    0.9.8
 Release:    1
 Group:      Qt/Qt
 License:    GPL v3
-URL:        http://example.org/
+URL:        https://github.com/Armadill0/harbour-tasklist
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-tasklist.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

@@ -25,8 +25,6 @@ import "localdb.js" as DB
 
 ApplicationWindow {
     id: taskListWindow
-    initialPage: Component { TaskPage {} }
-    cover: Component { CoverPage {} }
 
     // set current list
     property int listid
@@ -42,6 +40,8 @@ ApplicationWindow {
     property bool lockTaskOrientation: false
     // indicator variable when app just started
     property bool justStarted: true
+    // a variable to trigger the switch of tha start page
+    property bool switchStartPage: true
     // variable to save the list of lists as a string
     property string listOfLists
 
@@ -55,6 +55,10 @@ ApplicationWindow {
     property int remorseOnDelete
     property int remorseOnMark
     property int remorseOnMultiAdd
+    property int startPage
+
+    initialPage: Component { TaskPage {} }
+    cover: Component { CoverPage {} }
 
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }

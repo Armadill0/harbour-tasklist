@@ -157,6 +157,7 @@ CoverBackground {
                     // set current global list and jump to taskPage
                     taskListWindow.listid = currentList
                     pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+
                     taskListWindow.activate()
                 }
             }

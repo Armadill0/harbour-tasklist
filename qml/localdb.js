@@ -85,6 +85,11 @@ function initializeDB() {
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('remorseOnMultiAdd', '5')");
             }
+            // startPage
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='startPage'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('startPage', '0')");
+            }
         }
     );
 
