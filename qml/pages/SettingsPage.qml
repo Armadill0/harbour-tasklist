@@ -31,6 +31,7 @@ Dialog {
         DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
         DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
         DB.updateSetting("taskOpenAppearance", taskOpenAppearance.checked === true ? 1 : 0)
+        DB.updateSetting("backFocusAddTask", startPage.backFocusAddTask)
         //DB.updateSetting("dateFormat", dateFormat.value)
         //DB.updateSetting("timeFormat", timeFormat.value)
         DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
@@ -38,10 +39,12 @@ Dialog {
         DB.updateSetting("remorseOnMultiAdd", remorseOnMultiAdd.value)
         DB.updateSetting("startPage", startPage.currentIndex)
 
+
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
         taskListWindow.coverListOrder = coverListOrder.currentIndex
         taskListWindow.taskOpenAppearance = taskOpenAppearance.checked === true ? 1 : 0
+        taskListWindow.backFocusAddTask = backFocusAddTask.checked === true? 1 : 0
         //taskListWindow.dateFormat = dateFormat.value
         //taskListWindow.timeFormat = timeFormat.value
         taskListWindow.remorseOnDelete = remorseOnDelete.value
@@ -124,6 +127,13 @@ Dialog {
                 width: parent.width
                 text: qsTr("open task appearance")
                 checked: taskListWindow.taskOpenAppearance
+            }
+
+            TextSwitch {
+                id: backFocusAddTask
+                width: parent.width
+                text: qsTr("refocus task add field")
+                checked: taskListWindow.backFocusAddTask
             }
 
             SectionHeader {

@@ -56,6 +56,7 @@ ApplicationWindow {
     property int remorseOnMark
     property int remorseOnMultiAdd
     property int startPage
+    property int backFocusAddTask
 
     initialPage: Component { TaskPage {} }
     cover: Component { CoverPage {} }

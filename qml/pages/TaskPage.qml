@@ -64,10 +64,22 @@ Page {
         } , taskListWindow.remorseOnDelete * 1000)
     }
 
+    // workaround timer to push application to background after start
     Timer {
         id: startPageTimer
-        interval: 500; running: false; repeat: false
+        interval: 500
+        running: false
+        repeat: false
         onTriggered: taskListWindow.deactivate()
+    }
+
+    // workaround timer to force focus back top textfield after adding new task
+    Timer {
+        id: timerAddTask
+        interval: 100
+        running: false
+        repeat: false
+        onTriggered: taskList.headerItem.children[1].forceActiveFocus()
     }
 
     // reload tasklist on activating first page
@@ -91,12 +103,15 @@ Page {
                 taskListWindow.coverAddTask = false
             }
 
+            // decide which page should be shown at startup
             if (taskListWindow.switchStartPage === true) {
                 taskListWindow.switchStartPage = false
 
+                // switch to list overview at startup
                 if (taskListWindow.startPage === 1) {
                     pageStack.navigateForward(PageStackAction.Immediate)
                 }
+                //minimize to background at startup
                 else if (taskListWindow.startPage === 2) {
                     startPageTimer.start()
                 }
@@ -130,6 +145,7 @@ Page {
             taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
             taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
             taskListWindow.startPage = parseInt(DB.getSetting("startPage"))
+            taskListWindow.backFocusAddTask = parseInt(DB.getSetting("backFocusAddTask"))
         }
 
         taskListWindow.listname = DB.getListProperty(listid, "ListName")
@@ -183,17 +199,11 @@ Page {
                             taskAdd.text = ""
                         }
                     }
+                    if (taskListWindow.backFocusAddTask === 1)
+                        timerAddTask.start()
                 }
 
                 EnterKey.onClicked: addTask()
-
-                /* test implementation for automatic switch to textfield after adding a new task
-                onFocusChanged: {
-                    if (taskListWindow.coverAddTask === true) {
-                        taskList.headerItem.children[1].forceActiveFocus()
-                        taskListWindow.coverAddTask = false
-                    }
-                }*/
 
                 onTextChanged: {
                     // devide text by new line characters

@@ -46,6 +46,7 @@ Internationalization
 Known Issues
 ================
 - some translations are not complete, I'll try collect new complete ones on each rollout on the roadmap
+- starting to background can possibly not work on heavy loaded devices due to timer issues
 
 Roadmap for Version 1.0
 ================
