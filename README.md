@@ -52,9 +52,6 @@ Roadmap for Version 1.0
 ================
 - add logging possibilities to debug several issues
 - change to a better sql injection protection, because this currently conflicts with languages which use special chars
-- jump back to task input field after adding one by default (currently the keyboard doesn't slide out)
-- settings
-    - ability to disable jump back to task in put field after adding one
 
 Roadmap for Version 1.5
 ================
