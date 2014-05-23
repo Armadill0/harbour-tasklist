@@ -26,6 +26,7 @@ Features
 - remorse items for all necessary actions (e.x. delete tasks/lists)
     - configurable remorse item times
 - multiple languages supported (depending on system language), for more information see below
+- app can be started to background, in list view or to default list by setting
 
 Internationalization
 ================
@@ -51,7 +52,6 @@ Known Issues
 Roadmap for Version 1.0
 ================
 - add logging possibilities to debug several issues
-- change to a better sql injection protection, because this currently conflicts with languages which use special chars
 
 Roadmap for Version 1.5
 ================
