@@ -127,7 +127,7 @@ function readTasks(listid, status, sort) {
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID='" + listid + "'" + statusSql + " ORDER BY Status DESC" + orderby);
+        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID=?" + statusSql + " ORDER BY Status DESC" + orderby + ";", [listid]);
         for(var i = 0; i < result.rows.length; i++) {
             taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status == "1" ? true : false);
         }
@@ -141,7 +141,7 @@ function checkTask(listid, taskname) {
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        result = tx.executeSql("SELECT count(ID) as cID FROM tasks WHERE ListID='" + listid + "' AND Task='" + taskname + "'");
+        result = tx.executeSql("SELECT count(ID) as cID FROM tasks WHERE ListID=? AND Task=?;", [listid, taskname]);
     });
 
     return result.rows.item(0).cID;
@@ -155,8 +155,9 @@ function writeTask(listid, task, status, dueDate, duration) {
 
     try {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO tasks (Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration) VALUES ('" + task + "', '" + listid + "', '" + status + "', '" + creationDate + "', '" + creationDate + "', '" + dueDate + "', '" + duration + "')");
-            result = tx.executeSql("SELECT ID FROM tasks WHERE Task='" + task + "' AND ListID='" + listid + "'");
+            tx.executeSql("INSERT INTO tasks (Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration) VALUES (?, ?, ?, ?, ?, ?, ?);", [task, listid, status, creationDate, creationDate, dueDate, duration]);
+            tx.executeSql("COMMIT;");
+            result = tx.executeSql("SELECT ID FROM tasks WHERE Task=? AND ListID=?;", [task, listid]);
         });
 
         return result.rows.item(0).ID;
@@ -170,7 +171,8 @@ function removeTask(listid, id) {
     var db = connectDB();
 
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM tasks WHERE ID='" + id + "' AND ListID='" + listid + "'");
+        tx.executeSql("DELETE FROM tasks WHERE ID=? AND ListID=?;", [id, listid]);
+        tx.executeSql("COMMIT;");
     });
 }
 
@@ -182,7 +184,8 @@ function updateTask(listid, newlistid, id, task, status, dueDate, duration) {
 
     try {
         db.transaction(function(tx) {
-            result = tx.executeSql("UPDATE tasks SET ListID='" + newlistid + "', Task='" + task + "', Status='" + status + "', LastUpdate='" + lastUpdate + "', DueDate='" + dueDate + "', Duration='" + duration + "' WHERE ID='" + id + "' AND ListID='" + listid + "'");
+            result = tx.executeSql("UPDATE tasks SET ListID=?, Task=?, Status=?, LastUpdate=?, DueDate=?, Duration=? WHERE ID=? AND ListID=?;", [newlistid, task, status, lastUpdate, dueDate, duration, id, listid]);
+            tx.executeSql("COMMIT;");
         });
 
         return result.rows.count;
@@ -197,7 +200,7 @@ function getTaskProperty(id, taskproperty) {
     var result;
 
     db.transaction(function(tx) {
-        result = tx.executeSql("SELECT " + taskproperty + " FROM tasks WHERE ID='" + id + "'");
+        result = tx.executeSql("SELECT " + taskproperty + " FROM tasks WHERE ID=?;", [id]);
     });
 
     return eval("result.rows.item(0)." + taskproperty);
@@ -214,7 +217,7 @@ function readLists(listArt) {
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT * FROM lists ORDER BY ID ASC");
+        var result = tx.executeSql("SELECT * FROM lists ORDER BY ID ASC;");
         for(var i = 0; i < result.rows.length; i++) {
             if (listArt == "string") {
                 resultString += (resultString == "" ? result.rows.item(i).ID : "," + result.rows.item(i).ID)
@@ -236,8 +239,9 @@ function writeList(listname) {
 
     try {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO lists (ListName) VALUES ('" + listname + "')");
-            result = tx.executeSql("SELECT ID FROM lists WHERE ListName='" + listname + "'");
+            tx.executeSql("INSERT INTO lists (ListName) VALUES (?);", [listname]);
+            tx.executeSql("COMMIT;");
+            result = tx.executeSql("SELECT ID FROM lists WHERE ListName=?;", [listname]);
         });
 
         return result.rows.item(0).ID;
@@ -251,8 +255,9 @@ function removeList(id) {
     var db = connectDB();
 
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM lists WHERE ID='" + id + "'");
-        tx.executeSql("DELETE FROM tasks WHERE ListID='" + id + "'");
+        tx.executeSql("DELETE FROM lists WHERE ID=?;", [id]);
+        tx.executeSql("DELETE FROM tasks WHERE ListID=?;", [id]);
+        tx.executeSql("COMMIT;");
     });
 }
 
@@ -263,7 +268,8 @@ function updateList(id, listname) {
 
     try {
         db.transaction(function(tx) {
-            result = tx.executeSql("UPDATE lists SET ListName='" + listname + "' WHERE ID='" + id + "'");
+            result = tx.executeSql("UPDATE lists SET ListName=? WHERE ID=?;", [listname, id]);
+            tx.executeSql("COMMIT;");
         });
 
         return result.rows.count;
@@ -278,7 +284,7 @@ function getListProperty(id, listproperty) {
     var result;
 
     db.transaction(function(tx) {
-        result = tx.executeSql("SELECT " + listproperty + " FROM lists WHERE ID='" + id + "'");
+        result = tx.executeSql("SELECT " + listproperty + " FROM lists WHERE ID=?;", [id]);
     });
 
     return eval("result.rows.item(0)." + listproperty);
@@ -295,8 +301,9 @@ function writeSetting(settingname, settingvalue) {
 
     try {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('" + settingname + "', '" + settingvalue + "')");
-            result = tx.executeSql("SELECT Value FROM settings WHERE Setting='" + settingname + "'");
+            tx.executeSql("INSERT INTO settings (Setting, Value) VALUES (?, ?);", [settingname, settingvalue]);
+            tx.executeSql("COMMIT;");
+            result = tx.executeSql("SELECT Value FROM settings WHERE Setting=?;", [settingname]);
         });
 
         return result.rows.item(0).Value;
@@ -312,8 +319,9 @@ function updateSetting(settingname, settingvalue) {
 
     try {
         db.transaction(function(tx) {
-            tx.executeSql("UPDATE settings SET Value='" + settingvalue + "' WHERE Setting='" + settingname + "'");
-            result = tx.executeSql("SELECT Value FROM settings WHERE Setting='" + settingname + "'");
+            tx.executeSql("UPDATE settings SET Value=? WHERE Setting=?;", [settingvalue, settingname]);
+            tx.executeSql("COMMIT;");
+            result = tx.executeSql("SELECT Value FROM settings WHERE Setting=?;", [settingname]);
         });
 
         return result.rows.item(0).Value;
@@ -329,7 +337,7 @@ function getSetting(settingname) {
     var result;
 
     db.transaction(function(tx) {
-        result = tx.executeSql("SELECT * FROM settings WHERE Setting='" + settingname + "'");
+        result = tx.executeSql("SELECT * FROM settings WHERE Setting=?;", [settingname]);
     });
 
     return result.rows.item(0).Value;

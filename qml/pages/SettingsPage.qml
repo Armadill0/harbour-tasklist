@@ -31,7 +31,7 @@ Dialog {
         DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
         DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
         DB.updateSetting("taskOpenAppearance", taskOpenAppearance.checked === true ? 1 : 0)
-        DB.updateSetting("backFocusAddTask", startPage.backFocusAddTask)
+        DB.updateSetting("backFocusAddTask", backFocusAddTask.checked === true ? 1 : 0)
         //DB.updateSetting("dateFormat", dateFormat.value)
         //DB.updateSetting("timeFormat", timeFormat.value)
         DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
