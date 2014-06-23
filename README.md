@@ -53,17 +53,14 @@ Roadmap for Version 1.0
 ================
 - add logging possibilities to debug several issues
 
-Roadmap for Version 1.5
+Roadmap for Version 2.0
 ================
 - settings
     - time and date display options (there are problems to read the correct local time strings)
 - duedate (no API available atm)
     - task alarms
     - dispatch calendar item
-
-Roadmap for Version 2.0
-================
-- online accounting
+- online accounting (through CalDAV support)
 - share lists
 - csv import/export
 
@@ -71,5 +68,5 @@ Contributors
 ================
 - Manuel Soriano (manu007)
 - Ilja Balonov
-- L�onard Meyer
+- L&eacute;onard Meyer
 - Anatoly Shipitsin
