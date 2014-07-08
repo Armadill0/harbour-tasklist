@@ -1,6 +1,0 @@
-Makefile
-*.o
-*.so*
-moc_*
-*.pc
-*.prl
