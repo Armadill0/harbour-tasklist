@@ -27,6 +27,9 @@
 #include <QGuiApplication>
 #include <QtGui>
 
+// third party code
+#include <notification.h>
+
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +43,7 @@ int main(int argc, char *argv[])
     translator.load(locale,SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
+    qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
+
     return SailfishApp::main(argc, argv);
 }
-

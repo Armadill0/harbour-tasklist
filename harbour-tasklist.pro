@@ -9,6 +9,7 @@
 TARGET = harbour-tasklist
 
 CONFIG += sailfishapp
+QT += dbus
 
 SOURCES += src/harbour-tasklist.cpp
 
@@ -23,6 +24,8 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/ListPage.qml \
     qml/pages/SettingsPage.qml
 
+include(third_party/notifications.pri)
+
 localization.files = localization
 localization.path = /usr/share/$${TARGET}
 
@@ -34,4 +37,3 @@ lupdate_only {
     TRANSLATIONS = localization/fr.ts \
                     localization/en.ts
 }
-
