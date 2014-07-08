@@ -26,6 +26,7 @@
 #include <QLocale>
 #include <QGuiApplication>
 #include <QtGui>
+#include <QtQml>
 
 // third party code
 #include <notification.h>

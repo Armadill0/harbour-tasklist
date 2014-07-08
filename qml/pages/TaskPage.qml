@@ -122,7 +122,7 @@ Page {
 
     Notification {
         id: notification
-        category: "x-nemo.tasklist"
+        category: "x-nemo.email.error"
         itemCount: 1
     }
 
@@ -198,6 +198,11 @@ Page {
                             // reset textfield
                             taskAdd.text = ""
                         }
+                        else {
+                            notification.previewSummary = qsTr("Task could not be added!")
+                            notification.previewBody = qsTr("It already exists on this list.")
+                            notification.publish()
+                        }
                     }
                     if (taskListWindow.backFocusAddTask === 1)
                         timerAddTask.start()
@@ -240,7 +245,7 @@ Page {
                         }
                         else {
                             // display notification if no task has been added, because all of them already existed on the list
-                            notification.previewSummary = qsTr("All tasks already existed!")
+                            notification.previewSummary = qsTr("All tasks already exist!")
                             notification.previewBody = qsTr("No new tasks have been added to the list.")
                             notification.publish()
                         }

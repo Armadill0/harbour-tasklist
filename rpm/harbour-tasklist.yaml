@@ -1,6 +1,6 @@
 Name: harbour-tasklist
 Summary: harbour-tasklist
-Version: 0.9.10
+Version: 0.9.11
 Release: 1
 Group: Qt/Qt
 URL: https://github.com/Armadill0/harbour-tasklist
@@ -16,6 +16,7 @@ PkgConfigBR:
 - Qt5Core
 - Qt5Qml
 - Qt5Quick
+- Qt5DBus
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 Files:
