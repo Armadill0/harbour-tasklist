@@ -1,0 +1,2 @@
+include(nemo-qml-plugin-notifications-project.qdocconf)
+include(qt-html-templates.qdocconf)

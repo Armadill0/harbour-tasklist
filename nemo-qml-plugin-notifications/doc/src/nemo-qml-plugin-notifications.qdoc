@@ -1,0 +1,12 @@
+/*!
+    \title Nemo QML Plugins - Notifications classes
+    \page index.html
+
+    \section1 Overview
+
+    This plugin provides C++/QML classes for publishing notifications in the Nemo environment.
+
+    \list
+    \li \l{Notification}
+    \endlist
+*/
