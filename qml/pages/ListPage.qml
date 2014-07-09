@@ -81,6 +81,10 @@ Page {
                             // reset textfield
                             listAdd.text = ""
                         }
+                        else {
+                            // display notification if list already exists
+                            taskListWindow.pushNotification("WARNING", qsTr("List could not be added!"), qsTr("It already exists."))
+                        }
                     }
                 }
 

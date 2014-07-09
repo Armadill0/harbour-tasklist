@@ -22,6 +22,7 @@ import Sailfish.Silica 1.0
 import "pages"
 import "cover"
 import "localdb.js" as DB
+import harbour.tasklist.notifications 1.0
 
 ApplicationWindow {
     id: taskListWindow
@@ -63,4 +64,31 @@ ApplicationWindow {
 
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }
+
+    // notification function
+    function pushNotification(notificationType, notificationSummary, notificationBody) {
+        var notificationCategory
+        switch(notificationType) {
+        case "INFO":
+            notificationCategory = "x-jolla.lipstick.credentials.needUpdate.notification"
+            break
+        case "WARNING":
+            notificationCategory = "x-jolla.store.error"
+            break
+        case "ERROR":
+            notificationCategory = "x-jolla.store.error"
+            break
+        }
+
+        notification.category = notificationCategory
+        notification.previewSummary = notificationSummary
+        notification.previewBody = notificationBody
+        notification.publish()
+    }
+
+    Notification {
+        id: notification
+        category: "x-nemo.email.error"
+        itemCount: 1
+    }
 }

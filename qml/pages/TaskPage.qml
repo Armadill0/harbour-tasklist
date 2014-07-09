@@ -19,7 +19,6 @@
 
 import QtQuick 2.1
 import Sailfish.Silica 1.0
-import harbour.tasklist.notifications 1.0
 import "../localdb.js" as DB
 import "."
 
@@ -120,12 +119,6 @@ Page {
         }
     }
 
-    Notification {
-        id: notification
-        category: "x-nemo.email.error"
-        itemCount: 1
-    }
-
     // read all tasks after start
     Component.onCompleted: {
         if (taskListWindow.justStarted === true) {
@@ -199,9 +192,8 @@ Page {
                             taskAdd.text = ""
                         }
                         else {
-                            notification.previewSummary = qsTr("Task could not be added!")
-                            notification.previewBody = qsTr("It already exists on this list.")
-                            notification.publish()
+                            // display notification if task already exists
+                            taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
                         }
                     }
                     if (taskListWindow.backFocusAddTask === 1)
@@ -237,17 +229,22 @@ Page {
                         }
                         if (tasksArray.length > 0) {
                             tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")",function() {
+                                var addedTasks = ""
                                 // add all of them to the DB and the list
                                 for (var i = 0; i < tasksArray.length; i++) {
                                     addTask(tasksArray[i])
+                                    if (addedTasks === "")
+                                        addedTasks = tasksArray[i]
+                                    else
+                                        addedTasks = addedTasks + ", " + tasksArray[i]
                                 }
+                                // notification for added tasks
+                                taskListWindow.pushNotification("INFO", tasksArray.length + " " + qsTr("new tasks have been added."), qsTr("Details:") + " " + addedTasks)
                             } , taskListWindow.remorseOnMultiAdd * 1000)
                         }
                         else {
                             // display notification if no task has been added, because all of them already existed on the list
-                            notification.previewSummary = qsTr("All tasks already exist!")
-                            notification.previewBody = qsTr("No new tasks have been added to the list.")
-                            notification.publish()
+                            taskListWindow.pushNotification("WARNING", qsTr("All tasks already exist!"), qsTr("No new tasks have been added to the list."))
                         }
                     }
                 }
