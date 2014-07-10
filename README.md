@@ -51,7 +51,8 @@ Known Issues
 
 Roadmap for Version 1.0
 ================
-- add logging possibilities to debug several issues
+- replace english langue in code by template placeholders and add english as separate language file
+- update all language files to latest
 
 Roadmap for Version 2.0
 ================
