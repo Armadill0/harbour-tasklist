@@ -48,11 +48,11 @@ Dialog {
     function checkContent () {
         var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
         // if task already exists in target list, display warning
-        if (checkTaskUnique(changeListID) >= 1) {
+        if (checkTaskUnique(changeListID) >= 1 && changeListID != listid) {
             taskName.errorHighlight = true
             editTaskPage.canAccept = false
             // display notification if task already exists on the selected list
-            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"), qsTr("It already exists on the selected list."))
+            taskListWindow.pushNotification("WARNING", qsTr("Task saving disabled!"), qsTr("It already exists on the selected list."))
         }
         else {
             taskName.errorHighlight = false
