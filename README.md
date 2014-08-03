@@ -46,8 +46,7 @@ Internationalization
 
 Known Issues
 ================
-- some translations are not complete, I'll try collect new complete ones on each rollout on the roadmap
-- starting to background can possibly not work on heavy loaded devices due to timer issues
+see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3Aissue+label%3Abug
 
 Roadmap for Version 1.0
 ================
