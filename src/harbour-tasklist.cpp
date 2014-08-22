@@ -34,6 +34,7 @@
 
 int main(int argc, char *argv[])
 {
+
     /*  Internationalization Support
         thanks to Antoine Reversat who mentioned this here:
         https://www.mail-archive.com/devel@lists.sailfishos.org/msg02602.html */

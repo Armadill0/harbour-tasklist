@@ -67,18 +67,19 @@ CoverBackground {
         wipeTaskList()
         switch(taskListWindow.coverListSelection) {
         case 0:
-            DB.readTasks(taskListWindow.defaultlist, 1, listorder)
             currentList = taskListWindow.defaultlist
             break
         case 1:
-            DB.readTasks(taskListWindow.listid, 1, listorder)
             currentList = taskListWindow.listid
             break
         case 2:
-            DB.readTasks(taskListWindow.coverListChoose, 1, listorder)
             currentList = taskListWindow.coverListChoose
             break
         }
+        if (taskListWindow.currentCoverList !== -1) {
+            currentList = taskListWindow.currentCoverList
+        }
+        DB.readTasks(currentList, 1, listorder)
     }
 
     // read all tasks after start
@@ -88,7 +89,7 @@ CoverBackground {
 
     onStatusChanged: {
         switch(status) {
-        case PageStatus.Activating:
+        case Cover.Activating:
             // load lists into variable for coveraction "switch"
             taskListWindow.listOfLists = DB.readLists("string")
 
@@ -177,6 +178,7 @@ CoverBackground {
                             // wipe list and read ne tasks
                             wipeTaskList()
                             DB.readTasks(currentList, 1, listorder)
+                            taskListWindow.currentCoverList = currentList
 
                             break
                         }

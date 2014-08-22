@@ -45,6 +45,9 @@ ApplicationWindow {
     property bool switchStartPage: true
     // variable to save the list of lists as a string
     property string listOfLists
+    // variable to save the current cover list as a variable which overlives changing from Dovers screen to lock screen and back
+    property int currentCoverList: -1
+    property string app_version
 
     // initilize default settings properties
     property int coverListSelection
@@ -90,5 +93,12 @@ ApplicationWindow {
         id: notification
         category: "x-nemo.email.error"
         itemCount: 1
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive === true) {
+            // reset currentCoverList to default (-1)
+            taskListWindow.currentCoverList = -1
+        }
     }
 }
