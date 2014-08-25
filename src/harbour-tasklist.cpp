@@ -27,6 +27,7 @@
 #include <QGuiApplication>
 #include <QtGui>
 #include <QtQml>
+#include <QProcess>
 
 // third party code
 #include <notification.h>
@@ -34,6 +35,15 @@
 
 int main(int argc, char *argv[])
 {
+    QProcess appinfo;
+    QString appversion;
+
+    // read app version from rpm database on startup
+    appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << "harbour-tasklist");
+    appinfo.waitForFinished(-1);
+    if (appinfo.bytesAvailable() > 0) {
+        appversion = appinfo.readAll();
+    }
 
     /*  Internationalization Support
         thanks to Antoine Reversat who mentioned this here:
@@ -47,5 +57,10 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
 
-    return SailfishApp::main(argc, argv);
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    view->rootContext()->setContextProperty("version", appversion);
+    view->setSource(SailfishApp::pathTo("qml/harbour-tasklist.qml"));
+    view->show();
+
+    return app->exec();
 }

@@ -51,7 +51,7 @@ Dialog {
             }
 
             Label {
-                text: "TaskList"
+                text: "TaskList " + version
                 horizontalAlignment: Text.Center
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
