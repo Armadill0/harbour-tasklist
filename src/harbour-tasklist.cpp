@@ -28,6 +28,7 @@
 #include <QtGui>
 #include <QtQml>
 #include <QProcess>
+#include <QQuickView>
 
 // third party code
 #include <notification.h>
@@ -57,7 +58,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
 
-    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    QQuickView* view = SailfishApp::createView();
     view->rootContext()->setContextProperty("version", appversion);
     view->setSource(SailfishApp::pathTo("qml/harbour-tasklist.qml"));
     view->show();
