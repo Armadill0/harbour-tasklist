@@ -92,6 +92,17 @@ CoverBackground {
         case Cover.Activating:
             // load lists into variable for coveraction "switch"
             taskListWindow.listOfLists = DB.readLists("string")
+            var listArray = taskListWindow.listOfLists.split(",")
+
+            // activate ListSwitch Button if more than one list is available or vice versa
+            if (listArray.length > 1) {
+                coverActionMultiple.enabled = true
+                coverActionSingle.enabled = false
+            }
+            else {
+                coverActionMultiple.enabled = false
+                coverActionSingle.enabled = true
+            }
 
             // reload tasklist if navigateBack was used from list page
             reloadTaskList()
@@ -149,7 +160,9 @@ CoverBackground {
         }
 
         CoverActionList {
-            id: coverAction
+            id: coverActionMultiple
+            // disabled by default, because first installation comes with only one list
+            enabled: false
 
             CoverAction {
                 iconSource: "image://theme/icon-cover-new"
@@ -169,8 +182,8 @@ CoverBackground {
                     var listArray = taskListWindow.listOfLists.split(",")
 
                     for (var i = 0; i < listArray.length; i++) {
-                        if (listArray[i] == currentList) {
-                            if (i == listArray.length - 1)
+                        if (listArray[i] === currentList) {
+                            if (i === listArray.length - 1)
                                 currentList = listArray[0]
                             else
                                 currentList = listArray[i + 1]
@@ -183,6 +196,22 @@ CoverBackground {
                             break
                         }
                     }
+                }
+            }
+        }
+
+        CoverActionList {
+            id: coverActionSingle
+
+            CoverAction {
+                iconSource: "image://theme/icon-cover-new"
+                onTriggered: {
+                    taskListWindow.coverAddTask = true
+                    // set current global list and jump to taskPage
+                    taskListWindow.listid = currentList
+                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+
+                    taskListWindow.activate()
                 }
             }
         }
