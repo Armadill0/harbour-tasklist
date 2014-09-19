@@ -47,7 +47,6 @@ ApplicationWindow {
     property string listOfLists
     // variable to save the current cover list as a variable which overlives changing from Dovers screen to lock screen and back
     property int currentCoverList: -1
-    property string app_version
 
     // initilize default settings properties
     property int coverListSelection

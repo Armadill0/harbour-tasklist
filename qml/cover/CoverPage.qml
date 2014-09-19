@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "../pages"
 
 CoverBackground {
     id: taskPage
@@ -170,7 +171,7 @@ CoverBackground {
                     taskListWindow.coverAddTask = true
                     // set current global list and jump to taskPage
                     taskListWindow.listid = currentList
-                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+                    pageStack.replace("../pages/TaskPage.qml", {})
 
                     taskListWindow.activate()
                 }
@@ -182,13 +183,13 @@ CoverBackground {
                     var listArray = taskListWindow.listOfLists.split(",")
 
                     for (var i = 0; i < listArray.length; i++) {
-                        if (listArray[i] === currentList) {
-                            if (i === listArray.length - 1)
+                        if (listArray[i] == currentList) {
+                            if (i == listArray.length - 1)
                                 currentList = listArray[0]
                             else
                                 currentList = listArray[i + 1]
 
-                            // wipe list and read ne tasks
+                            // wipe list and read new tasks
                             wipeTaskList()
                             DB.readTasks(currentList, 1, listorder)
                             taskListWindow.currentCoverList = currentList
@@ -209,7 +210,7 @@ CoverBackground {
                     taskListWindow.coverAddTask = true
                     // set current global list and jump to taskPage
                     taskListWindow.listid = currentList
-                    pageStack.replace(Qt.resolvedUrl("../pages/TaskPage.qml"))
+                    pageStack.replace("../pages/TaskPage.qml", {})
 
                     taskListWindow.activate()
                 }
