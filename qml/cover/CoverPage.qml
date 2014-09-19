@@ -171,7 +171,7 @@ CoverBackground {
                     taskListWindow.coverAddTask = true
                     // set current global list and jump to taskPage
                     taskListWindow.listid = currentList
-                    pageStack.replace("../pages/TaskPage.qml", {})
+                    pageStack.replace("../pages/TaskPage.qml", {}, PageStackAction.Immediate)
 
                     taskListWindow.activate()
                 }
@@ -210,7 +210,7 @@ CoverBackground {
                     taskListWindow.coverAddTask = true
                     // set current global list and jump to taskPage
                     taskListWindow.listid = currentList
-                    pageStack.replace("../pages/TaskPage.qml", {})
+                    pageStack.replace("../pages/TaskPage.qml", {}, PageStackAction.Immediate)
 
                     taskListWindow.activate()
                 }

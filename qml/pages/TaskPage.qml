@@ -98,7 +98,7 @@ Page {
 
             // if the activation was started by the covers add function, directly focus to the textfield
             if (taskListWindow.coverAddTask === true) {
-                taskList.headerItem.children[1].forceActiveFocus()
+                timerAddTask.start()
                 taskListWindow.coverAddTask = false
             }
 
