@@ -50,19 +50,11 @@ see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3A
 
 Roadmap for Version 1.0
 ================
-- replace english langue in code by template placeholders and add english as separate language file
-- update all language files to latest
+see here: https://github.com/Armadill0/harbour-tasklist/milestones/1.0
 
 Roadmap for Version 2.0
 ================
-- settings
-    - time and date display options (there are problems to read the correct local time strings)
-- duedate (no API available atm)
-    - task alarms
-    - dispatch calendar item
-- online accounting (through CalDAV support)
-- share lists
-- csv import/export
+see here: https://github.com/Armadill0/harbour-tasklist/milestones/2.0
 
 Contributors
 ================
