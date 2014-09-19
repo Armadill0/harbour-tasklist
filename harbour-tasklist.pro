@@ -30,3 +30,9 @@ localization.files = localization
 localization.path = /usr/share/$${TARGET}
 
 INSTALLS += localization
+
+lupdate_only {
+    SOURCES = qml/*.qml \
+              qml/pages/*.qml
+    TRANSLATIONS = localization/*.ts
+}

@@ -239,7 +239,7 @@ Page {
                                         addedTasks = addedTasks + ", " + tasksArray[i]
                                 }
                                 // notification for added tasks
-                                taskListWindow.pushNotification("INFO", tasksArray.length + " " + qsTr("new tasks have been added."), qsTr("Details:") + " " + addedTasks)
+                                taskListWindow.pushNotification("INFO", tasksArray.length + " " + qsTr("new tasks have been added."), qsTr("Details") + ": " + addedTasks)
                             } , taskListWindow.remorseOnMultiAdd * 1000)
                         }
                         else {
