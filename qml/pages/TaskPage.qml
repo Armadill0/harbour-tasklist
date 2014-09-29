@@ -27,6 +27,8 @@ Page {
     allowedOrientations: Orientation.All
 
     property bool coverAddTask
+    property int listId: taskListWindow.listid
+    property string listname
 
     // helper function to add tasks to the list
     function appendTask(id, task, status) {
@@ -44,6 +46,7 @@ Page {
 
     function reloadTaskList() {
         wipeTaskList()
+        listname = DB.getListProperty(listid, "ListName")
         DB.readTasks(listid, "", "")
     }
 
@@ -81,7 +84,13 @@ Page {
         onTriggered: taskList.headerItem.children[1].forceActiveFocus()
     }
 
-    // reload tasklist on activating first page
+    // reload list if any change to the global listId property has been occured
+    // this reacts currently on all list changes, whether from cover or list page
+    // and replaces some former bad hacks and workarounds
+    onListIdChanged: {
+        reloadTaskList()
+    }
+
     onStatusChanged: {
         switch(status) {
         case PageStatus.Activating:
@@ -132,8 +141,6 @@ Page {
             taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
             taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
             taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance")) === 1 ? true : false
-            taskListWindow.dateFormat = parseInt(DB.getSetting("dateFormat"))
-            taskListWindow.timeFormat = parseInt(DB.getSetting("timeFormat"))
             taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
             taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
             taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
@@ -141,7 +148,6 @@ Page {
             taskListWindow.backFocusAddTask = parseInt(DB.getSetting("backFocusAddTask"))
         }
 
-        taskListWindow.listname = DB.getListProperty(listid, "ListName")
         reloadTaskList()
     }
 
@@ -282,18 +288,8 @@ Page {
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }
-            MenuItem {
-                text: qsTr("Scroll to Bottom")
-                onClicked: taskList.scrollToBottom()
-                visible: taskList.contentHeight > Screen.height * 1.1 ? true : false
-            }
         }
         PushUpMenu {
-            MenuItem {
-                text: qsTr("Scroll to Top")
-                onClicked: taskList.scrollToTop()
-                visible: taskList.contentHeight > Screen.height * 1.1 ? true : false
-            }
             MenuItem {
                 text: qsTr("About") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))

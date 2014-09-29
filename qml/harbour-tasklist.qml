@@ -31,10 +31,6 @@ ApplicationWindow {
     property int listid
     // save defaultlist in a global context
     property int defaultlist
-    // save list name in a global context
-    property string listname
-    // helper varable if list has been changed
-    property bool listchanged: false
     // helper varable for adding directly through coveraction
     property bool coverAddTask: false
     // helper varable to lock task Page Orientation
@@ -53,8 +49,6 @@ ApplicationWindow {
     property int coverListChoose
     property int coverListOrder
     property bool taskOpenAppearance
-    property string dateFormat
-    property string timeFormat
     property int remorseOnDelete
     property int remorseOnMark
     property int remorseOnMultiAdd

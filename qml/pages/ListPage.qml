@@ -112,8 +112,6 @@ Page {
                     // if current list is deleted, change trigger variables to reload list and list name
                     if (taskListWindow.listid === listListModel.get(index).listid) {
                         taskListWindow.listid = taskListWindow.defaultlist
-                        taskListWindow.listchanged = true
-                        taskListWindow.listname = DB.getListProperty(taskListWindow.defaultlist, "ListName")
                     }
 
                     // if deleted list is chosen as cover list it needs to be set to the default list
@@ -156,9 +154,10 @@ Page {
                 function changeList(listNew) {
                     // update list in db
                     DB.updateList(listid, listNew)
-                    // update global listname property if the changed list is the current one
+                    // small hack to automatically reload the current selected list which name has been changed
                     if (taskListWindow.listid === listid) {
-                        taskListWindow.listname = listNew
+                        taskListWindow.listid = taskListWindow.defaultlist
+                        taskListWindow.listid = listid
                     }
                     // finally reload list overview to update the items
                     reloadListList()
@@ -192,8 +191,6 @@ Page {
             onClicked: {
                 // set current global list and jump to taskPage
                 taskListWindow.listid = listid
-                taskListWindow.listname = listname
-                taskListWindow.listchanged = true
                 pageStack.navigateBack()
             }
 

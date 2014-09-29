@@ -28,20 +28,6 @@ CoverBackground {
     property int currentList
     property string listorder
 
-    BackgroundItem {
-        anchors.fill: parent
-
-        Image {
-            id: coverBgImage
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
-            source: "../images/coverbg.png"
-            opacity: 0.2
-            horizontalAlignment: Image.AlignHCenter
-            verticalAlignment: Image.AlignVCenter
-        }
-    }
-
     // helper function to add tasks to the list
     function appendTask(id, task, status) {
         taskListModel.append({"taskid": id, "task": task, "taskstatus": status})
@@ -109,6 +95,20 @@ CoverBackground {
             reloadTaskList()
 
             break
+        }
+    }
+
+    BackgroundItem {
+        anchors.fill: parent
+
+        Image {
+            id: coverBgImage
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+            source: "../images/coverbg.png"
+            opacity: 0.2
+            horizontalAlignment: Image.AlignHCenter
+            verticalAlignment: Image.AlignVCenter
         }
     }
 
@@ -197,6 +197,9 @@ CoverBackground {
                             break
                         }
                     }
+
+                    // also change list in application
+                    taskListWindow.listid = currentList
                 }
             }
         }

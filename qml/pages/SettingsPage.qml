@@ -32,8 +32,6 @@ Dialog {
         DB.updateSetting("coverListOrder", coverListOrder.currentIndex)
         DB.updateSetting("taskOpenAppearance", taskOpenAppearance.checked === true ? 1 : 0)
         DB.updateSetting("backFocusAddTask", backFocusAddTask.checked === true ? 1 : 0)
-        //DB.updateSetting("dateFormat", dateFormat.value)
-        //DB.updateSetting("timeFormat", timeFormat.value)
         DB.updateSetting("remorseOnDelete", remorseOnDelete.value)
         DB.updateSetting("remorseOnMark", remorseOnMark.value)
         DB.updateSetting("remorseOnMultiAdd", remorseOnMultiAdd.value)
@@ -45,14 +43,9 @@ Dialog {
         taskListWindow.coverListOrder = coverListOrder.currentIndex
         taskListWindow.taskOpenAppearance = taskOpenAppearance.checked === true ? 1 : 0
         taskListWindow.backFocusAddTask = backFocusAddTask.checked === true? 1 : 0
-        //taskListWindow.dateFormat = dateFormat.value
-        //taskListWindow.timeFormat = timeFormat.value
         taskListWindow.remorseOnDelete = remorseOnDelete.value
         taskListWindow.remorseOnMark = remorseOnMark.value
         taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
-
-        // change trigger variables to reload list
-        taskListWindow.listchanged = true
     }
 
     SilicaFlickable {
@@ -172,39 +165,6 @@ Dialog {
                 value: taskListWindow.remorseOnMultiAdd
                 valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
             }
-
-            /*SectionHeader {
-                text: qsTr("Time and Date options")
-            }
-
-            ComboBox {
-                id: dateFormat
-                width: parent.width
-                label: qsTr("Date format") + ":"
-                currentIndex: taskListWindow.dateFormat
-
-                menu: ContextMenu {
-                    MenuItem { text: "default"}
-                    MenuItem { text: "dd-MM-yyyy"}
-                    MenuItem { text: "dd/MM/yyyy"}
-                    MenuItem { text: "yyyy-MM-dd"}
-                    MenuItem { text: "yyyy/MM/dd"}
-                    MenuItem { text: "MM/dd/yyyy"}
-                    MenuItem { text: "MM-dd-yyyy"}
-                }
-            }
-
-            ComboBox {
-                id: timeFormat
-                width: parent.width
-                label: qsTr("Time format") + ":"
-                currentIndex: taskListWindow.timeFormat
-
-                menu: ContextMenu {
-                    MenuItem { text: "default" }
-                    MenuItem { text: "hh:mm" }
-                }
-            }*/
         }
     }
 }
