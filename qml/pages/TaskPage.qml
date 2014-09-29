@@ -94,7 +94,7 @@ Page {
     onStatusChanged: {
         switch(status) {
         case PageStatus.Activating:
-            // reload tasklist if navigateBack was used from list page
+            // reload tasklist if task has been edited or current list is renamed
             if (taskListWindow.listchanged === true) {
                 reloadTaskList()
                 taskListWindow.listchanged = false

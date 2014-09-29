@@ -156,8 +156,7 @@ Page {
                     DB.updateList(listid, listNew)
                     // small hack to automatically reload the current selected list which name has been changed
                     if (taskListWindow.listid === listid) {
-                        taskListWindow.listid = taskListWindow.defaultlist
-                        taskListWindow.listid = listid
+                        taskListWindow.listchanged = true
                     }
                     // finally reload list overview to update the items
                     reloadListList()
