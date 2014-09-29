@@ -63,12 +63,13 @@ CoverBackground {
             currentList = taskListWindow.coverListChoose
             break
         }
+
         if (taskListWindow.currentCoverList !== -1) {
             currentList = taskListWindow.currentCoverList
-            // also change list in application
-            taskListWindow.listid = currentList
         }
         DB.readTasks(currentList, 1, listorder)
+        // also change list in application
+        taskListWindow.listid = currentList
     }
 
     // read all tasks after start
