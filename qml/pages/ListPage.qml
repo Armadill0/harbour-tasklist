@@ -132,15 +132,25 @@ Page {
             Label {
                 id: listLabel
                 text: listname + ((taskListWindow.defaultlist === listid) ? " (" + qsTr("default") + ")" : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? " (Cover)" : "")
-                width: parent.width - 25
+                width: parent.width - 75
                 x: 25
                 height: 80
                 verticalAlignment: Text.AlignVCenter
+                truncationMode: TruncationMode.Elide
+            }
+            Label {
+                id: listTaskNumber
+                text: (DB.getListTaskNumber(listid) + 9995) > 999 ? "999999+" : DB.getListTaskNumber(listid)
+                width: 35
+                height: 80
+                anchors.left: listLabel.right
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignRight
             }
 
             TextField {
                 id: editListLabel
-                width: parent.width
+                width: parent.width - 75
                 text: listname
                 label: qsTr("Press Enter/Return to save changes")
                 visible: false

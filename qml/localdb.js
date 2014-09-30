@@ -290,6 +290,18 @@ function getListProperty(id, listproperty) {
     return eval("result.rows.item(0)." + listproperty);
 }
 
+// get the number of tasks of a list
+function getListTaskNumber(id) {
+    var db = connectDB();
+    var result;
+
+    db.transaction(function(tx) {
+        result = tx.executeSql("SELECT count(ID) as tCount FROM tasks WHERE ListID=?;", [id]);
+    });
+
+    return eval("result.rows.item(0).tCount");
+}
+
 /*******************************************/
 /*** SQL functions for SETTINGS handling ***/
 /*******************************************/
