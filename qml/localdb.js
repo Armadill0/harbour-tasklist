@@ -217,13 +217,13 @@ function readLists(listArt) {
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT * FROM lists ORDER BY ID ASC;");
+        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID) AS tCount FROM lists AS parent ORDER BY ID ASC;");
         for(var i = 0; i < result.rows.length; i++) {
             if (listArt == "string") {
                 resultString += (resultString == "" ? result.rows.item(i).ID : "," + result.rows.item(i).ID)
             }
             else {
-                appendList(result.rows.item(i).ID, result.rows.item(i).ListName);
+                appendList(result.rows.item(i).ID, result.rows.item(i).ListName, result.rows.item(i).tCount);
             }
         }
     });
@@ -288,18 +288,6 @@ function getListProperty(id, listproperty) {
     });
 
     return eval("result.rows.item(0)." + listproperty);
-}
-
-// get the number of tasks of a list
-function getListTaskNumber(id) {
-    var db = connectDB();
-    var result;
-
-    db.transaction(function(tx) {
-        result = tx.executeSql("SELECT count(ID) as tCount FROM tasks WHERE ListID=?;", [id]);
-    });
-
-    return eval("result.rows.item(0).tCount");
 }
 
 /*******************************************/

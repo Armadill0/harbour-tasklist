@@ -296,14 +296,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Scroll to Bottom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Scroll to Top</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

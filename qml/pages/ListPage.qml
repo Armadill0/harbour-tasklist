@@ -26,8 +26,8 @@ Page {
     allowedOrientations: Orientation.All
 
     // helper function to add lists to the list
-    function appendList(id, listname) {
-        listListModel.append({"listid": id, "listname": listname})
+    function appendList(id, listname, tNumber) {
+        listListModel.append({"listid": id, "listname": listname, "tNumber": tNumber})
     }
 
     // helper function to wipe the list element
@@ -42,7 +42,7 @@ Page {
 
     onStatusChanged: {
         switch(status) {
-        case PageStatus.Activating:
+        case PageStatus.Active :
                 reloadListList()
 
             break
@@ -113,7 +113,6 @@ Page {
 
             property Item listContextMenu
             property bool menuOpen: listContextMenu != null && listContextMenu.parent === listListItem
-            property int tNumber: DB.getListTaskNumber(listid)
 
             // helper function to remove current item
             function remove() {
