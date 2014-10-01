@@ -40,6 +40,15 @@ Page {
         DB.readLists()
     }
 
+    onStatusChanged: {
+        switch(status) {
+        case PageStatus.Activating:
+                reloadListList()
+
+            break
+        }
+    }
+
     Component.onCompleted: {
         reloadListList()
     }
@@ -104,6 +113,7 @@ Page {
 
             property Item listContextMenu
             property bool menuOpen: listContextMenu != null && listContextMenu.parent === listListItem
+            property int tNumber: DB.getListTaskNumber(listid)
 
             // helper function to remove current item
             function remove() {
@@ -132,16 +142,17 @@ Page {
             Label {
                 id: listLabel
                 text: listname + ((taskListWindow.defaultlist === listid) ? " (" + qsTr("default") + ")" : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? " (Cover)" : "")
-                width: parent.width - 75
+                width: parent.width - 105
                 x: 25
                 height: 80
                 verticalAlignment: Text.AlignVCenter
-                truncationMode: TruncationMode.Elide
+                truncationMode: TruncationMode.Fade
             }
+
             Label {
                 id: listTaskNumber
-                text: (DB.getListTaskNumber(listid) + 9995) > 999 ? "999999+" : DB.getListTaskNumber(listid)
-                width: 35
+                text: tNumber > 999 ? "999+" : tNumber
+                width: 70
                 height: 80
                 anchors.left: listLabel.right
                 verticalAlignment: Text.AlignVCenter
@@ -150,7 +161,7 @@ Page {
 
             TextField {
                 id: editListLabel
-                width: parent.width - 75
+                width: parent.width - 70
                 text: listname
                 label: qsTr("Press Enter/Return to save changes")
                 visible: false
