@@ -366,6 +366,11 @@
         <translation>Es wurden keine neuen Aufgaben hinzugefügt.</translation>
     </message>
     <message>
+        <location filename="../qml/pages/TaskPage.qml" line="263"/>
+        <source>Orientation locked</source>
+        <translation>Ausrichtung deaktiviert</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/TaskPage.qml" line="274"/>
         <source>Lock orientation</source>
         <translation>Ausrichtung deaktivieren</translation>

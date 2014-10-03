@@ -259,8 +259,8 @@ Page {
 
         // show placeholder if there are no tasks available
         ViewPlaceholder {
-            enabled: taskList.count === 0
-            text: qsTr("no tasks available")
+            enabled: (taskList.count === 0) || taskListWindow.lockTaskOrientation
+            text: taskListWindow.lockTaskOrientation ? qsTr("Orientation locked") : qsTr("no tasks available")
         }
 
         // PullDownMenu and PushUpMenu

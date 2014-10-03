@@ -323,5 +323,9 @@
         <source>Details</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Orientation locked</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

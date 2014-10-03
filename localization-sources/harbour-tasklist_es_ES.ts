@@ -366,6 +366,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/TaskPage.qml" line="263"/>
+        <source>Orientation locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/TaskPage.qml" line="274"/>
         <source>Lock orientation</source>
         <translation>Bloquear orientación</translation>
