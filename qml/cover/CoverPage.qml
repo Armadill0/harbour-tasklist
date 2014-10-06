@@ -125,7 +125,7 @@ CoverBackground {
 
         Label {
             id: coverHeader
-            text: DB.getListProperty(currentList, "ListName")
+            text: DB.getListProperty(currentList, "ListName") + "(" + taskListModel.count + ")"
             width: parent.width - Theme.paddingLarge
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
