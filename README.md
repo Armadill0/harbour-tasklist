@@ -33,6 +33,7 @@ Internationalization
 - current languages: English (default), German, Spanish, Russian, French
 - future translations will be managed via Transifex: https://www.transifex.com/projects/p/tasklist/
     - Feel free to request new languages or complete existing ones there. :-)
+    - If you don't want to create a new account there, you can Login via Github, LinkedIn, Google, Facebook or Twitter. I hope this fits all your needs.
 
 - ~~new languages tutorial:~~
     - ~~download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/localization-sources/harbour-tasklist_plain.ts~~
