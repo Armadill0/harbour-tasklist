@@ -31,18 +31,21 @@ Features
 Internationalization
 ================
 - current languages: English (default), German, Spanish, Russian, French
-- new languages tutorial:
-    - download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/localization-sources/harbour-tasklist_plain.ts
-    - copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)
-    - using text editor:
-        - translate everything in the \<source\>\</source\> Tag into the \<translation type="unfinished"\>\</translation\> Tag one line below
-        - send me the file via mail
-    - using QT Linguist:
-        - start QT Linguist (part of the Qt SDK)
-        - import the harbour-tasklist_[your_country_code].ts file
-        - translate all entries and save your changes
-        - send me the file via mail
-    - every contributor will be mentioned in the About page :-)
+- future translations will be managed via Transifex: https://www.transifex.com/projects/p/tasklist/
+    - Feel free to request new languages or complete existing ones there. :-)
+
+- ~~new languages tutorial:~~
+    - ~~download the plain language file: https://github.com/Armadill0/harbour-tasklist/raw/master/localization-sources/harbour-tasklist_plain.ts~~
+    - ~~copy the harbour-tasklist_plain.ts to harbour-tasklist_[your_country_code].ts (e.x. harbour-tasklist_fr_FR.ts)~~
+    - ~~using text editor:~~
+        - ~~translate everything in the \<source\>\</source\> Tag into the \<translation type="unfinished"\>\</translation\> Tag one line below~~
+        - ~~send me the file via mail~~
+    - ~~using QT Linguist:~~
+        - ~~start QT Linguist (part of the Qt SDK)~~
+        - ~~import the harbour-tasklist_[your_country_code].ts file~~
+        - ~~translate all entries and save your changes~~
+        - ~~send me the file via mail~~
+    - ~~every contributor will be mentioned in the About page :-)~~
 
 Known Issues
 ================
