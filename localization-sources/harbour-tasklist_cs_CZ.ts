@@ -1,29 +1,29 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" sourcelanguage="en_US" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>O programu</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>Retour</translation>
+        <translation>Zpět</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Description</translation>
+        <translation>Popis</translation>
     </message>
     <message>
         <source>A small but mighty program to manage your daily tasks.</source>
-        <translation>Un petit mais puissant programme pour gérer vos tâches quotidiennes.</translation>
+        <translation>Malý ale výborný program na správu vašich každodenních záležitostí.</translation>
     </message>
     <message>
         <source>Licensing</source>
-        <translation>Licence</translation>
+        <translation>Licencování</translation>
     </message>
     <message>
         <source>Copyright © by</source>
-        <translation>Copyright © par</translation>
+        <translation>Autorské právo ©</translation>
     </message>
     <message>
         <source>License</source>
@@ -31,299 +31,299 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contributeurs</translation>
+        <translation>Přispěvatelé</translation>
     </message>
     <message>
         <source>Project information</source>
-        <translation>Information sur le projet</translation>
+        <translation>Informace o projektu</translation>
     </message>
 </context>
 <context>
     <name>EditPage</name>
     <message>
         <source>Task saving disabled!</source>
-        <translation>Sauvegarde de tâche désactivée !</translation>
+        <translation>Ukládání úkolů zakázáno!</translation>
     </message>
     <message>
         <source>It already exists on the selected list.</source>
-        <translation>Existe déjà dans la liste sélectionnée.</translation>
+        <translation>Již existuje ve vybraném seznamu.</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Sauvegarder</translation>
+        <translation>Uložit</translation>
     </message>
     <message>
         <source>Task properties</source>
-        <translation>Propriétés</translation>
+        <translation>Vlastnosti úkolu</translation>
     </message>
     <message>
         <source>Save changes in the upper right corner</source>
-        <translation>Enregistrer les modifications dans le coin supérieur droit</translation>
+        <translation>Uložit změny vpravo nahoře</translation>
     </message>
     <message>
         <source>task already exists on this list!</source>
-        <translation>cette tâche existe déjà dans cette liste !</translation>
+        <translation>Úkol již v tomto seznamu existuje!</translation>
     </message>
     <message>
         <source>task is done</source>
-        <translation>tâche terminée</translation>
+        <translation>Věc je vyřízena</translation>
     </message>
     <message>
         <source>List</source>
-        <translation>Liste</translation>
+        <translation>Seznam</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation>Informace</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Crée le</translation>
+        <translation>Vytvořeno</translation>
     </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Manage lists</source>
-        <translation>Gérer les listes</translation>
+        <translation>Spravovat seznamy</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
-        <translation>Ajouter une liste unique</translation>
+        <translation>Zadejte jedinečný název seznamu</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
-        <translation>Taper Entrer/Retour enregistrer</translation>
+        <translation>Stiskněte Enter pro přidání nového seznamu</translation>
     </message>
     <message>
         <source>List could not be added!</source>
-        <translation>La liste n&apos;a pas pu être ajoutée !</translation>
+        <translation>Seznam se nepodařilo přidat!</translation>
     </message>
     <message>
         <source>It already exists.</source>
-        <translation>Existe déjà.</translation>
+        <translation>Již existuje.</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Suppression</translation>
+        <translation>Maže se</translation>
     </message>
     <message>
         <source>default</source>
-        <translation>défauts</translation>
+        <translation>Výchozí</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
-        <translation>Taper Entrer/Retour pour enregistrer</translation>
+        <translation>Stiskněte Enter pro uložení změn</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Éditer</translation>
+        <translation>Upravit</translation>
     </message>
     <message>
         <source>Set as Default list</source>
-        <translation>Définir comme liste par défaut</translation>
+        <translation>Uložit jako výchozí seznam</translation>
     </message>
     <message>
         <source>Set as Cover list</source>
-        <translation>Définir comme liste en couverture</translation>
+        <translation>Nastavit jako zobrazený seznam</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation>Smazat</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Sauvegarder</translation>
+        <translation>Uložit</translation>
     </message>
     <message>
         <source>Cover options</source>
-        <translation>Options de la couverture</translation>
+        <translation>Volby pro zobrazení</translation>
     </message>
     <message>
         <source>Cover list</source>
-        <translation>Liste affichée</translation>
+        <translation>Zobrazený seznam</translation>
     </message>
     <message>
         <source>Default list</source>
-        <translation>Liste par défaut</translation>
+        <translation>Výchozí seznam</translation>
     </message>
     <message>
         <source>Selected list</source>
-        <translation>Liste sélectionnée</translation>
+        <translation>Vybraný seznam</translation>
     </message>
     <message>
         <source>Choose in list management</source>
-        <translation>Choisir une liste</translation>
+        <translation>Vyberte seznam</translation>
     </message>
     <message>
         <source>Cover task order</source>
-        <translation>Ordre des tâches</translation>
+        <translation>Pořadí úkolů</translation>
     </message>
     <message>
         <source>Last updated first</source>
-        <translation>Trier par date de mise à jour</translation>
+        <translation>Řadit podle data aktualizace </translation>
     </message>
     <message>
         <source>Sort by name ascending</source>
-        <translation>Trier par nom croissant</translation>
+        <translation>Řadit podle názvu vzestupně</translation>
     </message>
     <message>
         <source>Sort by name descending</source>
-        <translation>Trier par nom décroissant</translation>
+        <translation>Řadit podle názvu sestupně</translation>
     </message>
     <message>
         <source>General options</source>
-        <translation>Options générales</translation>
+        <translation>Obecné volby</translation>
     </message>
     <message>
         <source>Start page</source>
-        <translation>Page d&apos;accueil</translation>
+        <translation>Začáteční strana</translation>
     </message>
     <message>
         <source>List overview</source>
-        <translation>Vue d&apos;ensemble</translation>
+        <translation>Přehled seznamů</translation>
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Réduire en couverture</translation>
+        <translation>Odsunout na pozadí</translation>
     </message>
     <message>
         <source>Task options</source>
-        <translation>Options d&apos;affichage</translation>
+        <translation>Volby pro úkol</translation>
     </message>
     <message>
         <source>open task appearance</source>
-        <translation>apparence des tâches ouvertes</translation>
+        <translation>Onačení otevřených úkolů</translation>
     </message>
     <message>
         <source>refocus task add field</source>
-        <translation>champ actif après ajout</translation>
+        <translation>Zaměřit při přidávání znovu textové pole</translation>
     </message>
     <message>
         <source>Remorse options</source>
-        <translation>Options des delais</translation>
+        <translation>Čas k přerušení</translation>
     </message>
     <message>
         <source>on Delete</source>
-        <translation>pour supprimer</translation>
+        <translation>při mazaní</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>secondes</translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>seconde</translation>
+        <translation>sekunda</translation>
     </message>
     <message>
         <source>on Mark task</source>
-        <translation>pour terminer une tâche</translation>
+        <translation>při označení úkolu</translation>
     </message>
     <message>
         <source>on Adding multiple tasks</source>
-        <translation>pour ajouter plusieurs tâches</translation>
+        <translation>při přidání více úkolů</translation>
     </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
-        <translation>Supprimer les tâches terminées</translation>
+        <translation>Mažou se všechny hotové úkoly</translation>
     </message>
     <message>
         <source>Enter unique task name</source>
-        <translation>Ajouter une tâche unique</translation>
+        <translation>Zadejte jedinečný název úkolu</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
-        <translation>Taper Entrer/Retour pour enregistrer</translation>
+        <translation>Stiskněte Enter pro přidání nového úkolu</translation>
     </message>
     <message>
         <source>Task could not be added!</source>
-        <translation>La tâche n&apos;a pas pu être ajoutée !</translation>
+        <translation>Úkol se nepodařilo přidat!</translation>
     </message>
     <message>
         <source>It already exists on this list.</source>
-        <translation>Existe déjà dans la liste.</translation>
+        <translation>Již existuje v tomto seznamu.</translation>
     </message>
     <message>
         <source>Adding multiple tasks</source>
-        <translation>Ajouter plusieurs tâches</translation>
+        <translation>Přidává se více úkolů</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <translation>les nouvelles tâches ont été ajoutées.</translation>
+        <translation>Byly přidány nové úkoly.</translation>
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <translation>les nouvelles tâches existent déjà !</translation>
+        <translation>Všechny úkoly již existují!</translation>
     </message>
     <message>
         <source>No new tasks have been added to the list.</source>
-        <translation>Aucune nouvelle tâche n&apos;a pu être ajoutée dans la liste.</translation>
+        <translation>Do seznamu nebyly přidány žádné nové úkoly.</translation>
     </message>
     <message>
         <source>no tasks available</source>
-        <translation>aucune tâche disponible</translation>
+        <translation>Není dostupný žádný úkol</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation>Nastavení</translation>
     </message>
     <message>
         <source>Lock orientation</source>
-        <translation>Verrouiller l&apos;orientation</translation>
+        <translation>Uzamknout natočení</translation>
     </message>
     <message>
         <source>Unlock orientation</source>
-        <translation>Déverrouiller l&apos;orientation</translation>
+        <translation>Odemknout natočení</translation>
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <translation>Supprimer les tâches terminées</translation>
+        <translation>Smazat všechny hotové úkoly</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>O</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Suppression</translation>
+        <translation>Maže se</translation>
     </message>
     <message>
         <source>mark as open</source>
-        <translation>marquer ouvert</translation>
+        <translation>Označit jako otevřené</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>marquer terminé</translation>
+        <translation>Označit jako hotové</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Éditer</translation>
+        <translation>Upravit</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation>Smazat</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Détails</translation>
+        <translation>Podrobnosti</translation>
     </message>
     <message>
         <source>Orientation locked</source>
-        <translation>Orientation vérouillée</translation>
+        <translation>Natočení uzamknuto</translation>
     </message>
 </context>
 </TS>
