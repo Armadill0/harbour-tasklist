@@ -109,7 +109,7 @@ Page {
 
         delegate: ListItem {
             id: listListItem
-            height: menuOpen ? listContextMenu.height + listLabel.height : listLabel.height
+            height: (menuOpen ? listContextMenu.height + editListLabel.height : editListLabel.height)
 
             property Item listContextMenu
             property bool menuOpen: listContextMenu != null && listContextMenu.parent === listListItem
@@ -137,13 +137,18 @@ Page {
             RemorseItem {
                 id: listRemorse
             }
-
+Rectangle {
+    anchors.fill: parent
+    border.color: "red"
+    border.width: 1
+    color: "transparent"
             Label {
                 id: listLabel
-                text: listname + ((taskListWindow.defaultlist === listid) ? " (" + qsTr("default") + ")" : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? " (Cover)" : "")
+                text: listname + editListLabel.height
                 width: parent.width - 105
                 x: 25
-                height: 80
+                height: 60
+                anchors.top: parent.top
                 verticalAlignment: Text.AlignVCenter
                 truncationMode: TruncationMode.Fade
             }
@@ -152,10 +157,24 @@ Page {
                 id: listTaskNumber
                 text: tNumber > 999 ? "999+" : tNumber
                 width: 70
-                height: 80
+                height: 100
+                anchors.top: parent.top
                 anchors.left: listLabel.right
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignRight
+            }
+
+            Label {
+                id: listProperties
+                text: ((taskListWindow.defaultlist === listid) ? qsTr("default") + " " : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? "Cover" : "")
+                width: parent.width - 105
+                x: 25
+                height: 40
+                font.pixelSize: listProperties.height * 0.55
+                font.italic: true
+                truncationMode: TruncationMode.Fade
+                verticalAlignment: Text.AlignVCenter
+                anchors.bottom: parent.bottom
             }
 
             TextField {
@@ -163,7 +182,7 @@ Page {
                 width: parent.width - 70
                 text: listname
                 label: qsTr("Press Enter/Return to save changes")
-                visible: false
+                //visible: false
                 anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: editListLabel.text.length > 0
@@ -195,9 +214,11 @@ Page {
                     if (activeFocus === false && editListLabel.visible === true) {
                         editListLabel.visible = false
                         listLabel.visible = true
+                        listProperties.visible = true
                     }
                 }
             }
+}
 
             // show context menu
             onPressAndHold: {
@@ -220,20 +241,19 @@ Page {
                     id: listMenu
 
                     MenuItem {
-                        height: 65
                         text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
                             editListLabel.text = listListModel.get(index).listname
                             listLabel.visible = false
+                            listProperties.visible = false
                             editListLabel.visible = true
                             editListLabel.forceActiveFocus()
                         }
                     }
 
                     MenuItem {
-                        height: 65
                         text: qsTr("Set as Default list")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
@@ -248,7 +268,6 @@ Page {
                     }
 
                     MenuItem {
-                        height: 65
                         text: qsTr("Set as Cover list")
                         // only show if choose cover list is active and list is not the current chosen one
                         visible: (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose !== listid) ? true : false
@@ -264,7 +283,6 @@ Page {
                     }
 
                     MenuItem {
-                        height: 65
                         text: qsTr("Delete")
                         // default list must not be deleted
                         visible: (taskListWindow.defaultlist !== listid) ? true : false

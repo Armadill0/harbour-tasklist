@@ -1,76 +1,76 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" sourcelanguage="en_US" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi_FI" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>Atrás</translation>
+        <translation>Takaisin</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Descripción</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <source>A small but mighty program to manage your daily tasks.</source>
-        <translation>Un pequeño programa para manejar tus tareas diarias.</translation>
+        <translation>Pieni mutta tehokas sovellus päivittäisten tehtävien hallintaan.</translation>
     </message>
     <message>
         <source>Licensing</source>
-        <translation>Licencia</translation>
+        <translation>Lisensointi</translation>
     </message>
     <message>
         <source>Copyright © by</source>
-        <translation>Derechos © a</translation>
+        <translation>Tekijänoikeus © </translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licencia</translation>
+        <translation>Lisenssi</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contribuyente</translation>
+        <translation>Avustajat</translation>
     </message>
     <message>
         <source>Project information</source>
-        <translation>Información del proyecto</translation>
+        <translation>Projektin tiedot</translation>
     </message>
 </context>
 <context>
     <name>EditPage</name>
     <message>
         <source>Task saving disabled!</source>
-        <translation>¡ La opción de salvar tareas esta deshabilitada !</translation>
+        <translation>Tehtävien tallennus pois käytöstä!</translation>
     </message>
     <message>
         <source>It already exists on the selected list.</source>
-        <translation>Ya existe en la lista seleccionada.</translation>
+        <translation>Se on jo olemassa valitussa listassa.</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Tallenna</translation>
     </message>
     <message>
         <source>Task properties</source>
-        <translation>Propiedades de las tareas</translation>
+        <translation>Tehtävän ominaisuudet</translation>
     </message>
     <message>
         <source>Save changes in the upper right corner</source>
-        <translation>Salvar cambios en la parte superior derecha</translation>
+        <translation>Tallenna muutokset oikeassa yläkulmassa</translation>
     </message>
     <message>
         <source>task already exists on this list!</source>
-        <translation>Esta tarea ya existe!</translation>
+        <translation>tehtävä on jo listassa!</translation>
     </message>
     <message>
         <source>task is done</source>
-        <translation>Tarea terminada</translation>
+        <translation>tehtävä on valmis</translation>
     </message>
     <message>
         <source>List</source>
@@ -78,252 +78,252 @@
     </message>
     <message>
         <source>Information</source>
-        <translation>Información</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Creado en</translation>
+        <translation>Luotu</translation>
     </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Manage lists</source>
-        <translation>Manejar listas</translation>
+        <translation>Hallitse listoja</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
-        <translation>Dar nombre único de lista</translation>
+        <translation>Anna yksilöllinen listan nimi</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
-        <translation>Presiona ENTER para añadir la nueva lista</translation>
+        <translation>Paina Enter lisätäksesi uuden listan</translation>
     </message>
     <message>
         <source>List could not be added!</source>
-        <translation>Esta lista no puede ser añadida.</translation>
+        <translation>Listan lisäys epäonnistui!</translation>
     </message>
     <message>
         <source>It already exists.</source>
-        <translation>Esta tarea ya existe!</translation>
+        <translation>Se on jo olemassa.</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Borrando</translation>
+        <translation>Poistetaan</translation>
     </message>
     <message>
         <source>default</source>
-        <translation>defecto</translation>
+        <translation>oletus</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
-        <translation>Presiona ENTER para guardar las modificaciones</translation>
+        <translation>Paina Enter tallentaaksesi muutokset</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Muokkaa</translation>
     </message>
     <message>
         <source>Set as Default list</source>
-        <translation>Salvar como lista por defecto</translation>
+        <translation>Aseta oletuslistaksi</translation>
     </message>
     <message>
         <source>Set as Cover list</source>
-        <translation>Disponer como lista de portada</translation>
+        <translation>Aseta kansilistaksi</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Poista</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Tallenna</translation>
     </message>
     <message>
         <source>Cover options</source>
-        <translation>Opciones de portada</translation>
+        <translation>Kannen valinnat</translation>
     </message>
     <message>
         <source>Cover list</source>
-        <translation>Lista de portada</translation>
+        <translation>Kansilista</translation>
     </message>
     <message>
         <source>Default list</source>
-        <translation>Lista por defecto</translation>
+        <translation>Oletuslista</translation>
     </message>
     <message>
         <source>Selected list</source>
-        <translation>Lista actual</translation>
+        <translation>Valittu lista</translation>
     </message>
     <message>
         <source>Choose in list management</source>
-        <translation>Elige en gestión de las listas</translation>
+        <translation>Valitse listojen hallinnassa</translation>
     </message>
     <message>
         <source>Cover task order</source>
-        <translation>Orden de la tareas de portada</translation>
+        <translation>Kansitehtävien järjestys</translation>
     </message>
     <message>
         <source>Last updated first</source>
-        <translation>Primero la última modificada</translation>
+        <translation>Viimeksi päivitetty ensin</translation>
     </message>
     <message>
         <source>Sort by name ascending</source>
-        <translation>Ordenar por nombre ascendente</translation>
+        <translation>Lajittele nimen mukaan nousevasti</translation>
     </message>
     <message>
         <source>Sort by name descending</source>
-        <translation>Ordenar por nombre descendente</translation>
+        <translation>Lajittele nimen mukaan laskevasti</translation>
     </message>
     <message>
         <source>General options</source>
-        <translation>Opciones generales.</translation>
+        <translation>Yleisasetukset</translation>
     </message>
     <message>
         <source>Start page</source>
-        <translation>Página de inicio.</translation>
+        <translation>Aloitussivu</translation>
     </message>
     <message>
         <source>List overview</source>
-        <translation>Relación de listas.</translation>
+        <translation>Listan yleisnäkymä</translation>
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Minimizar en portada.</translation>
+        <translation>Pienennä kanteen</translation>
     </message>
     <message>
         <source>Task options</source>
-        <translation>Opciones tareas</translation>
+        <translation>Tehtävävalinnat</translation>
     </message>
     <message>
         <source>open task appearance</source>
-        <translation>Apariencia de las tareas abiertas</translation>
+        <translation>avaa tehtävän ulkoasu</translation>
     </message>
     <message>
         <source>refocus task add field</source>
-        <translation>Añadir campo a tarea focalizada.</translation>
+        <translation>kohdista uudelleen tehtävän lisäyskenttään</translation>
     </message>
     <message>
         <source>Remorse options</source>
-        <translation>Opciones previas</translation>
+        <translation>Katumusvalinnat</translation>
     </message>
     <message>
         <source>on Delete</source>
-        <translation>En borrado</translation>
+        <translation>poistaessa</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>segundos</translation>
+        <translation>sekuntia</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>segundo</translation>
+        <translation>sekunti</translation>
     </message>
     <message>
         <source>on Mark task</source>
-        <translation>Al marcar tarea</translation>
+        <translation>tehtävää merkitessä</translation>
     </message>
     <message>
         <source>on Adding multiple tasks</source>
-        <translation>En añadir múltiples tareas.</translation>
+        <translation>useita tehtäviä lisättäessä</translation>
     </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
-        <translation>Borrar todas las tareas hechas</translation>
+        <translation>Poistetaan kaikki tehdyt tehtävät</translation>
     </message>
     <message>
         <source>Enter unique task name</source>
-        <translation>Entrar un código único de tarea</translation>
+        <translation>Anna yksilöllinen tehtävän nimi</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
-        <translation>Presionar ENTER para añadir una tarea</translation>
+        <translation>Paina Enter lisätäksesi uuden tehtävän</translation>
     </message>
     <message>
         <source>Task could not be added!</source>
-        <translation>Esta tarea no se puede añadir!</translation>
+        <translation>Tehtävän lisäys epäonnistui!</translation>
     </message>
     <message>
         <source>It already exists on this list.</source>
-        <translation>Ya existe en esta lista.</translation>
+        <translation>Se on jo olemassa listassa.</translation>
     </message>
     <message>
         <source>Adding multiple tasks</source>
-        <translation>Añadiendo múltiples tareas.</translation>
+        <translation>Lisätään useita tehtäviä</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <translation>Nueva tarea ha sido añadida.</translation>
+        <translation>uutta tehtävää on lisätty.</translation>
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <translation>Todas las tareas ya existen.</translation>
+        <translation>Kaikki tehtävät ovat jo olemassa!</translation>
     </message>
     <message>
         <source>No new tasks have been added to the list.</source>
-        <translation>Ninguna nueva tarea ha sido añadida a la lista.</translation>
+        <translation>Uusia tehtäviä ei ole lisätty listalle.</translation>
     </message>
     <message>
         <source>no tasks available</source>
-        <translation>No existen tareas</translation>
+        <translation>ei tehtäviä saatavilla</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>Lock orientation</source>
-        <translation>Bloquear orientación</translation>
+        <translation>Lukitse suuntaus</translation>
     </message>
     <message>
         <source>Unlock orientation</source>
-        <translation>Desbloquear orientación</translation>
+        <translation>Avaa suuntauksen lukitus</translation>
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <translation>Borrar todas las tareas realizadas</translation>
+        <translation>Poista kaikki tehdyt tehtävät</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Borrar</translation>
+        <translation>Poistetaan</translation>
     </message>
     <message>
         <source>mark as open</source>
-        <translation>Marcar todas como abiertas</translation>
+        <translation>merkitse avoimeksi</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>Marcar todas como hechas</translation>
+        <translation>merkitse tehdyksi</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Muokkaa</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Detalles.</translation>
+        <translation>Tiedot</translation>
     </message>
     <message>
         <source>Orientation locked</source>
-        <translation>Orientación bloqueada.</translation>
+        <translation>Suuntaus lukittu</translation>
     </message>
 </context>
 </TS>
