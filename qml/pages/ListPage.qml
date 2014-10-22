@@ -109,7 +109,7 @@ Page {
 
         delegate: ListItem {
             id: listListItem
-            height: (menuOpen ? listContextMenu.height + editListLabel.height : editListLabel.height)
+            contentHeight: (menuOpen ? (listContextMenu.height + editListLabel.height) : editListLabel.height)
 
             property Item listContextMenu
             property bool menuOpen: listContextMenu != null && listContextMenu.parent === listListItem
@@ -133,21 +133,40 @@ Page {
                 }, taskListWindow.remorseOnDelete * 1000)
             }
 
+            // function to render string of list properties
+            function renderListProperties() {
+                var listPropertiesArray = [];
+                var listPropertiesString = "";
+
+                if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTr("default")) }
+
+                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push("Cover") }
+
+                for (var i = 0; i < listPropertiesArray.length; i++) {
+                    if (i > 0)
+                        listPropertiesString += ", "
+
+                    listPropertiesString += listPropertiesArray[i];
+                }
+
+                return listPropertiesString;
+            }
+
+            Component.onCompleted: {
+                listProperties.text = renderListProperties()
+            }
+
             // remorse item for all remorse actions
             RemorseItem {
                 id: listRemorse
             }
-Rectangle {
-    anchors.fill: parent
-    border.color: "red"
-    border.width: 1
-    color: "transparent"
+
             Label {
                 id: listLabel
-                text: listname + editListLabel.height
+                text: listname
                 width: parent.width - 105
                 x: 25
-                height: 60
+                height: editListLabel.height * 0.55
                 anchors.top: parent.top
                 verticalAlignment: Text.AlignVCenter
                 truncationMode: TruncationMode.Fade
@@ -157,7 +176,7 @@ Rectangle {
                 id: listTaskNumber
                 text: tNumber > 999 ? "999+" : tNumber
                 width: 70
-                height: 100
+                height: editListLabel.height * 0.55
                 anchors.top: parent.top
                 anchors.left: listLabel.right
                 verticalAlignment: Text.AlignVCenter
@@ -166,15 +185,14 @@ Rectangle {
 
             Label {
                 id: listProperties
-                text: ((taskListWindow.defaultlist === listid) ? qsTr("default") + " " : "") + ((taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) ? "Cover" : "")
                 width: parent.width - 105
                 x: 25
-                height: 40
-                font.pixelSize: listProperties.height * 0.55
+                height: editListLabel.height * 0.45
+                font.pixelSize: listProperties.height * 0.6
                 font.italic: true
                 truncationMode: TruncationMode.Fade
-                verticalAlignment: Text.AlignVCenter
-                anchors.bottom: parent.bottom
+                verticalAlignment: Text.AlignTop
+                anchors.top: listLabel.bottom
             }
 
             TextField {
@@ -182,7 +200,7 @@ Rectangle {
                 width: parent.width - 70
                 text: listname
                 label: qsTr("Press Enter/Return to save changes")
-                //visible: false
+                visible: false
                 anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: editListLabel.text.length > 0
@@ -218,7 +236,6 @@ Rectangle {
                     }
                 }
             }
-}
 
             // show context menu
             onPressAndHold: {
