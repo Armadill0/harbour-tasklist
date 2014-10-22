@@ -185,11 +185,12 @@ Page {
 
             Label {
                 id: listProperties
-                width: parent.width - 105
+                width: parent.width
                 x: 25
                 height: editListLabel.height * 0.45
-                font.pixelSize: listProperties.height * 0.6
+                font.pixelSize: Theme.fontSizeSmall
                 font.italic: true
+                color: Theme.secondaryColor
                 truncationMode: TruncationMode.Fade
                 verticalAlignment: Text.AlignTop
                 anchors.top: listLabel.bottom
