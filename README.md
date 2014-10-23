@@ -62,7 +62,10 @@ see here: https://github.com/Armadill0/harbour-tasklist/milestones/2.0
 
 Contributors
 ================
-- Manuel Soriano (manu007)
+- Manuel Soriano
 - Ilja Balonov
 - L&eacute;onard Meyer
 - Anatoly Shipitsin
+- fri
+- Jiri Gr&ouml;nroos
+- &#304;smail Adnan Sarıer

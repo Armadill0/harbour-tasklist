@@ -85,28 +85,49 @@ Dialog {
             }
 
             Label {
-                text: "Manuel Soriano (manu007)"
+                text: "- Manuel Soriano (manu007)"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
             }
 
             Label {
-                text: "Ilja Balonov"
+                text: "- Ilja Balonov"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
             }
 
             Label {
-                text: "Léonard Meyer"
+                text: "- Léonard Meyer"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
             }
 
             Label {
-                text: "Anatoly Shipitsin"
+                text: "- Anatoly Shipitsin"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                text: "- fri"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                text: "- Jiri Grönroos"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
+            Label {
+                text: "- İsmail Adnan Sarıer"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
