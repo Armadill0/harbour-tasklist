@@ -43,7 +43,7 @@ function initializeDB() {
             // coverListSelection
             var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListSelection'");
             if (result.rows.item(0)["cSetting"] == 0) {
-                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListSelection', '0')");
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('coverListSelection', '1')");
             }
             // coverListChoose
             var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='coverListChoose'");
