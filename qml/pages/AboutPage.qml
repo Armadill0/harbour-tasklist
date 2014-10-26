@@ -133,6 +133,13 @@ Dialog {
                 font.pixelSize: Theme.fontSizeSmall
             }
 
+            Label {
+                text: "- Åke Engelbrektson"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
             SectionHeader {
                 text: qsTr("Project information")
                 font.pixelSize: Theme.fontSizeSmall
