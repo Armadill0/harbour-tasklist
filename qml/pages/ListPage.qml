@@ -140,7 +140,7 @@ Page {
 
                 if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTr("default")) }
 
-                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push("Cover") }
+                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push(qsTr("Cover")) }
 
                 for (var i = 0; i < listPropertiesArray.length; i++) {
                     if (i > 0)
