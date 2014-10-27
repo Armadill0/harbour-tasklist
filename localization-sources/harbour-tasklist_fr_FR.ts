@@ -113,7 +113,7 @@
     </message>
     <message>
         <source>default</source>
-        <translation>défauts</translation>
+        <translation>défaut</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
@@ -303,11 +303,11 @@
     </message>
     <message>
         <source>mark as open</source>
-        <translation>marquer ouvert</translation>
+        <translation>ouvert</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>marquer terminé</translation>
+        <translation>terminé</translation>
     </message>
     <message>
         <source>Edit</source>
