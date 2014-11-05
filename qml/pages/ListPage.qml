@@ -70,6 +70,59 @@ Page {
                 title: qsTr("Manage lists") + " - TaskList"
             }
 
+            SectionHeader {
+                text: qsTr("Smart lists")
+            }
+
+            Rectangle {
+                width: parent.width
+                height: 104
+                color: "transparent"
+
+                SilicaGridView {
+                    anchors.fill: parent
+                    cellWidth: width / 3
+                    cellHeight: width / 3
+
+                    model: ListModel {
+                        ListElement {
+                            listname: "Done"
+                            taskcount: "27"
+                        }
+                        ListElement {
+                            listname: "Undone"
+                            taskcount: "13"
+                        }
+                        ListElement {
+                            listname: "Just added"
+                            taskcount: "4"
+                        }
+                    }
+
+                    delegate: Item {
+                        width: GridView.view.width / 3
+                        height: Theme.itemSizeMedium
+
+                        ValueButton {
+                            label: listname
+                            value: (taskcount > 999 ? "999+" : taskcount) + " " + qsTr("tasks")
+                            valueColor: Theme.secondaryColor
+                        }
+                    }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Add new list")
+            }
+
+            /*Separator {
+                x: Theme.paddingLarge
+                width: parent.width - (2 * Theme.paddingLarge)
+                color: Theme.highlightColor
+                horizontalAlignment: Qt.AlignLeft
+            }*/
+
             TextField {
                 id: listAdd
                 width: parent.width
@@ -104,6 +157,10 @@ Page {
                 Keys.onReturnPressed: {
                     addList(listAdd.text)
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Your lists")
             }
         }
 
@@ -165,7 +222,7 @@ Page {
                 id: listLabel
                 text: listname
                 width: parent.width - 105
-                x: 25
+                x: Theme.paddingLarge
                 height: editListLabel.height * 0.55
                 anchors.top: parent.top
                 verticalAlignment: Text.AlignVCenter
@@ -186,7 +243,7 @@ Page {
             Label {
                 id: listProperties
                 width: parent.width
-                x: 25
+                x: Theme.paddingLarge
                 height: editListLabel.height * 0.45
                 font.pixelSize: Theme.fontSizeSmall
                 font.italic: true
