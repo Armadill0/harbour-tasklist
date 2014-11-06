@@ -155,7 +155,7 @@ Dialog {
                 anchors.topMargin: 100
                 anchors.left: parent.left
                 anchors.leftMargin: 25
-                text: qsTr("Created at") + ": " + Qt.formatDate(editTaskPage.taskcreationdate, "dd.MM.yyyy") + " - " + Qt.formatDateTime(editTaskPage.taskcreationdate, "HH:mm:ss")
+                text: qsTr("Created at") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
             }
         }
     }

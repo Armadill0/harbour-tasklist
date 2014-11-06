@@ -95,6 +95,16 @@ function initializeDB() {
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('backFocusAddTask', '1')");
             }
+            // smartListVisibility
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='smartListVisibility'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('smartListVisibility', '1')");
+            }
+            // recentlyAddedOffset
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='recentlyAddedOffset'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('recentlyAddedOffset', '3')");
+            }
         }
     );
 
@@ -211,19 +221,21 @@ function getTaskProperty(id, taskproperty) {
 /***************************************/
 
 // select lists and push them into the listList
-function readLists(listArt) {
+function readLists(listArt, recentlyAddedTimestamp) {
     var db = connectDB();
     var resultString = "";
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID) AS tCount FROM lists AS parent ORDER BY ID ASC;");
+        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID) AS tCount,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID AND Status='1') AS tCountPending,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID AND CreationDate>'" + recentlyAddedTimestamp + "') AS tCountNew FROM lists AS parent ORDER BY ID ASC;");
         for(var i = 0; i < result.rows.length; i++) {
             if (listArt == "string") {
                 resultString += (resultString == "" ? result.rows.item(i).ID : "," + result.rows.item(i).ID)
             }
             else {
-                appendList(result.rows.item(i).ID, result.rows.item(i).ListName, result.rows.item(i).tCount);
+                appendList(result.rows.item(i).ID, result.rows.item(i).ListName, result.rows.item(i).tCount, result.rows.item(i).tCountPending, result.rows.item(i).tCountNew);
             }
         }
     });

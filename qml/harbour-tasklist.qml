@@ -45,6 +45,8 @@ ApplicationWindow {
     property string listOfLists
     // variable to save the current cover list as a variable which overlives changing from Dovers screen to lock screen and back
     property int currentCoverList: -1
+    // list of current time periods for the recently added tasks smart list
+    property variant recentlyAddedPeriods: [10800, 21600, 43200, 86400, 172800, 604800]
 
     // initilize default settings properties
     property int coverListSelection
@@ -56,6 +58,8 @@ ApplicationWindow {
     property int remorseOnMultiAdd
     property int startPage
     property int backFocusAddTask
+    property bool smartListVisibility
+    property int recentlyAddedOffset
 
     initialPage: Component { TaskPage {} }
     cover: Component { CoverPage {} }

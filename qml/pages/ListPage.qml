@@ -24,10 +24,13 @@ import "../localdb.js" as DB
 Page {
     id: listPage
     allowedOrientations: Orientation.All
+    property int totalPending
+    property int totalTasks
+    property int totalNew
 
     // helper function to add lists to the list
-    function appendList(id, listname, tNumber) {
-        listListModel.append({"listid": id, "listname": listname, "tNumber": tNumber})
+    function appendList(id, listname, tNumber, tNumberPending, tNumberNew) {
+        listListModel.append({"listid": id, "listname": listname, "tNumber": tNumber, "tNumberPending": tNumberPending, "tNumberNew": tNumberNew})
     }
 
     // helper function to wipe the list element
@@ -36,21 +39,62 @@ Page {
     }
 
     function reloadListList() {
+        // calculate the offset for the new tasks number
+        // *1000 eliminates the unix microseconds
+        var currentUnixTime = DB.getUnixTime();
+        var newTasksOffset = currentUnixTime - (taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000)
+
         wipeListList()
-        DB.readLists()
+        DB.readLists(null, newTasksOffset)
     }
 
     onStatusChanged: {
         switch(status) {
-        case PageStatus.Active :
-                reloadListList()
+        case PageStatus.Active:
+            reloadListList()
+
+            // iterate over the list to get number of total pending tasks
+            totalPending = 0
+            for (var i = 0; i < listListModel.count; i++) {
+                totalPending += listListModel.get(i).tNumberPending
+            }
+
+            // iterate over the list to get number of total tasks
+            totalTasks = 0
+            for (var i = 0; i < listListModel.count; i++) {
+                totalTasks += listListModel.get(i).tNumber
+            }
+
+            // iterate over the list to get number of new tasks
+            totalNew = 0
+            for (var i = 0; i < listListModel.count; i++) {
+                totalNew += listListModel.get(i).tNumberNew
+            }
+
+            var totalDone = totalTasks - totalPending
+
+            // flush default values from Gridview before appending real ones
+            smartListModel.clear()
+            smartListModel.append({"listname": qsTr("Done"), "taskcount": totalDone.toString()})
+            smartListModel.append({"listname": qsTr("Pending"), "taskcount": totalPending.toString()})
+            smartListModel.append({"listname": qsTr("New"), "taskcount": totalNew.toString()})
 
             break
         }
     }
 
     Component.onCompleted: {
+        // push default values to task number of smart lists
+        //: default string for task count of smart lists, when value is not available (n/a)
+        smartListModel.append({"listname": qsTr("Done"), "taskcount": qsTr("n/a")})
+        smartListModel.append({"listname": qsTr("Pending"), "taskcount": qsTr("n/a")})
+        smartListModel.append({"listname": qsTr("New"), "taskcount": qsTr("n/a")})
+
         reloadListList()
+    }
+
+    ListModel {
+        id: smartListModel
     }
 
     SilicaListView {
@@ -72,32 +116,21 @@ Page {
 
             SectionHeader {
                 text: qsTr("Smart lists")
+                visible: taskListWindow.smartListVisibility
             }
 
             Rectangle {
                 width: parent.width
                 height: 104
                 color: "transparent"
+                visible: taskListWindow.smartListVisibility
 
                 SilicaGridView {
                     anchors.fill: parent
                     cellWidth: width / 3
                     cellHeight: width / 3
 
-                    model: ListModel {
-                        ListElement {
-                            listname: "Done"
-                            taskcount: "27"
-                        }
-                        ListElement {
-                            listname: "Undone"
-                            taskcount: "13"
-                        }
-                        ListElement {
-                            listname: "Just added"
-                            taskcount: "4"
-                        }
-                    }
+                    model: smartListModel
 
                     delegate: Item {
                         width: GridView.view.width / 3
@@ -105,7 +138,7 @@ Page {
 
                         ValueButton {
                             label: listname
-                            value: (taskcount > 999 ? "999+" : taskcount) + " " + qsTr("tasks")
+                            value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
                             valueColor: Theme.secondaryColor
                         }
                     }
@@ -115,13 +148,6 @@ Page {
             SectionHeader {
                 text: qsTr("Add new list")
             }
-
-            /*Separator {
-                x: Theme.paddingLarge
-                width: parent.width - (2 * Theme.paddingLarge)
-                color: Theme.highlightColor
-                horizontalAlignment: Qt.AlignLeft
-            }*/
 
             TextField {
                 id: listAdd

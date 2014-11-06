@@ -36,6 +36,8 @@ Dialog {
         DB.updateSetting("remorseOnMark", remorseOnMark.value)
         DB.updateSetting("remorseOnMultiAdd", remorseOnMultiAdd.value)
         DB.updateSetting("startPage", startPage.currentIndex)
+        DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
+        DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
 
 
         // push new settings to runtime variables
@@ -46,6 +48,8 @@ Dialog {
         taskListWindow.remorseOnDelete = remorseOnDelete.value
         taskListWindow.remorseOnMark = remorseOnMark.value
         taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
+        taskListWindow.smartListVisibility = smartListVisibility.checked === true ? 1 : 0
+        taskListWindow.recentlyAddedOffset = recentlyAddedOffset.currentIndex
     }
 
     SilicaFlickable {
@@ -127,6 +131,34 @@ Dialog {
                 width: parent.width
                 text: qsTr("refocus task add field")
                 checked: taskListWindow.backFocusAddTask
+            }
+
+            SectionHeader {
+                text: qsTr("List options")
+            }
+
+            TextSwitch {
+                id: smartListVisibility
+                width: parent.width
+                text: qsTr("show smart lists")
+                checked: taskListWindow.smartListVisibility
+            }
+
+            // time periods in seconds are defined in harbour-takslist.qml
+            ComboBox {
+                id: recentlyAddedOffset
+                width: parent.width
+                label: qsTr("New task period") + ":"
+                currentIndex: taskListWindow.recentlyAddedOffset
+
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("%1 hours").arg(3) }
+                    MenuItem { text: qsTr("%1 hours").arg(6) }
+                    MenuItem { text: qsTr("%1 hours").arg(12) }
+                    MenuItem { text: qsTr("%1 day").arg(1) }
+                    MenuItem { text: qsTr("%1 days").arg(2) }
+                    MenuItem { text: qsTr("%1 week").arg(1) }
+                }
             }
 
             SectionHeader {

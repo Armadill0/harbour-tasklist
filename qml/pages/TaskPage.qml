@@ -146,6 +146,8 @@ Page {
             taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
             taskListWindow.startPage = parseInt(DB.getSetting("startPage"))
             taskListWindow.backFocusAddTask = parseInt(DB.getSetting("backFocusAddTask"))
+            taskListWindow.smartListVisibility = parseInt(DB.getSetting("smartListVisibility")) === 1 ? true : false
+            taskListWindow.recentlyAddedOffset = parseInt(DB.getSetting("recentlyAddedOffset"))
         }
 
         reloadTaskList()
