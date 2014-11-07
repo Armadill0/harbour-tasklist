@@ -84,17 +84,28 @@ Page {
     }
 
     Component.onCompleted: {
-        // push default values to task number of smart lists
-        //: default string for task count of smart lists, when value is not available (n/a)
-        smartListModel.append({"listname": taskListWindow.smartListNames[0], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
-        smartListModel.append({"listname": taskListWindow.smartListNames[1], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
-        smartListModel.append({"listname": taskListWindow.smartListNames[2], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
+        // flush dummy element and replace with default smart list elements
+        smartListModel.clear()
+        for (var i in taskListWindow.smartListNames) {
+            // push default values to task number of smart lists
+            //: default string for task count of smart lists, when value is not available (n/a)
+            smartListModel.append({"listname": taskListWindow.smartListNames[i], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
+        }
 
         reloadListList()
     }
 
     ListModel {
         id: smartListModel
+
+        // dummy element to prevent ListView from flicking on appending smart lists
+        ListElement {
+            listname: "dummy"
+            taskcount: "0"
+            buttonActive: false
+            smartList: "-1"
+            width: "0"
+        }
     }
 
     SilicaListView {
@@ -119,10 +130,11 @@ Page {
                 visible: taskListWindow.smartListVisibility
             }
 
-            Row {
+            Grid {
                 id: smartListContainer
                 width: parent.width
                 visible: taskListWindow.smartListVisibility
+                columns: 3
 
                 Repeater {
                     model: smartListModel
