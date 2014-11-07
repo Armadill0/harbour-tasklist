@@ -119,36 +119,28 @@ Page {
                 visible: taskListWindow.smartListVisibility
             }
 
-            Rectangle {
+            Row {
+                id: smartListContainer
                 width: parent.width
-                height: 104
-                color: "transparent"
                 visible: taskListWindow.smartListVisibility
 
-                SilicaGridView {
-                    anchors.fill: parent
-                    cellWidth: width / 3
-                    cellHeight: width / 3
-
+                Repeater {
                     model: smartListModel
 
-                    delegate: Item {
-                        width: GridView.view.width / 3
+                    delegate: ValueButton {
+                        label: listname
+                        width: smartListContainer.width / 3
                         height: Theme.itemSizeMedium
+                        value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
+                        valueColor: Theme.secondaryColor
+                        // disabled for default values to prevent errors if not all data is available yet
+                        enabled: buttonActive
 
-                        ValueButton {
-                            label: listname
-                            value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
-                            valueColor: Theme.secondaryColor
-                            // disabled for default values to prevent errors if not all data is available yet
-                            enabled: buttonActive
-
-                            onClicked: {
-                                // set smart list type, mark flag that list changed, navigate back to task page
-                                taskListWindow.smartListType = parseInt(smartList)
-                                taskListWindow.listchanged = true
-                                pageStack.navigateBack()
-                            }
+                        onClicked: {
+                            // set smart list type, mark flag that list changed, navigate back to task page
+                            taskListWindow.smartListType = parseInt(smartList)
+                            taskListWindow.listchanged = true
+                            pageStack.navigateBack()
                         }
                     }
                 }
