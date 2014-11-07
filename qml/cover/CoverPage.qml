@@ -29,7 +29,7 @@ CoverBackground {
     property string listorder
 
     // helper function to add tasks to the list
-    function appendTask(id, task, status) {
+    function appendTask(id, task, status, listid) {
         taskListModel.append({"taskid": id, "task": task, "taskstatus": status})
     }
 
@@ -194,7 +194,7 @@ CoverBackground {
 
                             // wipe list and read new tasks
                             wipeTaskList()
-                            DB.readTasks(currentList, 1, listorder)
+                            DB.readTasks(currentList, 1, listorder, "")
                             taskListWindow.currentCoverList = currentList
 
                             break

@@ -139,7 +139,36 @@ function readTasks(listid, status, sort) {
         // order by sort to get the reactivated tasks to the end of the undone list
         var result = tx.executeSql("SELECT * FROM tasks WHERE ListID=?" + statusSql + " ORDER BY Status DESC" + orderby + ";", [listid]);
         for(var i = 0; i < result.rows.length; i++) {
-            taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status == "1" ? true : false);
+            taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status == "1" ? true : false, result.rows.item(i).ListID);
+        }
+    });
+}
+
+// select tasks on a global basis instead of list basis
+function readSmartListTasks(smartListType) {
+    var db = connectDB();
+    var query;
+    //join lists table to hide tasks from deleted lists (however they should not exist)
+    var joinquery = "JOIN lists ON lists.ID=tasks.ListID";
+    var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
+
+    switch(smartListType ) {
+    case 0:
+        query = "SELECT * FROM tasks " + joinquery + " WHERE Status='0'";
+        break;
+    case 1:
+        query = "SELECT * FROM tasks " + joinquery + " WHERE Status='1'";
+        break;
+    case 2:
+        query = "SELECT * FROM tasks " + joinquery + " WHERE CreationDate>'" + recentlyAddedOffsetTime + "'";
+        break;
+    }
+
+    db.transaction(function(tx) {
+        // order by sort to get the reactivated tasks to the end of the undone list
+        var result = tx.executeSql(query);
+        for(var i = 0; i < result.rows.length; i++) {
+            taskPage.appendTask(result.rows.item(i).ID, result.rows.item(i).Task, result.rows.item(i).Status == "1" ? true : false, result.rows.item(i).ListID);
         }
     });
 }

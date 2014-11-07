@@ -31,12 +31,12 @@ Page {
     property string listname
 
     // helper function to add tasks to the list
-    function appendTask(id, task, status) {
-        taskListModel.append({"taskid": id, "task": task, "taskstatus": status})
+    function appendTask(id, task, status, listid) {
+        taskListModel.append({"taskid": id, "task": task, "taskstatus": status, "listid": listid})
     }
 
-    function insertTask(index, id, task, status) {
-        taskListModel.insert(index, {"taskid": id, "task": task, "taskstatus": status})
+    function insertTask(index, id, task, status, listid) {
+        taskListModel.insert(index, {"taskid": id, "task": task, "taskstatus": status, "listid": listid})
     }
 
     // helper function to wipe the tasklist element
@@ -46,8 +46,14 @@ Page {
 
     function reloadTaskList() {
         wipeTaskList()
-        listname = DB.getListProperty(listid, "ListName")
-        DB.readTasks(listid, "", "")
+        if (taskListWindow.smartListType !== -1) {
+            listname = taskListWindow.smartListNames[taskListWindow.smartListType]
+            DB.readSmartListTasks(taskListWindow.smartListType)
+        }
+        else {
+            listname = DB.getListProperty(listid, "ListName")
+            DB.readTasks(listid, "", "", "")
+        }
     }
 
     function deleteDoneTasks() {
@@ -133,7 +139,7 @@ Page {
         if (taskListWindow.justStarted === true) {
             DB.initializeDB()
             taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
-            taskListWindow.defaultlist = listid
+            taskListWindow.defaultlist = taskListWindow.listid
             taskListWindow.justStarted = false
 
             // initialize application settings
@@ -194,7 +200,7 @@ Page {
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
                         // catch sql errors
                         if (newid !== "ERROR") {
-                            taskPage.insertTask(0, newid, taskNew, true)
+                            taskPage.insertTask(0, newid, taskNew, true, listid)
                             taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""

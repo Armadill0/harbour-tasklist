@@ -75,9 +75,9 @@ Page {
 
             // flush default values from Gridview before appending real ones
             smartListModel.clear()
-            smartListModel.append({"listname": qsTr("Done"), "taskcount": totalDone.toString()})
-            smartListModel.append({"listname": qsTr("Pending"), "taskcount": totalPending.toString()})
-            smartListModel.append({"listname": qsTr("New"), "taskcount": totalNew.toString()})
+            smartListModel.append({"listname": taskListWindow.smartListNames[0], "taskcount": totalDone.toString(), "buttonActive": true, "smartList": "0"})
+            smartListModel.append({"listname": taskListWindow.smartListNames[1], "taskcount": totalPending.toString(), "buttonActive": true, "smartList": "1"})
+            smartListModel.append({"listname": taskListWindow.smartListNames[2], "taskcount": totalNew.toString(), "buttonActive": true, "smartList": "2"})
 
             break
         }
@@ -86,9 +86,9 @@ Page {
     Component.onCompleted: {
         // push default values to task number of smart lists
         //: default string for task count of smart lists, when value is not available (n/a)
-        smartListModel.append({"listname": qsTr("Done"), "taskcount": qsTr("n/a")})
-        smartListModel.append({"listname": qsTr("Pending"), "taskcount": qsTr("n/a")})
-        smartListModel.append({"listname": qsTr("New"), "taskcount": qsTr("n/a")})
+        smartListModel.append({"listname": taskListWindow.smartListNames[0], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
+        smartListModel.append({"listname": taskListWindow.smartListNames[1], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
+        smartListModel.append({"listname": taskListWindow.smartListNames[2], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
 
         reloadListList()
     }
@@ -140,6 +140,15 @@ Page {
                             label: listname
                             value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
                             valueColor: Theme.secondaryColor
+                            // disabled for default values to prevent errors if not all data is available yet
+                            enabled: buttonActive
+
+                            onClicked: {
+                                // set smart list type, mark flag that list changed, navigate back to task page
+                                taskListWindow.smartListType = parseInt(smartList)
+                                taskListWindow.listchanged = true
+                                pageStack.navigateBack()
+                            }
                         }
                     }
                 }
@@ -332,6 +341,8 @@ Page {
             onClicked: {
                 // set current global list and jump to taskPage
                 taskListWindow.listid = listid
+                taskListWindow.smartListType = -1
+                taskListWindow.listchanged = true
                 pageStack.navigateBack()
             }
 

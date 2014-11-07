@@ -45,8 +45,12 @@ ApplicationWindow {
     property string listOfLists
     // variable to save the current cover list as a variable which overlives changing from Dovers screen to lock screen and back
     property int currentCoverList: -1
-    // list of current time periods for the recently added tasks smart list
+    // list of current time periods in seconds for the "recently added tasks" smart list
     property variant recentlyAddedPeriods: [10800, 21600, 43200, 86400, 172800, 604800]
+    // deactivate smart lists at startup
+    property int smartListType: -1
+    // define names of smart lists
+    property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New")]
 
     // initilize default settings properties
     property int coverListSelection
