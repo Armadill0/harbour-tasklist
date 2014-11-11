@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" sourcelanguage="en_US" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
 <context>
     <name>AboutPage</name>
     <message>
@@ -135,6 +137,37 @@
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
+    <message>
+        <source>n/a</source>
+        <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smart lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 task</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 tasks</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cover</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -234,6 +267,38 @@
         <source>on Adding multiple tasks</source>
         <translation>pour ajouter plusieurs tâches</translation>
     </message>
+    <message>
+        <source>List options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>show smart lists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New task period</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 hours</source>
+        <extracomment>use %1 as a placeholder for the number of hours</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 day</source>
+        <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <extracomment>use %1 as a placeholder for the number of days</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 week</source>
+        <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -324,6 +389,21 @@
     <message>
         <source>Orientation locked</source>
         <translation>Orientation vérouillée</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-tasklist</name>
+    <message>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

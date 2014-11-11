@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Copyright © by</source>
-        <translation>Telif © Sahibi</translation>
+        <translation>Telif Hakkı © Sahibi</translation>
     </message>
     <message>
         <source>License</source>
@@ -82,7 +82,7 @@
     </message>
     <message>
         <source>Created at</source>
-        <translation>&apos;de düzenlendi</translation>
+        <translation>ile düzenlendi</translation>
     </message>
 </context>
 <context>
@@ -129,11 +129,42 @@
     </message>
     <message>
         <source>Set as Cover list</source>
-        <translation>Kapak sayfası listesi olarak ayarla</translation>
+        <translation>Kapak listesi olarak ayarla</translation>
     </message>
     <message>
         <source>Delete</source>
         <translation>Sil</translation>
+    </message>
+    <message>
+        <source>Cover</source>
+        <translation>Kapak</translation>
+    </message>
+    <message>
+        <source>n/a</source>
+        <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
+        <translation>Yok</translation>
+    </message>
+    <message>
+        <source>Smart lists</source>
+        <translation>Akıllı listeler</translation>
+    </message>
+    <message>
+        <source>%1 task</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation>%1 görev</translation>
+    </message>
+    <message>
+        <source>%1 tasks</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation>%1 görev</translation>
+    </message>
+    <message>
+        <source>Add new list</source>
+        <translation>Yeni liste ekle</translation>
+    </message>
+    <message>
+        <source>Your lists</source>
+        <translation>Listeleriniz</translation>
     </message>
 </context>
 <context>
@@ -148,11 +179,11 @@
     </message>
     <message>
         <source>Cover options</source>
-        <translation>Kapak sayfası seçenekleri</translation>
+        <translation>Kapak seçenekleri</translation>
     </message>
     <message>
         <source>Cover list</source>
-        <translation>Kapak sayfası listesi</translation>
+        <translation>Kapak listesi</translation>
     </message>
     <message>
         <source>Default list</source>
@@ -168,7 +199,7 @@
     </message>
     <message>
         <source>Cover task order</source>
-        <translation>Kapak sayfası görev sırası</translation>
+        <translation>Kapak görev sırası</translation>
     </message>
     <message>
         <source>Last updated first</source>
@@ -196,7 +227,7 @@
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Kapak sayfasına küçült</translation>
+        <translation>Kapağa küçült</translation>
     </message>
     <message>
         <source>Task options</source>
@@ -233,6 +264,38 @@
     <message>
         <source>on Adding multiple tasks</source>
         <translation>Birden fazla görev eklemede</translation>
+    </message>
+    <message>
+        <source>List options</source>
+        <translation>Liste seçenekleri</translation>
+    </message>
+    <message>
+        <source>show smart lists</source>
+        <translation>akıllı listeleri göster</translation>
+    </message>
+    <message>
+        <source>New task period</source>
+        <translation>Yeni görev dönemi</translation>
+    </message>
+    <message>
+        <source>%1 hours</source>
+        <extracomment>use %1 as a placeholder for the number of hours</extracomment>
+        <translation>%1 saat</translation>
+    </message>
+    <message>
+        <source>%1 day</source>
+        <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
+        <translation>%1 gün</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <extracomment>use %1 as a placeholder for the number of days</extracomment>
+        <translation>%1 gün</translation>
+    </message>
+    <message>
+        <source>%1 week</source>
+        <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
+        <translation>%1 hafta</translation>
     </message>
 </context>
 <context>
@@ -324,6 +387,21 @@
     <message>
         <source>Orientation locked</source>
         <translation>Oryantasyon kilitlendi</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-tasklist</name>
+    <message>
+        <source>Done</source>
+        <translation>Yapıldı</translation>
+    </message>
+    <message>
+        <source>Pending</source>
+        <translation>Bekleyen</translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation>Yeni</translation>
     </message>
 </context>
 </TS>

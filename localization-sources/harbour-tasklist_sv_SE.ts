@@ -135,6 +135,37 @@
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
+    <message>
+        <source>Cover</source>
+        <translation>Miniatyrlista</translation>
+    </message>
+    <message>
+        <source>n/a</source>
+        <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
+        <translation>n/a</translation>
+    </message>
+    <message>
+        <source>Smart lists</source>
+        <translation>Smarta listor</translation>
+    </message>
+    <message>
+        <source>%1 task</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation>%1 aktivitet</translation>
+    </message>
+    <message>
+        <source>%1 tasks</source>
+        <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
+        <translation>%1 aktiviteter</translation>
+    </message>
+    <message>
+        <source>Add new list</source>
+        <translation>Lägg till ny lista</translation>
+    </message>
+    <message>
+        <source>Your lists</source>
+        <translation>Dina listor</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -234,6 +265,38 @@
         <source>on Adding multiple tasks</source>
         <translation>Vid tillägg av flera aktiviteter</translation>
     </message>
+    <message>
+        <source>List options</source>
+        <translation>Listalternativ</translation>
+    </message>
+    <message>
+        <source>show smart lists</source>
+        <translation>Visa smarta listor</translation>
+    </message>
+    <message>
+        <source>New task period</source>
+        <translation>Ny aktivitetsperiod</translation>
+    </message>
+    <message>
+        <source>%1 hours</source>
+        <extracomment>use %1 as a placeholder for the number of hours</extracomment>
+        <translation>%1 timmar</translation>
+    </message>
+    <message>
+        <source>%1 day</source>
+        <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
+        <translation>%1 dag</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <extracomment>use %1 as a placeholder for the number of days</extracomment>
+        <translation>%1 dagar</translation>
+    </message>
+    <message>
+        <source>%1 week</source>
+        <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
+        <translation>%1 vecka</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -324,6 +387,21 @@
     <message>
         <source>Orientation locked</source>
         <translation>Skärmorienteringen låst</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-tasklist</name>
+    <message>
+        <source>Done</source>
+        <translation>Klar</translation>
+    </message>
+    <message>
+        <source>Pending</source>
+        <translation>Väntande</translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation>Ny</translation>
     </message>
 </context>
 </TS>

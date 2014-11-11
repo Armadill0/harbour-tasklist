@@ -152,11 +152,15 @@ Dialog {
                 currentIndex: taskListWindow.recentlyAddedOffset
 
                 menu: ContextMenu {
+                    //: use %1 as a placeholder for the number of hours
                     MenuItem { text: qsTr("%1 hours").arg(3) }
                     MenuItem { text: qsTr("%1 hours").arg(6) }
                     MenuItem { text: qsTr("%1 hours").arg(12) }
+                    //: use %1 as a placeholder for the number of the day, which is currently static "1"
                     MenuItem { text: qsTr("%1 day").arg(1) }
+                    //: use %1 as a placeholder for the number of days
                     MenuItem { text: qsTr("%1 days").arg(2) }
+                    //: use %1 as a placeholder for the number of the week, which is currently static "1"
                     MenuItem { text: qsTr("%1 week").arg(1) }
                 }
             }

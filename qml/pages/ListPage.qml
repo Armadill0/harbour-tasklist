@@ -143,7 +143,8 @@ Page {
                         label: listname
                         width: smartListContainer.width / 3
                         height: Theme.itemSizeMedium
-                        value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
+                        //: use %1 as a placeholder for the number of tasks of the smart lists
+                        value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : /*: use %1 as a placeholder for the number of tasks of the smart lists*/ qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
                         valueColor: Theme.secondaryColor
                         // disabled for default values to prevent errors if not all data is available yet
                         enabled: buttonActive
