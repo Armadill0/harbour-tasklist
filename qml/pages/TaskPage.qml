@@ -186,7 +186,9 @@ Page {
             TextField {
                 id: taskAdd
                 width: parent.width
+                //: placeholder where the user should enter a name for a new task
                 placeholderText: qsTr("Enter unique task name")
+                //: a label to inform the user how to confirm the new task
                 label: qsTr("Press Enter/Return to add the new task")
                 // enable enter key if minimum task length has been reached
                 EnterKey.enabled: taskAdd.text.length > 0
@@ -207,6 +209,7 @@ Page {
                         }
                         else {
                             // display notification if task already exists
+                            //: notifying the user why the task couldn't be added
                             taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
                         }
                     }
@@ -253,11 +256,13 @@ Page {
                                         addedTasks = addedTasks + ", " + tasksArray[i]
                                 }
                                 // notification for added tasks
+                                //: notifying the user that new tasks have been added and which were added exactly (Details)
                                 taskListWindow.pushNotification("INFO", tasksArray.length + " " + qsTr("new tasks have been added."), qsTr("Details") + ": " + addedTasks)
                             } , taskListWindow.remorseOnMultiAdd * 1000)
                         }
                         else {
                             // display notification if no task has been added, because all of them already existed on the list
+                            //: notify the user that all new tasks already existed on the list and weren't added again
                             taskListWindow.pushNotification("WARNING", qsTr("All tasks already exist!"), qsTr("No new tasks have been added to the list."))
                         }
                     }
@@ -268,6 +273,7 @@ Page {
         // show placeholder if there are no tasks available
         ViewPlaceholder {
             enabled: (taskList.count === 0) || taskListWindow.lockTaskOrientation
+            //: hint to inform the user if the orientation is locked or there are no tasks on this list
             text: taskListWindow.lockTaskOrientation ? qsTr("Orientation locked") : qsTr("no tasks available")
         }
 
@@ -279,6 +285,7 @@ Page {
             }
             // Item to lock the screen orientation, which has been an user requested feature
             MenuItem {
+                //: menu item to lock or unlock the device orientation
                 text: taskListWindow.lockTaskOrientation === false ? qsTr("Lock orientation") : qsTr("Unlock orientation")
                 onClicked: {
                     if (taskListWindow.lockTaskOrientation === false) {
@@ -293,12 +300,14 @@ Page {
                 }
             }
             MenuItem {
+                //: menu item to delete all done tasks
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }
         }
         PushUpMenu {
             MenuItem {
+                //: menu item to jump to the application information page
                 text: qsTr("About") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
@@ -315,6 +324,7 @@ Page {
             // helper function to remove current item
             function remove() {
                 // run remove via a silica remorse item
+                //: deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 taskRemorse.execute(taskListItem, qsTr("Deleting") + " '" + task + "'", function() {
                     DB.removeTask(listid, taskListModel.get(index).taskid)
                     taskListModel.remove(index)
@@ -323,6 +333,7 @@ Page {
 
             // helper function to mark current item as done
             function changeStatus(checkStatus) {
+                //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 var changeStatusString = (checkStatus === true) ? qsTr("mark as open") : qsTr("mark as done")
                 // copy status into string because results from sqlite are also strings
                 var movestatus = (checkStatus === true) ? 1 : 0
@@ -394,6 +405,7 @@ Page {
 
                     MenuItem {
                         height: 65
+                        //: menu item to switch to the page where the selected task can be modified
                         text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
@@ -404,6 +416,7 @@ Page {
 
                     MenuItem {
                         height: 65
+                        //: menu item to delete the selecetd task
                         text: qsTr("Delete")
                         onClicked: {
                             // close contextmenu

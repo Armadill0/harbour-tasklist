@@ -39,7 +39,9 @@ Dialog {
             spacing: Theme.paddingSmall
 
             DialogHeader {
+                //: headline of application information page
                 title: qsTr("About") + " - TaskList"
+                //: switch from About back to application
                 acceptText: qsTr("Back")
             }
 
@@ -58,10 +60,12 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for application description
                 text: qsTr("Description")
             }
 
             Label {
+                //: TaskList description
                 text: qsTr("A small but mighty program to manage your daily tasks.")
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -70,10 +74,12 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for application licensing information
                 text: qsTr("Licensing")
             }
 
             Label {
+                //: Copyright and license information
                 text: qsTr("Copyright © by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -81,6 +87,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for application contributors
                 text: qsTr("Contributors")
             }
 
@@ -141,6 +148,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for application project information
                 text: qsTr("Project information")
                 font.pixelSize: Theme.fontSizeSmall
             }

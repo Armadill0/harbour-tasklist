@@ -64,17 +64,21 @@ Dialog {
             width: parent.width
 
             DialogHeader {
+                //: headline for all user options
                 title: qsTr("Settings") + " - TaskList"
+                //: saves the current made changes to user options
                 acceptText: qsTr("Save")
             }
 
             SectionHeader {
+                //: headline for cover (application state when app is in background mode) options
                 text: qsTr("Cover options")
             }
 
             ComboBox {
                 id: coverListSelection
                 width: parent.width
+                //: user option to choose which list should be shown on the cover
                 label: qsTr("Cover list") + ":"
                 currentIndex: taskListWindow.coverListSelection
 
@@ -88,6 +92,7 @@ Dialog {
             ComboBox {
                 id: coverListOrder
                 width: parent.width
+                //: user option to choose how the tasks should be ordered on the cover
                 label: qsTr("Cover task order") + ":"
                 currentIndex: taskListWindow.coverListOrder
 
@@ -99,12 +104,14 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for general options
                 text: qsTr("General options")
             }
 
             ComboBox {
                 id: startPage
                 width: parent.width
+                //: user option to choose what should be shown at application start
                 label: qsTr("Start page") + ":"
                 currentIndex: taskListWindow.startPage
 
@@ -116,12 +123,14 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for task options
                 text: qsTr("Task options")
             }
 
             TextSwitch {
                 id: taskOpenAppearance
                 width: parent.width
+                //: user option to choose whether pending tasks should be marked with a checked or not checked bullet
                 text: qsTr("open task appearance")
                 checked: taskListWindow.taskOpenAppearance
             }
@@ -129,17 +138,20 @@ Dialog {
             TextSwitch {
                 id: backFocusAddTask
                 width: parent.width
+                //: user option to directly jump back to the input field after a new task has been added by the user
                 text: qsTr("refocus task add field")
                 checked: taskListWindow.backFocusAddTask
             }
 
             SectionHeader {
+                //: headline for list options
                 text: qsTr("List options")
             }
 
             TextSwitch {
                 id: smartListVisibility
                 width: parent.width
+                //: user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
                 text: qsTr("show smart lists")
                 checked: taskListWindow.smartListVisibility
             }
@@ -148,6 +160,7 @@ Dialog {
             ComboBox {
                 id: recentlyAddedOffset
                 width: parent.width
+                //: user option to select the time period how long tasks are recognized as new
                 label: qsTr("New task period") + ":"
                 currentIndex: taskListWindow.recentlyAddedOffset
 
@@ -166,6 +179,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for remorse (a Sailfish specific interaction element to stop a former started process) options
                 text: qsTr("Remorse options")
             }
 

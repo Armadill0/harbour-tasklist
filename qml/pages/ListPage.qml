@@ -122,10 +122,12 @@ Page {
 
             PageHeader {
                 width: parent.width
+                //: headline for overview of all lists
                 title: qsTr("Manage lists") + " - TaskList"
             }
 
             SectionHeader {
+                //: headline for all automatic smart lists
                 text: qsTr("Smart lists")
                 visible: taskListWindow.smartListVisibility
             }
@@ -160,13 +162,16 @@ Page {
             }
 
             SectionHeader {
+                //: headline above the text field where the user can add new lists
                 text: qsTr("Add new list")
             }
 
             TextField {
                 id: listAdd
                 width: parent.width
+                //: the placeholder where the user can enter the name of a new list
                 placeholderText: qsTr("Enter unique list name")
+                //: a label to inform the user how to add the new list
                 label: qsTr("Press Enter/Return to add the new list")
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: listAdd.text.length > 0
@@ -200,6 +205,7 @@ Page {
             }
 
             SectionHeader {
+                //: headline for the user created lists
                 text: qsTr("Your lists")
             }
         }
@@ -297,6 +303,7 @@ Page {
                 id: editListLabel
                 width: parent.width - 70
                 text: listname
+                //: a label to inform the user how the changes on a list can be saved
                 label: qsTr("Press Enter/Return to save changes")
                 visible: false
                 anchors.top: parent.top
@@ -358,6 +365,7 @@ Page {
                     id: listMenu
 
                     MenuItem {
+                        //: context menu item to delete a list
                         text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
@@ -371,6 +379,7 @@ Page {
                     }
 
                     MenuItem {
+                        //: context menu item to set a list as the default list, which is shown at application start
                         text: qsTr("Set as Default list")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
@@ -385,6 +394,7 @@ Page {
                     }
 
                     MenuItem {
+                        //: context menu item to set a list as the default cover list
                         text: qsTr("Set as Cover list")
                         // only show if choose cover list is active and list is not the current chosen one
                         visible: (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose !== listid) ? true : false

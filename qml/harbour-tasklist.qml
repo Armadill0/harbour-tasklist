@@ -50,6 +50,7 @@ ApplicationWindow {
     // deactivate smart lists at startup
     property int smartListType: -1
     // define names of smart lists
+    //: names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
     property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New")]
 
     // initilize default settings properties

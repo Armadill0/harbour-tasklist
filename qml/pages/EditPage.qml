@@ -52,6 +52,7 @@ Dialog {
             taskName.errorHighlight = true
             editTaskPage.canAccept = false
             // display notification if task already exists on the selected list
+            //: informing the user that a new task already exists on the selected list
             taskListWindow.pushNotification("WARNING", qsTr("Task saving disabled!"), qsTr("It already exists on the selected list."))
         }
         else {
@@ -99,11 +100,14 @@ Dialog {
             width: parent.width
 
             DialogHeader {
-                title: qsTr("Settings") + " - TaskList"
+                //: headline of the editing dialog of a task
+                title: qsTr("Edit task") + " '" + editTaskPage.taskname + "'"
+                //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }
 
             SectionHeader {
+                //: headline for the section with the task attributes
                 text: qsTr("Task properties")
             }
 
@@ -111,6 +115,7 @@ Dialog {
                 id: taskName
                 width: parent.width
                 text: editTaskPage.taskname
+                //: information how the currently made changes can be saved
                 label: errorHighlight === false ? qsTr("Save changes in the upper right corner") : qsTr("task already exists on this list!")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
@@ -123,6 +128,7 @@ Dialog {
 
             TextSwitch {
                 id: taskStatus
+                //: choose if this task is pending or done
                 text: qsTr("task is done")
                 checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
@@ -130,6 +136,7 @@ Dialog {
             ComboBox {
                 id: listLocatedIn
                 anchors.left: parent.left
+                //: option to change the list where the task should be located
                 label: qsTr("List") + ":"
 
                 menu: ContextMenu {
@@ -147,6 +154,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for the section with information which can not be changed by the user directly
                 text: qsTr("Information")
             }
 
@@ -155,6 +163,7 @@ Dialog {
                 anchors.topMargin: 100
                 anchors.left: parent.left
                 anchors.leftMargin: 25
+                //: displays the date when the taks has been created by the user
                 text: qsTr("Created at") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
             }
         }
