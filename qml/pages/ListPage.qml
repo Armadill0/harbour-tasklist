@@ -365,7 +365,7 @@ Page {
                     id: listMenu
 
                     MenuItem {
-                        //: context menu item to delete a list
+                        //: context menu item to edit a list
                         text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu

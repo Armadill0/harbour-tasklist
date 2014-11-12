@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru_RU" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
         <extracomment>headline of application information page</extracomment>
-        <translation>О </translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <source>Back</source>
@@ -21,7 +19,7 @@
     <message>
         <source>A small but mighty program to manage your daily tasks.</source>
         <extracomment>TaskList description</extracomment>
-        <translation>Маленькая, но мощная программа для управление вашими каждодневными делами.</translation>
+        <translation>Маленькая, но мощная программа для управления вашими ежедневными делами.</translation>
     </message>
     <message>
         <source>Licensing</source>
@@ -51,12 +49,8 @@
 <context>
     <name>EditPage</name>
     <message>
-        <source>Task saving disabled!</source>
-        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation>Сохранение задач отключено!</translation>
-    </message>
-    <message>
         <source>It already exists on the selected list.</source>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Уже существует в выбранном списке.</translation>
     </message>
     <message>
@@ -101,7 +95,12 @@
     <message>
         <source>Edit</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
-        <translation type="unfinished">Изменить</translation>
+        <translation>Редактирование</translation>
+    </message>
+    <message>
+        <source>Task could not be saved!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation>Задача не может быть сохранена!</translation>
     </message>
 </context>
 <context>
@@ -109,12 +108,12 @@
     <message>
         <source>Manage lists</source>
         <extracomment>headline for overview of all lists</extracomment>
-        <translation>Настройка списков</translation>
+        <translation>Управление списками</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
         <extracomment>the placeholder where the user can enter the name of a new list</extracomment>
-        <translation>Добавить новый список</translation>
+        <translation>Введите имя списка</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
@@ -144,7 +143,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <extracomment>context menu item to delete a list</extracomment>
+        <extracomment>context menu item to edit a list</extracomment>
         <translation>Изменить</translation>
     </message>
     <message>
@@ -162,38 +161,38 @@
         <translation>Удалить</translation>
     </message>
     <message>
+        <source>Cover</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
         <source>n/a</source>
         <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>недоступно</translation>
     </message>
     <message>
         <source>Smart lists</source>
         <extracomment>headline for all automatic smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Смарт-списки</translation>
     </message>
     <message>
         <source>%1 task</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 задача</translation>
     </message>
     <message>
         <source>%1 tasks</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Задач: %1</translation>
     </message>
     <message>
         <source>Add new list</source>
         <extracomment>headline above the text field where the user can add new lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новый список</translation>
     </message>
     <message>
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваши списки</translation>
     </message>
 </context>
 <context>
@@ -228,7 +227,7 @@
     </message>
     <message>
         <source>Choose in list management</source>
-        <translation>Выбиранный в настройках списков</translation>
+        <translation>Выбрать в управлении списками</translation>
     </message>
     <message>
         <source>Cover task order</source>
@@ -255,11 +254,11 @@
     <message>
         <source>Start page</source>
         <extracomment>user option to choose what should be shown at application start</extracomment>
-        <translation>Начальная страница.</translation>
+        <translation>Начальная страница</translation>
     </message>
     <message>
         <source>List overview</source>
-        <translation>Обзор списка.</translation>
+        <translation>Обзор списка</translation>
     </message>
     <message>
         <source>Minimize to cover</source>
@@ -299,46 +298,46 @@
     </message>
     <message>
         <source>on Mark task</source>
-        <translation>при закрытии открытии</translation>
+        <translation>при закрытии/открытии</translation>
     </message>
     <message>
         <source>on Adding multiple tasks</source>
-        <translation>Добавление нескольких задач.</translation>
+        <translation>при добавлении нескольких задач.</translation>
     </message>
     <message>
         <source>List options</source>
         <extracomment>headline for list options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Настройки списка</translation>
     </message>
     <message>
         <source>show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Показывать смарт-списки</translation>
     </message>
     <message>
         <source>New task period</source>
         <extracomment>user option to select the time period how long tasks are recognized as new</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Задача новая в течение</translation>
     </message>
     <message>
         <source>%1 hours</source>
         <extracomment>use %1 as a placeholder for the number of hours</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 ч.</translation>
     </message>
     <message>
         <source>%1 day</source>
         <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 день</translation>
     </message>
     <message>
         <source>%1 days</source>
         <extracomment>use %1 as a placeholder for the number of days</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 д.</translation>
     </message>
     <message>
         <source>%1 week</source>
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 неделя</translation>
     </message>
 </context>
 <context>
@@ -359,7 +358,7 @@
     </message>
     <message>
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Задача не может быть добавлена!</translation>
     </message>
     <message>
@@ -377,7 +376,7 @@
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Все задачи уже существует!</translation>
     </message>
     <message>
@@ -399,7 +398,7 @@
     </message>
     <message>
         <source>Unlock orientation</source>
-        <translation>Раблокировать ориентацию</translation>
+        <translation>Разблокировать ориентацию</translation>
     </message>
     <message>
         <source>Delete all done tasks</source>
@@ -409,12 +408,12 @@
     <message>
         <source>About</source>
         <extracomment>menu item to jump to the application information page</extracomment>
-        <translation>О </translation>
+        <translation>О программе </translation>
     </message>
     <message>
         <source>Deleting</source>
         <extracomment>deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation>Удаляется задача </translation>
+        <translation>Удаляется</translation>
     </message>
     <message>
         <source>mark as open</source>
@@ -432,7 +431,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <extracomment>menu item to delete the selecetd task</extracomment>
+        <extracomment>menu item to delete the selected task</extracomment>
         <translation>Удалить</translation>
     </message>
     <message>
@@ -450,15 +449,15 @@
     <message>
         <source>Done</source>
         <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Завершённые</translation>
     </message>
     <message>
         <source>Pending</source>
-        <translation type="unfinished"></translation>
+        <translation>Выполняется</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая</translation>
     </message>
 </context>
 </TS>

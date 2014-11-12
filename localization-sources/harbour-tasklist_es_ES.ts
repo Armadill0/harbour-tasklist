@@ -51,12 +51,8 @@
 <context>
     <name>EditPage</name>
     <message>
-        <source>Task saving disabled!</source>
-        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation>¡ La opción de salvar tareas esta deshabilitada !</translation>
-    </message>
-    <message>
         <source>It already exists on the selected list.</source>
+        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
         <translation>Ya existe en la lista seleccionada.</translation>
     </message>
     <message>
@@ -103,6 +99,11 @@
         <extracomment>headline of the editing dialog of a task</extracomment>
         <translation type="unfinished">Editar</translation>
     </message>
+    <message>
+        <source>Task could not be saved!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -144,7 +145,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <extracomment>context menu item to delete a list</extracomment>
+        <extracomment>context menu item to edit a list</extracomment>
         <translation>Editar</translation>
     </message>
     <message>
@@ -432,7 +433,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <extracomment>menu item to delete the selecetd task</extracomment>
+        <extracomment>menu item to delete the selected task</extracomment>
         <translation>Borrar</translation>
     </message>
     <message>

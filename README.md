@@ -6,6 +6,7 @@ A small but mighty program to manage your daily tasks.
 Contact
 ================
 Email: tasklist [at] penguinfriends [dot] org
+IRC: #sailfishos - Freenode
 
 Features
 ================

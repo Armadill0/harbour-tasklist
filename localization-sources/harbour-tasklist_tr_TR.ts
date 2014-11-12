@@ -49,12 +49,8 @@
 <context>
     <name>EditPage</name>
     <message>
-        <source>Task saving disabled!</source>
-        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation>Görev kaydı iptal edildi!</translation>
-    </message>
-    <message>
         <source>It already exists on the selected list.</source>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Seçilen listede zaten var.</translation>
     </message>
     <message>
@@ -94,12 +90,17 @@
     <message>
         <source>Created at</source>
         <extracomment>displays the date when the taks has been created by the user</extracomment>
-        <translation>ile düzenlendi</translation>
+        <translation>Düzenleyen</translation>
     </message>
     <message>
         <source>Edit</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
         <translation>Düzenle</translation>
+    </message>
+    <message>
+        <source>Task could not be saved!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation>Görev kaydedilmedi!</translation>
     </message>
 </context>
 <context>
@@ -138,11 +139,11 @@
     <message>
         <source>Press Enter/Return to save changes</source>
         <extracomment>a label to inform the user how the changes on a list can be saved</extracomment>
-        <translation>Değişiklikleri kaydetmek için, Enter/Return tuşuna basınız</translation>
+        <translation>Değişiklikleri kaydetmek için Enter/Return tuşuna basınız</translation>
     </message>
     <message>
         <source>Edit</source>
-        <extracomment>context menu item to delete a list</extracomment>
+        <extracomment>context menu item to edit a list</extracomment>
         <translation>Düzenle</translation>
     </message>
     <message>
@@ -261,7 +262,7 @@
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Kapağa küçült</translation>
+        <translation>Kapak sayfasına küçült</translation>
     </message>
     <message>
         <source>Task options</source>
@@ -276,12 +277,12 @@
     <message>
         <source>refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation>görevi alan eklemeye yeniden odakla</translation>
+        <translation>görev alanı eklemeye geri dön</translation>
     </message>
     <message>
         <source>Remorse options</source>
         <extracomment>headline for remorse (a Sailfish specific interaction element to stop a former started process) options</extracomment>
-        <translation>Pişmanlık seçenekleri</translation>
+        <translation>Değişiklik iptal seçenekleri</translation>
     </message>
     <message>
         <source>on Delete</source>
@@ -430,7 +431,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <extracomment>menu item to delete the selecetd task</extracomment>
+        <extracomment>menu item to delete the selected task</extracomment>
         <translation>Sil</translation>
     </message>
     <message>

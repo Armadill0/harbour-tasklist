@@ -53,7 +53,7 @@ Dialog {
             editTaskPage.canAccept = false
             // display notification if task already exists on the selected list
             //: informing the user that a new task already exists on the selected list
-            taskListWindow.pushNotification("WARNING", qsTr("Task saving disabled!"), qsTr("It already exists on the selected list."))
+            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"), /*: detailed information why the task modifications haven't been saved */ qsTr("It already exists on the selected list."))
         }
         else {
             taskName.errorHighlight = false
@@ -163,7 +163,7 @@ Dialog {
                 anchors.topMargin: 100
                 anchors.left: parent.left
                 anchors.leftMargin: 25
-                //: displays the date when the taks has been created by the user
+                //: displays the date when the task has been created by the user
                 text: qsTr("Created at") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
             }
         }

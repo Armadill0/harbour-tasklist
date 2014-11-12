@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi_FI" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi_FI" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
@@ -51,12 +49,8 @@
 <context>
     <name>EditPage</name>
     <message>
-        <source>Task saving disabled!</source>
-        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation>Tehtävien tallennus pois käytöstä!</translation>
-    </message>
-    <message>
         <source>It already exists on the selected list.</source>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Se on jo olemassa valitussa listassa.</translation>
     </message>
     <message>
@@ -101,7 +95,12 @@
     <message>
         <source>Edit</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
-        <translation type="unfinished">Muokkaa</translation>
+        <translation>Muokkaa</translation>
+    </message>
+    <message>
+        <source>Task could not be saved!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -144,7 +143,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <extracomment>context menu item to delete a list</extracomment>
+        <extracomment>context menu item to edit a list</extracomment>
         <translation>Muokkaa</translation>
     </message>
     <message>
@@ -162,38 +161,38 @@
         <translation>Poista</translation>
     </message>
     <message>
+        <source>Cover</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>n/a</source>
         <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Smart lists</source>
         <extracomment>headline for all automatic smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Älykkäät listat</translation>
     </message>
     <message>
         <source>%1 task</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 tehtävä</translation>
     </message>
     <message>
         <source>%1 tasks</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 tehtävää</translation>
     </message>
     <message>
         <source>Add new list</source>
         <extracomment>headline above the text field where the user can add new lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Lisää uusi lista</translation>
     </message>
     <message>
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Omat listat</translation>
     </message>
 </context>
 <context>
@@ -308,37 +307,37 @@
     <message>
         <source>List options</source>
         <extracomment>headline for list options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Listavalinnat</translation>
     </message>
     <message>
         <source>show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>näytä älykkäät listat</translation>
     </message>
     <message>
         <source>New task period</source>
         <extracomment>user option to select the time period how long tasks are recognized as new</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Uusi tehtävän ajanjakso</translation>
     </message>
     <message>
         <source>%1 hours</source>
         <extracomment>use %1 as a placeholder for the number of hours</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 tuntia</translation>
     </message>
     <message>
         <source>%1 day</source>
         <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 päivä</translation>
     </message>
     <message>
         <source>%1 days</source>
         <extracomment>use %1 as a placeholder for the number of days</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 päivää</translation>
     </message>
     <message>
         <source>%1 week</source>
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 viikko</translation>
     </message>
 </context>
 <context>
@@ -359,7 +358,7 @@
     </message>
     <message>
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Tehtävän lisäys epäonnistui!</translation>
     </message>
     <message>
@@ -377,7 +376,7 @@
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Kaikki tehtävät ovat jo olemassa!</translation>
     </message>
     <message>
@@ -432,7 +431,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <extracomment>menu item to delete the selecetd task</extracomment>
+        <extracomment>menu item to delete the selected task</extracomment>
         <translation>Poista</translation>
     </message>
     <message>
@@ -450,15 +449,15 @@
     <message>
         <source>Done</source>
         <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Valmis</translation>
     </message>
     <message>
         <source>Pending</source>
-        <translation type="unfinished"></translation>
+        <translation>Odottaa</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi</translation>
     </message>
 </context>
 </TS>

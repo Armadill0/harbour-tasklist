@@ -49,12 +49,8 @@
 <context>
     <name>EditPage</name>
     <message>
-        <source>Task saving disabled!</source>
-        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation>Aktivitetssparande inaktiverat!</translation>
-    </message>
-    <message>
         <source>It already exists on the selected list.</source>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Finns redan på den aktuella listan.</translation>
     </message>
     <message>
@@ -101,6 +97,11 @@
         <extracomment>headline of the editing dialog of a task</extracomment>
         <translation>Redigera</translation>
     </message>
+    <message>
+        <source>Task could not be saved!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation>Aktiviteten kunde inte sparas!</translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -142,7 +143,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <extracomment>context menu item to delete a list</extracomment>
+        <extracomment>context menu item to edit a list</extracomment>
         <translation>Redigera</translation>
     </message>
     <message>
@@ -430,7 +431,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <extracomment>menu item to delete the selecetd task</extracomment>
+        <extracomment>menu item to delete the selected task</extracomment>
         <translation>Ta bort</translation>
     </message>
     <message>

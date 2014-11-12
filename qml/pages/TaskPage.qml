@@ -416,7 +416,7 @@ Page {
 
                     MenuItem {
                         height: 65
-                        //: menu item to delete the selecetd task
+                        //: menu item to delete the selected task
                         text: qsTr("Delete")
                         onClicked: {
                             // close contextmenu
