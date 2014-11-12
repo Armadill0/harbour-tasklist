@@ -101,7 +101,7 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit task") + " '" + editTaskPage.taskname + "'"
+                title: qsTr("Edit") + " '" + editTaskPage.taskname + "'"
                 //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }

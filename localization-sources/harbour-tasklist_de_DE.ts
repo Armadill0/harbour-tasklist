@@ -3,26 +3,32 @@
     <name>AboutPage</name>
     <message>
         <source>About</source>
+        <extracomment>headline of application information page</extracomment>
         <translation>Über</translation>
     </message>
     <message>
         <source>Back</source>
+        <extracomment>switch from About back to application</extracomment>
         <translation>Zurück</translation>
     </message>
     <message>
         <source>Description</source>
+        <extracomment>headline for application description</extracomment>
         <translation>Beschreibung</translation>
     </message>
     <message>
         <source>A small but mighty program to manage your daily tasks.</source>
+        <extracomment>TaskList description</extracomment>
         <translation>Ein kleines aber mächtiges Programm um deine täglichen Aufgaben zu verwalten.</translation>
     </message>
     <message>
         <source>Licensing</source>
+        <extracomment>headline for application licensing information</extracomment>
         <translation>Lizensierung</translation>
     </message>
     <message>
         <source>Copyright © by</source>
+        <extracomment>Copyright and license information</extracomment>
         <translation>Copyright ©</translation>
     </message>
     <message>
@@ -31,10 +37,12 @@
     </message>
     <message>
         <source>Contributors</source>
+        <extracomment>headline for application contributors</extracomment>
         <translation>Helfer</translation>
     </message>
     <message>
         <source>Project information</source>
+        <extracomment>headline for application project information</extracomment>
         <translation>Projektinformationen</translation>
     </message>
 </context>
@@ -42,6 +50,7 @@
     <name>EditPage</name>
     <message>
         <source>Task saving disabled!</source>
+        <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Speichern gesperrt!</translation>
     </message>
     <message>
@@ -49,19 +58,18 @@
         <translation>Die Aufgabe existiert bereits auf der Liste.</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
-    </message>
-    <message>
         <source>Save</source>
+        <extracomment>save the currently made changes to the task</extracomment>
         <translation>Speichern</translation>
     </message>
     <message>
         <source>Task properties</source>
+        <extracomment>headline for the section with the task attributes</extracomment>
         <translation>Eigenschaften</translation>
     </message>
     <message>
         <source>Save changes in the upper right corner</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
         <translation>Einstellungen rechts oben speichern</translation>
     </message>
     <message>
@@ -70,33 +78,45 @@
     </message>
     <message>
         <source>task is done</source>
+        <extracomment>choose if this task is pending or done</extracomment>
         <translation>Aufgabe erledigt</translation>
     </message>
     <message>
         <source>List</source>
+        <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Liste</translation>
     </message>
     <message>
         <source>Information</source>
+        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
         <translation>Informationen</translation>
     </message>
     <message>
         <source>Created at</source>
+        <extracomment>displays the date when the taks has been created by the user</extracomment>
         <translation>Erstellt am</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation>Bearbeite</translation>
     </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Manage lists</source>
+        <extracomment>headline for overview of all lists</extracomment>
         <translation>Deine Listen</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
+        <extracomment>the placeholder where the user can enter the name of a new list</extracomment>
         <translation>Eindeutige Liste angeben</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
+        <extracomment>a label to inform the user how to add the new list</extracomment>
         <translation>Neue Liste mit Enter/Return bestätigen</translation>
     </message>
     <message>
@@ -117,18 +137,22 @@
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a list can be saved</extracomment>
         <translation>Änderungen mit Enter/Return bestätigen</translation>
     </message>
     <message>
         <source>Edit</source>
+        <extracomment>context menu item to delete a list</extracomment>
         <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Set as Default list</source>
+        <extracomment>context menu item to set a list as the default list, which is shown at application start</extracomment>
         <translation>Als Standardliste setzen</translation>
     </message>
     <message>
         <source>Set as Cover list</source>
+        <extracomment>context menu item to set a list as the default cover list</extracomment>
         <translation>Als Coverliste setzen</translation>
     </message>
     <message>
@@ -146,6 +170,7 @@
     </message>
     <message>
         <source>Smart lists</source>
+        <extracomment>headline for all automatic smart lists</extracomment>
         <translation>Smartlisten</translation>
     </message>
     <message>
@@ -160,10 +185,12 @@
     </message>
     <message>
         <source>Add new list</source>
+        <extracomment>headline above the text field where the user can add new lists</extracomment>
         <translation>Neue Liste erstellen</translation>
     </message>
     <message>
         <source>Your lists</source>
+        <extracomment>headline for the user created lists</extracomment>
         <translation>Deine Listen</translation>
     </message>
 </context>
@@ -171,18 +198,22 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
+        <extracomment>headline for all user options</extracomment>
         <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Save</source>
+        <extracomment>saves the current made changes to user options</extracomment>
         <translation>Speichern</translation>
     </message>
     <message>
         <source>Cover options</source>
+        <extracomment>headline for cover (application state when app is in background mode) options</extracomment>
         <translation>Cover Optionen</translation>
     </message>
     <message>
         <source>Cover list</source>
+        <extracomment>user option to choose which list should be shown on the cover</extracomment>
         <translation>Coverliste</translation>
     </message>
     <message>
@@ -199,6 +230,7 @@
     </message>
     <message>
         <source>Cover task order</source>
+        <extracomment>user option to choose how the tasks should be ordered on the cover</extracomment>
         <translation>Cover Sortierung</translation>
     </message>
     <message>
@@ -215,10 +247,12 @@
     </message>
     <message>
         <source>General options</source>
+        <extracomment>headline for general options</extracomment>
         <translation>Allgemeine Optionen</translation>
     </message>
     <message>
         <source>Start page</source>
+        <extracomment>user option to choose what should be shown at application start</extracomment>
         <translation>Startseite</translation>
     </message>
     <message>
@@ -231,18 +265,22 @@
     </message>
     <message>
         <source>Task options</source>
+        <extracomment>headline for task options</extracomment>
         <translation>Aufgaben Optionen</translation>
     </message>
     <message>
         <source>open task appearance</source>
+        <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
         <translation>Markierung für offene Aufgaben</translation>
     </message>
     <message>
         <source>refocus task add field</source>
+        <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
         <translation>Textfeld refokussieren beim Hinzufügen</translation>
     </message>
     <message>
         <source>Remorse options</source>
+        <extracomment>headline for remorse (a Sailfish specific interaction element to stop a former started process) options</extracomment>
         <translation>Zeit zum Abbrechen</translation>
     </message>
     <message>
@@ -267,14 +305,17 @@
     </message>
     <message>
         <source>List options</source>
+        <extracomment>headline for list options</extracomment>
         <translation>Listen Optionen</translation>
     </message>
     <message>
         <source>show smart lists</source>
+        <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Smartlisten anzeigen</translation>
     </message>
     <message>
         <source>New task period</source>
+        <extracomment>user option to select the time period how long tasks are recognized as new</extracomment>
         <translation>Zeitraum für neue Aufgaben</translation>
     </message>
     <message>
@@ -306,14 +347,17 @@
     </message>
     <message>
         <source>Enter unique task name</source>
+        <extracomment>placeholder where the user should enter a name for a new task</extracomment>
         <translation>Eindeutige Aufgabe eingeben</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
+        <extracomment>a label to inform the user how to confirm the new task</extracomment>
         <translation>mit Enter/Return bestätigen</translation>
     </message>
     <message>
         <source>Task could not be added!</source>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Konnte nicht hinzugefügt werden!</translation>
     </message>
     <message>
@@ -326,10 +370,12 @@
     </message>
     <message>
         <source>new tasks have been added.</source>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
         <translation>neue Aufgaben wurden hinzugefügt.</translation>
     </message>
     <message>
         <source>All tasks already exist!</source>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Alle Aufgaben existieren bereits!</translation>
     </message>
     <message>
@@ -346,6 +392,7 @@
     </message>
     <message>
         <source>Lock orientation</source>
+        <extracomment>menu item to lock or unlock the device orientation</extracomment>
         <translation>Ausrichtung deaktivieren</translation>
     </message>
     <message>
@@ -354,18 +401,22 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
+        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Alle erledigten Aufgaben löschen</translation>
     </message>
     <message>
         <source>About</source>
+        <extracomment>menu item to jump to the application information page</extracomment>
         <translation>Über</translation>
     </message>
     <message>
         <source>Deleting</source>
+        <extracomment>deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation>Lösche</translation>
     </message>
     <message>
         <source>mark as open</source>
+        <extracomment>mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation>markiere als offen</translation>
     </message>
     <message>
@@ -374,10 +425,12 @@
     </message>
     <message>
         <source>Edit</source>
+        <extracomment>menu item to switch to the page where the selected task can be modified</extracomment>
         <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Delete</source>
+        <extracomment>menu item to delete the selecetd task</extracomment>
         <translation>Löschen</translation>
     </message>
     <message>
@@ -386,6 +439,7 @@
     </message>
     <message>
         <source>Orientation locked</source>
+        <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Ausrichtung deaktiviert</translation>
     </message>
 </context>
@@ -393,6 +447,7 @@
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
+        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Erledigt</translation>
     </message>
     <message>
