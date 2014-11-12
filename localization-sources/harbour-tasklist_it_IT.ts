@@ -1,76 +1,76 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" sourcelanguage="en_US" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it_IT" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Crediti</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation>Atrás</translation>
+        <translation>Indietro</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Descripción</translation>
+        <translation>Descrizione</translation>
     </message>
     <message>
         <source>A small but mighty program to manage your daily tasks.</source>
-        <translation>Un pequeño programa para manejar tus tareas diarias.</translation>
+        <translation>Un piccolo ma potente programma per gestire i tuoi impegni quotidiani.</translation>
     </message>
     <message>
         <source>Licensing</source>
-        <translation>Licencia</translation>
+        <translation>In licenza</translation>
     </message>
     <message>
         <source>Copyright © by</source>
-        <translation>Derechos © a</translation>
+        <translation>Copyright © di</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licencia</translation>
+        <translation>Licenza</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contribuyente</translation>
+        <translation>Collaboratori</translation>
     </message>
     <message>
         <source>Project information</source>
-        <translation>Información del proyecto</translation>
+        <translation>Info sul progetto</translation>
     </message>
 </context>
 <context>
     <name>EditPage</name>
     <message>
         <source>Task saving disabled!</source>
-        <translation>¡ La opción de salvar tareas esta deshabilitada !</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>It already exists on the selected list.</source>
-        <translation>Ya existe en la lista seleccionada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <source>Task properties</source>
-        <translation>Propiedades de las tareas</translation>
+        <translation>Proprietà impegno</translation>
     </message>
     <message>
         <source>Save changes in the upper right corner</source>
-        <translation>Salvar cambios en la parte superior derecha</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>task already exists on this list!</source>
-        <translation>Esta tarea ya existe!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>task is done</source>
-        <translation>Tarea terminada</translation>
+        <translation>impegno compiuto</translation>
     </message>
     <message>
         <source>List</source>
@@ -78,330 +78,330 @@
     </message>
     <message>
         <source>Information</source>
-        <translation>Información</translation>
+        <translation>Informazioni</translation>
     </message>
     <message>
         <source>Created at</source>
-        <translation>Creado en</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Manage lists</source>
-        <translation>Manejar listas</translation>
+        <translation>Gestisci lista</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
-        <translation>Dar nombre único de lista</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
-        <translation>Presiona ENTER para añadir la nueva lista</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List could not be added!</source>
-        <translation>Esta lista no puede ser añadida.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>It already exists.</source>
-        <translation>Esta tarea ya existe!</translation>
+        <translation>Già esistente.</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Borrando</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>default</source>
-        <translation>defecto</translation>
+        <translation>default</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
-        <translation>Presiona ENTER para guardar las modificaciones</translation>
+        <translation>Premi Invio per salvare le modifiche</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Modifica</translation>
     </message>
     <message>
         <source>Set as Default list</source>
-        <translation>Salvar como lista por defecto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Set as Cover list</source>
-        <translation>Disponer como lista de portada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <source>Cover</source>
-        <translation>Portada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>n/a</source>
         <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
-        <translation>N/A</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Smart lists</source>
-        <translation>Lista inteligente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 task</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation>Tarea al %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 tasks</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation>Tareas al %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add new list</source>
-        <translation>Añadir nueva lista</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Your lists</source>
-        <translation>Sus listas</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <source>Cover options</source>
-        <translation>Opciones de portada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Cover list</source>
-        <translation>Lista de portada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Default list</source>
-        <translation>Lista por defecto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Selected list</source>
-        <translation>Lista actual</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Choose in list management</source>
-        <translation>Elige en gestión de las listas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Cover task order</source>
-        <translation>Orden de la tareas de portada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Last updated first</source>
-        <translation>Primero la última modificada</translation>
+        <translation>Ultimi modificati in cima</translation>
     </message>
     <message>
         <source>Sort by name ascending</source>
-        <translation>Ordenar por nombre ascendente</translation>
+        <translation>Ordina con nome crescente</translation>
     </message>
     <message>
         <source>Sort by name descending</source>
-        <translation>Ordenar por nombre descendente</translation>
+        <translation>Ordina con nome decrescente</translation>
     </message>
     <message>
         <source>General options</source>
-        <translation>Opciones generales.</translation>
+        <translation>Opzioni generali</translation>
     </message>
     <message>
         <source>Start page</source>
-        <translation>Página de inicio.</translation>
+        <translation>Pagina iniziale</translation>
     </message>
     <message>
         <source>List overview</source>
-        <translation>Relación de listas.</translation>
+        <translation>Panorama lista</translation>
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Minimizar en portada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Task options</source>
-        <translation>Opciones tareas</translation>
+        <translation>Opzioni impegno</translation>
     </message>
     <message>
         <source>open task appearance</source>
-        <translation>Apariencia de las tareas abiertas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>refocus task add field</source>
-        <translation>Añadir campo a tarea focalizada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remorse options</source>
-        <translation>Opciones previas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>on Delete</source>
-        <translation>En borrado</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>seconds</source>
-        <translation>segundos</translation>
+        <translation>secondi</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>segundo</translation>
+        <translation>secondo</translation>
     </message>
     <message>
         <source>on Mark task</source>
-        <translation>Al marcar tarea</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>on Adding multiple tasks</source>
-        <translation>En añadir múltiples tareas.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List options</source>
-        <translation>Opciones para las listas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>show smart lists</source>
-        <translation>mostrar listas inteligentes</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New task period</source>
-        <translation>Periodo para la nueva tarea</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 hours</source>
         <extracomment>use %1 as a placeholder for the number of hours</extracomment>
-        <translation>%1 horas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 day</source>
         <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
-        <translation>%1 día</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
         <extracomment>use %1 as a placeholder for the number of days</extracomment>
-        <translation>%1 días</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 week</source>
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
-        <translation>%1 semana</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
-        <translation>Borrar todas las tareas hechas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter unique task name</source>
-        <translation>Entrar un código único de tarea</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
-        <translation>Presionar ENTER para añadir una tarea</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Task could not be added!</source>
-        <translation>Esta tarea no se puede añadir!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>It already exists on this list.</source>
-        <translation>Ya existe en esta lista.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Adding multiple tasks</source>
-        <translation>Añadiendo múltiples tareas.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <translation>Nueva tarea ha sido añadida.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <translation>Todas las tareas ya existen.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No new tasks have been added to the list.</source>
-        <translation>Ninguna nueva tarea ha sido añadida a la lista.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>no tasks available</source>
-        <translation>No existen tareas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Configuración</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Lock orientation</source>
-        <translation>Bloquear orientación</translation>
+        <translation>Blocca rotazione</translation>
     </message>
     <message>
         <source>Unlock orientation</source>
-        <translation>Desbloquear orientación</translation>
+        <translation>Sblocca rotazione</translation>
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <translation>Borrar todas las tareas realizadas</translation>
+        <translation>Elimina impegni compiuti</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Crediti</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Borrar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>mark as open</source>
-        <translation>Marcar todas como abiertas</translation>
+        <translation>segna da fare</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>Marcar todas como hechas</translation>
+        <translation>segna compiuto</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Modifica</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation>Detalles.</translation>
+        <translation>Dettagli</translation>
     </message>
     <message>
         <source>Orientation locked</source>
-        <translation>Orientación bloqueada.</translation>
+        <translation>Rotazione bloccata</translation>
     </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <translation>Finalizado</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pending</source>
-        <translation>Pendiente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New</source>
-        <translation>Nueva</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
