@@ -94,6 +94,11 @@ CoverBackground {
                 coverActionSingle.enabled = true
             }
 
+            if (taskListWindow.smartListType !== -1) {
+                taskListWindow.smartListType = -1
+                taskListWindow.listchanged = true
+            }
+
             // reload tasklist if navigateBack was used from list page
             reloadTaskList()
 

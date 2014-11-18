@@ -29,6 +29,7 @@ Page {
     property bool coverAddTask
     property int listId: taskListWindow.listid
     property string listname
+    property int smartListType: taskListWindow.smartListType
 
     // helper function to add tasks to the list
     function appendTask(id, task, status, listid) {
@@ -94,6 +95,9 @@ Page {
     // this reacts currently on all list changes, whether from cover or list page
     // and replaces some former bad hacks and workarounds
     onListIdChanged: {
+        reloadTaskList()
+    }
+    onSmartListTypeChanged: {
         reloadTaskList()
     }
 
