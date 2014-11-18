@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nl_NL" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl_NL" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
@@ -52,7 +50,7 @@
     <name>EditPage</name>
     <message>
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Het bestaat al op de geselecteerde lijst.</translation>
     </message>
     <message>
@@ -97,12 +95,12 @@
     <message>
         <source>Edit</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
-        <translation type="unfinished">Bewerken</translation>
+        <translation>Bewerken</translation>
     </message>
     <message>
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Taak kon niet worden opgeslagen!</translation>
     </message>
 </context>
 <context>
@@ -169,32 +167,32 @@
     <message>
         <source>n/a</source>
         <extracomment>default string for task count of smart lists, when value is not available (n/a)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>n.v.t.</translation>
     </message>
     <message>
         <source>Smart lists</source>
         <extracomment>headline for all automatic smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Slimme lijsten</translation>
     </message>
     <message>
         <source>%1 task</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 taak</translation>
     </message>
     <message>
         <source>%1 tasks</source>
         <extracomment>use %1 as a placeholder for the number of tasks of the smart lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 taken</translation>
     </message>
     <message>
         <source>Add new list</source>
         <extracomment>headline above the text field where the user can add new lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe lijst toevoegen</translation>
     </message>
     <message>
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Uw lijsten</translation>
     </message>
 </context>
 <context>
@@ -309,37 +307,37 @@
     <message>
         <source>List options</source>
         <extracomment>headline for list options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Lijstopties</translation>
     </message>
     <message>
         <source>show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Slimme lijsten weergeven</translation>
     </message>
     <message>
         <source>New task period</source>
         <extracomment>user option to select the time period how long tasks are recognized as new</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe periodieke taak</translation>
     </message>
     <message>
         <source>%1 hours</source>
         <extracomment>use %1 as a placeholder for the number of hours</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 uur</translation>
     </message>
     <message>
         <source>%1 day</source>
         <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 dag</translation>
     </message>
     <message>
         <source>%1 days</source>
         <extracomment>use %1 as a placeholder for the number of days</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1 dagen</translation>
     </message>
     <message>
         <source>%1 week</source>
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>$1 week</translation>
     </message>
 </context>
 <context>
@@ -360,7 +358,7 @@
     </message>
     <message>
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Taak kon niet worden toegevoegd!</translation>
     </message>
     <message>
@@ -378,7 +376,7 @@
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Alle taken bestaan al!</translation>
     </message>
     <message>
@@ -451,15 +449,15 @@
     <message>
         <source>Done</source>
         <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Klaar</translation>
     </message>
     <message>
         <source>Pending</source>
-        <translation type="unfinished"></translation>
+        <translation>In behandeling</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuw</translation>
     </message>
 </context>
 </TS>

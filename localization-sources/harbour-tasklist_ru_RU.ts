@@ -154,7 +154,7 @@
     <message>
         <source>Set as Cover list</source>
         <extracomment>context menu item to set a list as the default cover list</extracomment>
-        <translation>Установить список как обложку</translation>
+        <translation>Поместить список на миниатюру</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -162,7 +162,7 @@
     </message>
     <message>
         <source>Cover</source>
-        <translation>Обложка</translation>
+        <translation>Миниатюра</translation>
     </message>
     <message>
         <source>n/a</source>
@@ -210,12 +210,12 @@
     <message>
         <source>Cover options</source>
         <extracomment>headline for cover (application state when app is in background mode) options</extracomment>
-        <translation>Настройки обложки</translation>
+        <translation>Настройки миниатюры</translation>
     </message>
     <message>
         <source>Cover list</source>
         <extracomment>user option to choose which list should be shown on the cover</extracomment>
-        <translation>Список для обложки</translation>
+        <translation>Список для миниатюры</translation>
     </message>
     <message>
         <source>Default list</source>
