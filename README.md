@@ -59,3 +59,6 @@ Contributors
 - Jiri Gr&ouml;nroos
 - &#304;smail Adnan Sar&#305;er
 - &Aring;ke Engelbrektson
+- Heimen Stoffels
+- Agust&iacute; Clara
+- lorenzo facca
