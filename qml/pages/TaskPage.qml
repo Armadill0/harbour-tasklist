@@ -190,7 +190,7 @@ Page {
             TextField {
                 id: taskAdd
                 width: parent.width
-                readOnly: smartListType === -1 ? false : true
+                visible: smartListType === -1 ? true : false
                 //: placeholder where the user should enter a name for a new task
                 placeholderText: qsTr("Enter unique task name")
                 //: a label to inform the user how to confirm the new task
@@ -338,35 +338,39 @@ Page {
 
             // helper function to mark current item as done
             function changeStatus(checkStatus) {
+                var curListID = taskListModel.get(index).listid
+                var curTask = taskListModel.get(index).task
+                var curTaskID = taskListModel.get(index).taskid
+                var curTaskStatus = taskListModel.get(index).taskstatus
                 //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 var changeStatusString = (checkStatus === true) ? qsTr("mark as open") : qsTr("mark as done")
                 // copy status into string because results from sqlite are also strings
                 var movestatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
                     // update DB
-                    DB.updateTask(listid, listid, taskListModel.get(index).taskid, taskListModel.get(index).task, movestatus, 0, 0)
+                    DB.updateTask(curListID, curListID, curTaskID, curTask, movestatus, 0, 0)
                     // copy item properties before deletion
                     var moveindex = index
-                    var moveid = taskListModel.get(index).taskid
-                    var movetask = taskListModel.get(index).task
+                    var moveid = curTaskID
+                    var movetask = curTask
                     // delete current entry to simplify list sorting
                     taskListModel.remove(index)
-                    // catch it list count is zero, so for won't start
+                    // catch if task count is zero, so for won't start
                     if (taskListModel.count === 0) {
-                        taskPage.appendTask(moveid, movetask, checkStatus)
+                        taskPage.appendTask(moveid, movetask, checkStatus, curListID)
                     }
                     else {
                         // insert Item to correct position
                         for(var i = 0; i < taskListModel.count; i++) {
                             // undone tasks are moved to the beginning of the undone tasks
                             // done tasks are moved to the beginning of the done tasks
-                            if ((checkStatus === true) || (checkStatus === false && taskListModel.get(i).taskstatus === false)) {
-                                taskPage.insertTask(i, moveid, movetask, checkStatus)
+                            if ((checkStatus === true) || (checkStatus === false && curTaskStatus === false)) {
+                                taskPage.insertTask(i, moveid, movetask, checkStatus, curListID)
                                 break
                             }
                             // if the item should be added to the end of the list it has to be appended, because the insert target of count + 1 doesn't exist at this moment
                             else if (i >= taskListModel.count - 1) {
-                                taskPage.appendTask(moveid, movetask, checkStatus)
+                                taskPage.appendTask(moveid, movetask, checkStatus, curListID)
                                 break
                             }
                         }
@@ -398,7 +402,7 @@ Page {
                 }
 
                 onClicked: {
-                    if (smartListType === -1)
+                    //if (smartListType === -1)
                         changeStatus(!taskstatus)
                 }
             }
