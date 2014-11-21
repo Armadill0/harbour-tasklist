@@ -190,6 +190,7 @@ Page {
             TextField {
                 id: taskAdd
                 width: parent.width
+                readOnly: smartListType === -1 ? false : true
                 //: placeholder where the user should enter a name for a new task
                 placeholderText: qsTr("Enter unique task name")
                 //: a label to inform the user how to confirm the new task
