@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="zh_CN" version="2.1" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
@@ -52,7 +50,7 @@
     <name>EditPage</name>
     <message>
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>已经存在于选择的列表中</translation>
     </message>
     <message>
@@ -360,7 +358,7 @@
     </message>
     <message>
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>任务无法添加!</translation>
     </message>
     <message>
@@ -378,7 +376,7 @@
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>所有任务均已存在!</translation>
     </message>
     <message>
@@ -454,8 +452,8 @@
         <translation>已完成</translation>
     </message>
     <message>
-        <source>待完成</source>
-        <translation></translation>
+        <source>Pending</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New</source>
