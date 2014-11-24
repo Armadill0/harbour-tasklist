@@ -168,6 +168,13 @@ Dialog {
                 font.pixelSize: Theme.fontSizeSmall
             }
 
+            Label {
+                text: "- TylerTemp"
+                width: parent.width - Theme.paddingLarge * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeSmall
+            }
+
             SectionHeader {
                 //: headline for application project information
                 text: qsTr("Project information")
