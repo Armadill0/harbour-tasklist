@@ -417,7 +417,7 @@ Page {
                         height: 65
                         //: menu item to switch to the page where the selected task can be modified
                         text: qsTr("Edit")
-                        enabled: smartListType === -1 ? true : false
+                        //enabled: smartListType === -1 ? true : false
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()
