@@ -33,11 +33,11 @@ Page {
 
     // helper function to add tasks to the list
     function appendTask(id, task, status, listid) {
-        taskListModel.append({"taskid": id, "task": task, "taskstatus": status, "listid": listid})
+        taskListModel.append({"taskid": id, "task": task, "taskstatus": status, "listid": listid, "listname": DB.getListProperty(listid, "ListName")})
     }
 
     function insertTask(index, id, task, status, listid) {
-        taskListModel.insert(index, {"taskid": id, "task": task, "taskstatus": status, "listid": listid})
+        taskListModel.insert(index, {"taskid": id, "task": task, "taskstatus": status, "listid": listid, "listname": DB.getListProperty(listid, "ListName")})
     }
 
     // helper function to wipe the tasklist element
@@ -387,11 +387,11 @@ Page {
                 id: taskLabel
                 x: Theme.paddingSmall
                 text: task
+                // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
+                description: smartListType !== -1 ? listname + "" : ""
                 anchors.fill: parent
-                anchors.top: parent.top
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
-                anchors.verticalCenter: parent.verticalCenter
 
                 // show context menu
                 onPressAndHold: {
@@ -402,7 +402,8 @@ Page {
                 }
 
                 onClicked: {
-                    //if (smartListType === -1)
+                    // because of the smart list concept, the status change is deactivated for them
+                    if (smartListType === -1)
                         changeStatus(!taskstatus)
                 }
             }
@@ -417,7 +418,6 @@ Page {
                         height: 65
                         //: menu item to switch to the page where the selected task can be modified
                         text: qsTr("Edit")
-                        //enabled: smartListType === -1 ? true : false
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()
