@@ -124,26 +124,27 @@ CoverBackground {
         id: taskListModel
     }
 
-    ListView {
+    Rectangle {
         anchors.fill: parent
-        anchors.margins: Theme.paddingSmall
+        anchors.margins: Theme.paddingSmall * 2
+        color: "transparent"
 
         Label {
             id: coverHeader
             text: DB.getListProperty(currentList, "ListName") + "(" + taskListModel.count + ")"
-            width: parent.width - Theme.paddingLarge
+            width: parent.width
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             horizontalAlignment: Text.AlignLeft
             color: Theme.highlightColor
+            truncationMode: TruncationMode.Fade
         }
 
         ListView {
             id: taskList
             anchors.top: coverHeader.bottom
-            height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall) + 2
-            width: parent.width - Theme.paddingSmall
-            anchors.horizontalCenter: parent.horizontalCenter
+            height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall) + (Theme.paddingSmall / 3)
+            width: parent.width
             model: taskListModel
 
             delegate: Item {
@@ -153,15 +154,16 @@ CoverBackground {
 
                 Label {
                     id: taskLabel
-                    x: Theme.paddingSmall
                     text: task
+                    width: parent.width
                     height: font.pixelSize + Theme.paddingSmall
-                    anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeSmall
+                    truncationMode: TruncationMode.Fade
                 }
             }
         }
 
+        // hack to display only 7 list items
         OpacityRampEffect {
             slope: 1
             offset: 0.5
