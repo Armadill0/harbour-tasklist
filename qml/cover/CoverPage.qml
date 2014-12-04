@@ -134,7 +134,7 @@ CoverBackground {
             width: parent.width - Theme.paddingLarge
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            horizontalAlignment: Text.Center
+            horizontalAlignment: Text.AlignLeft
             color: Theme.highlightColor
         }
 
