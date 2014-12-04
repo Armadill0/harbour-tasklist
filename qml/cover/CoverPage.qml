@@ -133,8 +133,6 @@ CoverBackground {
             id: coverHeader
             text: DB.getListProperty(currentList, "ListName") + "(" + taskListModel.count + ")"
             width: parent.width
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
             horizontalAlignment: Text.AlignLeft
             color: Theme.highlightColor
             truncationMode: TruncationMode.Fade
