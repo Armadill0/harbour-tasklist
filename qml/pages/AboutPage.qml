@@ -32,6 +32,24 @@ Dialog {
 
         VerticalScrollDecorator { flickable: aboutTaskList }
 
+        ListModel {
+            id: contributorsList
+
+            ListElement { name: "Manuel Soriano (manu007)" }
+            ListElement { name: "Ilja Balonov" }
+            ListElement { name: "Léonard Meyer" }
+            ListElement { name: "Anatoly Shipitsin" }
+            ListElement { name: "fri" }
+            ListElement { name: "Jiri Grönroos" }
+            ListElement { name: "İsmail Adnan Sarıer" }
+            ListElement { name: "Åke Engelbrektson" }
+            ListElement { name: "Heimen Stoffels" }
+            ListElement { name: "Agustí Clara" }
+            ListElement { name: "lorenzo facca" }
+            ListElement { name: "TylerTemp" }
+            ListElement { name: "Peter Jespersen" }
+        }
+
         Column {
             id: aboutRectangle
             anchors.horizontalCenter: parent.horizontalCenter
@@ -87,102 +105,6 @@ Dialog {
             }
 
             SectionHeader {
-                //: headline for application contributors
-                text: qsTr("Contributors")
-            }
-
-            Label {
-                text: "- Manuel Soriano (manu007)"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Ilja Balonov"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Léonard Meyer"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Anatoly Shipitsin"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- fri"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Jiri Grönroos"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- İsmail Adnan Sarıer"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Åke Engelbrektson"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Heimen Stoffels"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Agustí Clara"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- lorenzo facca"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- TylerTemp"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            Label {
-                text: "- Peter Jespersen"
-                width: parent.width - Theme.paddingLarge * 2
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeSmall
-            }
-
-            SectionHeader {
                 //: headline for application project information
                 text: qsTr("Project information")
                 font.pixelSize: Theme.fontSizeSmall
@@ -198,6 +120,28 @@ Dialog {
                 onLinkActivated: {
                     Qt.openUrlExternally(link)
                 }
+            }
+
+            SectionHeader {
+                //: headline for application contributors
+                text: qsTr("Contributors")
+            }
+
+            Repeater {
+                model: contributorsList
+
+                delegate: Label {
+                    text: "- " + name
+                    width: parent.width - Theme.paddingLarge * 2
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: Theme.fontSizeSmall
+                }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
             }
         }
     }
