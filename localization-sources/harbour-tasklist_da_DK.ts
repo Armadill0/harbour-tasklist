@@ -154,7 +154,7 @@
     <message>
         <source>Set as Cover list</source>
         <extracomment>context menu item to set a list as the default cover list</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sæt som Miniatureliste</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -162,7 +162,7 @@
     </message>
     <message>
         <source>Cover</source>
-        <translation type="unfinished"/>
+        <translation>Miniature</translation>
     </message>
     <message>
         <source>n/a</source>
@@ -210,12 +210,12 @@
     <message>
         <source>Cover options</source>
         <extracomment>headline for cover (application state when app is in background mode) options</extracomment>
-        <translation type="unfinished"/>
+        <translation>Miniature indstillinger</translation>
     </message>
     <message>
         <source>Cover list</source>
         <extracomment>user option to choose which list should be shown on the cover</extracomment>
-        <translation type="unfinished"/>
+        <translation>Miniatureliste</translation>
     </message>
     <message>
         <source>Default list</source>
@@ -232,7 +232,7 @@
     <message>
         <source>Cover task order</source>
         <extracomment>user option to choose how the tasks should be ordered on the cover</extracomment>
-        <translation type="unfinished"/>
+        <translation>Miniature opgave orden</translation>
     </message>
     <message>
         <source>Last updated first</source>
@@ -262,7 +262,7 @@
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation type="unfinished"/>
+        <translation>Minimer til miniature</translation>
     </message>
     <message>
         <source>Task options</source>
