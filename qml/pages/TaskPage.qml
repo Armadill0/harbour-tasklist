@@ -30,6 +30,7 @@ Page {
     property int listId: taskListWindow.listid
     property string listname
     property int smartListType: taskListWindow.smartListType
+    property bool openTasksAvailable: false
 
     // helper function to add tasks to the list
     function appendTask(id, task, status, listid) {
@@ -55,6 +56,14 @@ Page {
             listname = DB.getListProperty(listid, "ListName")
             DB.readTasks(listid, "", "", "")
         }
+
+        // disable removealldonetasks pulldown menu of no done tasks available
+        openTasksAvailable = false
+        for (var i = 0; i < taskListModel.count; i++) {
+            if (taskListModel.get(i).taskstatus === !taskListWindow.taskOpenAppearance)
+                openTasksAvailable = true
+            console.log(taskListModel.get(i).taskstatus + "#" + i)
+        }
     }
 
     function deleteDoneTasks() {
@@ -62,7 +71,7 @@ Page {
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
                 if (taskListModel.get(i).taskstatus === false) {
-                    DB.removeTask(listid, taskListModel.get(i).taskid)
+                    DB.removeTask(taskListModel.get(i).listid, taskListModel.get(i).taskid)
                     taskListModel.remove(i)
                 }
                 // stop if last open task has been reached to save battery power
@@ -306,6 +315,7 @@ Page {
             }
             MenuItem {
                 //: menu item to delete all done tasks
+                enabled: openTasksAvailable
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }
