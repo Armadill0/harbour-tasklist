@@ -30,7 +30,7 @@ Page {
     property int listId: taskListWindow.listid
     property string listname
     property int smartListType: taskListWindow.smartListType
-    property bool openTasksAvailable: false
+    property bool openTasksAvailable
 
     // helper function to add tasks to the list
     function appendTask(id, task, status, listid) {
@@ -59,10 +59,14 @@ Page {
 
         // disable removealldonetasks pulldown menu of no done tasks available
         openTasksAvailable = false
+        updateDeleteAllDoneOption("main update function")
+    }
+
+    function updateDeleteAllDoneOption (updatetxt) {
         for (var i = 0; i < taskListModel.count; i++) {
             if (taskListModel.get(i).taskstatus === !taskListWindow.taskOpenAppearance)
                 openTasksAvailable = true
-            console.log(taskListModel.get(i).taskstatus + "#" + i)
+            console.log(taskListModel.get(i).taskstatus + "#" + i + "(" + updatetxt + ")")
         }
     }
 
@@ -416,6 +420,9 @@ Page {
                     if (smartListType === -1)
                         changeStatus(!taskstatus)
                 }
+
+                //
+                onCheckedChanged: updateDeleteAllDoneOption("statuschange for " + taskLabel.text)
             }
 
             // defines the context menu used at each list item
