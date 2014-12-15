@@ -62,14 +62,18 @@ Page {
         updateDeleteAllDoneOption("main update function")
     }
 
+    // function to change the availability of the "dele all done tasks" pull down menu item
     function updateDeleteAllDoneOption (updatetxt) {
+        var taskCheck = false;
         for (var i = 0; i < taskListModel.count; i++) {
             if (taskListModel.get(i).taskstatus === !taskListWindow.taskOpenAppearance)
-                openTasksAvailable = true
-            console.log(taskListModel.get(i).taskstatus + "#" + i + "(" + updatetxt + ")")
+                taskCheck = true
         }
+
+        openTasksAvailable = taskCheck ? true : false
     }
 
+    // function to delete all done tasks
     function deleteDoneTasks() {
         tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
@@ -367,6 +371,7 @@ Page {
                     var moveindex = index
                     var moveid = curTaskID
                     var movetask = curTask
+
                     // delete current entry to simplify list sorting
                     taskListModel.remove(index)
                     // catch if task count is zero, so for won't start
@@ -389,6 +394,8 @@ Page {
                             }
                         }
                     }
+
+                    updateDeleteAllDoneOption("statuschange of " + curTask)
                 }, taskListWindow.remorseOnMark * 1000)
             }
 
@@ -420,9 +427,6 @@ Page {
                     if (smartListType === -1)
                         changeStatus(!taskstatus)
                 }
-
-                //
-                onCheckedChanged: updateDeleteAllDoneOption("statuschange for " + taskLabel.text)
             }
 
             // defines the context menu used at each list item
