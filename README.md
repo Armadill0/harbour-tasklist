@@ -41,10 +41,6 @@ Known Issues
 ================
 see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3Aissue+label%3Abug
 
-Roadmap for Version 1.0
-================
-see here: https://github.com/Armadill0/harbour-tasklist/milestones/1.0
-
 Roadmap for Version 2.0
 ================
 see here: https://github.com/Armadill0/harbour-tasklist/milestones/2.0
