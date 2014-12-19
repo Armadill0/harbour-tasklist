@@ -57,12 +57,12 @@ Page {
             DB.readTasks(listid, "", "", "")
         }
 
-        // disable removealldonetasks pulldown menu of no done tasks available
+        // disable removealldonetasks pulldown menu if no done tasks available
         openTasksAvailable = false
         updateDeleteAllDoneOption("main update function")
     }
 
-    // function to change the availability of the "dele all done tasks" pull down menu item
+    // function to change the availability of the "delete all done tasks" pull down menu item
     function updateDeleteAllDoneOption (updatetxt) {
         var taskCheck = false;
         for (var i = 0; i < taskListModel.count; i++) {
@@ -70,6 +70,7 @@ Page {
                 taskCheck = true
         }
 
+        // final decision to enable or diable the menu item
         openTasksAvailable = taskCheck ? true : false
     }
 
@@ -410,7 +411,6 @@ Page {
                 text: task
                 // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
                 description: smartListType !== -1 ? listname + "" : ""
-                anchors.fill: parent
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
 
