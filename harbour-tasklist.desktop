@@ -1,7 +1,9 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Name=TaskList
 Icon=harbour-tasklist
 Exec=harbour-tasklist
-
+Name=TaskList
+# translation example:
+# your app name in German locale (de)
+#Name[de]=TaskList
