@@ -405,7 +405,7 @@ Page {
                 id: taskRemorse
             }
 
-            TextSwitch {
+            TaskListItem {
                 id: taskLabel
                 x: Theme.paddingSmall
                 text: task

@@ -22,7 +22,8 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/EditPage.qml \
     qml/pages/TaskPage.qml \
     qml/pages/ListPage.qml \
-    qml/pages/SettingsPage.qml
+    qml/pages/SettingsPage.qml \
+    qml/pages/TaskListItem.qml
 
 include(third_party/notifications.pri)
 
