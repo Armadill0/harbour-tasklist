@@ -208,6 +208,13 @@ Page {
                 //: headline for the user created lists
                 text: qsTr("Your lists")
             }
+
+            PushUpMenu {
+                MenuItem {
+                    text: qsTr("Export/import lists")
+                    onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
+                }
+            }
         }
 
         delegate: ListItem {

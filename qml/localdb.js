@@ -246,6 +246,182 @@ function getTaskProperty(id, taskproperty) {
     return eval("result.rows.item(0)." + taskproperty);
 }
 
+// dump tasks from all lists
+function dumpTasks() {
+    var db = connectDB();
+    var lists = [];
+
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT ID, ListName from lists");
+        for (var i = 0; i < result.rows.length; ++i) {
+            lists.push({ID: result.rows.item(i).ID, ListName: result.rows.item(i).ListName});
+        }
+    });
+
+    var tasksGrouped = [];
+    for (var i = 0; i < lists.length; ++i) {
+        var ListID = lists[i].ID;
+        var items = [];
+        db.transaction(function(tx) {
+            var result = tx.executeSql("SELECT * from tasks WHERE ListID=" + ListID);
+            for (var j = 0; j < result.rows.length; ++j) {
+                var item = result.rows.item(j);
+                items.push({ID: item.ID, Task: item.Task, ListID: item.ListID, Status: item.Status,
+                            LastUpdate: item.LastUpdate, CreationDate: item.CreationDate,
+                            DueDate: item.DueDate, Duration: item.Duration});
+            }
+        });
+        tasksGrouped.push({ID: ListID, ListName: lists[i].ListName, items: items});
+    }
+    return JSON.stringify(tasksGrouped);
+}
+
+function clearTable(table) {
+    var db = connectDB();
+
+    db.transaction(function(tx) {
+        tx.executeSql("DELETE FROM " + table);
+        tx.executeSql("COMMIT;");
+    });
+}
+
+function validateParsed(tasksGrouped) {
+
+    var _check = function(field) {
+        return typeof field !== 'undefined';
+    }
+
+    if (!_check(tasksGrouped)) return false;
+    if (tasksGrouped.length < 1)
+        return false;
+
+    for (var i = 0; i < tasksGrouped.length; ++i) {
+        var g = tasksGrouped[i];
+        if (!_check(g.ListName)) return false;
+        if (!_check(g.ID)) return false;
+        var items = g.items;
+        if (!_check(items)) return false;
+        for (var j = 0; j < items.length; ++j) {
+            var it = items[j];
+            if (!_check(it.ID)) return false;
+            if (!_check(it.Task)) return false;
+            if (!_check(it.ListID)) return false;
+            if (it.ListID !== g.ID)
+                return false;
+            if (!_check(it.Status)) return false;
+            if (!_check(it.LastUpdate)) return false;
+            if (!_check(it.CreationDate)) return false;
+            if (!_check(it.DueDate)) return false;
+            if (!_check(it.Duration)) return false;
+        }
+    }
+    return true;
+}
+
+function test_validateParsed() {
+    console.log("Testing validateParsed() method");
+    var total = 0;
+    var passed = 0;
+
+    function _compare(actual, expected, message) {
+        if (actual !== expected) {
+            console.log(message + ": fail");
+        } else {
+            console.log(message + ": OK");
+            ++passed;
+        }
+        ++total;
+    }
+    var list = [];
+    // 1. Empty list
+    _compare(validateParsed(list), false, "Empty list is invalid");
+
+    var taskIdCounter = 0;
+    var _composeTask = function(name, list_id) {
+        taskIdCounter += 1;
+        return {ID: taskIdCounter, Task: name, ListID: list_id, Status: '0',
+                LastUpdate: '1000', CreationDate: '1001', DueDate: '1002', Duration: '5'};
+    }
+
+    // 2. A single task list with a single task
+    list.push({ID: '1', ListName: 'primary', items: [ _composeTask('task1', '1')]});
+    _compare(validateParsed(list), true, "Single task list with a single task");
+
+    // 3. ID is missing in the second list
+    list.push({ListName: 'secondary', items: []});
+    _compare(validateParsed(list), false, "List ID is missing");
+    list[1].ID = '2';
+
+    // 4. Name and items are missing in the 3rd list
+    list.push({ID: '3'});
+    _compare(validateParsed(list), false, "ListName and items are missing");
+    list[2].ListName = 'tertiary';
+
+    // 5. Only 'items' field are missing now in the 3rd list
+    _compare(validateParsed(list), false, "Items are missing");
+
+    // 6. Add items to the 3rd list
+    list[2].items = [_composeTask('task2', '3'), _composeTask('task3', '3')];
+    _compare(validateParsed(list), true, "3 task lists with some tasks");
+
+    // 7. ListID of task is wrong
+    list[2].items.push(_composeTask('task4', '2'));
+    _compare(validateParsed(list), false, "Wrong ListID of task");
+
+    // 8. Status field of a task is missing
+    list[2].items[2].ListID = '3';
+    list[1].items.push(_composeTask('task5', '2'));
+    list[1].items[0].Status = undefined;
+    _compare(validateParsed(list), false, "Missing field of a task");
+
+    // 9. Restore the field
+    list[1].items[0].Status = '0';
+    _compare(validateParsed(list), true, "List is corrected");
+
+    // 10. Undef as argument
+    _compare(validateParsed(), false, "List is undefined");
+
+    console.log("Passed " + passed + " of " + total + " test(s)");
+}
+
+function importTasks(json) {
+    //test_validateParsed(); return;
+    var db = connectDB();
+
+    try {
+        var tasksGrouped = JSON.parse(json);
+    } catch (error) {
+        console.log("error in parse");
+        return false;
+    }
+    if (!validateParsed(tasksGrouped)) {
+        console.log("dump is invalid");
+        return false;
+    }
+
+    clearTable("tasks");
+    clearTable("lists");
+
+    for (var i = 0; i < tasksGrouped.length; ++i) {
+        var g = tasksGrouped[i];
+        db.transaction(function(tx) {
+            tx.executeSql("INSERT INTO lists (ID, ListName) VALUES (?, ?);", [g.ID, g.ListName]);
+            tx.executeSql("COMMIT;");
+        });
+        for (var j = 0; j < g.items.length; ++j) {
+            var it = g.items[j];
+            db.transaction(function(tx) {
+                tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration) " +
+                              "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+                              [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate, it.DueDate, it.Duration]);
+                tx.executeSql("COMMIT;");
+            });
+        }
+    }
+
+    return true;
+}
+
 /***************************************/
 /*** SQL functions for LIST handling ***/
 /***************************************/
