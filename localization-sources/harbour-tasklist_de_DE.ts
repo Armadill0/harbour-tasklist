@@ -89,7 +89,7 @@
     </message>
     <message>
         <source>Created at</source>
-        <extracomment>displays the date when the taks has been created by the user</extracomment>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
         <translation>Erstellt am</translation>
     </message>
     <message>
@@ -101,6 +101,77 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Aufgabe konnte nicht gespeichert werden!</translation>
+    </message>
+</context>
+<context>
+    <name>ExportPage</name>
+    <message>
+        <source>No files for import available.</source>
+        <extracomment>informing user that no former exports are available</extracomment>
+        <translation>Keine Daten zum Import verfügbar.</translation>
+    </message>
+    <message>
+        <source>Export/Import</source>
+        <extracomment>export/import page headline</extracomment>
+        <translation>Exportieren/Importieren</translation>
+    </message>
+    <message>
+        <source>Export target</source>
+        <extracomment>headline for exports</extracomment>
+        <translation>Export Ziel</translation>
+    </message>
+    <message>
+        <source>Enter a file name for export</source>
+        <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
+        <translation>Dateinamen für Export angeben</translation>
+    </message>
+    <message>
+        <source>Export data</source>
+        <extracomment>headline for the data export section</extracomment>
+        <translation>Daten exportieren</translation>
+    </message>
+    <message>
+        <source>Successfully exported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Daten wurden erfolgreich exportiert.</translation>
+    </message>
+    <message>
+        <source>File path</source>
+        <translation>Dateipfad</translation>
+    </message>
+    <message>
+        <source>Select a file to import</source>
+        <extracomment>headline for imports</extracomment>
+        <translation>Datei zum Importieren auswählen</translation>
+    </message>
+    <message>
+        <source>Delete file</source>
+        <extracomment>Button to delete the selected data file</extracomment>
+        <translation>Datei löschen</translation>
+    </message>
+    <message>
+        <source>Import data</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Daten importieren</translation>
+    </message>
+    <message>
+        <source>Successfully imported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Daten wurden erfolgreich importiert.</translation>
+    </message>
+    <message>
+        <source>Source file path</source>
+        <translation>Pfad der Quell-Datei</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for information about import/export mechanism</extracomment>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
+        <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
+        <translation>Du kannst diene Daten in eine json formatierte Datei exportieren und aus einer json formatierten Datei importieren. Bitte beachte dabei, dass ALLE DEINE DATEN, also Aufgaben und Listen, in einer Datei gespeichert werden!</translation>
     </message>
 </context>
 <context>
@@ -193,6 +264,11 @@
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
         <translation>Deine Listen</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Daten exportieren/importieren</translation>
     </message>
 </context>
 <context>
@@ -339,6 +415,11 @@
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
         <translation>%1 Woche</translation>
     </message>
+    <message>
+        <source>strike through done tasks</source>
+        <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation>Erledigte Aufgaben durchstreichen</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -389,6 +470,7 @@
     </message>
     <message>
         <source>Settings</source>
+        <extracomment>menu item to switch to settings page</extracomment>
         <translation>Einstellungen</translation>
     </message>
     <message>
@@ -402,7 +484,6 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Alle erledigten Aufgaben löschen</translation>
     </message>
     <message>

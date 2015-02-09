@@ -325,8 +325,8 @@ Page {
                 }
             }
             MenuItem {
-                //: menu item to delete all done tasks
                 enabled: openTasksAvailable
+                //: menu item to delete all done tasks
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }

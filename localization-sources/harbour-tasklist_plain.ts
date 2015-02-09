@@ -91,7 +91,7 @@
     </message>
     <message>
         <source>Created at</source>
-        <extracomment>displays the date when the taks has been created by the user</extracomment>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -102,6 +102,77 @@
     <message>
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExportPage</name>
+    <message>
+        <source>No files for import available.</source>
+        <extracomment>informing user that no former exports are available</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export/Import</source>
+        <extracomment>export/import page headline</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export target</source>
+        <extracomment>headline for exports</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter a file name for export</source>
+        <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export data</source>
+        <extracomment>headline for the data export section</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfully exported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a file to import</source>
+        <extracomment>headline for imports</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete file</source>
+        <extracomment>Button to delete the selected data file</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import data</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfully imported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source file path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for information about import/export mechanism</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
+        <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -194,6 +265,11 @@
     <message>
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -341,6 +417,11 @@
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>strike through done tasks</source>
+        <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -391,6 +472,7 @@
     </message>
     <message>
         <source>Settings</source>
+        <extracomment>menu item to switch to settings page</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -404,7 +486,6 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <extracomment>menu item to delete all done tasks</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
