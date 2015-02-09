@@ -29,6 +29,7 @@
 #include <QtQml>
 #include <QProcess>
 #include <QQuickView>
+#include "tasksexport.h"
 
 // third party code
 #include <notification.h>
@@ -57,6 +58,7 @@ int main(int argc, char *argv[])
     app->installTranslator(&translator);
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
+    qmlRegisterType<TasksExport>("harbour.tasklist.tasks_export", 1, 0, "TasksExport");
 
     QQuickView* view = SailfishApp::createView();
     view->rootContext()->setContextProperty("version", appversion);

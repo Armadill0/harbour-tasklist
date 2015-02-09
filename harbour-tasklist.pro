@@ -11,7 +11,8 @@ TARGET = harbour-tasklist
 CONFIG += sailfishapp
 QT += dbus
 
-SOURCES += src/harbour-tasklist.cpp
+SOURCES += src/harbour-tasklist.cpp \
+    src/tasksexport.cpp
 
 OTHER_FILES += qml/harbour-tasklist.qml \
     qml/cover/CoverPage.qml \
@@ -22,7 +23,9 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/EditPage.qml \
     qml/pages/TaskPage.qml \
     qml/pages/ListPage.qml \
-    qml/pages/SettingsPage.qml
+    qml/pages/SettingsPage.qml \
+    qml/pages/TaskListItem.qml \
+    qml/pages/ExportPage.qml
 
 include(third_party/notifications.pri)
 
@@ -36,3 +39,6 @@ lupdate_only {
               qml/pages/*.qml
     TRANSLATIONS = localization/*.ts
 }
+
+HEADERS += \
+    src/tasksexport.h
