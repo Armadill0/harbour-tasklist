@@ -32,28 +32,51 @@ Page {
         return StandardPaths.documents + "/" + baseName + ".json";
     }
 
+    function getFiles() {
+        var list = exporter.getFilesList(StandardPaths.documents);
+        importFilesModel.clear()
+        if (list.length < 1) {
+            //: informing user that no former exports are available
+            importFilesModel.append({fileName: qsTr("No files for import available."), elementId: 0});
+        } else {
+            for (var i = 0; i < list.length; ++i)
+                importFilesModel.append({fileName: list[i], elementId: i + 1});
+        }
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
 
+        VerticalScrollDecorator { }
+
         Column {
             id: column
             width: parent.width
-            spacing: 20
+            spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("Export/import task lists")
+                //: export/import page headline
+                title: qsTr("Export/Import") + " - TaskList"
+            }
+
+            SectionHeader {
+                //: headline for exports
+                text: qsTr("Export target")
             }
 
             TextField {
                 id: exportName
                 width: parent.width
+                //: placeholder message to remind the user that he has to enter a name for the data export
                 placeholderText: qsTr("Enter a file name for export")
                 onTextChanged: {
                     var path = composeFullPath(text)
                     label = path
                     exporter.fileName = path
                 }
+                validator: RegExpValidator { regExp: /^.{1,60}$/ }
+                inputMethodHints: Qt.ImhNoPredictiveText
             }
 
             TasksExport {
@@ -62,23 +85,26 @@ Page {
 
             Button {
                 id: exportButton
-                width: parent.width
-                text: qsTr("Export task lists")
+                //: headline for the data export section
+                text: qsTr("Export data")
+                anchors.horizontalCenter: parent.horizontalCenter
+                enabled: exportName.acceptableInput
 
                 onClicked: {
                     var json = DB.dumpTasks()
                     var ret = exporter.save(json)
-                    if (ret)
-                        pageStack.navigateBack()
+                    if (ret) {
+                        //: informational notification about the successful eported data
+                        taskListWindow.pushNotification("INFO", qsTr("Successfully exported all data."), qsTr("File path") + ": " + composeFullPath(exportName.text))
+                        exportName.text = ""
+                        getFiles()
+                    }
                 }
             }
 
-            Label {
-                id: importLabel
-                width: parent.width
-                horizontalAlignment: Text.AlignHCenter
+            SectionHeader {
+                //: headline for imports
                 text: qsTr("Select a file to import")
-                font.family: Theme.fontFamilyHeading
             }
 
             ListModel {
@@ -100,8 +126,8 @@ Page {
 
                     delegate: ValueButton {
                         label: fileName
+                        description: elementId !== 0 ? composeFullPath(fileName) : ""
                         width: column.width
-                        height: Theme.itemSizeSmall
                         highlighted: elementId === selectedElementId
                         onClicked: {
                             /* element with id 0 is non-selectable placeholder if there are no files */
@@ -115,28 +141,61 @@ Page {
             }
 
             Component.onCompleted: {
-                var list = exporter.getFilesList(StandardPaths.documents);
-                importFilesModel.clear()
-                if (list.length < 1) {
-                    importFilesModel.append({fileName: qsTr("Import files not found"), elementId: 0});
-                } else {
-                    for (var i = 0; i < list.length; ++i)
-                        importFilesModel.append({fileName: list[i], elementId: i + 1});
+                getFiles()
+            }
+
+            Row {
+                width: parent.width
+
+                Button {
+                    id: deleteButton
+                    width: parent.width / 2
+                    //: Button to delete the selected data file
+                    text: qsTr("Delete file")
+                    enabled: selectedElementId !== -1
+
+                    onClicked: {
+                        if (selectedFileName.length === 0)
+                            return
+                        var result = exporter.remove(composeFullPath(selectedFileName))
+
+                        if (result) {
+                            selectedElementId = -1
+                            getFiles()
+                        }
+                    }
+                }
+
+                Button {
+                    id: importButton
+                    width: parent.width / 2
+                    //: Button to import data form the selected file
+                    text: qsTr("Import data")
+                    enabled: selectedElementId !== -1
+
+                    onClicked: {
+                        if (selectedFileName.length === 0)
+                            return
+                        var json = exporter.loadTasks(composeFullPath(selectedFileName));
+                        if (DB.importTasks(json)) {
+                            //: informational notification about the successful eported data
+                            taskListWindow.pushNotification("INFO", qsTr("Successfully imported all data."), qsTr("Source file path") + ": " + composeFullPath(selectedFileName))
+                        }
+                    }
                 }
             }
 
-            Button {
-                id: importButton
-                width: parent.width
-                text: qsTr("Import task lists")
+            SectionHeader {
+                //: headline for information about import/export mechanism
+                text: qsTr("Information")
+            }
 
-                onClicked: {
-                    if (selectedFileName.length === 0)
-                        return
-                    var json = exporter.loadTasks(composeFullPath(selectedFileName));
-                    if (DB.importTasks(json))
-                        pageStack.navigateBack()
-                }
+            Label {
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
+                wrapMode: Text.WordWrap
+                //: Explanation of how importing and exporting data works and where the files are/have to be located.
+                text: qsTr("You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!")
             }
         }
     }

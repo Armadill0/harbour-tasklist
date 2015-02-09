@@ -13,6 +13,7 @@ public:
     Q_PROPERTY(QString fileName READ fileName WRITE setFileName NOTIFY fileNameChanged)
 
     Q_INVOKABLE bool save(const QString &tasks) const;
+    Q_INVOKABLE bool remove(const QString &path) const;
     Q_INVOKABLE QStringList getFilesList(const QString &directory) const;
     Q_INVOKABLE QString loadTasks(const QString &path) const;
 

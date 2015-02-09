@@ -176,6 +176,7 @@ Page {
             taskListWindow.backFocusAddTask = parseInt(DB.getSetting("backFocusAddTask"))
             taskListWindow.smartListVisibility = parseInt(DB.getSetting("smartListVisibility")) === 1 ? true : false
             taskListWindow.recentlyAddedOffset = parseInt(DB.getSetting("recentlyAddedOffset"))
+            taskListWindow.doneTasksStrikedThrough = parseInt(DB.getSetting("doneTasksStrikedThrough")) === 1 ? true : false
         }
 
         reloadTaskList()
@@ -303,6 +304,7 @@ Page {
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
+                //: menu item to switch to settings page
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }

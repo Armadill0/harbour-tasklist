@@ -48,6 +48,8 @@ Dialog {
             ListElement { name: "lorenzo facca" }
             ListElement { name: "TylerTemp" }
             ListElement { name: "Peter Jespersen" }
+            ListElement { name: "Moo" }
+            ListElement { name: "Murat Khairulin" }
         }
 
         Column {

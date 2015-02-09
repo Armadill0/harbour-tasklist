@@ -65,6 +65,7 @@ ApplicationWindow {
     property int backFocusAddTask
     property bool smartListVisibility
     property int recentlyAddedOffset
+    property bool doneTasksStrikedThrough
 
     initialPage: Component { TaskPage {} }
     cover: Component { CoverPage {} }

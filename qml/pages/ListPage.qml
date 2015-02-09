@@ -209,9 +209,10 @@ Page {
                 text: qsTr("Your lists")
             }
 
-            PushUpMenu {
+            PullDownMenu {
                 MenuItem {
-                    text: qsTr("Export/import lists")
+                    //: menu item to switch to export/import page
+                    text: qsTr("Export/Import data")
                     onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
                 }
             }

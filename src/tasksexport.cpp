@@ -51,3 +51,13 @@ bool TasksExport::save(const QString &tasks) const
     file.close();
     return true;
 }
+
+bool TasksExport::remove(const QString &path) const
+{
+    if (path.isEmpty())
+        return false;
+
+    QFile file(path);
+    file.remove(path);
+    return true;
+}

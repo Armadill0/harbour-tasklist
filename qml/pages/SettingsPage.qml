@@ -38,6 +38,7 @@ Dialog {
         DB.updateSetting("startPage", startPage.currentIndex)
         DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
         DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
+        DB.updateSetting("doneTasksStrikedThrough", doneTasksStrikedThrough.checked === true ? 1 : 0)
 
 
         // push new settings to runtime variables
@@ -50,6 +51,7 @@ Dialog {
         taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
         taskListWindow.smartListVisibility = smartListVisibility.checked === true ? 1 : 0
         taskListWindow.recentlyAddedOffset = recentlyAddedOffset.currentIndex
+        taskListWindow.doneTasksStrikedThrough = doneTasksStrikedThrough.checked === true ? 1 : 0
     }
 
     SilicaFlickable {
@@ -141,6 +143,15 @@ Dialog {
                 //: user option to directly jump back to the input field after a new task has been added by the user
                 text: qsTr("refocus task add field")
                 checked: taskListWindow.backFocusAddTask
+            }
+
+
+            TextSwitch {
+                id: doneTasksStrikedThrough
+                width: parent.width
+                //: user option to strike through done tasks for better task overview
+                text: qsTr("strike through done tasks")
+                checked: taskListWindow.doneTasksStrikedThrough
             }
 
             SectionHeader {

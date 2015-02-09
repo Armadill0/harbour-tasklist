@@ -115,7 +115,7 @@ MouseArea {
             left: toggle.right
         }
         wrapMode: Text.Wrap
-        font.strikeout: !checked
+        font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !checked : false
         color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
     }
     Label {

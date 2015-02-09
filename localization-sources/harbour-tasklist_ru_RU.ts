@@ -418,11 +418,11 @@
     <message>
         <source>mark as open</source>
         <extracomment>mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation>Отметить как открытую</translation>
+        <translation>Отметить, как невыполненную</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>Отметить как завершенную</translation>
+        <translation>Отметить, как выполненную</translation>
     </message>
     <message>
         <source>Edit</source>

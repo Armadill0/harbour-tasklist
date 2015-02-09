@@ -105,6 +105,11 @@ function initializeDB() {
             if (result.rows.item(0)["cSetting"] == 0) {
                 tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('recentlyAddedOffset', '3')");
             }
+            // doneTasksStrikedThrough
+            var result = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting='doneTasksStrikedThrough'");
+            if (result.rows.item(0)["cSetting"] == 0) {
+                tx.executeSql("INSERT INTO settings (Setting, Value) VALUES ('doneTasksStrikedThrough', '0')");
+            }
         }
     );
 
