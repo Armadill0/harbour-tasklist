@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es_ES" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" sourcelanguage="en_US" version="2.1">
 <context>
     <name>AboutPage</name>
     <message>
@@ -52,7 +50,7 @@
     <name>EditPage</name>
     <message>
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Ya existe en la lista seleccionada.</translation>
     </message>
     <message>
@@ -91,18 +89,89 @@
     </message>
     <message>
         <source>Created at</source>
-        <extracomment>displays the date when the taks has been created by the user</extracomment>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
         <translation>Creado en</translation>
     </message>
     <message>
         <source>Edit</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
-        <translation type="unfinished">Editar</translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>¡La tarea no puede ser salvada!</translation>
+    </message>
+</context>
+<context>
+    <name>ExportPage</name>
+    <message>
+        <source>No files for import available.</source>
+        <extracomment>informing user that no former exports are available</extracomment>
+        <translation>No existen ficheros para importar.</translation>
+    </message>
+    <message>
+        <source>Export/Import</source>
+        <extracomment>export/import page headline</extracomment>
+        <translation>Exportar/Importar</translation>
+    </message>
+    <message>
+        <source>Export target</source>
+        <extracomment>headline for exports</extracomment>
+        <translation>Objetivo para exportación</translation>
+    </message>
+    <message>
+        <source>Enter a file name for export</source>
+        <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
+        <translation>Nombre del fichero donde exportar:</translation>
+    </message>
+    <message>
+        <source>Export data</source>
+        <extracomment>headline for the data export section</extracomment>
+        <translation>Exportando datos.</translation>
+    </message>
+    <message>
+        <source>Successfully exported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Exportación satisfactoria.</translation>
+    </message>
+    <message>
+        <source>File path</source>
+        <translation>Camino hacia el fichero:</translation>
+    </message>
+    <message>
+        <source>Select a file to import</source>
+        <extracomment>headline for imports</extracomment>
+        <translation>Seleccionar fichero a importar:</translation>
+    </message>
+    <message>
+        <source>Delete file</source>
+        <extracomment>Button to delete the selected data file</extracomment>
+        <translation>Borrar fichero.</translation>
+    </message>
+    <message>
+        <source>Import data</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Importando datos</translation>
+    </message>
+    <message>
+        <source>Successfully imported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Importación satisfactoria.</translation>
+    </message>
+    <message>
+        <source>Source file path</source>
+        <translation>Camino hacia el fichero fuente.</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for information about import/export mechanism</extracomment>
+        <translation>Información</translation>
+    </message>
+    <message>
+        <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
+        <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
+        <translation>Puedes exportar todos tus datos a un fichero en formato JSON e importarlo desde un fichero en formato JSON. Por favor, recuerda que TODOS tus datos que contienen tareas y listas son archivadas en un único fichero.</translation>
     </message>
 </context>
 <context>
@@ -195,6 +264,11 @@
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
         <translation>Sus listas</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Exportar/Importar datos</translation>
     </message>
 </context>
 <context>
@@ -341,6 +415,11 @@
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
         <translation>%1 semana</translation>
     </message>
+    <message>
+        <source>strike through done tasks</source>
+        <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation>Machacar las tareas finalizadas.</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -360,7 +439,7 @@
     </message>
     <message>
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Esta tarea no se puede añadir!</translation>
     </message>
     <message>
@@ -378,7 +457,7 @@
     </message>
     <message>
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Todas las tareas ya existen.</translation>
     </message>
     <message>
@@ -391,6 +470,7 @@
     </message>
     <message>
         <source>Settings</source>
+        <extracomment>menu item to switch to settings page</extracomment>
         <translation>Configuración</translation>
     </message>
     <message>
@@ -404,7 +484,6 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Borrar todas las tareas realizadas</translation>
     </message>
     <message>

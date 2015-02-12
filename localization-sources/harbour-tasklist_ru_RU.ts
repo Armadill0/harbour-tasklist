@@ -89,7 +89,7 @@
     </message>
     <message>
         <source>Created at</source>
-        <extracomment>displays the date when the taks has been created by the user</extracomment>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
         <translation>Создано</translation>
     </message>
     <message>
@@ -101,6 +101,77 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Задача не может быть сохранена!</translation>
+    </message>
+</context>
+<context>
+    <name>ExportPage</name>
+    <message>
+        <source>No files for import available.</source>
+        <extracomment>informing user that no former exports are available</extracomment>
+        <translation>Нет файлов, доступных для импорта.</translation>
+    </message>
+    <message>
+        <source>Export/Import</source>
+        <extracomment>export/import page headline</extracomment>
+        <translation>Экспорт/импорт</translation>
+    </message>
+    <message>
+        <source>Export target</source>
+        <extracomment>headline for exports</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter a file name for export</source>
+        <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
+        <translation>Введите имя файла для экспорта</translation>
+    </message>
+    <message>
+        <source>Export data</source>
+        <extracomment>headline for the data export section</extracomment>
+        <translation>Экспорт данных</translation>
+    </message>
+    <message>
+        <source>Successfully exported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Все данные успешно экспортированы.</translation>
+    </message>
+    <message>
+        <source>File path</source>
+        <translation>Путь к файлу</translation>
+    </message>
+    <message>
+        <source>Select a file to import</source>
+        <extracomment>headline for imports</extracomment>
+        <translation>Выберите файл для импорта</translation>
+    </message>
+    <message>
+        <source>Delete file</source>
+        <extracomment>Button to delete the selected data file</extracomment>
+        <translation>Удалить файл</translation>
+    </message>
+    <message>
+        <source>Import data</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Импорт данных</translation>
+    </message>
+    <message>
+        <source>Successfully imported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Все данные успешно импортированы.</translation>
+    </message>
+    <message>
+        <source>Source file path</source>
+        <translation>Исходный путь файла</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for information about import/export mechanism</extracomment>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
+        <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
+        <translation>Вы можете экспортировать данные в виде файла формата .JSON и импортировать данные из файла формата .JSON. Пожалуйста, имейте в в виду, что все ваши задачи и списки хранятся в одном файле!</translation>
     </message>
 </context>
 <context>
@@ -193,6 +264,11 @@
         <source>Your lists</source>
         <extracomment>headline for the user created lists</extracomment>
         <translation>Ваши списки</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Экспорт/импорт данных</translation>
     </message>
 </context>
 <context>
@@ -339,6 +415,11 @@
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
         <translation>%1 неделя</translation>
     </message>
+    <message>
+        <source>strike through done tasks</source>
+        <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation>зачеркнуть выполненные задачи</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
@@ -389,6 +470,7 @@
     </message>
     <message>
         <source>Settings</source>
+        <extracomment>menu item to switch to settings page</extracomment>
         <translation>Настройки</translation>
     </message>
     <message>
@@ -402,7 +484,6 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
-        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Удалить все завершенные задачи</translation>
     </message>
     <message>
