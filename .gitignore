@@ -1,4 +1,9 @@
-rpm/harbour-tasklist.spec
-harbour-tasklist.pro.user
+debug*
+documentation.list
+harbour-tasklist
+harbour-tasklist.pro.user*
 Makefile
+moc*
 RPMS
+rpm/harbour-tasklist.spec
+*.o
