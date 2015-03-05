@@ -71,7 +71,7 @@ ApplicationWindow {
     cover: Component { CoverPage {} }
 
     // a function to check which appearance should be used by open tasks
-    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }
+    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
 
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {

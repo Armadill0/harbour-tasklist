@@ -54,7 +54,7 @@ Page {
         }
         else {
             listname = DB.getListProperty(listid, "ListName")
-            DB.readTasks(listid, "", "", "")
+            DB.readTasks(listid)
         }
 
         // disable removealldonetasks pulldown menu if no done tasks available
@@ -80,7 +80,7 @@ Page {
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
                 if (taskListModel.get(i).taskstatus === false) {
-                    DB.removeTask(taskListModel.get(i).listid, taskListModel.get(i).taskid)
+                    DB.removeTask(taskListModel.get(i).taskid)
                     taskListModel.remove(i)
                 }
                 // stop if last open task has been reached to save battery power
@@ -225,13 +225,12 @@ Page {
                         // add task to db and tasklist
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
                         // catch sql errors
-                        if (newid !== "ERROR") {
+                        if (newid >= 0) {
                             taskPage.insertTask(0, newid, taskNew, true, listid)
                             taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""
-                        }
-                        else {
+                        } else {
                             // display notification if task already exists
                             //: notifying the user why the task couldn't be added
                             taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
@@ -244,7 +243,7 @@ Page {
                 EnterKey.onClicked: addTask()
 
                 onTextChanged: {
-                    // devide text by new line characters
+                    // divide text by new line characters
                     var textSplit = taskAdd.text.split(/\r\n|\r|\n/)
                     // if there are new lines
                     if (textSplit.length > 1) {
@@ -254,34 +253,24 @@ Page {
                         var tasksArray = []
 
                         // check if the tasks are unique
-                        for (var i = 0; i < textSplit.length; i++) {
-                            var taskDouble = 0
-                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0) {
-                                // if task is duplicated in the list of multiple tasks change helper variable
-                                for (var j = 0; j < tasksArray.length; j++) {
-                                    if (tasksArray[j] === textSplit[i])
-                                        taskDouble = 1
-                                }
-
-                                // if helper variable has been changed, tasks already is on the multiple tasks list and won't be added a second time
-                                if (taskDouble === 0)
+                        for (var i = 0; i < textSplit.length; i++)
+                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0)
+                                if (tasksArray.indexOf(textSplit[i]) === -1)
                                     tasksArray.push(textSplit[i])
-                            }
-                        }
+
                         if (tasksArray.length > 0) {
-                            tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")",function() {
-                                var addedTasks = ""
+                            tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")", function() {
+                                var addedTasks = []
                                 // add all of them to the DB and the list
                                 for (var i = 0; i < tasksArray.length; i++) {
                                     addTask(tasksArray[i])
-                                    if (addedTasks === "")
-                                        addedTasks = tasksArray[i]
-                                    else
-                                        addedTasks = addedTasks + ", " + tasksArray[i]
+                                    addedTasks.push(tasksArray[i])
                                 }
                                 // notification for added tasks
                                 //: notifying the user that new tasks have been added and which were added exactly (Details)
-                                taskListWindow.pushNotification("INFO", tasksArray.length + " " + qsTr("new tasks have been added."), qsTr("Details") + ": " + addedTasks)
+                                taskListWindow.pushNotification("INFO",
+                                                                tasksArray.length + " " + qsTr("new tasks have been added."),
+                                                                qsTr("Details") + ": " + addedTasks.join(', '))
                             } , taskListWindow.remorseOnMultiAdd * 1000)
                         }
                         else {
@@ -352,53 +341,45 @@ Page {
                 // run remove via a silica remorse item
                 //: deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 taskRemorse.execute(taskListItem, qsTr("Deleting") + " '" + task + "'", function() {
-                    DB.removeTask(listid, taskListModel.get(index).taskid)
+                    DB.removeTask(taskListModel.get(index).taskid)
                     taskListModel.remove(index)
                 }, taskListWindow.remorseOnDelete * 1000)
             }
 
             // helper function to mark current item as done
             function changeStatus(checkStatus) {
-                var curListID = taskListModel.get(index).listid
-                var curTask = taskListModel.get(index).task
-                var curTaskID = taskListModel.get(index).taskid
-                var curTaskStatus = taskListModel.get(index).taskstatus
+                var curTask = taskListModel.get(index)
+                var taskID = curTask.taskid
+                if (curTask.taskstatus === checkStatus)
+                    return
+                var newTask = {
+                    taskid: curTask.taskid,
+                    task: curTask.task,
+                    taskstatus: checkStatus,
+                    listid: curTask.listid
+                }
                 //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
-                var changeStatusString = (checkStatus === true) ? qsTr("mark as open") : qsTr("mark as done")
+                var changeStatusString = checkStatus ? qsTr("mark as open") : qsTr("mark as done")
                 // copy status into string because results from sqlite are also strings
-                var movestatus = (checkStatus === true) ? 1 : 0
+                var intStatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
                     // update DB
-                    DB.updateTask(curListID, curListID, curTaskID, curTask, movestatus, 0, 0)
-                    // copy item properties before deletion
-                    var moveindex = index
-                    var moveid = curTaskID
-                    var movetask = curTask
-
+                    if (!DB.setTaskStatus(taskID, intStatus))
+                        return
                     // delete current entry to simplify list sorting
                     taskListModel.remove(index)
-                    // catch if task count is zero, so for won't start
-                    if (taskListModel.count === 0) {
-                        taskPage.appendTask(moveid, movetask, checkStatus, curListID)
+                    // insert Item to correct position
+                    if (checkStatus) {
+                        taskListModel.insert(0, newTask)
+                    } else {
+                        var i;
+                        for (i = 0; i < taskListModel.count; i++)
+                            if (!taskListModel.get(i).taskstatus)
+                                break;
+                        // i points to the first done task or equal to the list length if done tasks are missing
+                        taskListModel.insert(i, newTask)
                     }
-                    else {
-                        // insert Item to correct position
-                        for(var i = 0; i < taskListModel.count; i++) {
-                            // undone tasks are moved to the beginning of the undone tasks
-                            // done tasks are moved to the beginning of the done tasks
-                            if ((checkStatus === true) || (checkStatus === false && curTaskStatus === false)) {
-                                taskPage.insertTask(i, moveid, movetask, checkStatus, curListID)
-                                break
-                            }
-                            // if the item should be added to the end of the list it has to be appended, because the insert target of count + 1 doesn't exist at this moment
-                            else if (i >= taskListModel.count - 1) {
-                                taskPage.appendTask(moveid, movetask, checkStatus, curListID)
-                                break
-                            }
-                        }
-                    }
-
-                    updateDeleteAllDoneOption("statuschange of " + curTask)
+                    updateDeleteAllDoneOption("statuschange of " + newTask.task)
                 }, taskListWindow.remorseOnMark * 1000)
             }
 

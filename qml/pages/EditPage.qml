@@ -70,7 +70,8 @@ Dialog {
     }
 
     onAccepted: {
-        var result = DB.updateTask(listid, listLocationModel.get(listLocatedIn.currentIndex).listid, editTaskPage.taskid, taskName.text, taskListWindow.statusOpen(taskStatus.checked) === true ? 1 : 0, 0, 0)
+        var result = DB.updateTask(editTaskPage.taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
+                                   taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0, 0, 0, 0, "")
         // catch sql errors
         if (result !== "ERROR") {
             taskListWindow.listchanged = true
