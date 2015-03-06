@@ -30,8 +30,35 @@ Dialog {
     property string taskid
     property bool taskstatus
     property string taskcreationdate
+    // format - ISO 8601, empty if not set
+    property string taskduedate
+    property int taskpriority
+    property string tasknote
     property int listid
     property int listindex
+
+    function getDueDate(isoDate) {
+        if (isoDate.length === 0)
+            return qsTr("no due date")
+        var dueDate = new Date(isoDate)
+        var dueDateString = new Date(isoDate).toDateString()
+        var today = new Date()
+        if (dueDateString === today.toDateString())
+            return qsTr("until today")
+        var tomorrow = new Date(today.getTime() + 24 * 3600 * 1000)
+        if (dueDateString === tomorrow.toDateString())
+            return qsTr("until tomorrow")
+        var result = dueDate.toLocaleDateString()
+        // remove year if the date is in the current year
+        if (dueDate.getFullYear() === today.getFullYear()) {
+            var year = " " + dueDate.getFullYear();
+            var begin = result.indexOf(year);
+            var end = begin + year.length;
+            if (begin >= 0)
+                result = result.slice(0, begin) + result.slice(end);
+        }
+        return qsTr("until ") + result;
+    }
 
     // helper function to add lists to the listLocation field
     function appendList(id, listname) {
@@ -41,21 +68,20 @@ Dialog {
         }
     }
 
-    function checkTaskUnique (newListID) {
-        return parseInt(DB.checkTask(newListID, taskName.text))
-    }
-
     function checkContent () {
-        var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        var changedListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        var changedTaskName = taskName.text
+        var count = DB.checkTask(changedListID, changedTaskName)
         // if task already exists in target list, display warning
-        if (checkTaskUnique(changeListID) >= 1 && changeListID != listid) {
+        if (count > 0 && (changedTaskName !== taskname || changedListID !== listid)) {
             taskName.errorHighlight = true
             editTaskPage.canAccept = false
             // display notification if task already exists on the selected list
             //: informing the user that a new task already exists on the selected list
-            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"), /*: detailed information why the task modifications haven't been saved */ qsTr("It already exists on the selected list."))
-        }
-        else {
+            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"),
+                                            /*: detailed information why the task modifications haven't been saved */
+                                            qsTr("It already exists on the selected list."))
+        } else {
             taskName.errorHighlight = false
             editTaskPage.canAccept = true
         }
@@ -64,18 +90,26 @@ Dialog {
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(taskid, "Status")) === 1 ? true : false
+            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(taskid, "Status")) === 1
             editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(taskid, "CreationDate"))
+            var dueDate = DB.getTaskProperty(taskid, "DueDate")
+            editTaskPage.taskduedate = dueDate ? (new Date(dueDate).toISOString()) : ""
+            editTaskPage.taskpriority = parseInt(DB.getTaskProperty(taskid, "Priority"))
+            var note = DB.getTaskProperty(taskid, "Note")
+            editTaskPage.tasknote = note || ""
         }
     }
 
     onAccepted: {
+        var dueDate = 0
+        if (taskDueDate.value.length > 0)
+            dueDate = new Date(taskDueDate.value).getTime()
         var result = DB.updateTask(editTaskPage.taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
-                                   taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0, 0, 0, 0, "")
-        // catch sql errors
-        if (result !== "ERROR") {
+                                   taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0,
+                                   dueDate, 0,
+                                   taskPriority.value, taskNote.text)
+        if (result)
             taskListWindow.listchanged = true
-        }
     }
 
     Component.onCompleted: {
@@ -102,14 +136,17 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit") + " '" + editTaskPage.taskname + "'"
+                title: qsTr("Edit task")
                 //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }
 
-            SectionHeader {
-                //: headline for the section with the task attributes
-                text: qsTr("Task properties")
+            TextSwitch {
+                id: taskStatus
+                anchors.horizontalCenter: parent.Center
+                //: choose if this task is pending or done
+                text: taskStatus.checked ? qsTr("task is opened") : qsTr("task is closed")
+                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
             TextField {
@@ -117,7 +154,7 @@ Dialog {
                 width: parent.width
                 text: editTaskPage.taskname
                 //: information how the currently made changes can be saved
-                label: errorHighlight === false ? qsTr("Save changes in the upper right corner") : qsTr("task already exists on this list!")
+                label: errorHighlight ? qsTr("task already exists on this list!") : qsTr("task name")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
                 onTextChanged: {
@@ -127,18 +164,11 @@ Dialog {
                 }
             }
 
-            TextSwitch {
-                id: taskStatus
-                //: choose if this task is pending or done
-                text: qsTr("task is done")
-                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
-            }
-
             ComboBox {
                 id: listLocatedIn
                 anchors.left: parent.left
                 //: option to change the list where the task should be located
-                label: qsTr("List") + ":"
+                label: qsTr("list") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -154,18 +184,65 @@ Dialog {
                 }
             }
 
-            SectionHeader {
-                //: headline for the section with information which can not be changed by the user directly
-                text: qsTr("Information")
+            Slider {
+                id: taskPriority
+                width: parent.width
+                label: qsTr("priority")
+                minimumValue: 0
+                maximumValue: 3
+                stepSize: 1
+                value: editTaskPage.taskpriority
+                valueText: value.toString()
             }
 
-            Label {
-                id: taskCreationDate
-                anchors.topMargin: 100
-                anchors.left: parent.left
-                anchors.leftMargin: 25
-                //: displays the date when the task has been created by the user
-                text: qsTr("Created at") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
+            TextField {
+                id: taskDueDate
+                anchors.horizontalCenter: parent.horizontalCenter
+                // save due date value in component, because page's value would be lost after page re-activation
+                property string value: editTaskPage.taskduedate
+                text: getDueDate(editTaskPage.taskduedate)
+                readOnly: true
+
+                onClicked: {
+                    var hint = new Date()
+                    if (value.length > 0)
+                        hint = new Date(value)
+                    var dialog = pageStack.push(pickerComponent, { date: hint })
+                    dialog.accepted.connect(function() {
+                        taskDueDate.value = dialog.date.toISOString()
+                        taskDueDate.text = getDueDate(taskDueDate.value)
+                    })
+                }
+
+                Component {
+                    id: pickerComponent
+                    DatePickerDialog {}
+                }                
+            }
+
+            SectionHeader {
+                text: qsTr("Notes")
+            }
+
+            TextArea {
+                id: taskNote
+                width: 480
+                height: 180
+                anchors.horizontalCenter: parent.horizontalCenter
+                placeholderText: qsTr("Enter notes here")
+                placeholderColor: "gray"
+                background: Rectangle {
+                    color: "white"
+                    width: parent.width
+                    height: parent.height
+                }
+
+                focus: false
+                color: "black"
+                font.pointSize: Theme.fontSizeSmall
+                cursorColor: "black"
+
+                text: editTaskPage.tasknote
             }
         }
     }
