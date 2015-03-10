@@ -27,10 +27,14 @@ Page {
     property int totalPending
     property int totalTasks
     property int totalNew
+    property int totalToday
+    property int totalTomorrow
 
     // helper function to add lists to the list
-    function appendList(id, listname, tNumber, tNumberPending, tNumberNew) {
-        listListModel.append({"listid": id, "listname": listname, "tNumber": tNumber, "tNumberPending": tNumberPending, "tNumberNew": tNumberNew})
+    function appendList(id, listname, tNumber, tNumberPending, tNumberNew, tNumberToday, tNumberTomorrow) {
+        listListModel.append({listid: id, listname: listname, tNumber: tNumber,
+                              tNumberPending: tNumberPending, tNumberNew: tNumberNew,
+                              tNumberToday: tNumberToday, tNumberTomorrow: tNumberTomorrow})
     }
 
     // helper function to wipe the list element
@@ -48,37 +52,52 @@ Page {
         DB.readLists(null, newTasksOffset)
     }
 
+    function addSmartList(listType, tasks, buttonActive) {
+        if (typeof(buttonActive) === "undefined")
+            buttonActive = tasks > 0
+        smartListModel.append({ listName: taskListWindow.smartListNames[listType], taskCount: tasks,
+                                buttonActive: buttonActive, listType: listType })
+    }
+
+    // simplified: distinguishes only cases '1' and '> 1', which is right in English,
+    //   but not in Russian, for instance
+    function pluralizeTasks(count) {
+        if (count < 0)
+            return qsTr("n/a")
+        var countStr = count > 999 ? "999+" : count.toString()
+        if (count === 1)
+            return qsTr("%1 task").arg(countStr)
+        return qsTr("%1 tasks").arg(countStr)
+    }
+
     onStatusChanged: {
         switch(status) {
         case PageStatus.Active:
             reloadListList()
 
-            // iterate over the list to get number of total pending tasks
-            totalPending = 0
-            for (var i = 0; i < listListModel.count; i++) {
-                totalPending += listListModel.get(i).tNumberPending
-            }
-
-            // iterate over the list to get number of total tasks
+            // iterate over the list to get numbers for different task types
             totalTasks = 0
-            for (var i = 0; i < listListModel.count; i++) {
-                totalTasks += listListModel.get(i).tNumber
-            }
-
-            // iterate over the list to get number of new tasks
+            totalPending = 0
             totalNew = 0
-            for (var i = 0; i < listListModel.count; i++) {
-                totalNew += listListModel.get(i).tNumberNew
+            totalToday = 0
+            totalTomorrow = 0
+            for (var i = 0; i < listListModel.count; ++i) {
+                var item = listListModel.get(i)
+                totalTasks      += item.tNumber
+                totalPending    += item.tNumberPending
+                totalNew        += item.tNumberNew
+                totalToday      += item.tNumberToday
+                totalTomorrow   += item.tNumberTomorrow
             }
-
             var totalDone = totalTasks - totalPending
 
             // flush default values from Gridview before appending real ones
             smartListModel.clear()
-            smartListModel.append({"listname": taskListWindow.smartListNames[0], "taskcount": totalDone.toString(), "buttonActive": true, "smartList": "0"})
-            smartListModel.append({"listname": taskListWindow.smartListNames[1], "taskcount": totalPending.toString(), "buttonActive": true, "smartList": "1"})
-            smartListModel.append({"listname": taskListWindow.smartListNames[2], "taskcount": totalNew.toString(), "buttonActive": true, "smartList": "2"})
-
+            addSmartList(0, totalDone)
+            addSmartList(1, totalPending)
+            addSmartList(2, totalNew)
+            addSmartList(3, totalToday)
+            addSmartList(4, totalTomorrow)
             break
         }
     }
@@ -89,10 +108,10 @@ Page {
         for (var i in taskListWindow.smartListNames) {
             // push default values to task number of smart lists
             //: default string for task count of smart lists, when value is not available (n/a)
-            smartListModel.append({"listname": taskListWindow.smartListNames[i], "taskcount": qsTr("n/a"), "buttonActive": false, "smartList": "-1"})
+            addSmartList(parseInt(i), -1)
         }
 
-        reloadListList()
+        //reloadListList()
     }
 
     ListModel {
@@ -100,11 +119,10 @@ Page {
 
         // dummy element to prevent ListView from flicking on appending smart lists
         ListElement {
-            listname: "dummy"
-            taskcount: "0"
+            listName: "dummy"
+            taskCount: -1
             buttonActive: false
-            smartList: "-1"
-            width: "0"
+            listType: -1
         }
     }
 
@@ -142,18 +160,18 @@ Page {
                     model: smartListModel
 
                     delegate: ValueButton {
-                        label: listname
+                        label: listName
                         width: smartListContainer.width / 3
                         height: Theme.itemSizeMedium
                         //: use %1 as a placeholder for the number of tasks of the smart lists
-                        value: parseInt(taskcount) === 1 ? qsTr("%1 task").arg(parseInt(taskcount) > 999 ? "999+" : taskcount) : /*: use %1 as a placeholder for the number of tasks of the smart lists*/ qsTr("%1 tasks").arg(parseInt(taskcount) > 999 ? "999+" : taskcount)
+                        value: pluralizeTasks(taskCount)
                         valueColor: Theme.secondaryColor
                         // disabled for default values to prevent errors if not all data is available yet
                         enabled: buttonActive
 
                         onClicked: {
                             // set smart list type, mark flag that list changed, navigate back to task page
-                            taskListWindow.smartListType = parseInt(smartList)
+                            taskListWindow.smartListType = listType
                             taskListWindow.listchanged = true
                             pageStack.navigateBack()
                         }

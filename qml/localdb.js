@@ -1,7 +1,16 @@
 .import QtQuick.LocalStorage 2.0 as LS
 
+var DAY_LENGTH = 24 * 3600 * 1000;
+
 function getUnixTime() {
     return (new Date()).getTime()
+}
+
+// return the next midnight in milliseconds since the epoch
+function getMidnight() {
+    var today = new Date();
+    var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    return start + DAY_LENGTH;
 }
 
 // create DB with schema v2.0 from scratch
@@ -137,6 +146,8 @@ function readTasks(listID, status, sort) {
 function readSmartListTasks(smartListType) {
     var db = connectDB();
     var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
+    var midnight = getMidnight();
+    var tomorrowMidnight = midnight + DAY_LENGTH;
     var condition = "";
 
     if (smartListType === 0)
@@ -145,11 +156,15 @@ function readSmartListTasks(smartListType) {
         condition = "Status = '1'";
     else if (smartListType === 2)
         condition = "CreationDate > '" + recentlyAddedOffsetTime + "'";
+    else if (smartListType === 3)
+        condition = "'0' < DueDate AND DueDate < '" + midnight + "' AND Status= '1'";
+    else if (smartListType === 4)
+        condition = "'" + midnight + "' <= DueDate AND DueDate < '" + tomorrowMidnight + "' AND Status = '1'";
     else
         return;
 
     db.transaction(function(tx) {
-        var result = tx.executeSql("SELECT * FROM tasks WHERE " + condition + " ORDER BY Status DESC");
+        var result = tx.executeSql("SELECT * FROM tasks WHERE " + condition + " ORDER BY Status DESC, Priority DESC");
         for(var i = 0; i < result.rows.length; ++i)
             appendTaskToPage(result.rows.item(i));
     });
@@ -433,28 +448,47 @@ function importTasks(json) {
 /*** SQL functions for LIST handling ***/
 /***************************************/
 
+// push all lists to EditPage's list of lists
+function allLists() {
+    var db = connectDB();
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM lists");
+        for (var i = 0; i < result.rows.length; ++i) {
+            var item = result.rows.item(i);
+            appendListToAll(item.ID, item.ListName);
+        }
+    });
+}
+
 // select lists and push them into the listList
 function readLists(listArt, recentlyAddedTimestamp) {
     var db = connectDB();
-    var resultString = "";
+    var ids = [];
+    var midnight = getMidnight();
+    var tomorrowMidnight = midnight + DAY_LENGTH;
 
     db.transaction(function(tx) {
         // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID) AS tCount,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID AND Status='1') AS tCountPending,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID=parent.ID AND CreationDate>'" + recentlyAddedTimestamp + "') AS tCountNew FROM lists AS parent ORDER BY ID ASC;");
+        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS tCount,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS tCountPending,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS tCountNew ,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND '0' < DueDate AND DueDate < ? AND Status = '1') AS tCountToday, \
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tCountTomorrow \
+            FROM lists AS parent ORDER BY ID ASC;",
+            [recentlyAddedTimestamp, midnight, midnight, tomorrowMidnight]);
         for(var i = 0; i < result.rows.length; i++) {
-            if (listArt == "string") {
-                resultString += (resultString == "" ? result.rows.item(i).ID : "," + result.rows.item(i).ID)
-            }
-            else {
-                appendList(result.rows.item(i).ID, result.rows.item(i).ListName, result.rows.item(i).tCount, result.rows.item(i).tCountPending, result.rows.item(i).tCountNew);
+            var item = result.rows.item(i);
+            if (listArt === "string") {
+                ids.push(item.ID);
+            } else {
+                appendList(item.ID, item.ListName, item.tCount, item.tCountPending, item.tCountNew,
+                           item.tCountToday, item.tCountTomorrow);
             }
         }
     });
 
-    if (resultString != "")
-        return resultString;
+    if (ids.length > 0)
+        return ids.join(",");
 }
 
 // insert new list and return id

@@ -61,11 +61,10 @@ Dialog {
     }
 
     // helper function to add lists to the listLocation field
-    function appendList(id, listname) {
-        listLocationModel.append({"listid": id, "listname": listname})
-        if (id === listid) {
+    function appendListToAll(id, name) {
+        listLocationModel.append({ listid: id, listname: name })
+        if (id === listid)
             listindex = listLocationModel.count - 1
-        }
     }
 
     function checkContent () {
@@ -114,7 +113,7 @@ Dialog {
 
     Component.onCompleted: {
         listid = parseInt(DB.getTaskProperty(taskid, "ListID"))
-        DB.readLists()
+        DB.allLists()
         listLocatedIn.currentIndex = listindex
         listLocatedIn.currentItem = listLocatedIn.menu.children[listindex]
     }
