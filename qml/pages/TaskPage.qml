@@ -32,13 +32,36 @@ Page {
     property int smartListType: taskListWindow.smartListType
     property bool openTasksAvailable
 
-    // helper function to add tasks to the list
-    function appendTask(id, task, status, listid) {
-        taskListModel.append({"taskid": id, "task": task, "taskstatus": status, "listid": listid, "listname": DB.getListProperty(listid, "ListName")})
+    // human-readable representation of a due date
+    function humanDueDate(unixTime) {
+        if (typeof(unixTime) !== 'number' || unixTime <= 0)
+            return ""
+        var date = new Date(unixTime)
+        var today = new Date()
+        var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
+        var dateString = date.toDateString()
+        if (dateString === today.toDateString())
+            return qsTr("Today")
+        if (dateString === tomorrow.toDateString())
+            return qsTr("Tomorrow")
+        var result = date.getDate() + "/" + (date.getMonth() + 1)
+        if (date.getFullYear() !== today.getFullYear())
+            result = result + "/" + date.getFullYear()
+        return result
     }
 
-    function insertTask(index, id, task, status, listid) {
-        taskListModel.insert(index, {"taskid": id, "task": task, "taskstatus": status, "listid": listid, "listname": DB.getListProperty(listid, "ListName")})
+    // helper function to add tasks to the list
+    function appendTask(id, task, status, listid, dueDateAsUnixTime, priority) {
+        taskListModel.append({taskid: id, task: task, taskstatus: status, listid: listid,
+                              listname: DB.getListProperty(listid, "ListName"),
+                              dueDate: humanDueDate(dueDateAsUnixTime), priority: priority || 0})
+    }
+
+    function insertTask(index, id, task, status, listid, dueDate, priority) {
+        taskListModel.insert(index,
+                             {taskid: id, task: task, taskstatus: status, listid: listid,
+                              listname: DB.getListProperty(listid, "ListName"),
+                             dueDate: dueDate || "", priority: priority || 0})
     }
 
     // helper function to wipe the tasklist element
@@ -223,10 +246,10 @@ Page {
                     var taskNew = newTask !== undefined ? newTask : taskAdd.text
                     if (taskNew.length > 0) {
                         // add task to db and tasklist
-                        var newid = DB.writeTask(listid, taskNew, 1, 0, 0)
+                        var newid = DB.writeTask(listid, taskNew, 1, 0, 0, 0, "")
                         // catch sql errors
                         if (newid >= 0) {
-                            taskPage.insertTask(0, newid, taskNew, true, listid)
+                            taskPage.insertTask(0, newid, taskNew, true, listid, "", 0)
                             taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""
@@ -356,7 +379,9 @@ Page {
                     taskid: curTask.taskid,
                     task: curTask.task,
                     taskstatus: checkStatus,
-                    listid: curTask.listid
+                    listid: curTask.listid,
+                    dueDate: curTask.dueDate,
+                    priority: curTask.priority
                 }
                 //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 var changeStatusString = checkStatus ? qsTr("mark as open") : qsTr("mark as done")
@@ -394,6 +419,8 @@ Page {
                 text: task
                 // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
                 description: smartListType !== -1 ? listname + "" : ""
+                priorityValue: priority
+                dueDateValue: dueDate
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
 

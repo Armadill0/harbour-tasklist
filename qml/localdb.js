@@ -117,7 +117,7 @@ function initializeDB() {
 /***************************************/
 
 function appendTaskToPage(task) {
-    taskPage.appendTask(task.ID, task.Task, task.Status === 1, task.ListID);
+    taskPage.appendTask(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
 }
 
 // select tasks and push them into the tasklist
