@@ -194,29 +194,44 @@ Dialog {
                 valueText: value.toString()
             }
 
-            TextField {
-                id: taskDueDate
+            Row {
+                spacing: Theme.paddingSmall
                 anchors.horizontalCenter: parent.horizontalCenter
-                // save due date value in component, because page's value would be lost after page re-activation
-                property string value: editTaskPage.taskduedate
-                text: getDueDate(editTaskPage.taskduedate)
-                readOnly: true
 
-                onClicked: {
-                    var hint = new Date()
-                    if (value.length > 0)
-                        hint = new Date(value)
-                    var dialog = pageStack.push(pickerComponent, { date: hint })
-                    dialog.accepted.connect(function() {
-                        taskDueDate.value = dialog.date.toISOString()
-                        taskDueDate.text = getDueDate(taskDueDate.value)
-                    })
+                TextField {
+                    id: taskDueDate
+                    anchors {
+                        verticalCenter: clearButton.verticalCenter
+                        verticalCenterOffset: 20
+                    }
+                    // save due date value in component, because page's value would be lost after page re-activation
+                    property string value: editTaskPage.taskduedate
+                    readOnly: true
+
+                    onValueChanged: taskDueDate.text = getDueDate(taskDueDate.value)
+
+                    onClicked: {
+                        var hint = new Date()
+                        if (value.length > 0)
+                            hint = new Date(value)
+                        var dialog = pageStack.push(pickerComponent, { date: hint })
+                        dialog.accepted.connect(function() {
+                            taskDueDate.value = dialog.date.toISOString()
+                        })
+                    }
+
+                    Component {
+                        id: pickerComponent
+                        DatePickerDialog {}
+                    }
                 }
 
-                Component {
-                    id: pickerComponent
-                    DatePickerDialog {}
-                }                
+                IconButton {
+                    id: clearButton
+                    icon.source: "image://theme/icon-m-clear"
+                    enabled: taskDueDate.value.length > 0
+                    onClicked: taskDueDate.value = ""
+                }
             }
 
             SectionHeader {
