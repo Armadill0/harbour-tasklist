@@ -31,10 +31,10 @@ function createDB(tx) {
                         "Priority INTEGER NOT NULL, " +
                         "Note TEXT, " +
                         "FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID))");
-    tx.executeSql("CREATE TABLE tags(" +
-                        "Tag TEXT NOT NULL, " +
-                        "TaskID INTEGER NOT NULL, " +
-                        "FOREIGN KEY(TaskID) REFERENCES tasks(ID), CONSTRAINT unq UNIQUE (Tag, TaskID))");
+    tx.executeSql("CREATE TABLE tags(ID INTEGER PRIMARY KEY AUTOINCREMENT, Tag TEXT NOT NULL UNIQUE)");
+    tx.executeSql("CREATE TABLE task_tags(TaskID INTEGER NOT NULL, TagID INTEGER NOT NULL,\
+                    FOREIGN KEY(TaskID) REFERENCES tasks(ID), FOREIGN KEY(TagID) REFERENCES tags(ID), \
+                    CONSTRAINT unq UNIQUE (TaskID, TagID))");
     tx.executeSql("CREATE TABLE settings(" +
                         "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "Setting TEXT UNIQUE, Value TEXT)");
@@ -600,4 +600,66 @@ function getSetting(settingname) {
     });
 
     return result.rows.item(0).Value;
+}
+
+/***************************************/
+/*** SQL functions for TAGS handling ***/
+/***************************************/
+
+function writeTag(tagName) {
+    var db = connectDB();
+    var ok = false;
+    try {
+        db.transaction(function(tx) {
+            tx.executeSql("INSERT INTO tags (Tag) VALUES (?)", tagName);
+            tx.executeSql("COMMIT;");
+            var result = tx.executeSql("SELECT ID FROM tags WHERE Tag=?", tagName);
+            ok = result.rows.length === 1;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to insert a new tag");
+    }
+    return ok;
+}
+
+function removeTag(id) {
+    var db = connectDB();
+
+    db.transaction(function(tx) {
+        tx.executeSql("DELETE FROM tags WHERE ID=?;", id);
+        tx.executeSql("COMMIT;");
+    });
+}
+
+function updateTag(id, name) {
+    var db = connectDB();
+    var ok = false;
+
+    try {
+        db.transaction(function(tx) {
+            var result = tx.executeSql("UPDATE tags SET Tag = ? WHERE ID = ?;", [name, id]);
+            tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to change tag");
+    }
+    return ok;
+}
+
+// select tags, push them into the list and return amount
+function allTags(callback) {
+    var db = connectDB();
+    var count = 0;
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tags ORDER BY Tag;");
+        if (typeof(callback) !== "undefined") {
+            for(var i = 0; i < result.rows.length; ++i) {
+                var item = result.rows.item(i);
+                callback(item.ID, item.Tag);
+            }
+        }
+        count = result.rows.length;
+    });
+    return count;
 }

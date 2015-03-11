@@ -61,10 +61,17 @@ Page {
 
     // simplified: distinguishes only cases '1' and '> 1', which is right in English,
     //   but not in Russian, for instance
-    function pluralizeTasks(count) {
+    function pluralizeItems(count, listType) {
         if (count < 0)
             return qsTr("n/a")
         var countStr = count > 999 ? "999+" : count.toString()
+        // items can be tags
+        if (listType === 5) {
+            if (count === 1)
+                return qsTr("%1 tag").arg(countStr)
+            return qsTr("%1 tags").arg(countStr)
+        }
+        // or items can be tasks
         if (count === 1)
             return qsTr("%1 task").arg(countStr)
         return qsTr("%1 tasks").arg(countStr)
@@ -90,6 +97,7 @@ Page {
                 totalTomorrow   += item.tNumberTomorrow
             }
             var totalDone = totalTasks - totalPending
+            var totalTags = DB.allTags()
 
             // flush default values from Gridview before appending real ones
             smartListModel.clear()
@@ -98,6 +106,7 @@ Page {
             addSmartList(2, totalNew)
             addSmartList(3, totalToday)
             addSmartList(4, totalTomorrow)
+            addSmartList(5, totalTags, true)
             break
         }
     }
@@ -163,13 +172,17 @@ Page {
                         label: listName
                         width: smartListContainer.width / 3
                         height: Theme.itemSizeMedium
-                        //: use %1 as a placeholder for the number of tasks of the smart lists
-                        value: pluralizeTasks(taskCount)
+                        value: pluralizeItems(taskCount, listType)
                         valueColor: Theme.secondaryColor
                         // disabled for default values to prevent errors if not all data is available yet
                         enabled: buttonActive
 
                         onClicked: {
+                            // tags list is different
+                            if (listType == 5) {
+                                pageStack.push(Qt.resolvedUrl("TagPage.qml"))
+                                return
+                            }
                             // set smart list type, mark flag that list changed, navigate back to task page
                             taskListWindow.smartListType = listType
                             taskListWindow.listchanged = true
