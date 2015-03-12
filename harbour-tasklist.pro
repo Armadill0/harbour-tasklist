@@ -26,7 +26,8 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/TaskListItem.qml \
     qml/pages/ExportPage.qml \
-    qml/pages/TagPage.qml
+    qml/pages/TagPage.qml \
+    qml/pages/TagDialog.qml
 
 include(third_party/notifications.pri)
 

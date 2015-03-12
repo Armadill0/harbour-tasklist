@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "."
 
 Dialog {
     id: editTaskPage
@@ -36,6 +37,8 @@ Dialog {
     property string tasknote
     property int listid
     property int listindex
+    // list of tag IDs
+    property string tasktags
 
     function getDueDate(isoDate) {
         if (isoDate.length === 0)
@@ -96,6 +99,7 @@ Dialog {
             editTaskPage.taskpriority = parseInt(DB.getTaskProperty(taskid, "Priority"))
             var note = DB.getTaskProperty(taskid, "Note")
             editTaskPage.tasknote = note || ""
+            tasktags = DB.readTaskTags(taskid)
         }
     }
 
@@ -103,12 +107,19 @@ Dialog {
         var dueDate = 0
         if (taskDueDate.value.length > 0)
             dueDate = new Date(taskDueDate.value).getTime()
-        var result = DB.updateTask(editTaskPage.taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
+        var result = DB.updateTask(taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
                                    taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0,
                                    dueDate, 0,
                                    taskPriority.value, taskNote.text)
         if (result)
             taskListWindow.listchanged = true
+        if (tasktags !== editTags.selected) {
+            var newTags = []
+            if (editTags.selected)
+                newTags = editTags.selected.split(", ")
+            DB.updateTaskTags(taskid, newTags)
+            taskListWindow.listchanged = true
+        }
     }
 
     Component.onCompleted: {
@@ -180,6 +191,20 @@ Dialog {
 
                 onCurrentIndexChanged: {
                     checkContent()
+                }
+            }
+
+            ValueButton {
+                id: editTags
+                value: selected || qsTr("not selected")
+                label: qsTr("tags:")
+                property string selected: tasktags
+
+                onClicked: {
+                    var dialog = pageStack.push("TagDialog.qml", { selected: selected })
+                    dialog.accepted.connect(function() {
+                        selected = dialog.selected
+                    })
                 }
             }
 

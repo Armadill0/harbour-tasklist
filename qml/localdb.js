@@ -652,6 +652,7 @@ function allTags(callback) {
     var db = connectDB();
     var count = 0;
     db.transaction(function(tx) {
+        // TagDialog expects the tags being ordered by Tag lexicographically
         var result = tx.executeSql("SELECT * FROM tags ORDER BY Tag;");
         if (typeof(callback) !== "undefined") {
             for(var i = 0; i < result.rows.length; ++i) {
@@ -662,4 +663,84 @@ function allTags(callback) {
         count = result.rows.length;
     });
     return count;
+}
+
+// select tags of the task and return sorted comma-separated list as string
+function readTaskTags(taskId) {
+    var db  = connectDB();
+    var tags = [];
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT tags.Tag AS TagName \
+                                    FROM task_tags INNER JOIN tags ON task_tags.TagID=tags.ID \
+                                    WHERE task_tags.TaskID = ? ORDER BY tags.Tag", taskId);
+        for (var i = 0; i < result.rows.length; ++i)
+            tags.push(result.rows.item(i).TagName);
+    });
+    return tags.join(", ");
+}
+
+function getTagId(tagName) {
+    var db = connectDB();
+    var tagId = -1;
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT ID FROM tags WHERE Tag = ?", tagName);
+        if (result.rows.length !== 1)
+            console.log("Unable to find tag with name: " + tagName);
+        else
+            tagId = result.rows.item(0).ID;
+    });
+    return tagId;
+}
+
+function addTaskTag(taskId, tagName) {
+    var tagId = getTagId(tagName);
+    if (tagId < 0)
+        return;
+    var db = connectDB();
+    db.transaction(function(tx) {
+        tx.executeSql("INSERT INTO task_tags (TaskID, TagID) VALUES (?, ?)", [taskId, tagId]);
+    });
+}
+
+function removeTaskTag(taskId, tagName) {
+    var tagId = getTagId(tagName);
+    if (tagId < 0)
+        return;
+    var db = connectDB();
+    db.transaction(function(tx) {
+        tx.executeSql("DELETE FROM task_tags WHERE TaskID = ? AND TagID = ?",
+                                   [taskId, tagId]);
+    });
+}
+
+// compare the current and the new tags and modify table
+// @newTags - a sorted list of the new tags
+function updateTaskTags(taskId, newTags) {
+    var currentString = readTaskTags(taskId);
+    var current = [];
+    if (currentString)
+        current = currentString.split(", ");
+    var i = 0, j = 0;
+    var n = newTags.length, m = current.length;
+    while (i < n && j < m) {
+        if (newTags[i] < current[j]) {
+            addTaskTag(taskId, newTags[i]);
+            i += 1;
+        } else if (newTags[i] > current[j]) {
+            removeTaskTag(taskId, current[j]);
+            j += 1;
+        } else {
+            // equal tags
+            i += 1;
+            j += 1;
+        }
+    }
+    while (i < n) {
+        addTaskTag(taskId, newTags[i]);
+        i += 1;
+    }
+    while (j < m) {
+        removeTaskTag(taskId, current[j]);
+        j += 1;
+    }
 }
