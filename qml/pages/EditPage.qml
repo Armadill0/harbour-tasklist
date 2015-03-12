@@ -206,9 +206,10 @@ Dialog {
                     }
                     // save due date value in component, because page's value would be lost after page re-activation
                     property string value: editTaskPage.taskduedate
+                    text: getDueDate(value)
                     readOnly: true
 
-                    onValueChanged: taskDueDate.text = getDueDate(taskDueDate.value)
+                    onValueChanged: text = getDueDate(value)
 
                     onClicked: {
                         var hint = new Date()
