@@ -639,7 +639,8 @@ function removeTag(id) {
     var db = connectDB();
 
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM tags WHERE ID=?;", id);
+        tx.executeSql("DELETE FROM tags WHERE ID = ?;", id);
+        tx.executeSql("DELETE FROM task_tags WHERE TagID = ?;", id);
         tx.executeSql("COMMIT;");
     });
 }
