@@ -49,6 +49,7 @@ ApplicationWindow {
     property variant recentlyAddedPeriods: [10800, 21600, 43200, 86400, 172800, 604800]
     // deactivate smart lists at startup
     property int smartListType: -1
+    property int tagId
     // define names of smart lists
     //: names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
     property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New"), qsTr("Today"), qsTr("Tomorrow"), qsTr("Tags")]

@@ -170,6 +170,19 @@ function readSmartListTasks(smartListType) {
     });
 }
 
+function readTasksWithTag(tagId, callback) {
+    var db = connectDB();
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tasks INNER JOIN task_tags ON tasks.ID = task_tags.TaskID \
+                                    WHERE task_tags.TagID = ? ORDER BY Status DESC, Priority DESC", tagId);
+        if (typeof(callback) !== "undefined")
+            for (var i = 0; i < result.rows.length; ++i) {
+                var task = result.rows.item(i);
+                callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
+            }
+    });
+}
+
 // select task and return count
 function checkTask(listID, taskname) {
     var db = connectDB();
@@ -677,6 +690,19 @@ function readTaskTags(taskId) {
             tags.push(result.rows.item(i).TagName);
     });
     return tags.join(", ");
+}
+
+function getTagName(tagId) {
+    var db = connectDB();
+    var tagName = "";
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT Tag FROM tags WHERE ID = ?", tagId);
+        if (result.rows.length !== 1)
+            console.log("Unable to find tag with id " + tagId);
+        else
+            tagName = result.rows.item(0).Tag;
+    });
+    return tagName
 }
 
 function getTagId(tagName) {

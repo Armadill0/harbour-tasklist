@@ -34,7 +34,7 @@ Page {
 
     // human-readable representation of a due date
     function humanDueDate(unixTime) {
-        if (typeof(unixTime) !== 'number' || unixTime <= 0)
+        if (typeof(unixTime) !== "number" || unixTime <= 0)
             return ""
         var date = new Date(unixTime)
         var today = new Date()
@@ -71,11 +71,14 @@ Page {
 
     function reloadTaskList() {
         wipeTaskList()
-        if (taskListWindow.smartListType !== -1) {
+        if (taskListWindow.smartListType === 5) {
+            var tagId = taskListWindow.tagId
+            listname = qsTr("#%1").arg(DB.getTagName(tagId))
+            DB.readTasksWithTag(tagId, appendTask)
+        } else if (taskListWindow.smartListType !== -1) {
             listname = taskListWindow.smartListNames[taskListWindow.smartListType]
             DB.readSmartListTasks(taskListWindow.smartListType)
-        }
-        else {
+        } else {
             listname = DB.getListProperty(listid, "ListName")
             DB.readTasks(listid)
         }

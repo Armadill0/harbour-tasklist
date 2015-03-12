@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "."
 
 Page {
     id: listPage
@@ -179,8 +180,8 @@ Page {
 
                         onClicked: {
                             // tags list is different
-                            if (listType == 5) {
-                                pageStack.push(Qt.resolvedUrl("TagPage.qml"))
+                            if (listType === 5) {
+                                pageStack.push("TagPage.qml")
                                 return
                             }
                             // set smart list type, mark flag that list changed, navigate back to task page

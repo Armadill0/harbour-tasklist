@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "."
 
 Page {
     id: tagPage
@@ -105,7 +106,7 @@ Page {
 
                 EnterKey.onClicked: {
                     readOnly = true
-                    // TODO reset w/o reloading if update failed
+                    // FIXME reset w/o reloading if update failed
                     DB.updateTag(tagId, text)
                     reloadTagList()
                 }
@@ -120,8 +121,15 @@ Page {
             }
 
             onClicked: {
-                // TODO
-                console.log("label clicked: " + tagLabel.text)
+                // at first set tagId, then change smart list type,
+                //  because smart list type change is being monitored
+                taskListWindow.tagId = tagId
+                taskListWindow.smartListType = 5
+                taskListWindow.listchanged = true
+                // 2 steps back to get to TaskPage
+                var prev = pageStack.previousPage()
+                var to = pageStack.previousPage(prev)
+                pageStack.pop(to)
             }
 
             onPressAndHold: {
