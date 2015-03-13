@@ -645,7 +645,7 @@ function allTags(callback) {
     return count;
 }
 
-// select tags of the task and return sorted comma-separated list as string
+// select tags of the task and return as a sorted list
 function readTaskTags(taskId) {
     var db  = connectDB();
     var tags = [];
@@ -656,7 +656,7 @@ function readTaskTags(taskId) {
         for (var i = 0; i < result.rows.length; ++i)
             tags.push(result.rows.item(i).TagName);
     });
-    return tags.join(", ");
+    return tags;
 }
 
 function getTagName(tagId) {
@@ -710,10 +710,7 @@ function removeTaskTag(taskId, tagName) {
 // compare the current and the new tags and modify table
 // @newTags - a sorted list of the new tags
 function updateTaskTags(taskId, newTags) {
-    var currentString = readTaskTags(taskId);
-    var current = [];
-    if (currentString)
-        current = currentString.split(", ");
+    var current = readTaskTags(taskId);
     var i = 0, j = 0;
     var n = newTags.length, m = current.length;
     while (i < n && j < m) {

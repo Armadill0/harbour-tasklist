@@ -50,6 +50,29 @@ Page {
         return result
     }
 
+    function composeTaskLabel(task) {
+        if (typeof(task) === "undefined")
+            return ""
+        var tokens = []
+        var len = 0
+        if (taskListWindow.smartListType >= 0) {
+            tokens.push(task.listname)
+            len += task.listname
+        }
+        var tags = DB.readTaskTags(task.taskid)
+        for (var i in tags) {
+            var next = "#" + tags[i]
+            // total sum of tokens + spaces after each token + new token
+            if (len + tokens.length + next.length > 20) {
+                tokens.push("..")
+                break
+            }
+            tokens.push(next)
+            len += next.length
+        }
+        return tokens.join("  ")
+    }
+
     // helper function to add tasks to the list
     // @status - boolean
     // @dueDate - number, in milliseconds
@@ -422,7 +445,7 @@ Page {
                 x: Theme.paddingSmall
                 text: task
                 // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
-                description: smartListType !== -1 ? listname + "" : ""
+                description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
                 dueDateValue: dueDate
                 automaticCheck: false

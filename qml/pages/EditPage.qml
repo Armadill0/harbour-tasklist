@@ -96,7 +96,7 @@ Dialog {
             taskduedate = details.DueDate ? (new Date(details.DueDate).toISOString()) : ""
             taskpriority = parseInt(details.Priority)
             tasknote = details.Note || ""
-            tasktags = DB.readTaskTags(taskid)
+            tasktags = DB.readTaskTags(taskid).join(", ")
         }
     }
 
