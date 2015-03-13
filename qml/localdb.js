@@ -15,29 +15,24 @@ function getMidnight() {
 
 // create DB with schema v2.0 from scratch
 function createDB(tx) {
-    console.log("createDB is called");
-    tx.executeSql("CREATE TABLE lists(" +
-                        "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "ListName TEXT UNIQUE)");
-    tx.executeSql("CREATE TABLE tasks(" +
-                        "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Task TEXT NOT NULL, " +
-                        "ListID INTEGER NOT NULL, " +
-                        "Status INTEGER, " +
-                        "LastUpdate INTEGER NOT NULL, " +
-                        "CreationDate INTEGER NOT NULL, " +
-                        "DueDate INTEGER, " +
-                        "Duration INTEGER, " +
-                        "Priority INTEGER NOT NULL, " +
-                        "Note TEXT, " +
-                        "FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID))");
+    console.log("creating DB v2.0 from scratch..");
+
+    tx.executeSql("CREATE TABLE lists(ID INTEGER PRIMARY KEY AUTOINCREMENT, ListName TEXT UNIQUE)");
+
+    tx.executeSql("CREATE TABLE tasks(ID INTEGER PRIMARY KEY AUTOINCREMENT, \
+                        Task TEXT NOT NULL, ListID INTEGER NOT NULL, Status INTEGER, \
+                        LastUpdate INTEGER NOT NULL, CreationDate INTEGER NOT NULL, \
+                        DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, \
+                        FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID))");
+
     tx.executeSql("CREATE TABLE tags(ID INTEGER PRIMARY KEY AUTOINCREMENT, Tag TEXT NOT NULL UNIQUE)");
+
     tx.executeSql("CREATE TABLE task_tags(TaskID INTEGER NOT NULL, TagID INTEGER NOT NULL,\
                     FOREIGN KEY(TaskID) REFERENCES tasks(ID), FOREIGN KEY(TagID) REFERENCES tags(ID), \
                     CONSTRAINT unq UNIQUE (TaskID, TagID))");
-    tx.executeSql("CREATE TABLE settings(" +
-                        "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Setting TEXT UNIQUE, Value TEXT)");
+
+    tx.executeSql("CREATE TABLE settings(ID INTEGER PRIMARY KEY AUTOINCREMENT, Setting TEXT UNIQUE, Value TEXT)");
+
     tx.executeSql("CREATE UNIQUE INDEX uid ON tasks(ID, Task, ListID)");
 }
 
@@ -77,7 +72,7 @@ function initializeDB() {
         function(tx) {
             // if lists are empty, create default list
             var result = tx.executeSql("SELECT count(ID) as cID FROM lists");
-            if (result.rows.item(0)["cID"] == 0) {
+            if (result.rows.item(0).cID === 0) {
                 tx.executeSql("INSERT INTO lists (ListName) VALUES ('Tasks')");
             }
 
@@ -100,8 +95,8 @@ function initializeDB() {
                 "doneTasksStrikedThrough": 0
             };
             for (var settingKey in defaultSettings) {
-                var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting=?", settingKey);
-                if (res.rows.item(0)["cSetting"] === 0) {
+                var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting = ?", settingKey);
+                if (res.rows.item(0).cSetting === 0) {
                     var defaultValue = defaultSettings[settingKey];
                     tx.executeSql("INSERT INTO settings (Setting, Value) VALUES (?, ?);", [settingKey, defaultValue]);
                 }
@@ -116,12 +111,15 @@ function initializeDB() {
 /*** SQL functions for TASK handling ***/
 /***************************************/
 
-function appendTaskToPage(task) {
-    taskPage.appendTask(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
+function applyCallbackToTasks(callback, result) {
+    for (var i = 0; i < result.rows.length; ++i) {
+        var task = result.rows.item(i);
+        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
+    }
 }
 
 // select tasks and push them into the tasklist
-function readTasks(listID, status, sort) {
+function readTasks(listID, callback, status, sort) {
     var db = connectDB();
     var statusSql;
     var order = "Status DESC";
@@ -137,13 +135,12 @@ function readTasks(listID, status, sort) {
 
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM tasks WHERE " + condition + " ORDER BY " + order);
-        for(var i = 0; i < result.rows.length; ++i)
-            appendTaskToPage(result.rows.item(i));
+        applyCallbackToTasks(callback, result);
     });
 }
 
 // select tasks on a global basis instead of list basis
-function readSmartListTasks(smartListType) {
+function readSmartListTasks(smartListType, callback) {
     var db = connectDB();
     var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
     var midnight = getMidnight();
@@ -165,8 +162,7 @@ function readSmartListTasks(smartListType) {
 
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM tasks WHERE " + condition + " ORDER BY Status DESC, Priority DESC");
-        for(var i = 0; i < result.rows.length; ++i)
-            appendTaskToPage(result.rows.item(i));
+        applyCallbackToTasks(callback, result);
     });
 }
 
@@ -175,11 +171,7 @@ function readTasksWithTag(tagId, callback) {
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM tasks INNER JOIN task_tags ON tasks.ID = task_tags.TaskID \
                                     WHERE task_tags.TagID = ? ORDER BY Status DESC, Priority DESC", tagId);
-        if (typeof(callback) !== "undefined")
-            for (var i = 0; i < result.rows.length; ++i) {
-                var task = result.rows.item(i);
-                callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
-            }
+        applyCallbackToTasks(callback, result);
     });
 }
 
@@ -209,7 +201,7 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
             var statement = "INSERT INTO tasks (Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             tx.executeSql(statement, [task, listID, status, creationDate, creationDate, dueDate, duration, priority, note]);
             tx.executeSql("COMMIT;");
-            var result = tx.executeSql("SELECT ID FROM tasks WHERE Task=? AND ListID=?;", [task, listID]);
+            var result = tx.executeSql("SELECT ID FROM tasks WHERE Task = ? AND ListID = ?;", [task, listID]);
             taskID = result.rows.item(0).ID;
         });
     } catch (sqlErr) {
@@ -221,9 +213,9 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
 // delete task from database
 function removeTask(id) {
     var db = connectDB();
-
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM tasks WHERE ID=?", id);
+        tx.executeSql("DELETE FROM tasks WHERE ID = ?;", id);
+        tx.executeSql("DELETE FROM task_tags WHERE TaskID = ?;", id);
         tx.executeSql("COMMIT;");
     });
 }
@@ -232,50 +224,37 @@ function removeTask(id) {
 function setTaskStatus(id, status) {
     var db = connectDB();
     var lastUpdate = getUnixTime();
-
+    var ok = false;
     try {
         db.transaction(function(tx) {
-            var result = tx.executeSql("UPDATE tasks SET Status=?, LastUpdate=? WHERE ID=?", [status, lastUpdate, id]);
+            var result = tx.executeSql("UPDATE tasks SET Status = ?, LastUpdate = ? WHERE ID = ?", [status, lastUpdate, id]);
             tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
         });
-        return true;
     } catch (sqlErr) {
         console.log("Unable to change a task status in DB");
     }
-    return false;
+    return ok;
 }
 
 // update task
 function updateTask(id, newListID, task, status, dueDate, duration, priority, note) {
     var db = connectDB();
-    var result;
     var lastUpdate = getUnixTime();
-
+    var ok = false;
     try {
         db.transaction(function(tx) {
-            result = tx.executeSql("UPDATE tasks " +
-                                   "SET ListID=?, Task=?, Status=?, LastUpdate=?, DueDate=?, Duration=?, Priority=?, Note=? " +
-                                   "WHERE ID=?;",
-                                   [newListID, task, status, lastUpdate, dueDate, duration, priority, note, id]);
+            var result = tx.executeSql("UPDATE tasks SET ListID = ?, Task = ?, Status = ?, \
+                                        LastUpdate = ?, DueDate = ?, Duration = ?, Priority = ?, Note = ? WHERE ID = ?;",
+                                        [newListID, task, status, lastUpdate, dueDate, duration, priority, note, id]);
             tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
         });
-        return result.rowsAffected === 1;
+
     } catch (sqlErr) {
         console.log("Unable to update task in DB");
     }
-    return false;
-}
-
-// get task property from database
-function getTaskProperty(id, taskproperty) {
-    var db = connectDB();
-    var result;
-
-    db.transaction(function(tx) {
-        result = tx.executeSql("SELECT " + taskproperty + " FROM tasks WHERE ID=?;", [id]);
-    });
-
-    return eval("result.rows.item(0)." + taskproperty);
+    return ok;
 }
 
 function packTask(record) {
@@ -283,6 +262,17 @@ function packTask(record) {
             LastUpdate: record.LastUpdate, CreationDate: record.CreationDate,
             DueDate: record.DueDate, Duration: record.Duration,
             Priority: record.Priority, Note: record.Note};
+}
+
+function getTaskDetails(id) {
+    var db = connectDB();
+    var details = {};
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tasks WHERE ID = ?;", id);
+        if (result.rows.length === 1)
+            details = packTask(result.rows.item(0));
+    });
+    return details;
 }
 
 // dump tasks from all lists
@@ -461,158 +451,135 @@ function importTasks(json) {
 /*** SQL functions for LIST handling ***/
 /***************************************/
 
-// push all lists to EditPage's list of lists
-function allLists() {
+// select all lists
+function allLists(callback) {
     var db = connectDB();
+    var ids = [];
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM lists");
         for (var i = 0; i < result.rows.length; ++i) {
             var item = result.rows.item(i);
-            appendListToAll(item.ID, item.ListName);
+            ids.push(item.ID);
+            if (typeof(callback) !== "undefined")
+                callback(item.ID, item.ListName);
         }
     });
+    return ids;
 }
 
-// select lists and push them into the listList
-function readLists(listArt, recentlyAddedTimestamp) {
+// select all lists and collect some statistics
+function readLists(recently, callback) {
     var db = connectDB();
-    var ids = [];
     var midnight = getMidnight();
     var tomorrowMidnight = midnight + DAY_LENGTH;
 
     db.transaction(function(tx) {
-        // order by sort to get the reactivated tasks to the end of the undone list
-        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS tCount,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS tCountPending,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS tCountNew ,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND '0' < DueDate AND DueDate < ? AND Status = '1') AS tCountToday, \
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tCountTomorrow \
+        var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS total,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS pending,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS recent ,\
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND '0' < DueDate AND DueDate < ? AND Status = '1') AS today, \
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tomorrow \
             FROM lists AS parent ORDER BY ID ASC;",
-            [recentlyAddedTimestamp, midnight, midnight, tomorrowMidnight]);
+            [recently, midnight, midnight, tomorrowMidnight]);
         for(var i = 0; i < result.rows.length; i++) {
             var item = result.rows.item(i);
-            if (listArt === "string") {
-                ids.push(item.ID);
-            } else {
-                appendList(item.ID, item.ListName, item.tCount, item.tCountPending, item.tCountNew,
-                           item.tCountToday, item.tCountTomorrow);
-            }
+            callback({ listid: item.ID, listname: item.ListName, total: item.total,
+                       pending: item.pending, recent: item.recent,
+                       today: item.today, tomorrow: item.tomorrow });
         }
     });
-
-    if (ids.length > 0)
-        return ids.join(",");
 }
 
 // insert new list and return id
-function writeList(listname) {
+function writeList(name) {
     var db = connectDB();
-    var result;
-
+    var id = -1;
     try {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO lists (ListName) VALUES (?);", [listname]);
+            tx.executeSql("INSERT INTO lists (ListName) VALUES (?);", name);
             tx.executeSql("COMMIT;");
-            result = tx.executeSql("SELECT ID FROM lists WHERE ListName=?;", [listname]);
+            var result = tx.executeSql("SELECT ID FROM lists WHERE ListName = ?;", name);
+            if (result.rows.length === 1)
+                id = result.rows.item(0).ID;
         });
-
-        return result.rows.item(0).ID;
     } catch (sqlErr) {
-        return "ERROR";
+        console.log("Unable to create new list in DB");
     }
+    return id;
 }
 
-// delete list from database
+// remove a list together with its tasks and their associations with tags
 function removeList(id) {
     var db = connectDB();
 
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM lists WHERE ID=?;", [id]);
-        tx.executeSql("DELETE FROM tasks WHERE ListID=?;", [id]);
+        tx.executeSql("DELETE FROM lists WHERE ID = ?;", id);
         tx.executeSql("COMMIT;");
+        // remove also dependent tasks
+        var result = tx.executeSql("SELECT ID FROM tasks WHERE ListID = ?", id);
+        for (var i = 0; i < result.rows.length; ++i)
+            removeTask(result.rows.item(i).ID);
     });
 }
 
-// update list
-function updateList(id, listname) {
+function updateList(id, newName) {
     var db = connectDB();
-    var result;
-
+    var ok = false;
     try {
         db.transaction(function(tx) {
-            result = tx.executeSql("UPDATE lists SET ListName=? WHERE ID=?;", [listname, id]);
+            var result = tx.executeSql("UPDATE lists SET ListName = ? WHERE ID = ?;", [newName, id]);
             tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
         });
-
-        return result.rows.count;
     } catch (sqlErr) {
-       return "ERROR";
+        console.log("Unable to update list name");
     }
+    return ok;
 }
 
-// get list property from database
-function getListProperty(id, listproperty) {
+function getListName(id) {
     var db = connectDB();
-    var result;
-
+    var name = "";
     db.transaction(function(tx) {
-        result = tx.executeSql("SELECT " + listproperty + " FROM lists WHERE ID=?;", [id]);
+        var result = tx.executeSql("SELECT ListName FROM lists WHERE ID = ?;", id);
+        if (result.rows.length === 1)
+            name = result.rows.item(0).ListName;
     });
-
-    return eval("result.rows.item(0)." + listproperty);
+    return name;
 }
 
 /*******************************************/
 /*** SQL functions for SETTINGS handling ***/
 /*******************************************/
 
-// insert new setting and return id
-function writeSetting(settingname, settingvalue) {
+function updateSetting(setting, value) {
     var db = connectDB();
-    var result;
-
+    var ok = false;
     try {
         db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO settings (Setting, Value) VALUES (?, ?);", [settingname, settingvalue]);
+            var result = tx.executeSql("UPDATE settings SET Value = ? WHERE Setting = ?;", [value, setting]);
             tx.executeSql("COMMIT;");
-            result = tx.executeSql("SELECT Value FROM settings WHERE Setting=?;", [settingname]);
+            ok = result.rowsAffected === 1;
         });
-
-        return result.rows.item(0).Value;
     } catch (sqlErr) {
-        return "ERROR";
+        console.log("Unable to update setting " + setting);
     }
+    return ok;
 }
 
-// update setting
-function updateSetting(settingname, settingvalue) {
+function getSettingAsNumber(setting) {
     var db = connectDB();
-    var result;
-
+    var value;
     try {
         db.transaction(function(tx) {
-            tx.executeSql("UPDATE settings SET Value=? WHERE Setting=?;", [settingvalue, settingname]);
-            tx.executeSql("COMMIT;");
-            result = tx.executeSql("SELECT Value FROM settings WHERE Setting=?;", [settingname]);
+            var result = tx.executeSql("SELECT * FROM settings WHERE Setting = ?;", setting);
+            if (result.rows.length === 1)
+                value = Number(result.rows.item(0).Value);
         });
-
-        return result.rows.item(0).Value;
     } catch (sqlErr) {
-        return "ERROR";
+        console.log("Unable to get setting " + setting);
     }
-}
-
-
-// get setting property from database
-function getSetting(settingname) {
-    var db = connectDB();
-    var result;
-
-    db.transaction(function(tx) {
-        result = tx.executeSql("SELECT * FROM settings WHERE Setting=?;", [settingname]);
-    });
-
-    return result.rows.item(0).Value;
+    return value;
 }
 
 /***************************************/
@@ -635,9 +602,9 @@ function writeTag(tagName) {
     return ok;
 }
 
+// remove tag with its associations
 function removeTag(id) {
     var db = connectDB();
-
     db.transaction(function(tx) {
         tx.executeSql("DELETE FROM tags WHERE ID = ?;", id);
         tx.executeSql("DELETE FROM task_tags WHERE TagID = ?;", id);
@@ -648,7 +615,6 @@ function removeTag(id) {
 function updateTag(id, name) {
     var db = connectDB();
     var ok = false;
-
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("UPDATE tags SET Tag = ? WHERE ID = ?;", [name, id]);
@@ -703,7 +669,7 @@ function getTagName(tagId) {
         else
             tagName = result.rows.item(0).Tag;
     });
-    return tagName
+    return tagName;
 }
 
 function getTagId(tagName) {
@@ -719,6 +685,7 @@ function getTagId(tagName) {
     return tagId;
 }
 
+// add an association
 function addTaskTag(taskId, tagName) {
     var tagId = getTagId(tagName);
     if (tagId < 0)
@@ -729,14 +696,14 @@ function addTaskTag(taskId, tagName) {
     });
 }
 
+// remove an association
 function removeTaskTag(taskId, tagName) {
     var tagId = getTagId(tagName);
     if (tagId < 0)
         return;
     var db = connectDB();
     db.transaction(function(tx) {
-        tx.executeSql("DELETE FROM task_tags WHERE TaskID = ? AND TagID = ?",
-                                   [taskId, tagId]);
+        tx.executeSql("DELETE FROM task_tags WHERE TaskID = ? AND TagID = ?", [taskId, tagId]);
     });
 }
 

@@ -30,7 +30,6 @@ Dialog {
     property string taskname
     property string taskid
     property bool taskstatus
-    property string taskcreationdate
     // format - ISO 8601, empty if not set
     property string taskduedate
     property int taskpriority
@@ -64,7 +63,7 @@ Dialog {
     }
 
     // helper function to add lists to the listLocation field
-    function appendListToAll(id, name) {
+    function appendList(id, name) {
         listLocationModel.append({ listid: id, listname: name })
         if (id === listid)
             listindex = listLocationModel.count - 1
@@ -77,7 +76,7 @@ Dialog {
         // if task already exists in target list, display warning
         if (count > 0 && (changedTaskName !== taskname || changedListID !== listid)) {
             taskName.errorHighlight = true
-            editTaskPage.canAccept = false
+            canAccept = false
             // display notification if task already exists on the selected list
             //: informing the user that a new task already exists on the selected list
             taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"),
@@ -85,20 +84,18 @@ Dialog {
                                             qsTr("It already exists on the selected list."))
         } else {
             taskName.errorHighlight = false
-            editTaskPage.canAccept = true
+            canAccept = true
         }
     }
 
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(taskid, "Status")) === 1
-            editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(taskid, "CreationDate"))
-            var dueDate = DB.getTaskProperty(taskid, "DueDate")
-            editTaskPage.taskduedate = dueDate ? (new Date(dueDate).toISOString()) : ""
-            editTaskPage.taskpriority = parseInt(DB.getTaskProperty(taskid, "Priority"))
-            var note = DB.getTaskProperty(taskid, "Note")
-            editTaskPage.tasknote = note || ""
+            var details = DB.getTaskDetails(taskid)
+            taskstatus = parseInt(details.Status) === 1
+            taskduedate = details.DueDate ? (new Date(details.DueDate).toISOString()) : ""
+            taskpriority = parseInt(details.Priority)
+            tasknote = details.Note || ""
             tasktags = DB.readTaskTags(taskid)
         }
     }
@@ -123,8 +120,9 @@ Dialog {
     }
 
     Component.onCompleted: {
-        listid = parseInt(DB.getTaskProperty(taskid, "ListID"))
-        DB.allLists()
+        var details = DB.getTaskDetails(taskid)
+        listid = parseInt(details.ListID)
+        DB.allLists(appendList)
         listLocatedIn.currentIndex = listindex
         listLocatedIn.currentItem = listLocatedIn.menu.children[listindex]
     }
@@ -162,7 +160,7 @@ Dialog {
             TextField {
                 id: taskName
                 width: parent.width
-                text: editTaskPage.taskname
+                text: taskname
                 //: information how the currently made changes can be saved
                 label: errorHighlight ? qsTr("task already exists on this list!") : qsTr("task name")
                 // set allowed chars and task length
@@ -230,7 +228,7 @@ Dialog {
                         verticalCenterOffset: 20
                     }
                     // save due date value in component, because page's value would be lost after page re-activation
-                    property string value: editTaskPage.taskduedate
+                    property string value: taskduedate
                     text: getDueDate(value)
                     readOnly: true
 
@@ -282,7 +280,7 @@ Dialog {
                 font.pointSize: Theme.fontSizeSmall
                 cursorColor: "black"
 
-                text: editTaskPage.tasknote
+                text: tasknote
             }
         }
     }

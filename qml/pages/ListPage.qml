@@ -32,10 +32,8 @@ Page {
     property int totalTomorrow
 
     // helper function to add lists to the list
-    function appendList(id, listname, tNumber, tNumberPending, tNumberNew, tNumberToday, tNumberTomorrow) {
-        listListModel.append({listid: id, listname: listname, tNumber: tNumber,
-                              tNumberPending: tNumberPending, tNumberNew: tNumberNew,
-                              tNumberToday: tNumberToday, tNumberTomorrow: tNumberTomorrow})
+    function appendList(packedList) {
+        listListModel.append(packedList)
     }
 
     // helper function to wipe the list element
@@ -47,10 +45,10 @@ Page {
         // calculate the offset for the new tasks number
         // *1000 eliminates the unix microseconds
         var currentUnixTime = DB.getUnixTime();
-        var newTasksOffset = currentUnixTime - (taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000)
+        var recently = currentUnixTime - (taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000)
 
         wipeListList()
-        DB.readLists(null, newTasksOffset)
+        DB.readLists(recently, appendList)
     }
 
     function addSmartList(listType, tasks, buttonActive) {
@@ -91,11 +89,11 @@ Page {
             totalTomorrow = 0
             for (var i = 0; i < listListModel.count; ++i) {
                 var item = listListModel.get(i)
-                totalTasks      += item.tNumber
-                totalPending    += item.tNumberPending
-                totalNew        += item.tNumberNew
-                totalToday      += item.tNumberToday
-                totalTomorrow   += item.tNumberTomorrow
+                totalTasks      += item.total
+                totalPending    += item.pending
+                totalNew        += item.recent
+                totalToday      += item.today
+                totalTomorrow   += item.tomorrow
             }
             var totalDone = totalTasks - totalPending
             var totalTags = DB.allTags()
@@ -212,15 +210,12 @@ Page {
 
                 function addList(listNew) {
                     if (listNew.length > 0) {
-                        // add list to db
-                        var newid = DB.writeList(listNew)
-                        // catch sql errors
-                        if (newid !== "ERROR") {
-                            listPage.appendList(newid, listNew)
+                        var newId = DB.writeList(listNew)
+                        if (newId >= 0) {
+                            listPage.appendList(newId, listNew)
                             // reset textfield
                             listAdd.text = ""
-                        }
-                        else {
+                        } else {
                             // display notification if list already exists
                             taskListWindow.pushNotification("WARNING", qsTr("List could not be added!"), qsTr("It already exists."))
                         }
@@ -317,7 +312,7 @@ Page {
 
             Label {
                 id: listTaskNumber
-                text: tNumber > 999 ? "999+" : tNumber
+                text: total > 999 ? "999+" : total
                 width: 70
                 height: editListLabel.height * 0.55
                 anchors.top: parent.top
@@ -353,12 +348,12 @@ Page {
                 // set allowed chars and list length
                 validator: RegExpValidator { regExp: /^.{,60}$/ }
 
-                function changeList(listNew) {
+                function changeList(newName) {
                     // update list in db
-                    DB.updateList(listid, listNew)
-                    // small hack to automatically reload the current selected list which name has been changed
-                    if (taskListWindow.listid === listid) {
-                        taskListWindow.listchanged = true
+                    if (DB.updateList(listid, newName)) {
+                        // small hack to automatically reload the current selected list which name has been changed
+                        if (taskListWindow.listid === listid)
+                            taskListWindow.listchanged = true
                     }
                     // finally reload list overview to update the items
                     reloadListList()

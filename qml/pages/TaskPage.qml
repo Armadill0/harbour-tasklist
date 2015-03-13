@@ -51,17 +51,18 @@ Page {
     }
 
     // helper function to add tasks to the list
-    function appendTask(id, task, status, listid, dueDateAsUnixTime, priority) {
-        taskListModel.append({taskid: id, task: task, taskstatus: status, listid: listid,
-                              listname: DB.getListProperty(listid, "ListName"),
-                              dueDate: humanDueDate(dueDateAsUnixTime), priority: priority || 0})
+    // @status - boolean
+    // @dueDate - number, in milliseconds
+    function appendTask(id, task, status, listid, dueDate, priority) {
+        taskListModel.append({ taskid: id, task: task, taskstatus: status,
+                               listid: listid, listname: DB.getListName(listid),
+                               dueDate: humanDueDate(dueDate), priority: priority || 0 })
     }
 
-    function insertTask(index, id, task, status, listid, dueDate, priority) {
-        taskListModel.insert(index,
-                             {taskid: id, task: task, taskstatus: status, listid: listid,
-                              listname: DB.getListProperty(listid, "ListName"),
-                             dueDate: dueDate || "", priority: priority || 0})
+    function insertNewTask(index, id, task, listid) {
+        taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
+                                      listid: listid, listname: DB.getListName(listid),
+                                      dueDate: "", priority: 0 })
     }
 
     // helper function to wipe the tasklist element
@@ -77,10 +78,10 @@ Page {
             DB.readTasksWithTag(tagId, appendTask)
         } else if (taskListWindow.smartListType !== -1) {
             listname = taskListWindow.smartListNames[taskListWindow.smartListType]
-            DB.readSmartListTasks(taskListWindow.smartListType)
+            DB.readSmartListTasks(taskListWindow.smartListType, appendTask)
         } else {
-            listname = DB.getListProperty(listid, "ListName")
-            DB.readTasks(listid)
+            listname = DB.getListName(listid)
+            DB.readTasks(listid, appendTask)
         }
 
         // disable removealldonetasks pulldown menu if no done tasks available
@@ -186,23 +187,23 @@ Page {
     Component.onCompleted: {
         if (taskListWindow.justStarted === true) {
             DB.initializeDB()
-            taskListWindow.listid = parseInt(DB.getSetting("defaultList"))
+            taskListWindow.listid = DB.getSettingAsNumber("defaultList")
             taskListWindow.defaultlist = taskListWindow.listid
             taskListWindow.justStarted = false
 
             // initialize application settings
-            taskListWindow.coverListSelection = parseInt(DB.getSetting("coverListSelection"))
-            taskListWindow.coverListChoose = parseInt(DB.getSetting("coverListChoose"))
-            taskListWindow.coverListOrder = parseInt(DB.getSetting("coverListOrder"))
-            taskListWindow.taskOpenAppearance = parseInt(DB.getSetting("taskOpenAppearance")) === 1 ? true : false
-            taskListWindow.remorseOnDelete = parseInt(DB.getSetting("remorseOnDelete"))
-            taskListWindow.remorseOnMark = parseInt(DB.getSetting("remorseOnMark"))
-            taskListWindow.remorseOnMultiAdd = parseInt(DB.getSetting("remorseOnMultiAdd"))
-            taskListWindow.startPage = parseInt(DB.getSetting("startPage"))
-            taskListWindow.backFocusAddTask = parseInt(DB.getSetting("backFocusAddTask"))
-            taskListWindow.smartListVisibility = parseInt(DB.getSetting("smartListVisibility")) === 1 ? true : false
-            taskListWindow.recentlyAddedOffset = parseInt(DB.getSetting("recentlyAddedOffset"))
-            taskListWindow.doneTasksStrikedThrough = parseInt(DB.getSetting("doneTasksStrikedThrough")) === 1 ? true : false
+            taskListWindow.coverListSelection = DB.getSettingAsNumber("coverListSelection")
+            taskListWindow.coverListChoose = DB.getSettingAsNumber("coverListChoose")
+            taskListWindow.coverListOrder = DB.getSettingAsNumber("coverListOrder")
+            taskListWindow.taskOpenAppearance = DB.getSettingAsNumber("taskOpenAppearance") === 1
+            taskListWindow.remorseOnDelete = DB.getSettingAsNumber("remorseOnDelete")
+            taskListWindow.remorseOnMark = DB.getSettingAsNumber("remorseOnMark")
+            taskListWindow.remorseOnMultiAdd = DB.getSettingAsNumber("remorseOnMultiAdd")
+            taskListWindow.startPage = DB.getSettingAsNumber("startPage")
+            taskListWindow.backFocusAddTask = DB.getSettingAsNumber("backFocusAddTask")
+            taskListWindow.smartListVisibility = DB.getSettingAsNumber("smartListVisibility") === 1
+            taskListWindow.recentlyAddedOffset = DB.getSettingAsNumber("recentlyAddedOffset")
+            taskListWindow.doneTasksStrikedThrough = DB.getSettingAsNumber("doneTasksStrikedThrough") === 1
         }
 
         reloadTaskList()
@@ -252,7 +253,7 @@ Page {
                         var newid = DB.writeTask(listid, taskNew, 1, 0, 0, 0, "")
                         // catch sql errors
                         if (newid >= 0) {
-                            taskPage.insertTask(0, newid, taskNew, true, listid, "", 0)
+                            insertNewTask(0, newid, taskNew, listid)
                             taskListWindow.coverAddTask = true
                             // reset textfield
                             taskAdd.text = ""
