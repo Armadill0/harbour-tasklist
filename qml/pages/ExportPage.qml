@@ -91,7 +91,7 @@ Page {
                 enabled: exportName.acceptableInput
 
                 onClicked: {
-                    var json = DB.dumpTasks()
+                    var json = DB.dumpData()
                     var ret = exporter.save(json)
                     if (ret) {
                         //: informational notification about the successful eported data
@@ -177,7 +177,7 @@ Page {
                         if (selectedFileName.length === 0)
                             return
                         var json = exporter.loadTasks(composeFullPath(selectedFileName));
-                        if (DB.importTasks(json)) {
+                        if (DB.importData(json)) {
                             //: informational notification about the successful eported data
                             taskListWindow.pushNotification("INFO", qsTr("Successfully imported all data."), qsTr("Source file path") + ": " + composeFullPath(selectedFileName))
                         }

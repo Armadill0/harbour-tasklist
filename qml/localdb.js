@@ -70,7 +70,7 @@ function replaceOldDB(keepData) {
         // create brand new tables
         db.changeVersion("1.0", "2.0", createDB);
         // pour data in if necessary
-        if (keepData && !importTasks(data))
+        if (keepData && !importData(data))
             return false;
     }
     return true;
@@ -295,34 +295,58 @@ function getTaskDetails(id) {
     return details;
 }
 
-// dump tasks from all lists
+// dump data from DB
 function dumpData() {
     var db = connectDB();
-    var result;
-    if (db.version === "1.0") {
-        var lists = [];
-        db.transaction(function(tx) {
-            var result = tx.executeSql("SELECT * from lists;");
-            for (var i = 0; i < result.rows.length; ++i) {
-                lists.push({ID: result.rows.item(i).ID, ListName: result.rows.item(i).ListName});
-            }
-        });
+    var version = Number(db.version);
+    var lists = [];
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * from lists;");
+        for (var i = 0; i < result.rows.length; ++i) {
+            var item = result.rows.item(i);
+            lists.push({ID: item.ID, ListName: item.ListName});
+        }
+    });
 
-        result = [];
-        for (var i = 0; i < lists.length; ++i) {
+    var tasksGrouped = [];
+    db.transaction(function(tx) {
+        for (var i in lists) {
             var ListID = lists[i].ID;
             var items = [];
-            db.transaction(function(tx) {
-                var result = tx.executeSql("SELECT * from tasks WHERE ListID = ?;", ListID);
-                for (var j = 0; j < result.rows.length; ++j)
-                    items.push(packTask(result.rows.item(j)));
-            });
-            result.push({ID: ListID, ListName: lists[i].ListName, items: items});
+            var result = tx.executeSql("SELECT * FROM tasks WHERE ListID = ?;", ListID);
+            for (var j = 0; j < result.rows.length; ++j) {
+                var item = packTask(result.rows.item(j));
+                // add tags to task if tags are introduced already
+                if (db.version > 1.0) {
+                    var tagsResult = tx.executeSql("SELECT TagID FROM task_tags WHERE TaskID = ?;", item.ID);
+                    var tagIds = [];
+                    for (var k = 0; k < tagsResult.rows.length; ++k)
+                        tagIds.push(tagsResult.rows.item(k).TagID);
+                    item["Tags"] = tagIds;
+                }
+                items.push(item);
+            }
+            tasksGrouped.push({ID: ListID, ListName: lists[i].ListName, items: items});
         }
-    } else {
-        // TODO for "2.0"
-    }
-    return JSON.stringify(result);
+    });
+    // that's it for v1.0
+    if (version === 1)
+        return JSON.stringify(tasksGrouped);
+    // v2.0 also contains tags
+    var tags = [];
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tags;");
+        for (var i = 0; i < result.rows.length; ++i) {
+            var item = result.rows.item(i);
+            tags.push({ID: item.ID, Tag: item.Tag});
+        }
+    });
+    var data = {
+        schema: "2.0",
+        tasklists: tasksGrouped,
+        tags: tags
+    };
+    return JSON.stringify(data);
 }
 
 function clearTable(table) {
@@ -334,23 +358,21 @@ function clearTable(table) {
     });
 }
 
-function validateParsed(tasksGrouped) {
+function validateParsed(tasksGrouped, version) {
 
     var _check = function(field) {
         return typeof field !== 'undefined';
     }
 
     if (!_check(tasksGrouped)) return false;
-    if (tasksGrouped.length < 1)
-        return false;
 
-    for (var i = 0; i < tasksGrouped.length; ++i) {
+    for (var i in tasksGrouped) {
         var g = tasksGrouped[i];
         if (!_check(g.ListName)) return false;
         if (!_check(g.ID)) return false;
         var items = g.items;
         if (!_check(items)) return false;
-        for (var j = 0; j < items.length; ++j) {
+        for (var j in items) {
             var it = items[j];
             if (!_check(it.ID)) return false;
             if (!_check(it.Task)) return false;
@@ -362,123 +384,86 @@ function validateParsed(tasksGrouped) {
             if (!_check(it.CreationDate)) return false;
             if (!_check(it.DueDate)) return false;
             if (!_check(it.Duration)) return false;
+            if (version > 1) {
+                if (!_check(it.Priority)) return false;
+                if (!_check(it.Note)) return false;
+                if (!_check(it.Tags)) return false;
+            }
         }
     }
     return true;
 }
 
-function test_validateParsed() {
-    console.log("Testing validateParsed() method");
-    var total = 0;
-    var passed = 0;
-
-    function _compare(actual, expected, message) {
-        if (actual !== expected) {
-            console.log(message + ": fail");
-        } else {
-            console.log(message + ": OK");
-            ++passed;
-        }
-        ++total;
-    }
-    var list = [];
-    // 1. Empty list
-    _compare(validateParsed(list), false, "Empty list is invalid");
-
-    var taskIdCounter = 0;
-    var _composeTask = function(name, list_id) {
-        taskIdCounter += 1;
-        return {ID: taskIdCounter, Task: name, ListID: list_id, Status: '0',
-                LastUpdate: '1000', CreationDate: '1001', DueDate: '1002', Duration: '5'};
-    }
-
-    // 2. A single task list with a single task
-    list.push({ID: '1', ListName: 'primary', items: [ _composeTask('task1', '1')]});
-    _compare(validateParsed(list), true, "Single task list with a single task");
-
-    // 3. ID is missing in the second list
-    list.push({ListName: 'secondary', items: []});
-    _compare(validateParsed(list), false, "List ID is missing");
-    list[1].ID = '2';
-
-    // 4. Name and items are missing in the 3rd list
-    list.push({ID: '3'});
-    _compare(validateParsed(list), false, "ListName and items are missing");
-    list[2].ListName = 'tertiary';
-
-    // 5. Only 'items' field are missing now in the 3rd list
-    _compare(validateParsed(list), false, "Items are missing");
-
-    // 6. Add items to the 3rd list
-    list[2].items = [_composeTask('task2', '3'), _composeTask('task3', '3')];
-    _compare(validateParsed(list), true, "3 task lists with some tasks");
-
-    // 7. ListID of task is wrong
-    list[2].items.push(_composeTask('task4', '2'));
-    _compare(validateParsed(list), false, "Wrong ListID of task");
-
-    // 8. Status field of a task is missing
-    list[2].items[2].ListID = '3';
-    list[1].items.push(_composeTask('task5', '2'));
-    list[1].items[0].Status = undefined;
-    _compare(validateParsed(list), false, "Missing field of a task");
-
-    // 9. Restore the field
-    list[1].items[0].Status = '0';
-    _compare(validateParsed(list), true, "List is corrected");
-
-    // 10. Undef as argument
-    _compare(validateParsed(), false, "List is undefined");
-
-    console.log("Passed " + passed + " of " + total + " test(s)");
-}
-
-function importTasks(json) {
-    //test_validateParsed(); return;
+function importData(json) {
     var db = connectDB();
     var parsed;
-
     try {
         parsed = JSON.parse(json);
     } catch (error) {
         console.log("error in parse");
         return false;
     }
-    // check if data is from schema v1.0
-    if (parsed instanceof Array) {
-        var tasksGrouped = parsed;
-        if (!validateParsed(tasksGrouped)) {
-            console.log("dump is invalid");
+    var version = (parsed instanceof Array) ? 1 : 2;
+
+    var tasksGrouped, tags;
+    if (version === 1) {
+        tasksGrouped = parsed;
+        tags = [];
+    } else {
+        if (parsed.schema !== "2.0") {
+            console.log("dump for v2.0: invalid schema");
             return false;
         }
-
-        clearTable("task_tags");
-        clearTable("tasks");
-        clearTable("lists");
-
-        for (var i = 0; i < tasksGrouped.length; ++i) {
-            var g = tasksGrouped[i];
-            db.transaction(function(tx) {
-                tx.executeSql("INSERT INTO lists (ID, ListName) VALUES (?, ?);", [g.ID, g.ListName]);
-                tx.executeSql("COMMIT;");
-            });
-            for (var j = 0; j < g.items.length; ++j) {
-                var it = g.items[j];
-                db.transaction(function(tx) {
-                    tx.executeSql("INSERT INTO tasks (\
-                                        ID, Task, ListID, Status, LastUpdate, CreationDate, \
-                                        DueDate, Duration, Priority, Note) \
-                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                                        [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
-                                         it.DueDate || 0, it.Duration || 0, 0, ""]);
-                    tx.executeSql("COMMIT;");
-                });
-            }
+        tasksGrouped = parsed.tasklists;
+        tags = parsed.tags;
+        if (!(tags instanceof Array)) {
+            console.log("invalid tags");
+            return false;
         }
-    } else {
-        // TODO for schema v2.0
+    }
+    if (!validateParsed(tasksGrouped, version)) {
+        console.log("dump is invalid");
+        return false;
     }
 
+    clearTable("tags");
+    clearTable("task_tags");
+    clearTable("tasks");
+    clearTable("lists");
+
+    // memorize tags to check tasks' associations with tags later
+    var existingTags = {};
+    // add tags at first, because tasks depend on them
+    db.transaction(function(tx) {
+        for (var i in tags) {
+            existingTags[tags[i].ID] = 1;
+            tx.executeSql("INSERT INTO tags (ID, Tag) VALUES (?, ?);", [tags[i].ID, tags[i].Tag]);
+        }
+        tx.executeSql("COMMIT;");
+    });
+
+    db.transaction(function(tx) {
+        for (var i in tasksGrouped) {
+            var g = tasksGrouped[i];
+            tx.executeSql("INSERT INTO lists (ID, ListName) VALUES (?, ?);", [g.ID, g.ListName]);
+            for (var j in g.items) {
+                var it = g.items[j];
+                tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, \
+                               DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                               [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
+                                it.DueDate || 0, it.Duration || 0, it.Priority || 0, it.Note || ""]);
+                var tagIds = it.Tags;
+                if (typeof (tagIds) !== "undefined")
+                    for (var k in tagIds) {
+                        // add associations only to existing tags
+                        if (existingTags[tagIds[k]] === 1)
+                            tx.executeSql("INSERT INTO task_tags (TaskID, TagID) VALUES (?, ?);",
+                                          [it.ID, tagIds[k]]);
+                    }
+            }
+        }
+        tx.executeSql("COMMIT;");
+    });
     return true;
 }
 
