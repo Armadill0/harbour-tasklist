@@ -4,6 +4,8 @@
 ** Contact: Matt Vogt <matthew.vogt@jollamobile.com>
 ** All rights reserved.
 **
+** Copyright (C) 2015 Murat Khairulin
+**
 ** This file is part of Sailfish Silica UI component package.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -40,6 +42,7 @@ MouseArea {
 
     property alias text: label.text
     property alias description: desc.text
+    property alias dueDateValue: due.text
 
     property bool checked
     property bool automaticCheck: true
@@ -48,9 +51,8 @@ MouseArea {
     property bool down: pressed && containsMouse
     property bool highlighted: down
     property bool busy
-
-    // This is only used by ButtonGroup - if ButtonGroup is removed, this should be also:
-    property int __silica_textswitch
+    property int priorityValue
+    property variant priorityColors: ["white", "blue", "green", "red"]
 
     width: parent ? parent.width : Screen.width
     implicitHeight: Math.max(toggle.height, desc.y + desc.height)
@@ -66,8 +68,7 @@ MouseArea {
 
         GlassItem {
             id: indicator
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.centerIn: parent
             opacity: root.enabled ? 1.0 : 0.4
             dimmed: !checked
             falloffRadius: checked ? defaultFalloffRadius : 0.075
@@ -106,13 +107,14 @@ MouseArea {
     }
     Label {
         id: label
-        width: parent.width - toggle.width - root.leftMargin - root.rightMargin
         opacity: root.enabled ? 1.0 : 0.4
         anchors {
             verticalCenter: toggle.verticalCenter
             // center on the first line if there are multiple lines
             verticalCenterOffset: lineCount > 1 ? (lineCount-1)*height/lineCount/2 : 0
             left: toggle.right
+            right: prio.left
+            rightMargin: Theme.smallMargin
         }
         wrapMode: Text.Wrap
         font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !checked : false
@@ -120,24 +122,52 @@ MouseArea {
     }
     Label {
         id: desc
-        width: parent.width - toggle.width - root.leftMargin - root.rightMargin
         height: text.length ? (implicitHeight + Theme.paddingMedium) : 0
         opacity: root.enabled ? 1.0 : 0.4
-        anchors.top: label.bottom
-        anchors.left: label.left
+        anchors {
+            top: label.bottom
+            left: label.left
+            right: prio.left
+            rightMargin: Theme.smallMargin
+        }
         wrapMode: Text.Wrap
         font.pixelSize: Theme.fontSizeExtraSmall
         color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+    }
+
+    Item {
+        id: prio
+        width: Theme.itemSizeExtraSmall
+        height: Theme.itemSizeSmall
+        anchors {
+            right: due.left
+        }
+        visible: priorityValue > 0
+
+        GlassItem {
+            id: prioIndicator
+            anchors.centerIn: parent
+            opacity: checked ? 1.0 : 0.3
+            falloffRadius: 0.1
+            color: priorityColors[priorityValue]
+        }
+    }
+
+    Label {
+        id: due
+        anchors {
+            verticalCenter: toggle.verticalCenter
+            right: parent.right
+            rightMargin: root.rightMargin
+        }
+        opacity: checked ? 1.0 : 0.3
+        font.pixelSize: Theme.fontSizeExtraSmall
+        color: Theme.secondaryColor
     }
 
     onClicked: {
         if (automaticCheck) {
             checked = !checked
         }
-    }
-
-    // for testing
-    function _indicator() {
-        return indicator
     }
 }

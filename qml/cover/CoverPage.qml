@@ -28,9 +28,10 @@ CoverBackground {
     property int currentList
     property string listorder
 
-    // helper function to add tasks to the list
-    function appendTask(id, task, status, listid) {
-        taskListModel.append({"taskid": id, "task": task, "taskstatus": status})
+    // helper function to add tasks to the list,
+    //  two last arguments are to match the callback signature
+    function appendTask(id, task, status, listid, due, prio) {
+        taskListModel.append({ taskid: id, task: task, taskstatus: status })
     }
 
     // helper function to wipe the tasklist element
@@ -67,7 +68,7 @@ CoverBackground {
         if (taskListWindow.currentCoverList !== -1) {
             currentList = taskListWindow.currentCoverList
         }
-        DB.readTasks(currentList, 1, listorder)
+        DB.readTasks(currentList, appendTask, 1, listorder)
         // also change list in application
         taskListWindow.listid = currentList
     }
@@ -81,15 +82,14 @@ CoverBackground {
         switch(status) {
         case Cover.Activating:
             // load lists into variable for coveraction "switch"
-            taskListWindow.listOfLists = DB.readLists("string")
-            var listArray = taskListWindow.listOfLists.split(",")
+            var lists = DB.allLists()
+            taskListWindow.listOfLists = lists.join(",")
 
             // activate ListSwitch Button if more than one list is available or vice versa
-            if (listArray.length > 1) {
+            if (lists.length > 1) {
                 coverActionMultiple.enabled = true
                 coverActionSingle.enabled = false
-            }
-            else {
+            } else {
                 coverActionMultiple.enabled = false
                 coverActionSingle.enabled = true
             }
@@ -131,7 +131,7 @@ CoverBackground {
 
         Label {
             id: coverHeader
-            text: DB.getListProperty(currentList, "ListName") + "(" + taskListModel.count + ")"
+            text: DB.getListName(currentList) + "(" + taskListModel.count + ")"
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             color: Theme.highlightColor
@@ -199,7 +199,7 @@ CoverBackground {
 
                             // wipe list and read new tasks
                             wipeTaskList()
-                            DB.readTasks(currentList, 1, listorder, "")
+                            DB.readTasks(currentList, appendTask, 1, listorder)
                             taskListWindow.currentCoverList = currentList
 
                             break
