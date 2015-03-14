@@ -17,37 +17,23 @@ function getMidnight() {
 function createDB(tx) {
     console.log("creating DB v2.0 from scratch..");
 
-    tx.executeSql("CREATE TABLE lists(ID INTEGER PRIMARY KEY AUTOINCREMENT, ListName TEXT UNIQUE)");
+    tx.executeSql("CREATE TABLE lists(ID INTEGER PRIMARY KEY AUTOINCREMENT, ListName TEXT UNIQUE);");
 
     tx.executeSql("CREATE TABLE tasks(ID INTEGER PRIMARY KEY AUTOINCREMENT, \
                         Task TEXT NOT NULL, ListID INTEGER NOT NULL, Status INTEGER, \
                         LastUpdate INTEGER NOT NULL, CreationDate INTEGER NOT NULL, \
                         DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, \
-                        FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID))");
+                        FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID));");
 
     tx.executeSql("CREATE TABLE tags(ID INTEGER PRIMARY KEY AUTOINCREMENT, Tag TEXT NOT NULL UNIQUE)");
 
     tx.executeSql("CREATE TABLE task_tags(TaskID INTEGER NOT NULL, TagID INTEGER NOT NULL,\
                     FOREIGN KEY(TaskID) REFERENCES tasks(ID), FOREIGN KEY(TagID) REFERENCES tags(ID), \
-                    CONSTRAINT unq UNIQUE (TaskID, TagID))");
+                    CONSTRAINT unq UNIQUE (TaskID, TagID));");
 
-    tx.executeSql("CREATE TABLE settings(ID INTEGER PRIMARY KEY AUTOINCREMENT, Setting TEXT UNIQUE, Value TEXT)");
+    tx.executeSql("CREATE TABLE IF NOT EXISTS settings(ID INTEGER PRIMARY KEY AUTOINCREMENT, Setting TEXT UNIQUE, Value TEXT);");
 
-    tx.executeSql("CREATE UNIQUE INDEX uid ON tasks(ID, Task, ListID)");
-}
-
-// TODO
-function upgradeSchema(fromVersion) {
-    console.log("upgradeSchema is called. Terminating");
-    Qt.quit();
-    if (fromVersion === "1.0") {
-        // TODO modify lists and tasks..
-        tx.executeSql("CREATE TABLE tags(" +
-                      "Tag TEXT NOT NULL, TaskID INTEGER NOT NULL, " +
-                      "FOREIGN KEY(TaskID) REFERENCES tasks(ID), CONSTRAINT unq UNIQUE (Tag, TaskID))");
-        fromVersion = "2.0";
-    }
-    // here goes later upgrades..
+    tx.executeSql("CREATE UNIQUE INDEX uid ON tasks(ID, Task, ListID);");
 }
 
 function connectDB() {
@@ -55,25 +41,51 @@ function connectDB() {
     return LS.LocalStorage.openDatabaseSync("TaskList", "", "TaskList Database", 100000);
 }
 
-function initializeDB() {
-    // initialize DB connection
+// check if the DB schema has the latest version
+function schemaIsUpToDate() {
     var db = connectDB();
-
+    // create DB if it's the first run
     if (db.version === "") {
         db.changeVersion("", "2.0", createDB);
-    } else if (db.version === "1.0") {
-        db.changeVersion("1.0", "2.0", function(tx) {
-            upgradeSchema("1.0");
-        });
+        // db.version is still empty, but the version is actually 2.0 now
+        return true;
     }
+    return db.version === "2.0";
+}
+
+// delete the existing DB and create from scratch
+//  if @keepData is true, try to convert data
+function replaceOldDB(keepData) {
+    var db = connectDB();
+    if (db.version === "1.0") {
+        // save the existing data if necessary
+        var data = keepData ? dumpData() : undefined;
+        // drop 'tasks' and 'lists', but keep 'settings'
+        db.transaction(function(tx) {
+            tx.executeSql("DROP INDEX uid;")
+            tx.executeSql("DROP TABLE tasks;");
+            tx.executeSql("DROP TABLE lists;");
+            tx.executeSql("COMMIT;");
+        });
+        // create brand new tables
+        db.changeVersion("1.0", "2.0", createDB);
+        // pour data in if necessary
+        if (keepData && !importTasks(data))
+            return false;
+    }
+    return true;
+}
+
+function initializeDB() {
+    var db = connectDB();
 
     // run initialization queries
     db.transaction(
         function(tx) {
             // if lists are empty, create default list
-            var result = tx.executeSql("SELECT count(ID) as cID FROM lists");
+            var result = tx.executeSql("SELECT count(ID) as cID FROM lists;");
             if (result.rows.item(0).cID === 0) {
-                tx.executeSql("INSERT INTO lists (ListName) VALUES ('Tasks')");
+                tx.executeSql("INSERT INTO lists (ListName) VALUES ('Tasks');");
             }
 
             // if a setting is not assigned, set its value to default
@@ -95,11 +107,19 @@ function initializeDB() {
                 "doneTasksStrikedThrough": 0
             };
             for (var settingKey in defaultSettings) {
-                var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting = ?", settingKey);
+                var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting = ?;", settingKey);
                 if (res.rows.item(0).cSetting === 0) {
                     var defaultValue = defaultSettings[settingKey];
                     tx.executeSql("INSERT INTO settings (Setting, Value) VALUES (?, ?);", [settingKey, defaultValue]);
                 }
+            }
+            // check that 'defaultList' is a valid ID
+            var defaultListId = getSettingAsNumber("defaultList");
+            result = tx.executeSql("SELECT ID FROM lists WHERE ID = ?;", defaultListId);
+            if (result.rows.length !== 1) {
+                result = tx.executeSql("SELECT ID FROM lists ORDER BY ID;");
+                // set 'defaultList' to the least existing ID
+                tx.executeSql("UPDATE settings SET Value = ? WHERE Setting = ?;", [result.rows.item(0).ID, "defaultList"]);
             }
         }
     );
@@ -278,27 +298,31 @@ function getTaskDetails(id) {
 // dump tasks from all lists
 function dumpData() {
     var db = connectDB();
-    var lists = [];
-
-    db.transaction(function(tx) {
-        var result = tx.executeSql("SELECT ID, ListName from lists");
-        for (var i = 0; i < result.rows.length; ++i) {
-            lists.push({ID: result.rows.item(i).ID, ListName: result.rows.item(i).ListName});
-        }
-    });
-
-    var tasksGrouped = [];
-    for (var i = 0; i < lists.length; ++i) {
-        var ListID = lists[i].ID;
-        var items = [];
+    var result;
+    if (db.version === "1.0") {
+        var lists = [];
         db.transaction(function(tx) {
-            var result = tx.executeSql("SELECT * from tasks WHERE ListID=?", ListID);
-            for (var j = 0; j < result.rows.length; ++j)
-                items.push(packTask(result.rows.item(j)));
+            var result = tx.executeSql("SELECT * from lists;");
+            for (var i = 0; i < result.rows.length; ++i) {
+                lists.push({ID: result.rows.item(i).ID, ListName: result.rows.item(i).ListName});
+            }
         });
-        tasksGrouped.push({ID: ListID, ListName: lists[i].ListName, items: items});
+
+        result = [];
+        for (var i = 0; i < lists.length; ++i) {
+            var ListID = lists[i].ID;
+            var items = [];
+            db.transaction(function(tx) {
+                var result = tx.executeSql("SELECT * from tasks WHERE ListID = ?;", ListID);
+                for (var j = 0; j < result.rows.length; ++j)
+                    items.push(packTask(result.rows.item(j)));
+            });
+            result.push({ID: ListID, ListName: lists[i].ListName, items: items});
+        }
+    } else {
+        // TODO for "2.0"
     }
-    return JSON.stringify(tasksGrouped);
+    return JSON.stringify(result);
 }
 
 function clearTable(table) {
@@ -412,36 +436,47 @@ function test_validateParsed() {
 function importTasks(json) {
     //test_validateParsed(); return;
     var db = connectDB();
+    var parsed;
 
     try {
-        var tasksGrouped = JSON.parse(json);
+        parsed = JSON.parse(json);
     } catch (error) {
         console.log("error in parse");
         return false;
     }
-    if (!validateParsed(tasksGrouped)) {
-        console.log("dump is invalid");
-        return false;
-    }
+    // check if data is from schema v1.0
+    if (parsed instanceof Array) {
+        var tasksGrouped = parsed;
+        if (!validateParsed(tasksGrouped)) {
+            console.log("dump is invalid");
+            return false;
+        }
 
-    clearTable("tasks");
-    clearTable("lists");
+        clearTable("task_tags");
+        clearTable("tasks");
+        clearTable("lists");
 
-    for (var i = 0; i < tasksGrouped.length; ++i) {
-        var g = tasksGrouped[i];
-        db.transaction(function(tx) {
-            tx.executeSql("INSERT INTO lists (ID, ListName) VALUES (?, ?);", [g.ID, g.ListName]);
-            tx.executeSql("COMMIT;");
-        });
-        for (var j = 0; j < g.items.length; ++j) {
-            var it = g.items[j];
+        for (var i = 0; i < tasksGrouped.length; ++i) {
+            var g = tasksGrouped[i];
             db.transaction(function(tx) {
-                tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration) " +
-                              "VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
-                              [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate, it.DueDate, it.Duration]);
+                tx.executeSql("INSERT INTO lists (ID, ListName) VALUES (?, ?);", [g.ID, g.ListName]);
                 tx.executeSql("COMMIT;");
             });
+            for (var j = 0; j < g.items.length; ++j) {
+                var it = g.items[j];
+                db.transaction(function(tx) {
+                    tx.executeSql("INSERT INTO tasks (\
+                                        ID, Task, ListID, Status, LastUpdate, CreationDate, \
+                                        DueDate, Duration, Priority, Note) \
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                                        [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
+                                         it.DueDate || 0, it.Duration || 0, 0, ""]);
+                    tx.executeSql("COMMIT;");
+                });
+            }
         }
+    } else {
+        // TODO for schema v2.0
     }
 
     return true;

@@ -49,6 +49,7 @@ ApplicationWindow {
     property variant recentlyAddedPeriods: [10800, 21600, 43200, 86400, 172800, 604800]
     // deactivate smart lists at startup
     property int smartListType: -1
+    // specify tag if the smart list of tagged tasks is selected
     property int tagId
     // define names of smart lists
     //: names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
@@ -68,8 +69,68 @@ ApplicationWindow {
     property int recentlyAddedOffset
     property bool doneTasksStrikedThrough
 
-    initialPage: Component { TaskPage {} }
+    initialPage: DB.schemaIsUpToDate() ? initialTaskPage : migrateConfirmation
     cover: Component { CoverPage {} }
+
+    Component {
+        id: initialTaskPage
+        TaskPage { }
+    }
+
+    Component {
+        id: migrateConfirmation
+        Dialog {
+            Column {
+                width: parent.width
+                spacing: Theme.paddingLarge
+                DialogHeader {
+                    acceptText: qsTr("Exit")
+                }
+                Label {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("ATTENTION")
+                    font.pixelSize: Theme.fontSizeMedium
+                }
+                Label {
+                    width: 480
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: Theme.fontSizeSmall
+                    font.italic: true
+                    text: qsTr("A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
+                    wrapMode: Text.WordWrap
+                }
+                Label {
+                    width: 480
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("Please select an action to proceed.")
+                    wrapMode: Text.WordWrap
+                }
+                Row {
+                    spacing: Theme.paddingLarge
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Button {
+                        text: qsTr("Delete")
+                        onClicked: {
+                            if (DB.replaceOldDB())
+                                pageStack.replace(initialTaskPage)
+                            else
+                                Qt.quit()
+                        }
+                    }
+                    Button {
+                        text: qsTr("Upgrade")
+                        onClicked: {
+                            if (DB.replaceOldDB(true))
+                                pageStack.replace(initialTaskPage)
+                            else
+                                Qt.quit()
+                        }
+                    }
+                }
+            }
+            onAccepted: Qt.quit()
+        }
+    }
 
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
