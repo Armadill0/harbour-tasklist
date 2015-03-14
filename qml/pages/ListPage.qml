@@ -32,8 +32,10 @@ Page {
     property int totalTomorrow
 
     // helper function to add lists to the list
-    function appendList(packedList) {
-        listListModel.append(packedList)
+    function appendList(ID, name, total, pending, recent, today, tomorrow) {
+        listListModel.append({ listid: ID, listname: name, total: total,
+                               pending: pending, recent: recent,
+                               today: today, tomorrow: tomorrow });
     }
 
     // helper function to wipe the list element
@@ -212,7 +214,7 @@ Page {
                     if (listNew.length > 0) {
                         var newId = DB.writeList(listNew)
                         if (newId >= 0) {
-                            listPage.appendList(newId, listNew)
+                            appendList(newId, listNew, 0, 0, 0, 0, 0)
                             // reset textfield
                             listAdd.text = ""
                         } else {

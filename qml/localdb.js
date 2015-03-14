@@ -503,9 +503,7 @@ function readLists(recently, callback) {
             [recently, midnight, midnight, tomorrowMidnight]);
         for(var i = 0; i < result.rows.length; i++) {
             var item = result.rows.item(i);
-            callback({ listid: item.ID, listname: item.ListName, total: item.total,
-                       pending: item.pending, recent: item.recent,
-                       today: item.today, tomorrow: item.tomorrow });
+            callback(item.ID, item.ListName, item.total, item.pending, item.recent, item.today, item.tomorrow);
         }
     });
 }
