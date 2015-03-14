@@ -118,9 +118,13 @@ Page {
                         readOnly = true
                     }
                 }
+
+                onClicked: onClick()
             }
 
-            onClicked: {
+            onClicked: onClick()
+
+            function onClick() {
                 // at first set tagId, then change smart list type,
                 //  because smart list type change is being monitored
                 taskListWindow.tagId = tagId
