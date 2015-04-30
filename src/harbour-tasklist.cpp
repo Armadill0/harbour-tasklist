@@ -61,9 +61,10 @@ int main(int argc, char *argv[])
     qmlRegisterType<TasksExport>("harbour.tasklist.tasks_export", 1, 0, "TasksExport");
 
     QQuickView* view = SailfishApp::createView();
+    QObject::connect(view->engine(), SIGNAL(quit()), app, SLOT(quit()));
     view->rootContext()->setContextProperty("version", appversion);
     view->setSource(SailfishApp::pathTo("qml/harbour-tasklist.qml"));
-    view->show();
+    view->show();    
 
     return app->exec();
 }

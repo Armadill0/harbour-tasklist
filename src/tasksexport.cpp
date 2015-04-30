@@ -8,7 +8,7 @@ TasksExport::TasksExport(QObject *parent) :
 {
 }
 
-QString TasksExport::loadTasks(const QString &path) const
+QString TasksExport::load(const QString &path) const
 {
     QString result;
     if (path.isEmpty())
@@ -18,6 +18,7 @@ QString TasksExport::loadTasks(const QString &path) const
         return result;
 
     QTextStream in(&file);
+    in.setCodec("UTF-8");
     result = in.readAll();
 
     file.close();
@@ -46,6 +47,7 @@ bool TasksExport::save(const QString &tasks) const
         return false;
 
     QTextStream out(&file);
+    out.setCodec("UTF-8");
     out << tasks;
 
     file.close();
