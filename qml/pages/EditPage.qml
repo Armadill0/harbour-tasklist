@@ -32,6 +32,7 @@ Dialog {
     property bool taskstatus
     // format - ISO 8601, empty if not set
     property string taskduedate
+    property string taskcreationdate
     property int taskpriority
     property string tasknote
     property int listid
@@ -41,7 +42,7 @@ Dialog {
 
     function getDueDate(isoDate) {
         if (isoDate.length === 0)
-            return qsTr("no due date")
+            return qsTr("none (tap to select)")
         var dueDate = new Date(isoDate)
         var dueDateString = new Date(isoDate).toDateString()
         var today = new Date()
@@ -94,6 +95,7 @@ Dialog {
             var details = DB.getTaskDetails(taskid)
             taskstatus = parseInt(details.Status) === 1
             taskduedate = details.DueDate ? (new Date(details.DueDate).toISOString()) : ""
+            taskcreationdate = new Date(details.CreationDate)
             taskpriority = parseInt(details.Priority)
             tasknote = details.Note || ""
             tasktags = DB.readTaskTags(taskid).join(", ")
@@ -144,17 +146,13 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit task")
+                title: qsTr("Edit") + " '" + taskname + "'"
                 //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }
 
-            TextSwitch {
-                id: taskStatus
-                anchors.horizontalCenter: parent.Center
-                //: choose if this task is pending or done
-                text: taskStatus.checked ? qsTr("task is opened") : qsTr("task is closed")
-                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
+            SectionHeader {
+                text: qsTr("Task properties")
             }
 
             TextField {
@@ -162,7 +160,7 @@ Dialog {
                 width: parent.width
                 text: taskname
                 //: information how the currently made changes can be saved
-                label: errorHighlight ? qsTr("task already exists on this list!") : qsTr("task name")
+                label: errorHighlight ? qsTr("Task already exists on this list!") : qsTr("Task name")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
                 onTextChanged: {
@@ -172,11 +170,19 @@ Dialog {
                 }
             }
 
+            TextSwitch {
+                id: taskStatus
+                anchors.horizontalCenter: parent.Center
+                //: choose if this task is pending or done
+                text: taskListWindow.statusOpen(checked) ? qsTr("task is open") : qsTr("task is done")
+                checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
+            }
+
             ComboBox {
                 id: listLocatedIn
                 anchors.left: parent.left
                 //: option to change the list where the task should be located
-                label: qsTr("list") + ":"
+                label: qsTr("List") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -192,40 +198,35 @@ Dialog {
                 }
             }
 
-            ValueButton {
-                id: editTags
-                value: selected || qsTr("not selected")
-                label: qsTr("tags:")
-                property string selected: tasktags
-
-                onClicked: {
-                    var dialog = pageStack.push("TagDialog.qml", { selected: selected })
-                    dialog.accepted.connect(function() {
-                        selected = dialog.selected
-                    })
-                }
-            }
-
             Slider {
                 id: taskPriority
                 width: parent.width
-                label: qsTr("priority")
-                minimumValue: 0
-                maximumValue: 3
+                label: qsTr("Priority")
+                minimumValue: taskListWindow.minimumPriority
+                maximumValue: taskListWindow.maximumPriority
                 stepSize: 1
                 value: editTaskPage.taskpriority
                 valueText: value.toString()
             }
 
+            SectionHeader {
+                text: qsTr("Dates")
+            }
+
             Row {
-                spacing: Theme.paddingSmall
-                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
+
+                Label {
+                    anchors.verticalCenter: clearButton.verticalCenter
+                    text: qsTr("Due") + ": "
+                }
 
                 TextField {
                     id: taskDueDate
                     anchors {
                         verticalCenter: clearButton.verticalCenter
-                        verticalCenterOffset: 20
+                        verticalCenterOffset: Theme.paddingLarge
                     }
                     // save due date value in component, because page's value would be lost after page re-activation
                     property string value: taskduedate
@@ -258,28 +259,41 @@ Dialog {
                 }
             }
 
+            Label {
+                id: taskCreationDate
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
+                //: displays the date when the task has been created by the user
+                text: qsTr("Created") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
+            }
+
+            SectionHeader {
+                text: qsTr("Tags")
+            }
+
+            ValueButton {
+                id: editTags
+                value: selected || qsTr("none (tap to select)")
+                label: qsTr("tags:")
+                property string selected: tasktags
+
+                onClicked: {
+                    var dialog = pageStack.push("TagDialog.qml", { selected: selected })
+                    dialog.accepted.connect(function() {
+                        selected = dialog.selected
+                    })
+                }
+            }
+
             SectionHeader {
                 text: qsTr("Notes")
             }
 
             TextArea {
                 id: taskNote
-                width: 480
-                height: 180
-                anchors.horizontalCenter: parent.horizontalCenter
-                placeholderText: qsTr("Enter notes here")
-                placeholderColor: "gray"
-                background: Rectangle {
-                    color: "white"
-                    width: parent.width
-                    height: parent.height
-                }
-
+                width: parent.width
+                placeholderText: qsTr("Enter your notes or description here")
                 focus: false
-                color: "black"
-                font.pointSize: Theme.fontSizeSmall
-                cursorColor: "black"
-
                 text: tasknote
             }
         }

@@ -34,7 +34,7 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
 
 MouseArea {
@@ -52,7 +52,7 @@ MouseArea {
     property bool highlighted: down
     property bool busy
     property int priorityValue
-    property variant priorityColors: ["white", "blue", "green", "red"]
+    property variant priorityColors: ["--", "-", "o", "+", "++"]
 
     width: parent ? parent.width : Screen.width
     implicitHeight: Math.max(toggle.height, desc.y + desc.height)
@@ -144,12 +144,11 @@ MouseArea {
         }
         visible: priorityValue > 0
 
-        GlassItem {
+        Label {
             id: prioIndicator
             anchors.centerIn: parent
-            opacity: checked ? 1.0 : 0.3
-            falloffRadius: 0.1
-            color: priorityColors[priorityValue]
+            opacity: checked ? 1.0 : 0.4
+            text: priorityColors[priorityValue - 1]
         }
     }
 
@@ -160,7 +159,7 @@ MouseArea {
             right: parent.right
             rightMargin: root.rightMargin
         }
-        opacity: checked ? 1.0 : 0.3
+        opacity: checked ? 1.0 : 0.4
         font.pixelSize: Theme.fontSizeExtraSmall
         color: Theme.secondaryColor
     }

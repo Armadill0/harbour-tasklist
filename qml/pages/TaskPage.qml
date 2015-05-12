@@ -79,13 +79,13 @@ Page {
     function appendTask(id, task, status, listid, dueDate, priority) {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
                                listid: listid, listname: DB.getListName(listid),
-                               dueDate: humanDueDate(dueDate), priority: priority || 0 })
+                               dueDate: humanDueDate(dueDate), priority: priority || taskListWindow.defaultPriority })
     }
 
     function insertNewTask(index, id, task, listid) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
                                       listid: listid, listname: DB.getListName(listid),
-                                      dueDate: "", priority: 0 })
+                                      dueDate: "", priority: taskListWindow.defaultPriority })
     }
 
     // helper function to wipe the tasklist element
@@ -150,7 +150,7 @@ Page {
         onTriggered: taskListWindow.deactivate()
     }
 
-    // workaround timer to force focus back top textfield after adding new task
+    // workaround timer to force focus back to textfield after adding new task
     Timer {
         id: timerAddTask
         interval: 100
@@ -273,7 +273,7 @@ Page {
                     var taskNew = newTask !== undefined ? newTask : taskAdd.text
                     if (taskNew.length > 0) {
                         // add task to db and tasklist
-                        var newid = DB.writeTask(listid, taskNew, 1, 0, 0, 0, "")
+                        var newid = DB.writeTask(listid, taskNew, 1, 0, 0, taskListWindow.defaultPriority, "")
                         // catch sql errors
                         if (newid >= 0) {
                             insertNewTask(0, newid, taskNew, listid)
