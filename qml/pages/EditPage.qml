@@ -47,20 +47,21 @@ Dialog {
         var dueDateString = new Date(isoDate).toDateString()
         var today = new Date()
         if (dueDateString === today.toDateString())
-            return qsTr("until today")
+            return qsTr("today")
         var tomorrow = new Date(today.getTime() + 24 * 3600 * 1000)
         if (dueDateString === tomorrow.toDateString())
-            return qsTr("until tomorrow")
-        var result = dueDate.toLocaleDateString()
+            return qsTr("tomorrow")
+        //var result = dueDate.toLocaleDateString()
+        var result = Qt.formatDate(dueDate).toLocaleString(Qt.locale())
         // remove year if the date is in the current year
-        if (dueDate.getFullYear() === today.getFullYear()) {
+        /*if (dueDate.getFullYear() === today.getFullYear()) {
             var year = " " + dueDate.getFullYear();
             var begin = result.indexOf(year);
             var end = begin + year.length;
             if (begin >= 0)
                 result = result.slice(0, begin) + result.slice(end);
-        }
-        return qsTr("until ") + result;
+        }*/
+        return result;
     }
 
     // helper function to add lists to the listLocation field
@@ -219,7 +220,7 @@ Dialog {
 
                 Label {
                     anchors.verticalCenter: clearButton.verticalCenter
-                    text: qsTr("Due") + ": "
+                    text: qsTr("Due") + ":"
                 }
 
                 TextField {
@@ -274,7 +275,7 @@ Dialog {
             ValueButton {
                 id: editTags
                 value: selected || qsTr("none (tap to select)")
-                label: qsTr("tags:")
+                label: qsTr("Tags") + ":"
                 property string selected: tasktags
 
                 onClicked: {
