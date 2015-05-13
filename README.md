@@ -3,6 +3,15 @@ harbour-tasklist
 
 A small but mighty program to manage your daily tasks.
 
+Pull-Requests
+================
+Pull-Requests are always welcome. But please respect the following rules to make the life of the collaborators easier. ;-)
+- All Pull-Requests have to be sent to the "next" branch!
+- Don't use fixed pixel sizes for elements, anchors or anything else in the code.
+- Don't remove features (neither small ones) without asking to do so.
+- If there's a ticket which has been solved by a commit, please mark it with the default Github referencing possibilities.
+- Don't use colored text or UI elements. Please read the SailfishOS Design Giudelines if not already done: https://sailfishos.org/design/
+
 Contact
 ================
 Email: tasklist [at] penguinfriends [dot] org

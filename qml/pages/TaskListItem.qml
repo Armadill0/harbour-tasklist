@@ -127,12 +127,13 @@ MouseArea {
         anchors {
             top: label.bottom
             left: label.left
-            right: prio.left
+            right: parent.right
             rightMargin: Theme.smallMargin
         }
-        wrapMode: Text.Wrap
+        wrapMode: Text.NoWrap
         font.pixelSize: Theme.fontSizeExtraSmall
         color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+        truncationMode: TruncationMode.Elide
     }
 
     Item {

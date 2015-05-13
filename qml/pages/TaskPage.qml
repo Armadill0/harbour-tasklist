@@ -61,16 +61,16 @@ Page {
         }
         var tags = DB.readTaskTags(task.taskid)
         for (var i in tags) {
-            var next = "#" + tags[i]
+            var next = tags[i]
             // total sum of tokens + spaces after each token + new token
             if (len + tokens.length + next.length > 20) {
-                tokens.push("..")
+                tokens.push("...")
                 break
             }
             tokens.push(next)
             len += next.length
         }
-        return tokens.join("  ")
+        return tokens.length > 0 ? qsTr("Tags: ") + tokens.join(", ") + " - Notes: a small example" : ""
     }
 
     // helper function to add tasks to the list
