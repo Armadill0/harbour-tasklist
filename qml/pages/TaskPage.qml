@@ -70,7 +70,7 @@ Page {
             tokens.push(next)
             len += next.length
         }
-        return tokens.length > 0 ? qsTr("Tags: ") + tokens.join(", ") + " - Notes: a small example" : ""
+        return tokens.length > 0 ? qsTr("Tags: ") + tokens.join(", ") + " - Notes: a small example blabla" : ""
     }
 
     // helper function to add tasks to the list
@@ -368,6 +368,11 @@ Page {
                 //: menu item to delete all done tasks
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
+            }
+            MenuItem {
+                //: menu item to switch to export/import page
+                text: qsTr("Export/Import data")
+                onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
         }
         PushUpMenu {

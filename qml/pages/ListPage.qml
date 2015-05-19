@@ -237,14 +237,6 @@ Page {
                 //: headline for the user created lists
                 text: qsTr("Your lists")
             }
-
-            PullDownMenu {
-                MenuItem {
-                    //: menu item to switch to export/import page
-                    text: qsTr("Export/Import data")
-                    onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
-                }
-            }
         }
 
         delegate: ListItem {

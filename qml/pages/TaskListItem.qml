@@ -141,7 +141,7 @@ MouseArea {
         width: Theme.itemSizeExtraSmall
         height: Theme.itemSizeSmall
         anchors {
-            right: due.left
+            left: label.right
         }
         visible: priorityValue > 0
 
@@ -157,7 +157,8 @@ MouseArea {
         id: due
         anchors {
             verticalCenter: toggle.verticalCenter
-            right: parent.right
+            top: label.bottom
+            right: desc.left
             rightMargin: root.rightMargin
         }
         opacity: checked ? 1.0 : 0.4
