@@ -15,6 +15,7 @@ Pull-Requests are always welcome. But please respect the following rules to make
 Contact
 ================
 Email: tasklist [at] penguinfriends [dot] org
+
 IRC: #sailfishos - Freenode
 
 Features
