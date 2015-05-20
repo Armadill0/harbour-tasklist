@@ -50,6 +50,7 @@ Page {
 
             PageHeader {
                 width: parent.width
+                //: headline for the tags page
                 title: qsTr("Manage tags") + " - TaskList"
             }
 
@@ -61,7 +62,9 @@ Page {
             TextField {
                 id: tagAdd
                 width: parent.width
+                //: fallback text if no name for a new tag is specified
                 placeholderText: qsTr("Enter unique tag name")
+                //: hint how to confirm the new tag
                 label: qsTr("Press Enter/Return to add the new tag")
                 EnterKey.enabled: text.length > 2
                 // no whitespaces are allowed, 2 to 64 chars are allowed
@@ -83,7 +86,8 @@ Page {
 
         ViewPlaceholder {
             enabled: tagList.count === 0
-            text: qsTr("no tags to display")
+            //: fallback text if no tags are defined
+            text: qsTr("no tags available")
         }
 
         delegate: ListItem {
@@ -95,6 +99,7 @@ Page {
             property bool menuOpen: tagContextMenu !== null && tagContextMenu.parent === tagListItem
 
             function remove() {
+                //: remorse item when a tag is being deleted
                 tagRemorse.execute(tagListItem, qsTr("Deleting") + " '" + tagListModel.get(index).tagName + "'", function() {
                     DB.removeTag(tagListModel.get(index).tagId)
                     tagListModel.remove(index)
@@ -132,7 +137,7 @@ Page {
                     reloadTagList()
                 }
 
-                // if enter or return is pressed add the new list
+                // if enter or return is pressed add the new tag
                 Keys.onEnterPressed: {
                     changeTag(editTagLabel.text)
                 }
@@ -176,6 +181,7 @@ Page {
                 id: contextMenuComponent
                 ContextMenu {
                     MenuItem {
+                        //: context menu item to edit a tag
                         text: qsTr("Edit")
                         onClicked: {
                             // close contextmenu
@@ -187,6 +193,7 @@ Page {
                         }
                     }
                     MenuItem {
+                        //: context menu item to delete a tag
                         text: qsTr("Delete")
                         onClicked: {
                             tagContextMenu.hide()

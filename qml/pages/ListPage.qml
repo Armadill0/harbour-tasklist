@@ -64,17 +64,22 @@ Page {
     //   but not in Russian, for instance
     function pluralizeItems(count, listType) {
         if (count < 0)
+            //: default string for task count of smart lists, when value is not available (n/a)
             return qsTr("n/a")
         var countStr = count > 999 ? "999+" : count.toString()
         // items can be tags
         if (listType === 5) {
             if (count === 1)
+                //: use %1 as a placeholder for the number of the existing tag, which should always be 1
                 return qsTr("%1 tag").arg(countStr)
+            //: use %1 as a placeholder for the number of existing tags
             return qsTr("%1 tags").arg(countStr)
         }
         // or items can be tasks
         if (count === 1)
+            //: use %1 as a placeholder for the number of tasks of the smart lists
             return qsTr("%1 task").arg(countStr)
+        //: use %1 as a placeholder for the number of tasks of the smart lists
         return qsTr("%1 tasks").arg(countStr)
     }
 

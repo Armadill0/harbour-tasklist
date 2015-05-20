@@ -42,10 +42,13 @@ Page {
         var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
         var dateString = date.toDateString()
         if (dateString === today.toDateString())
+            //: due date string for today
             return qsTr("Today")
         if (dateString === tomorrow.toDateString())
+            //: due date string for tomorrow
             return qsTr("Tomorrow")
         if (dateString === yesterday.toDateString())
+            //: due date string for yesterday
             return qsTr("Yesterday")
         var result = date.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result
@@ -58,9 +61,11 @@ Page {
         var result = []
 
         if (taskListWindow.smartListType >= 0)
+            //: title for the list property in the task description (keep as short as possible)
             result.push(qsTr("List") + ": " + task.listname)
 
         if (typeof(task.dueDate) === "number" && task.dueDate > 0)
+            //: title for the due date in the task description (keep as short as possible)
             result.push(qsTr("Due") + ": " + humanDueDate(task.dueDate))
 
         var tags = DB.readTaskTags(task.taskid)
@@ -69,9 +74,11 @@ Page {
             tokens.push(next)
         }
         if (tokens.length > 0)
+            //: title for the tags in the task description (keep as short as possible)
             result.push(qsTr("Tags") + ": " + tokens.join(", "))
 
         if (task.notes !== "")
+            //: title for the notes in the task description (keep as short as possible)
             result.push(qsTr("Notes") + ": " + task.notes)
 
         return result.join(" - ")
@@ -90,7 +97,8 @@ Page {
     function insertNewTask(index, id, task, listid) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
                                       listid: listid, listname: DB.getListName(listid),
-                                      dueDate: "", priority: taskListWindow.defaultPriority })
+                                      dueDate: 0, priority: taskListWindow.defaultPriority,
+                                      notes: "" })
     }
 
     // helper function to wipe the tasklist element
@@ -102,6 +110,7 @@ Page {
         wipeTaskList()
         if (taskListWindow.smartListType === 5) {
             var tagId = taskListWindow.tagId
+            //: # prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name
             listname = qsTr("#%1").arg(DB.getTagName(tagId))
             DB.readTasksWithTag(tagId, appendTask)
         } else if (taskListWindow.smartListType !== -1) {
@@ -131,6 +140,7 @@ Page {
 
     // function to delete all done tasks
     function deleteDoneTasks() {
+        //: remorse action to delete all done tasks
         tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
@@ -314,6 +324,7 @@ Page {
                                     tasksArray.push(textSplit[i])
 
                         if (tasksArray.length > 0) {
+                            //: remorse action when multiple tasks are added simultaneously
                             tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")", function() {
                                 var addedTasks = []
                                 // add all of them to the DB and the list
@@ -324,7 +335,9 @@ Page {
                                 // notification for added tasks
                                 //: notifying the user that new tasks have been added and which were added exactly (Details)
                                 taskListWindow.pushNotification("INFO",
+                                                                //: notification if multiple tasks were successfully added
                                                                 tasksArray.length + " " + qsTr("new tasks have been added."),
+                                                                //: detailed list which tasks have been added simultaneously
                                                                 qsTr("Details") + ": " + addedTasks.join(', '))
                             } , taskListWindow.remorseOnMultiAdd * 1000)
                         }

@@ -42,19 +42,25 @@ Dialog {
 
     function getDueDate(isoDate) {
         if (isoDate.length === 0)
+            //: default value if no due date is selected
             return qsTr("none (tap to select)")
         var dueDate = new Date(isoDate)
         var dueDateString = new Date(isoDate).toDateString()
         var today = new Date()
-        if (dueDateString === today.toDateString())
-            return qsTr("Today")
         var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
         var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
+
+        if (dueDateString === today.toDateString())
+            //: due date string for today
+            return qsTr("Today")
         if (dueDateString === tomorrow.toDateString())
+            //: due date string for tomorrow
             return qsTr("Tomorrow")
         if (dueDateString === yesterday.toDateString())
+            //: due date string for yesterday
             return qsTr("Yesterday")
         var result = dueDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
+
         return result;
     }
 
@@ -147,6 +153,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for the section with the task attributes
                 text: qsTr("Task properties")
             }
 
@@ -196,6 +203,7 @@ Dialog {
             Slider {
                 id: taskPriority
                 width: parent.width
+                //: select the tasks priority
                 label: qsTr("Priority")
                 minimumValue: taskListWindow.minimumPriority
                 maximumValue: taskListWindow.maximumPriority
@@ -205,6 +213,7 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for the date and time properties of the task
                 text: qsTr("Dates")
             }
 
@@ -219,6 +228,7 @@ Dialog {
                     }
                     // save due date value in component, because page's value would be lost after page re-activation
                     property string pseudoValue: taskduedate
+                    //: select the due date for a task
                     label: qsTr("Due") + ": "
                     value: getDueDate(pseudoValue)
 
@@ -257,12 +267,15 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for the tags section
                 text: qsTr("Tags")
             }
 
             ValueButton {
                 id: editTags
+                //: default value if no tag is selected
                 value: selected || qsTr("none (tap to select)")
+                //: label for the tags field
                 label: qsTr("Tags") + ":"
                 property string selected: tasktags
 
@@ -275,12 +288,14 @@ Dialog {
             }
 
             SectionHeader {
+                //: headline for the section where notes for the task can be saved
                 text: qsTr("Notes")
             }
 
             TextArea {
                 id: taskNote
                 width: parent.width
+                //: textfield to enter notes
                 placeholderText: qsTr("Enter your notes or description here")
                 focus: false
                 text: tasknote
