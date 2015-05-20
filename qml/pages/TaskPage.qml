@@ -39,11 +39,14 @@ Page {
         var date = new Date(unixTime)
         var today = new Date()
         var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
+        var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
         var dateString = date.toDateString()
         if (dateString === today.toDateString())
             return qsTr("Today")
         if (dateString === tomorrow.toDateString())
             return qsTr("Tomorrow")
+        if (dateString === yesterday.toDateString())
+            return qsTr("Yesterday")
         var result = date.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result
     }

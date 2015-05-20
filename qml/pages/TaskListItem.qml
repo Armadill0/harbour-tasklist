@@ -51,7 +51,7 @@ MouseArea {
     property bool highlighted: down
     property bool busy
     property int priorityValue
-    property variant priorityColors: ["--", "-", "o", "+", "++"]
+    property variant priorityColors: ["--", "-", "", "+", "++"]
 
     width: parent ? parent.width : Screen.width
     implicitHeight: Math.max(toggle.height, desc.y + desc.height)
@@ -134,9 +134,8 @@ MouseArea {
         Label {
             id: prioIndicator
             anchors.centerIn: parent
-            opacity: checked ? 1.0 : 0.4
             text: priorityColors[priorityValue - 1]
-            color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+            color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
         }
     }
 

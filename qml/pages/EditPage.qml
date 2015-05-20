@@ -47,10 +47,13 @@ Dialog {
         var dueDateString = new Date(isoDate).toDateString()
         var today = new Date()
         if (dueDateString === today.toDateString())
-            return qsTr("today")
-        var tomorrow = new Date(today.getTime() + 24 * 3600 * 1000)
+            return qsTr("Today")
+        var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
+        var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
         if (dueDateString === tomorrow.toDateString())
-            return qsTr("tomorrow")
+            return qsTr("Tomorrow")
+        if (dueDateString === yesterday.toDateString())
+            return qsTr("Yesterday")
         var result = dueDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result;
     }
@@ -96,8 +99,8 @@ Dialog {
 
     onAccepted: {
         var dueDate = 0
-        if (taskDueDate.value.length > 0)
-            dueDate = new Date(taskDueDate.value).getTime()
+        if (taskDueDate.pseudoValue.length > 0)
+            dueDate = new Date(taskDueDate.pseudoValue).getTime()
         var result = DB.updateTask(taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
                                    taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0,
                                    dueDate, 0,
@@ -207,33 +210,27 @@ Dialog {
 
             Row {
                 width: parent.width - 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
 
-                Label {
-                    anchors.verticalCenter: clearButton.verticalCenter
-                    text: qsTr("Due") + ":"
-                }
-
-                TextField {
+                ValueButton {
                     id: taskDueDate
+                    width: parent.width - clearButton.width
                     anchors {
                         verticalCenter: clearButton.verticalCenter
-                        verticalCenterOffset: Theme.paddingLarge
                     }
                     // save due date value in component, because page's value would be lost after page re-activation
-                    property string value: taskduedate
-                    text: getDueDate(value)
-                    readOnly: true
+                    property string pseudoValue: taskduedate
+                    label: qsTr("Due") + ": "
+                    value: getDueDate(pseudoValue)
 
-                    onValueChanged: text = getDueDate(value)
+                    onPseudoValueChanged: value = getDueDate(pseudoValue)
 
                     onClicked: {
                         var hint = new Date()
-                        if (value.length > 0)
-                            hint = new Date(value)
+                        if (pseudoValue.length > 0)
+                            hint = new Date(pseudoValue)
                         var dialog = pageStack.push(pickerComponent, { date: hint })
                         dialog.accepted.connect(function() {
-                            taskDueDate.value = dialog.date.toISOString()
+                            taskDueDate.pseudoValue = dialog.date.toISOString()
                         })
                     }
 
@@ -246,8 +243,8 @@ Dialog {
                 IconButton {
                     id: clearButton
                     icon.source: "image://theme/icon-m-clear"
-                    enabled: taskDueDate.value.length > 0
-                    onClicked: taskDueDate.value = ""
+                    enabled: taskDueDate.pseudoValue.length > 0
+                    onClicked: taskDueDate.pseudoValue = ""
                 }
             }
 

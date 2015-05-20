@@ -50,7 +50,7 @@ Page {
 
             PageHeader {
                 width: parent.width
-                title: qsTr("Tags")
+                title: qsTr("Manage tags") + " - TaskList"
             }
 
             TextField {
