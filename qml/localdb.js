@@ -134,7 +134,7 @@ function initializeDB() {
 function applyCallbackToTasks(callback, result) {
     for (var i = 0; i < result.rows.length; ++i) {
         var task = result.rows.item(i);
-        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority);
+        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority, task.Note);
     }
 }
 

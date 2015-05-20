@@ -42,7 +42,6 @@ MouseArea {
 
     property alias text: label.text
     property alias description: desc.text
-    property alias dueDateValue: due.text
 
     property bool checked
     property bool automaticCheck: true
@@ -64,6 +63,7 @@ MouseArea {
         height: Theme.itemSizeSmall
         anchors {
             left: parent.left; leftMargin: root.leftMargin
+
         }
 
         GlassItem {
@@ -105,6 +105,7 @@ MouseArea {
             }
         }
     }
+
     Label {
         id: label
         opacity: root.enabled ? 1.0 : 0.4
@@ -114,25 +115,10 @@ MouseArea {
             verticalCenterOffset: lineCount > 1 ? (lineCount-1)*height/lineCount/2 : 0
             left: toggle.right
             right: prio.left
-            rightMargin: Theme.smallMargin
-        }
-        wrapMode: Text.Wrap
-        font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !checked : false
-        color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
-    }
-    Label {
-        id: desc
-        height: text.length ? (implicitHeight + Theme.paddingMedium) : 0
-        opacity: root.enabled ? 1.0 : 0.4
-        anchors {
-            top: label.bottom
-            left: label.left
-            right: parent.right
-            rightMargin: Theme.smallMargin
         }
         wrapMode: Text.NoWrap
-        font.pixelSize: Theme.fontSizeExtraSmall
-        color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+        font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !checked : false
+        color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
         truncationMode: TruncationMode.Elide
     }
 
@@ -141,7 +127,7 @@ MouseArea {
         width: Theme.itemSizeExtraSmall
         height: Theme.itemSizeSmall
         anchors {
-            left: label.right
+            right: parent.right
         }
         visible: priorityValue > 0
 
@@ -150,20 +136,24 @@ MouseArea {
             anchors.centerIn: parent
             opacity: checked ? 1.0 : 0.4
             text: priorityColors[priorityValue - 1]
+            color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
         }
     }
 
     Label {
-        id: due
+        id: desc
+        height: text.length ? (implicitHeight + Theme.paddingMedium) : 0
+        opacity: root.enabled ? 1.0 : 0.4
         anchors {
-            verticalCenter: toggle.verticalCenter
             top: label.bottom
-            right: desc.left
-            rightMargin: root.rightMargin
+            left: label.left
+            right: parent.right
+            rightMargin: Theme.paddingLarge
         }
-        opacity: checked ? 1.0 : 0.4
+        wrapMode: Text.NoWrap
         font.pixelSize: Theme.fontSizeExtraSmall
-        color: Theme.secondaryColor
+        color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+        truncationMode: TruncationMode.Elide
     }
 
     onClicked: {

@@ -51,16 +51,7 @@ Dialog {
         var tomorrow = new Date(today.getTime() + 24 * 3600 * 1000)
         if (dueDateString === tomorrow.toDateString())
             return qsTr("tomorrow")
-        //var result = dueDate.toLocaleDateString()
-        var result = Qt.formatDate(dueDate).toLocaleString(Qt.locale())
-        // remove year if the date is in the current year
-        /*if (dueDate.getFullYear() === today.getFullYear()) {
-            var year = " " + dueDate.getFullYear();
-            var begin = result.indexOf(year);
-            var end = begin + year.length;
-            if (begin >= 0)
-                result = result.slice(0, begin) + result.slice(end);
-        }*/
+        var result = dueDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result;
     }
 

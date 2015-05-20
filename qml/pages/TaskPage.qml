@@ -44,9 +44,7 @@ Page {
             return qsTr("Today")
         if (dateString === tomorrow.toDateString())
             return qsTr("Tomorrow")
-        var result = date.getDate() + "/" + (date.getMonth() + 1)
-        if (date.getFullYear() !== today.getFullYear())
-            result = result + "/" + date.getFullYear()
+        var result = date.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result
     }
 
@@ -54,32 +52,36 @@ Page {
         if (typeof(task) === "undefined")
             return ""
         var tokens = []
-        var len = 0
-        if (taskListWindow.smartListType >= 0) {
-            tokens.push(task.listname)
-            len += task.listname
-        }
+        var result = []
+
+        if (taskListWindow.smartListType >= 0)
+            result.push(qsTr("List") + ": " + task.listname)
+
+        if (typeof(task.dueDate) === "number" && task.dueDate > 0)
+            result.push(qsTr("Due") + ": " + humanDueDate(task.dueDate))
+
         var tags = DB.readTaskTags(task.taskid)
         for (var i in tags) {
             var next = tags[i]
-            // total sum of tokens + spaces after each token + new token
-            if (len + tokens.length + next.length > 20) {
-                tokens.push("...")
-                break
-            }
             tokens.push(next)
-            len += next.length
         }
-        return tokens.length > 0 ? qsTr("Tags: ") + tokens.join(", ") + " - Notes: a small example blabla" : ""
+        if (tokens.length > 0)
+            result.push(qsTr("Tags") + ": " + tokens.join(", "))
+
+        if (task.notes !== "")
+            result.push(qsTr("Notes") + ": " + task.notes)
+
+        return result.join(" - ")
     }
 
     // helper function to add tasks to the list
     // @status - boolean
     // @dueDate - number, in milliseconds
-    function appendTask(id, task, status, listid, dueDate, priority) {
+    function appendTask(id, task, status, listid, dueDate, priority, notes) {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
                                listid: listid, listname: DB.getListName(listid),
-                               dueDate: humanDueDate(dueDate), priority: priority || taskListWindow.defaultPriority })
+                               dueDate: dueDate, priority: priority || taskListWindow.defaultPriority,
+                               notes: notes })
     }
 
     function insertNewTask(index, id, task, listid) {
@@ -452,7 +454,6 @@ Page {
                 // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
                 description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
-                dueDateValue: dueDate
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
 
