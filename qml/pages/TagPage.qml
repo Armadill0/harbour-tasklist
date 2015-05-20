@@ -53,10 +53,15 @@ Page {
                 title: qsTr("Manage tags") + " - TaskList"
             }
 
+            SectionHeader {
+                //: headline to create new tags
+                text: qsTr("Add new tag")
+            }
+
             TextField {
                 id: tagAdd
                 width: parent.width
-                placeholderText: qsTr("Enter a unique tag")
+                placeholderText: qsTr("Enter unique tag name")
                 label: qsTr("Press Enter/Return to add the new tag")
                 EnterKey.enabled: text.length > 2
                 // no whitespaces are allowed, 2 to 64 chars are allowed
@@ -69,6 +74,11 @@ Page {
                     reloadTagList()
                 }
             }
+
+            SectionHeader {
+                //: headline for the user created tags
+                text: qsTr("Your tags")
+            }
         }
 
         ViewPlaceholder {
@@ -79,7 +89,7 @@ Page {
         delegate: ListItem {
             id: tagListItem
             width: ListView.view.width
-            height: menuOpen ? tagContextMenu.height + tagLabel.height : tagLabel.height
+            contentHeight: menuOpen ? tagContextMenu.height + editTagLabel.height : editTagLabel.height
 
             property Item tagContextMenu
             property bool menuOpen: tagContextMenu !== null && tagContextMenu.parent === tagListItem
@@ -95,20 +105,39 @@ Page {
                 id: tagRemorse
             }
 
-            TextField {
+            // additional label to fix the problem that textfield catchs pressandhold context menu events
+            Label {
                 id: tagLabel
-                readOnly: true
+                text: tagName
+                width: parent.width
+                x: Theme.paddingLarge
+                height: editTagLabel.height * 0.55
+                anchors.top: parent.top
+                verticalAlignment: Text.AlignVCenter
+                truncationMode: TruncationMode.Fade
+            }
+
+            TextField {
+                id: editTagLabel
                 x: Theme.paddingSmall
                 text: tagName
+                visible: false
                 EnterKey.enabled: text.length > 2
                 // no whitespaces are allowed, 2 to 64 chars are allowed
                 validator: RegExpValidator { regExp: /^\S{2,64}$/ }
 
-                EnterKey.onClicked: {
-                    readOnly = true
+                function changeTag(newName) {
                     // FIXME reset w/o reloading if update failed
-                    DB.updateTag(tagId, text)
+                    DB.updateTag(tagId, newName)
                     reloadTagList()
+                }
+
+                // if enter or return is pressed add the new list
+                Keys.onEnterPressed: {
+                    changeTag(editTagLabel.text)
+                }
+                Keys.onReturnPressed: {
+                    changeTag(editTagLabel.text)
                 }
 
                 onActiveFocusChanged: {
@@ -149,9 +178,12 @@ Page {
                     MenuItem {
                         text: qsTr("Edit")
                         onClicked: {
+                            // close contextmenu
                             tagContextMenu.hide()
-                            tagLabel.readOnly = false
-                            tagLabel.forceActiveFocus()
+                            editTagLabel.text = tagListModel.get(index).tagName
+                            tagLabel.visible = false
+                            editTagLabel.visible = true
+                            editTagLabel.forceActiveFocus()
                         }
                     }
                     MenuItem {
