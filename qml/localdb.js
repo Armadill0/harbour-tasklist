@@ -36,6 +36,26 @@ function createDB(tx) {
     tx.executeSql("CREATE UNIQUE INDEX uid ON tasks(ID, Task, ListID);");
 }
 
+function dropDB() {
+    console.log("dropping all tables from DB...");
+
+    var db = connectDB();
+    db.transaction(function(tx) {
+        tx.executeSql("DROP TABLE IF EXISTS lists");
+        tx.executeSql("DROP TABLE IF EXISTS tasks");
+        tx.executeSql("DROP TABLE IF EXISTS tags");
+        tx.executeSql("DROP TABLE IF EXISTS task_tags");
+        tx.executeSql("DROP TABLE IF EXISTS settings");
+        tx.executeSql("COMMIT;");
+    });
+
+    db.transaction(function(tx) {
+        createDB(tx);
+    });
+
+    return db;
+}
+
 function connectDB() {
     // connect to the local database: a version is not specified, so that it could be increased later
     return LS.LocalStorage.openDatabaseSync("TaskList", "", "TaskList Database", 100000);

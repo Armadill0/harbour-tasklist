@@ -96,7 +96,7 @@ ApplicationWindow {
                     font.pixelSize: Theme.fontSizeMedium
                 }
                 Label {
-                    width: 480
+                    width: parent.width - 2 * Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: Theme.fontSizeSmall
                     font.italic: true
@@ -104,7 +104,7 @@ ApplicationWindow {
                     wrapMode: Text.WordWrap
                 }
                 Label {
-                    width: 480
+                    width: parent.width - 2 * Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Please select an action to proceed.")
                     wrapMode: Text.WordWrap

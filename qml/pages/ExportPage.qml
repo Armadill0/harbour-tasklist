@@ -197,6 +197,46 @@ Page {
                 //: Explanation of how importing and exporting data works and where the files are/have to be located.
                 text: qsTr("You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!")
             }
+
+            SectionHeader {
+                //: headline for the database purge
+                text: qsTr("Drop data (very destructive!!!)")
+            }
+
+            Label {
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
+                wrapMode: Text.WordWrap
+                //: warn user of destructive drop DB function
+                text: qsTr("CAUTION: This function will drop all your data immediately! So only use this if you know what you're doing!")
+                color: "red"
+            }
+
+            TextSwitch {
+                id: dropDBconfirmation
+                width: parent.width
+                //: let user confirm the database purge
+                text: qsTr("Yes, I know what I'm doing.")
+            }
+
+            Button {
+                width: parent.width
+                //: Button to import data form the selected file
+                text: qsTr("Drop database")
+                enabled: dropDBconfirmation.checked
+
+                onClicked: {
+                    if (DB.dropDB())
+                        //: informational notification about the successful dropped data tables
+                        taskListWindow.pushNotification("WARNING", qsTr("Successfully dropped all data."), qsTr("Please restart TaskList to work with the new database."))
+                }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
+            }
         }
     }
 }

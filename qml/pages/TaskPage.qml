@@ -77,7 +77,7 @@ Page {
             //: title for the tags in the task description (keep as short as possible)
             result.push(qsTr("Tags") + ": " + tokens.join(", "))
 
-        if (task.notes !== "")
+        if (typeof(task.notes) !== "undefined" && task.notes !== "")
             //: title for the notes in the task description (keep as short as possible)
             result.push(qsTr("Notes") + ": " + task.notes)
 
@@ -361,6 +361,11 @@ Page {
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
+                //: menu item to switch to export/import page
+                text: qsTr("Export/Import data")
+                onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
+            }
+            MenuItem {
                 //: menu item to switch to settings page
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
@@ -386,11 +391,6 @@ Page {
                 //: menu item to delete all done tasks
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
-            }
-            MenuItem {
-                //: menu item to switch to export/import page
-                text: qsTr("Export/Import data")
-                onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
         }
         PushUpMenu {
