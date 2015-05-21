@@ -88,10 +88,12 @@ ApplicationWindow {
                 width: parent.width
                 spacing: Theme.paddingLarge
                 DialogHeader {
+                    //: Stop database upgrade dialog
                     acceptText: qsTr("Exit")
                 }
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
+                    //: get user's attention before starting database upgrade
                     text: qsTr("ATTENTION")
                     font.pixelSize: Theme.fontSizeMedium
                 }
@@ -100,12 +102,14 @@ ApplicationWindow {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: Theme.fontSizeSmall
                     font.italic: true
-                    text: qsTr("A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
+                    //: upgrade description
+                    text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
                     wrapMode: Text.WordWrap
                 }
                 Label {
                     width: parent.width - 2 * Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
+                    //: user has the possibility to choose the database upgrade or delete the old database
                     text: qsTr("Please select an action to proceed.")
                     wrapMode: Text.WordWrap
                 }
@@ -113,6 +117,7 @@ ApplicationWindow {
                     spacing: Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
                     Button {
+                        //: delete old database option
                         text: qsTr("Delete")
                         onClicked: {
                             if (DB.replaceOldDB())
@@ -122,6 +127,7 @@ ApplicationWindow {
                         }
                     }
                     Button {
+                        //: upgrade database option
                         text: qsTr("Upgrade")
                         onClicked: {
                             if (DB.replaceOldDB(true))

@@ -36,6 +36,7 @@ function createDB(tx) {
     tx.executeSql("CREATE UNIQUE INDEX uid ON tasks(ID, Task, ListID);");
 }
 
+// drop current database and recreate everything from scratch
 function dropDB() {
     console.log("dropping all tables from DB...");
 

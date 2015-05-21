@@ -64,33 +64,13 @@
         <translation>Eigenschaften</translation>
     </message>
     <message>
-        <source>Save changes in the upper right corner</source>
-        <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation>Einstellungen rechts oben speichern</translation>
-    </message>
-    <message>
-        <source>task already exists on this list!</source>
-        <translation>Aufgabe existiert bereits in dieser Liste!</translation>
-    </message>
-    <message>
         <source>task is done</source>
-        <extracomment>choose if this task is pending or done</extracomment>
         <translation>Aufgabe erledigt</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Liste</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
-        <translation>Informationen</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <extracomment>displays the date when the task has been created by the user</extracomment>
-        <translation>Erstellt am</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -101,6 +81,79 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Aufgabe konnte nicht gespeichert werden!</translation>
+    </message>
+    <message>
+        <source>none (tap to select)</source>
+        <extracomment>default value if no due date is selected
+----------
+default value if no tag is selected</extracomment>
+        <translation>keins (zum Auswählen antippen)</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Heute</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Gestern</translation>
+    </message>
+    <message>
+        <source>Task already exists on this list!</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
+        <translation>Ausfgabe existiert bereits auf der Liste!</translation>
+    </message>
+    <message>
+        <source>Task name</source>
+        <translation>Aufgabenname</translation>
+    </message>
+    <message>
+        <source>task is open</source>
+        <extracomment>choose if this task is pending or done</extracomment>
+        <translation>Aufgabe ist offen</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
+        <translation>Priorität</translation>
+    </message>
+    <message>
+        <source>Dates</source>
+        <extracomment>headline for the date and time properties of the task</extracomment>
+        <translation>Daten</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>select the due date for a task</extracomment>
+        <translation>Fällig</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>headline for the tags section
+----------
+label for the tags field</extracomment>
+        <translation>Markierungen</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>headline for the section where notes for the task can be saved</extracomment>
+        <translation>Notizen</translation>
+    </message>
+    <message>
+        <source>Enter your notes or description here</source>
+        <extracomment>textfield to enter notes</extracomment>
+        <translation>Bitte Notizen oder eine Beschreibung angeben</translation>
     </message>
 </context>
 <context>
@@ -171,7 +224,7 @@
     <message>
         <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
-        <translation>Du kannst diene Daten in eine json formatierte Datei exportieren und aus einer json formatierten Datei importieren. Bitte beachte dabei, dass ALLE DEINE DATEN, also Aufgaben und Listen, in einer Datei gespeichert werden!</translation>
+        <translation>Du kannst deine Daten in eine JSON formatierte Datei exportieren und aus einer JSON formatierten Datei importieren. Bitte beachte dabei, dass ALLE DEINE DATEN, also Aufgaben, Listen, usw. in einer Datei gespeichert werden!</translation>
     </message>
 </context>
 <context>
@@ -197,7 +250,7 @@
     </message>
     <message>
         <source>It already exists.</source>
-        <translation>Eine Liste mit diesem namen existiert bereits.</translation>
+        <translation>Eine Liste mit diesem Namen existiert bereits.</translation>
     </message>
     <message>
         <source>Deleting</source>
@@ -266,9 +319,14 @@
         <translation>Deine Listen</translation>
     </message>
     <message>
-        <source>Export/Import data</source>
-        <extracomment>menu item to switch to export/import page</extracomment>
-        <translation>Daten exportieren/importieren</translation>
+        <source>%1 tag</source>
+        <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
+        <translation>%1 Markierung</translation>
+    </message>
+    <message>
+        <source>%1 tags</source>
+        <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
+        <translation>%1 Markierungen</translation>
     </message>
 </context>
 <context>
@@ -422,20 +480,80 @@
     </message>
 </context>
 <context>
+    <name>TagDialog</name>
+    <message>
+        <source>Select tags</source>
+        <translation>Markierungen auswählen</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Bestätigen</translation>
+    </message>
+</context>
+<context>
+    <name>TagPage</name>
+    <message>
+        <source>Manage tags</source>
+        <extracomment>headline for the tags page</extracomment>
+        <translation>Verwalte Markierungen</translation>
+    </message>
+    <message>
+        <source>Add new tag</source>
+        <extracomment>headline to create new tags</extracomment>
+        <translation>Neue Markierung hinzufügen</translation>
+    </message>
+    <message>
+        <source>Enter unique tag name</source>
+        <extracomment>fallback text if no name for a new tag is specified</extracomment>
+        <translation>Eindeutige Markierung angeben</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to add the new tag</source>
+        <extracomment>hint how to confirm the new tag</extracomment>
+        <translation>Neue Markierung mit Enter/Return bestätigen</translation>
+    </message>
+    <message>
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Deine Markierungen</translation>
+    </message>
+    <message>
+        <source>no tags available</source>
+        <extracomment>fallback text if no tags are defined</extracomment>
+        <translation>keine Markierungen verfügbar</translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <extracomment>remorse item when a tag is being deleted</extracomment>
+        <translation>Lösche</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>context menu item to edit a tag</extracomment>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>context menu item to delete a tag</extracomment>
+        <translation>Löschen</translation>
+    </message>
+</context>
+<context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
+        <extracomment>remorse action to delete all done tasks</extracomment>
         <translation>Lösche erledigte Aufgaben</translation>
     </message>
     <message>
         <source>Enter unique task name</source>
         <extracomment>placeholder where the user should enter a name for a new task</extracomment>
-        <translation>Eindeutige Aufgabe eingeben</translation>
+        <translation>Eindeutige Aufgabe angeben</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
         <extracomment>a label to inform the user how to confirm the new task</extracomment>
-        <translation>mit Enter/Return bestätigen</translation>
+        <translation>Neue Aufgabe mit Enter/Return bestätigen</translation>
     </message>
     <message>
         <source>Task could not be added!</source>
@@ -448,11 +566,12 @@
     </message>
     <message>
         <source>Adding multiple tasks</source>
+        <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
         <translation>Mehrere Aufgaben hinzufügen</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
         <translation>neue Aufgaben wurden hinzugefügt.</translation>
     </message>
     <message>
@@ -484,6 +603,7 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
+        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Alle erledigten Aufgaben löschen</translation>
     </message>
     <message>
@@ -517,6 +637,7 @@
     </message>
     <message>
         <source>Details</source>
+        <extracomment>detailed list which tasks have been added simultaneously</extracomment>
         <translation>Details</translation>
     </message>
     <message>
@@ -524,12 +645,57 @@
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Ausrichtung deaktiviert</translation>
     </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Heute</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Gestern</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
+        <translation>Liste</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
+        <translation>Fällig</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
+        <translation>Markierungen</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
+        <translation>Notizen</translation>
+    </message>
+    <message>
+        <source>#%1</source>
+        <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
+        <translation>#%1</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Daten exportieren/importieren</translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
+        <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Erledigt</translation>
     </message>
     <message>
@@ -539,6 +705,42 @@
     <message>
         <source>New</source>
         <translation>Neu</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Heute</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Markierungen</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Beenden</translation>
+    </message>
+    <message>
+        <source>ATTENTION</source>
+        <translation>ACHTUNG</translation>
+    </message>
+    <message>
+        <source>A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).</source>
+        <translation>Es wurde eine Datenbank von einer alten Applikationsversion gefunden. Alte Datenbanken werden nicht mehr unterstützt. Du kannst sie löschen oder ein Upgrade der Daten versuchen (keine Gewähr für Vollständigkeit).</translation>
+    </message>
+    <message>
+        <source>Please select an action to proceed.</source>
+        <translation>Bitte eine Option auswählen um fortzufahren.</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>Upgrade</translation>
     </message>
 </context>
 </TS>

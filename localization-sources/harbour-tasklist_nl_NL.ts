@@ -64,33 +64,13 @@
         <translation>Taakeigenschappen</translation>
     </message>
     <message>
-        <source>Save changes in the upper right corner</source>
-        <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation>Sla veranderingen op in de rechterbovenhoek</translation>
-    </message>
-    <message>
-        <source>task already exists on this list!</source>
-        <translation>taak bestaat al op deze lijst!</translation>
-    </message>
-    <message>
         <source>task is done</source>
-        <extracomment>choose if this task is pending or done</extracomment>
         <translation>taak is afgerond</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Lijst</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
-        <translation>Informatie</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <extracomment>displays the date when the task has been created by the user</extracomment>
-        <translation>Aangemaakt o</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -101,6 +81,79 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Taak kon niet worden opgeslagen!</translation>
+    </message>
+    <message>
+        <source>none (tap to select)</source>
+        <extracomment>default value if no due date is selected
+----------
+default value if no tag is selected</extracomment>
+        <translation>geen (raak aan om te selecteren)</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Vandaag</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Gisteren</translation>
+    </message>
+    <message>
+        <source>Task already exists on this list!</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
+        <translation>De taak op deze lijst bestaat al!</translation>
+    </message>
+    <message>
+        <source>Task name</source>
+        <translation>Taaknaam</translation>
+    </message>
+    <message>
+        <source>task is open</source>
+        <extracomment>choose if this task is pending or done</extracomment>
+        <translation>De taak is nog niet afgerond</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
+        <translation>Prioriteit</translation>
+    </message>
+    <message>
+        <source>Dates</source>
+        <extracomment>headline for the date and time properties of the task</extracomment>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>select the due date for a task</extracomment>
+        <translation>Verloopt op</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
+        <translation>Gecreërd op</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>headline for the tags section
+----------
+label for the tags field</extracomment>
+        <translation>Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>headline for the section where notes for the task can be saved</extracomment>
+        <translation>Notities</translation>
+    </message>
+    <message>
+        <source>Enter your notes or description here</source>
+        <extracomment>textfield to enter notes</extracomment>
+        <translation>Typ hier uw notities of beschrijving</translation>
     </message>
 </context>
 <context>
@@ -266,9 +319,14 @@
         <translation>Uw lijsten</translation>
     </message>
     <message>
-        <source>Export/Import data</source>
-        <extracomment>menu item to switch to export/import page</extracomment>
-        <translation>Data importeren/exporteren</translation>
+        <source>%1 tag</source>
+        <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
+        <translation>%1 sleutelwoord</translation>
+    </message>
+    <message>
+        <source>%1 tags</source>
+        <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
+        <translation>%1 sleutelwoorden</translation>
     </message>
 </context>
 <context>
@@ -422,9 +480,69 @@
     </message>
 </context>
 <context>
+    <name>TagDialog</name>
+    <message>
+        <source>Select tags</source>
+        <translation>Selecteer sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Bevestigen</translation>
+    </message>
+</context>
+<context>
+    <name>TagPage</name>
+    <message>
+        <source>Manage tags</source>
+        <extracomment>headline for the tags page</extracomment>
+        <translation>Sleutelwoorden beheren</translation>
+    </message>
+    <message>
+        <source>Add new tag</source>
+        <extracomment>headline to create new tags</extracomment>
+        <translation>Nieuw sleutelwoord toevoegen</translation>
+    </message>
+    <message>
+        <source>Enter unique tag name</source>
+        <extracomment>fallback text if no name for a new tag is specified</extracomment>
+        <translation>Typ hier een unieke sleutelwoordnaam</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to add the new tag</source>
+        <extracomment>hint how to confirm the new tag</extracomment>
+        <translation>Druk op Enter om het nieuwe sleutelwoord toe te voegen</translation>
+    </message>
+    <message>
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Uw sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>no tags available</source>
+        <extracomment>fallback text if no tags are defined</extracomment>
+        <translation>er zijn geen sleutelwoorden beschikbaar</translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <extracomment>remorse item when a tag is being deleted</extracomment>
+        <translation>Bezig met verwijderen</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>context menu item to edit a tag</extracomment>
+        <translation>Bewerken</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>context menu item to delete a tag</extracomment>
+        <translation>Verwijderen</translation>
+    </message>
+</context>
+<context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
+        <extracomment>remorse action to delete all done tasks</extracomment>
         <translation>Bezig meg verwijderen van alle afgeronde taken</translation>
     </message>
     <message>
@@ -448,11 +566,12 @@
     </message>
     <message>
         <source>Adding multiple tasks</source>
+        <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
         <translation>Bezig met toevoegen van meerdere taken</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
         <translation>nieuwe taken zijn toegevoegd.</translation>
     </message>
     <message>
@@ -484,6 +603,7 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
+        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Alle afgeronde taken verwijderen</translation>
     </message>
     <message>
@@ -517,6 +637,7 @@
     </message>
     <message>
         <source>Details</source>
+        <extracomment>detailed list which tasks have been added simultaneously</extracomment>
         <translation>Details</translation>
     </message>
     <message>
@@ -524,12 +645,57 @@
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Oriëntatie vergrendeld</translation>
     </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Vandaag</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Gisteren</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
+        <translation>Lijst</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
+        <translation>Verloopt o</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
+        <translation>Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
+        <translation>Notities</translation>
+    </message>
+    <message>
+        <source>#%1</source>
+        <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
+        <translation>#%1</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Data importeren/exporteren</translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
+        <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Klaar</translation>
     </message>
     <message>
@@ -539,6 +705,42 @@
     <message>
         <source>New</source>
         <translation>Nieuw</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Vandaag</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <translation>Morgen</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Afsluiten</translation>
+    </message>
+    <message>
+        <source>ATTENTION</source>
+        <translation>LET OP</translation>
+    </message>
+    <message>
+        <source>A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).</source>
+        <translation>Er is een database gevonden van vorige versies van de app. Oude databases worden niet ondersteund. U kunt de database verwijderen of de data upgraden (bij dit laatste is er geen gegarandeerd resultaat).</translation>
+    </message>
+    <message>
+        <source>Please select an action to proceed.</source>
+        <translation>Selecteer een actie om door te gaan.</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Verwijderen</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>Upgraden</translation>
     </message>
 </context>
 </TS>
