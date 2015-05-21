@@ -124,12 +124,15 @@ Page {
 
             TextField {
                 id: editTagLabel
+                width: parent.width
                 x: Theme.paddingSmall
                 text: tagName
+                //: a label to inform the user how the changes on a tag can be saved
+                label: qsTr("Press Enter/Return to save changes")
                 visible: false
-                EnterKey.enabled: text.length > 2
-                // no whitespaces are allowed, 2 to 64 chars are allowed
-                validator: RegExpValidator { regExp: /^\S{2,64}$/ }
+                EnterKey.enabled: text.length > 0
+                // no whitespaces are allowed, up to 64 chars are allowed
+                validator: RegExpValidator { regExp: /^\S{,64}$/ }
 
                 function changeTag(newName) {
                     // FIXME reset w/o reloading if update failed
@@ -147,10 +150,8 @@ Page {
 
                 onActiveFocusChanged: {
                     // reset textfield when user leaves textfield before confirming changes
-                    if (activeFocus === false) {
+                    if (activeFocus === false)
                         text = tagName
-                        readOnly = true
-                    }
                 }
 
                 onClicked: onClick()

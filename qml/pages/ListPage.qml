@@ -342,7 +342,7 @@ Page {
                 visible: false
                 anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
-                EnterKey.enabled: editListLabel.text.length > 0
+                EnterKey.enabled: text.length > 0
 
                 // set allowed chars and list length
                 validator: RegExpValidator { regExp: /^.{,60}$/ }

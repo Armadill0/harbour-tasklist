@@ -86,26 +86,33 @@ ApplicationWindow {
         Dialog {
             Column {
                 width: parent.width
-                spacing: Theme.paddingLarge
+
                 DialogHeader {
                     //: Stop database upgrade dialog
                     acceptText: qsTr("Exit")
-                }
-                Label {
-                    anchors.horizontalCenter: parent.horizontalCenter
                     //: get user's attention before starting database upgrade
-                    text: qsTr("ATTENTION")
-                    font.pixelSize: Theme.fontSizeMedium
+                    title: qsTr("ATTENTION")
                 }
+
+                SectionHeader {
+                    //: headline for the informational upgrade dialog part
+                    text: qsTr("Information")
+                }
+
                 Label {
                     width: parent.width - 2 * Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
-                    font.pixelSize: Theme.fontSizeSmall
-                    font.italic: true
                     //: upgrade description
                     text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
                     wrapMode: Text.WordWrap
+                    color: "red"
                 }
+
+                SectionHeader {
+                    //: headline for the option section of the upgrade dialog
+                    text: qsTr("Choose an option")
+                }
+
                 Label {
                     width: parent.width - 2 * Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -113,9 +120,10 @@ ApplicationWindow {
                     text: qsTr("Please select an action to proceed.")
                     wrapMode: Text.WordWrap
                 }
+
                 Row {
-                    spacing: Theme.paddingLarge
                     anchors.horizontalCenter: parent.horizontalCenter
+
                     Button {
                         //: delete old database option
                         text: qsTr("Delete")
@@ -126,6 +134,7 @@ ApplicationWindow {
                                 Qt.quit()
                         }
                     }
+
                     Button {
                         //: upgrade database option
                         text: qsTr("Upgrade")

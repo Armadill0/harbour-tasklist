@@ -87,7 +87,7 @@
         <extracomment>default value if no due date is selected
 ----------
 default value if no tag is selected</extracomment>
-        <translation>keins (zum Auswählen antippen)</translation>
+        <translation>keine (zum Auswählen antippen)</translation>
     </message>
     <message>
         <source>Today</source>
@@ -131,7 +131,7 @@ default value if no tag is selected</extracomment>
     <message>
         <source>Due</source>
         <extracomment>select the due date for a task</extracomment>
-        <translation>Fällig</translation>
+        <translation>Fälligkeit</translation>
     </message>
     <message>
         <source>Created</source>
