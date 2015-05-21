@@ -7,6 +7,7 @@ Pull-Requests
 ================
 Pull-Requests are always welcome. But please respect the following rules to make the life of the collaborators easier. ;-)
 - All Pull-Requests have to be sent to the "next" branch!
+- Please send one pull request per Github issue, if possible.
 - Don't use fixed pixel sizes for elements, anchors or anything else in the code.
 - Don't remove features (neither small ones) without asking to do so.
 - If there's a ticket which has been solved by a commit, please mark it with the default Github referencing possibilities.
