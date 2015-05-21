@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
 import harbour.tasklist.tasks_export 1.0
@@ -91,7 +91,7 @@ Page {
                 enabled: exportName.acceptableInput
 
                 onClicked: {
-                    var json = DB.dumpTasks()
+                    var json = DB.dumpData()
                     var ret = exporter.save(json)
                     if (ret) {
                         //: informational notification about the successful eported data
@@ -176,8 +176,8 @@ Page {
                     onClicked: {
                         if (selectedFileName.length === 0)
                             return
-                        var json = exporter.loadTasks(composeFullPath(selectedFileName));
-                        if (DB.importTasks(json)) {
+                        var json = exporter.load(composeFullPath(selectedFileName));
+                        if (DB.importData(json)) {
                             //: informational notification about the successful eported data
                             taskListWindow.pushNotification("INFO", qsTr("Successfully imported all data."), qsTr("Source file path") + ": " + composeFullPath(selectedFileName))
                         }
@@ -196,6 +196,46 @@ Page {
                 wrapMode: Text.WordWrap
                 //: Explanation of how importing and exporting data works and where the files are/have to be located.
                 text: qsTr("You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!")
+            }
+
+            SectionHeader {
+                //: headline for the database purge
+                text: qsTr("Drop data (very destructive!!!)")
+            }
+
+            Label {
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
+                wrapMode: Text.WordWrap
+                //: warn user of destructive drop DB function
+                text: qsTr("CAUTION: This function will drop all your data immediately! So only use this if you know what you're doing!")
+                color: "red"
+            }
+
+            TextSwitch {
+                id: dropDBconfirmation
+                width: parent.width
+                //: let user confirm the database purge
+                text: qsTr("Yes, I know what I'm doing.")
+            }
+
+            Button {
+                width: parent.width
+                //: Button to import data form the selected file
+                text: qsTr("Drop database")
+                enabled: dropDBconfirmation.checked
+
+                onClicked: {
+                    if (DB.dropDB())
+                        //: informational notification about the successful dropped data tables
+                        taskListWindow.pushNotification("WARNING", qsTr("Successfully dropped all data."), qsTr("Please restart TaskList to work with the new database."))
+                }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
             }
         }
     }

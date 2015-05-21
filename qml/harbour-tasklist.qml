@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "pages"
 import "cover"
@@ -49,9 +49,15 @@ ApplicationWindow {
     property variant recentlyAddedPeriods: [10800, 21600, 43200, 86400, 172800, 604800]
     // deactivate smart lists at startup
     property int smartListType: -1
+    // specify tag if the smart list of tagged tasks is selected
+    property int tagId
     // define names of smart lists
-    //: names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-    property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New")]
+    //: names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
+    property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New"), qsTr("Today"), qsTr("Tomorrow"), qsTr("Tags")]
+    // set default priorities
+    property int minimumPriority: 1
+    property int defaultPriority: 3
+    property int maximumPriority: 5
 
     // initilize default settings properties
     property int coverListSelection
@@ -67,11 +73,86 @@ ApplicationWindow {
     property int recentlyAddedOffset
     property bool doneTasksStrikedThrough
 
-    initialPage: Component { TaskPage {} }
+    initialPage: DB.schemaIsUpToDate() ? initialTaskPage : migrateConfirmation
     cover: Component { CoverPage {} }
 
+    Component {
+        id: initialTaskPage
+        TaskPage { }
+    }
+
+    Component {
+        id: migrateConfirmation
+        Dialog {
+            Column {
+                width: parent.width
+
+                DialogHeader {
+                    //: Stop database upgrade dialog
+                    acceptText: qsTr("Exit")
+                    //: get user's attention before starting database upgrade
+                    title: qsTr("ATTENTION")
+                }
+
+                SectionHeader {
+                    //: headline for the informational upgrade dialog part
+                    text: qsTr("Information")
+                }
+
+                Label {
+                    width: parent.width - 2 * Theme.paddingLarge
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    //: upgrade description
+                    text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
+                    wrapMode: Text.WordWrap
+                    color: "red"
+                }
+
+                SectionHeader {
+                    //: headline for the option section of the upgrade dialog
+                    text: qsTr("Choose an option")
+                }
+
+                Label {
+                    width: parent.width - 2 * Theme.paddingLarge
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    //: user has the possibility to choose the database upgrade or delete the old database
+                    text: qsTr("Please select an action to proceed.")
+                    wrapMode: Text.WordWrap
+                }
+
+                Row {
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    Button {
+                        //: delete old database option
+                        text: qsTr("Delete")
+                        onClicked: {
+                            if (DB.replaceOldDB())
+                                pageStack.replace(initialTaskPage)
+                            else
+                                Qt.quit()
+                        }
+                    }
+
+                    Button {
+                        //: upgrade database option
+                        text: qsTr("Upgrade")
+                        onClicked: {
+                            if (DB.replaceOldDB(true))
+                                pageStack.replace(initialTaskPage)
+                            else
+                                Qt.quit()
+                        }
+                    }
+                }
+            }
+            onAccepted: Qt.quit()
+        }
+    }
+
     // a function to check which appearance should be used by open tasks
-    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance ? true : false }
+    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
 
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {

@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "."
 
 Dialog {
     id: editTaskPage
@@ -29,57 +30,102 @@ Dialog {
     property string taskname
     property string taskid
     property bool taskstatus
+    // format - ISO 8601, empty if not set
+    property string taskduedate
     property string taskcreationdate
+    property int taskpriority
+    property string tasknote
     property int listid
     property int listindex
+    // list of tag IDs
+    property string tasktags
 
-    // helper function to add lists to the listLocation field
-    function appendList(id, listname) {
-        listLocationModel.append({"listid": id, "listname": listname})
-        if (id === listid) {
-            listindex = listLocationModel.count - 1
-        }
+    function getDueDate(isoDate) {
+        if (isoDate.length === 0)
+            //: default value if no due date is selected
+            return qsTr("none (tap to select)")
+        var dueDate = new Date(isoDate)
+        var dueDateString = new Date(isoDate).toDateString()
+        var today = new Date()
+        var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
+        var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
+
+        if (dueDateString === today.toDateString())
+            //: due date string for today
+            return qsTr("Today")
+        if (dueDateString === tomorrow.toDateString())
+            //: due date string for tomorrow
+            return qsTr("Tomorrow")
+        if (dueDateString === yesterday.toDateString())
+            //: due date string for yesterday
+            return qsTr("Yesterday")
+        var result = dueDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
+
+        return result;
     }
 
-    function checkTaskUnique (newListID) {
-        return parseInt(DB.checkTask(newListID, taskName.text))
+    // helper function to add lists to the listLocation field
+    function appendList(id, name) {
+        listLocationModel.append({ listid: id, listname: name })
+        if (id === listid)
+            listindex = listLocationModel.count - 1
     }
 
     function checkContent () {
-        var changeListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        var changedListID = listLocationModel.get(listLocatedIn.currentIndex).listid
+        var changedTaskName = taskName.text
+        var count = DB.checkTask(changedListID, changedTaskName)
         // if task already exists in target list, display warning
-        if (checkTaskUnique(changeListID) >= 1 && changeListID != listid) {
+        if (count > 0 && (changedTaskName !== taskname || changedListID !== listid)) {
             taskName.errorHighlight = true
-            editTaskPage.canAccept = false
+            canAccept = false
             // display notification if task already exists on the selected list
             //: informing the user that a new task already exists on the selected list
-            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"), /*: detailed information why the task modifications haven't been saved */ qsTr("It already exists on the selected list."))
-        }
-        else {
+            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"),
+                                            /*: detailed information why the task modifications haven't been saved */
+                                            qsTr("It already exists on the selected list."))
+        } else {
             taskName.errorHighlight = false
-            editTaskPage.canAccept = true
+            canAccept = true
         }
     }
 
     // reload tasklist on activating first page
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            editTaskPage.taskstatus = parseInt(DB.getTaskProperty(taskid, "Status")) === 1 ? true : false
-            editTaskPage.taskcreationdate = new Date(DB.getTaskProperty(taskid, "CreationDate"))
+            var details = DB.getTaskDetails(taskid)
+            taskstatus = parseInt(details.Status) === 1
+            taskduedate = details.DueDate ? (new Date(details.DueDate).toISOString()) : ""
+            taskcreationdate = new Date(details.CreationDate)
+            taskpriority = parseInt(details.Priority)
+            tasknote = details.Note || ""
+            tasktags = DB.readTaskTags(taskid).join(", ")
         }
     }
 
     onAccepted: {
-        var result = DB.updateTask(listid, listLocationModel.get(listLocatedIn.currentIndex).listid, editTaskPage.taskid, taskName.text, taskListWindow.statusOpen(taskStatus.checked) === true ? 1 : 0, 0, 0)
-        // catch sql errors
-        if (result !== "ERROR") {
+        var dueDate = 0
+        if (taskDueDate.pseudoValue.length > 0)
+            dueDate = new Date(taskDueDate.pseudoValue).getTime()
+        var result = DB.updateTask(taskid, listLocationModel.get(listLocatedIn.currentIndex).listid,
+                                   taskName.text, taskListWindow.statusOpen(taskStatus.checked) ? 1 : 0,
+                                   dueDate, 0,
+                                   taskPriority.value, taskNote.text)
+        if (result)
+            taskListWindow.listchanged = true
+        if (tasktags !== editTags.selected) {
+            var newTags = []
+            if (editTags.selected)
+                newTags = editTags.selected.split(", ")
+            DB.updateTaskTags(taskid, newTags)
             taskListWindow.listchanged = true
         }
     }
 
     Component.onCompleted: {
-        listid = parseInt(DB.getTaskProperty(taskid, "ListID"))
-        DB.readLists()
+        var details = DB.getTaskDetails(taskid)
+        listid = parseInt(details.ListID)
+        DB.allLists(appendList)
         listLocatedIn.currentIndex = listindex
         listLocatedIn.currentItem = listLocatedIn.menu.children[listindex]
     }
@@ -101,7 +147,7 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit") + " '" + editTaskPage.taskname + "'"
+                title: qsTr("Edit") + " '" + taskname + "'"
                 //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }
@@ -114,9 +160,9 @@ Dialog {
             TextField {
                 id: taskName
                 width: parent.width
-                text: editTaskPage.taskname
+                text: taskname
                 //: information how the currently made changes can be saved
-                label: errorHighlight === false ? qsTr("Save changes in the upper right corner") : qsTr("task already exists on this list!")
+                label: errorHighlight ? qsTr("Task already exists on this list!") : qsTr("Task name")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
                 onTextChanged: {
@@ -128,8 +174,9 @@ Dialog {
 
             TextSwitch {
                 id: taskStatus
+                anchors.horizontalCenter: parent.Center
                 //: choose if this task is pending or done
-                text: qsTr("task is done")
+                text: taskListWindow.statusOpen(checked) ? qsTr("task is open") : qsTr("task is done")
                 checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
@@ -153,18 +200,105 @@ Dialog {
                 }
             }
 
+            Slider {
+                id: taskPriority
+                width: parent.width
+                //: select the tasks priority
+                label: qsTr("Priority")
+                minimumValue: taskListWindow.minimumPriority
+                maximumValue: taskListWindow.maximumPriority
+                stepSize: 1
+                value: editTaskPage.taskpriority
+                valueText: value.toString()
+            }
+
             SectionHeader {
-                //: headline for the section with information which can not be changed by the user directly
-                text: qsTr("Information")
+                //: headline for the date and time properties of the task
+                text: qsTr("Dates")
+            }
+
+            Row {
+                width: parent.width - 2 * Theme.paddingLarge
+
+                ValueButton {
+                    id: taskDueDate
+                    width: parent.width - clearButton.width
+                    anchors {
+                        verticalCenter: clearButton.verticalCenter
+                    }
+                    // save due date value in component, because page's value would be lost after page re-activation
+                    property string pseudoValue: taskduedate
+                    //: select the due date for a task
+                    label: qsTr("Due") + ": "
+                    value: getDueDate(pseudoValue)
+
+                    onPseudoValueChanged: value = getDueDate(pseudoValue)
+
+                    onClicked: {
+                        var hint = new Date()
+                        if (pseudoValue.length > 0)
+                            hint = new Date(pseudoValue)
+                        var dialog = pageStack.push(pickerComponent, { date: hint })
+                        dialog.accepted.connect(function() {
+                            taskDueDate.pseudoValue = dialog.date.toISOString()
+                        })
+                    }
+
+                    Component {
+                        id: pickerComponent
+                        DatePickerDialog {}
+                    }
+                }
+
+                IconButton {
+                    id: clearButton
+                    icon.source: "image://theme/icon-m-clear"
+                    enabled: taskDueDate.pseudoValue.length > 0
+                    onClicked: taskDueDate.pseudoValue = ""
+                }
             }
 
             Label {
                 id: taskCreationDate
-                anchors.topMargin: 100
-                anchors.left: parent.left
-                anchors.leftMargin: 25
+                width: parent.width - 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
                 //: displays the date when the task has been created by the user
-                text: qsTr("Created at") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
+                text: qsTr("Created") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
+            }
+
+            SectionHeader {
+                //: headline for the tags section
+                text: qsTr("Tags")
+            }
+
+            ValueButton {
+                id: editTags
+                //: default value if no tag is selected
+                value: selected || qsTr("none (tap to select)")
+                //: label for the tags field
+                label: qsTr("Tags") + ":"
+                property string selected: tasktags
+
+                onClicked: {
+                    var dialog = pageStack.push("TagDialog.qml", { selected: selected })
+                    dialog.accepted.connect(function() {
+                        selected = dialog.selected
+                    })
+                }
+            }
+
+            SectionHeader {
+                //: headline for the section where notes for the task can be saved
+                text: qsTr("Notes")
+            }
+
+            TextArea {
+                id: taskNote
+                width: parent.width
+                //: textfield to enter notes
+                placeholderText: qsTr("Enter your notes or description here")
+                focus: false
+                text: tasknote
             }
         }
     }

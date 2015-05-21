@@ -4,6 +4,8 @@
 ** Contact: Matt Vogt <matthew.vogt@jollamobile.com>
 ** All rights reserved.
 **
+** Copyright (C) 2015 Murat Khairulin
+**
 ** This file is part of Sailfish Silica UI component package.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -32,7 +34,7 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
 
 MouseArea {
@@ -48,9 +50,8 @@ MouseArea {
     property bool down: pressed && containsMouse
     property bool highlighted: down
     property bool busy
-
-    // This is only used by ButtonGroup - if ButtonGroup is removed, this should be also:
-    property int __silica_textswitch
+    property int priorityValue
+    property variant priorityColors: ["--", "-", "", "+", "++"]
 
     width: parent ? parent.width : Screen.width
     implicitHeight: Math.max(toggle.height, desc.y + desc.height)
@@ -62,12 +63,12 @@ MouseArea {
         height: Theme.itemSizeSmall
         anchors {
             left: parent.left; leftMargin: root.leftMargin
+
         }
 
         GlassItem {
             id: indicator
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.centerIn: parent
             opacity: root.enabled ? 1.0 : 0.4
             dimmed: !checked
             falloffRadius: checked ? defaultFalloffRadius : 0.075
@@ -104,40 +105,59 @@ MouseArea {
             }
         }
     }
+
     Label {
         id: label
-        width: parent.width - toggle.width - root.leftMargin - root.rightMargin
         opacity: root.enabled ? 1.0 : 0.4
         anchors {
             verticalCenter: toggle.verticalCenter
             // center on the first line if there are multiple lines
             verticalCenterOffset: lineCount > 1 ? (lineCount-1)*height/lineCount/2 : 0
             left: toggle.right
+            right: prio.left
         }
-        wrapMode: Text.Wrap
+        wrapMode: Text.NoWrap
         font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !checked : false
         color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
+        truncationMode: TruncationMode.Elide
     }
+
+    Item {
+        id: prio
+        width: Theme.itemSizeExtraSmall
+        height: Theme.itemSizeSmall
+        anchors {
+            right: parent.right
+        }
+        visible: priorityValue > 0
+
+        Label {
+            id: prioIndicator
+            anchors.centerIn: parent
+            text: priorityColors[priorityValue - 1]
+            color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
+        }
+    }
+
     Label {
         id: desc
-        width: parent.width - toggle.width - root.leftMargin - root.rightMargin
         height: text.length ? (implicitHeight + Theme.paddingMedium) : 0
         opacity: root.enabled ? 1.0 : 0.4
-        anchors.top: label.bottom
-        anchors.left: label.left
-        wrapMode: Text.Wrap
+        anchors {
+            top: label.bottom
+            left: label.left
+            right: parent.right
+            rightMargin: Theme.paddingLarge
+        }
+        wrapMode: Text.NoWrap
         font.pixelSize: Theme.fontSizeExtraSmall
         color: highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+        truncationMode: TruncationMode.Elide
     }
 
     onClicked: {
         if (automaticCheck) {
             checked = !checked
         }
-    }
-
-    // for testing
-    function _indicator() {
-        return indicator
     }
 }
