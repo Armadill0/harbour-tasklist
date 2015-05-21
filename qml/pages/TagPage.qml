@@ -149,9 +149,11 @@ Page {
                 }
 
                 onActiveFocusChanged: {
-                    // reset textfield when user leaves textfield before confirming changes
-                    if (activeFocus === false)
-                        text = tagName
+                    // reset label and textfield when user leaves textfield before confirming changes
+                    if (activeFocus === false && editTagLabel.visible === true) {
+                        editTagLabel.visible = false
+                        tagLabel.visible = true
+                    }
                 }
 
                 onClicked: onClick()

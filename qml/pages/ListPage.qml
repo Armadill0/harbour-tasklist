@@ -301,6 +301,7 @@ Page {
             Label {
                 id: listLabel
                 text: listname
+                // FIXME don't use fixed pixel sizes
                 width: parent.width - 105
                 x: Theme.paddingLarge
                 height: editListLabel.height * 0.55
@@ -312,6 +313,7 @@ Page {
             Label {
                 id: listTaskNumber
                 text: total > 999 ? "999+" : total
+                // FIXME don't use fixed pixel sizes
                 width: 70
                 height: editListLabel.height * 0.55
                 anchors.top: parent.top
@@ -335,6 +337,7 @@ Page {
 
             TextField {
                 id: editListLabel
+                // FIXME don't use fixed pixel sizes
                 width: parent.width - 70
                 text: listname
                 //: a label to inform the user how the changes on a list can be saved
