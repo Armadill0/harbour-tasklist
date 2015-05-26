@@ -30,7 +30,7 @@ Page {
     property int listId: taskListWindow.listid
     property string listname
     property int smartListType: taskListWindow.smartListType
-    property bool openTasksAvailable
+    property bool doneTasksAvailable
 
     // human-readable representation of a due date
     function humanDueDate(unixTime) {
@@ -121,21 +121,20 @@ Page {
             DB.readTasks(listid, appendTask)
         }
 
-        // disable removealldonetasks pulldown menu if no done tasks available
-        openTasksAvailable = false
-        updateDeleteAllDoneOption("main update function")
+        // disable pulldown menus if no done tasks available
+        updateOptions()
     }
 
-    // function to change the availability of the "delete all done tasks" pull down menu item
-    function updateDeleteAllDoneOption (updatetxt) {
-        var taskCheck = false;
+    // function to change the availability of the pull down menu items
+    function updateOptions () {
+        var doneTaskCheck = false;
         for (var i = 0; i < taskListModel.count; i++) {
             if (taskListModel.get(i).taskstatus === !taskListWindow.taskOpenAppearance)
-                taskCheck = true
+                doneTaskCheck = true
         }
 
         // final decision to enable or diable the menu item
-        openTasksAvailable = taskCheck ? true : false
+        doneTasksAvailable = doneTaskCheck
     }
 
     // function to delete all done tasks
@@ -153,6 +152,25 @@ Page {
                     break
                 }
             }
+        } , taskListWindow.remorseOnDelete * 1000)
+    }
+
+    // function to reset all done tasks
+    function resetDoneTasks() {
+        //: remorse action to reset all done tasks
+        tasklistRemorse.execute(qsTr("Reseting all done tasks"),function(){
+            // start reseting from the end of the list to not get a problem with already deleted items
+            for(var i = taskListModel.count - 1; i >= 0; i--) {
+                if (taskListModel.get(i).taskstatus === false) {
+                    DB.setTaskStatus(taskListModel.get(i).taskid, 1)
+                }
+                // stop if last open task has been reached to save battery power
+                else if (taskListModel.get(i).taskstatus === true) {
+                    break
+                }
+            }
+
+            reloadTaskList()
         } , taskListWindow.remorseOnDelete * 1000)
     }
 
@@ -361,11 +379,6 @@ Page {
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
-                //: menu item to switch to export/import page
-                text: qsTr("Export/Import data")
-                onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
-            }
-            MenuItem {
                 //: menu item to switch to settings page
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
@@ -387,13 +400,24 @@ Page {
                 }
             }
             MenuItem {
-                enabled: openTasksAvailable
+                enabled: doneTasksAvailable
                 //: menu item to delete all done tasks
                 text: qsTr("Delete all done tasks")
                 onClicked: taskPage.deleteDoneTasks()
             }
+            MenuItem {
+                enabled: doneTasksAvailable
+                //: menu item to reset all done tasks to the open status
+                text: qsTr("Reset all done tasks")
+                onClicked: taskPage.resetDoneTasks()
+            }
         }
         PushUpMenu {
+            MenuItem {
+                //: menu item to switch to export/import page
+                text: qsTr("Export/Import data")
+                onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
+            }
             MenuItem {
                 //: menu item to jump to the application information page
                 text: qsTr("About") + " TaskList"
@@ -454,7 +478,7 @@ Page {
                         // i points to the first done task or equal to the list length if done tasks are missing
                         taskListModel.insert(i, newTask)
                     }
-                    updateDeleteAllDoneOption("statuschange of " + newTask.task)
+                    updateOptions()
                 }, taskListWindow.remorseOnMark * 1000)
             }
 
