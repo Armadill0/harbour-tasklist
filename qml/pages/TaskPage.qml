@@ -89,16 +89,16 @@ Page {
     // @dueDate - number, in milliseconds
     function appendTask(id, task, status, listid, dueDate, priority, notes) {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
-                               listid: listid, listname: DB.getListName(listid),
-                               dueDate: dueDate, priority: priority || taskListWindow.defaultPriority,
-                               notes: notes })
+                                 listid: listid, listname: DB.getListName(listid),
+                                 dueDate: dueDate, priority: priority || taskListWindow.defaultPriority,
+                                 notes: notes })
     }
 
     function insertNewTask(index, id, task, listid) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
-                                      listid: listid, listname: DB.getListName(listid),
-                                      dueDate: 0, priority: taskListWindow.defaultPriority,
-                                      notes: "" })
+                                 listid: listid, listname: DB.getListName(listid),
+                                 dueDate: 0, priority: taskListWindow.defaultPriority,
+                                 notes: "" })
     }
 
     // helper function to wipe the tasklist element
@@ -205,6 +205,8 @@ Page {
     onStatusChanged: {
         switch(status) {
         case PageStatus.Activating:
+            taskListWindow.fillListOfLists()
+
             // reload tasklist if task has been edited or current list is renamed
             if (taskListWindow.listchanged === true) {
                 reloadTaskList()
@@ -289,83 +291,114 @@ Page {
                 title: listname + " - TaskList"
             }
 
-            TextField {
-                id: taskAdd
+            Row {
                 width: parent.width
-                visible: smartListType === -1 ? true : false
-                //: placeholder where the user should enter a name for a new task
-                placeholderText: qsTr("Enter unique task name")
-                //: a label to inform the user how to confirm the new task
-                label: qsTr("Press Enter/Return to add the new task")
-                // enable enter key if minimum task length has been reached
-                EnterKey.enabled: taskAdd.text.length > 0
-                // set allowed chars and task length
-                //validator: RegExpValidator { regExp: /^.{,60}$/ }
+                TextField {
+                    id: taskAdd
+                    width: parent.width - nextList.width
+                    visible: smartListType === -1 ? true : false
+                    //: placeholder where the user should enter a name for a new task
+                    placeholderText: qsTr("Enter unique task name")
+                    //: a label to inform the user how to confirm the new task
+                    label: qsTr("Press Enter/Return to add the new task")
+                    // enable enter key if minimum task length has been reached
+                    EnterKey.enabled: taskAdd.text.length > 0
+                    // set allowed chars and task length
+                    //validator: RegExpValidator { regExp: /^.{,60}$/ }
 
-                function addTask(newTask) {
-                    var taskNew = newTask !== undefined ? newTask : taskAdd.text
-                    if (taskNew.length > 0) {
-                        // add task to db and tasklist
-                        var newid = DB.writeTask(listid, taskNew, 1, 0, 0, taskListWindow.defaultPriority, "")
-                        // catch sql errors
-                        if (newid >= 0) {
-                            insertNewTask(0, newid, taskNew, listid)
-                            taskListWindow.coverAddTask = true
-                            // reset textfield
+                    function addTask(newTask) {
+                        var taskNew = newTask !== undefined ? newTask : taskAdd.text
+                        if (taskNew.length > 0) {
+                            // add task to db and tasklist
+                            var newid = DB.writeTask(listid, taskNew, 1, 0, 0, taskListWindow.defaultPriority, "")
+                            // catch sql errors
+                            if (newid >= 0) {
+                                insertNewTask(0, newid, taskNew, listid)
+                                taskListWindow.coverAddTask = true
+                                // reset textfield
+                                taskAdd.text = ""
+                            } else {
+                                // display notification if task already exists
+                                //: notifying the user why the task couldn't be added
+                                taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
+                            }
+                        }
+                        if (taskListWindow.backFocusAddTask === 1)
+                            timerAddTask.start()
+                    }
+
+                    EnterKey.onClicked: addTask()
+
+                    onTextChanged: {
+                        // divide text by new line characters
+                        var textSplit = taskAdd.text.split(/\r\n|\r|\n/)
+                        // if there are new lines
+                        if (textSplit.length > 1) {
+                            // clear textfield
                             taskAdd.text = ""
-                        } else {
-                            // display notification if task already exists
-                            //: notifying the user why the task couldn't be added
-                            taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
-                        }
-                    }
-                    if (taskListWindow.backFocusAddTask === 1)
-                        timerAddTask.start()
-                }
+                            // helper array to check task's uniqueness before adding them
+                            var tasksArray = []
 
-                EnterKey.onClicked: addTask()
+                            // check if the tasks are unique
+                            for (var i = 0; i < textSplit.length; i++)
+                                if (parseInt(DB.checkTask(listid, textSplit[i])) === 0)
+                                    if (tasksArray.indexOf(textSplit[i]) === -1)
+                                        tasksArray.push(textSplit[i])
 
-                onTextChanged: {
-                    // divide text by new line characters
-                    var textSplit = taskAdd.text.split(/\r\n|\r|\n/)
-                    // if there are new lines
-                    if (textSplit.length > 1) {
-                        // clear textfield
-                        taskAdd.text = ""
-                        // helper array to check task's uniqueness before adding them
-                        var tasksArray = []
-
-                        // check if the tasks are unique
-                        for (var i = 0; i < textSplit.length; i++)
-                            if (parseInt(DB.checkTask(listid, textSplit[i])) === 0)
-                                if (tasksArray.indexOf(textSplit[i]) === -1)
-                                    tasksArray.push(textSplit[i])
-
-                        if (tasksArray.length > 0) {
-                            //: remorse action when multiple tasks are added simultaneously
-                            tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")", function() {
-                                var addedTasks = []
-                                // add all of them to the DB and the list
-                                for (var i = 0; i < tasksArray.length; i++) {
-                                    addTask(tasksArray[i])
-                                    addedTasks.push(tasksArray[i])
-                                }
-                                // notification for added tasks
-                                //: notifying the user that new tasks have been added and which were added exactly (Details)
-                                taskListWindow.pushNotification("INFO",
-                                                                //: notification if multiple tasks were successfully added
-                                                                tasksArray.length + " " + qsTr("new tasks have been added."),
-                                                                //: detailed list which tasks have been added simultaneously
-                                                                qsTr("Details") + ": " + addedTasks.join(', '))
-                            } , taskListWindow.remorseOnMultiAdd * 1000)
-                        }
-                        else {
-                            // display notification if no task has been added, because all of them already existed on the list
-                            //: notify the user that all new tasks already existed on the list and weren't added again
-                            taskListWindow.pushNotification("WARNING", qsTr("All tasks already exist!"), qsTr("No new tasks have been added to the list."))
+                            if (tasksArray.length > 0) {
+                                //: remorse action when multiple tasks are added simultaneously
+                                tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")", function() {
+                                    var addedTasks = []
+                                    // add all of them to the DB and the list
+                                    for (var i = 0; i < tasksArray.length; i++) {
+                                        addTask(tasksArray[i])
+                                        addedTasks.push(tasksArray[i])
+                                    }
+                                    // notification for added tasks
+                                    //: notifying the user that new tasks have been added and which were added exactly (Details)
+                                    taskListWindow.pushNotification("INFO",
+                                                                    //: notification if multiple tasks were successfully added
+                                                                    tasksArray.length + " " + qsTr("new tasks have been added."),
+                                                                    //: detailed list which tasks have been added simultaneously
+                                                                    qsTr("Details") + ": " + addedTasks.join(', '))
+                                } , taskListWindow.remorseOnMultiAdd * 1000)
+                            }
+                            else {
+                                // display notification if no task has been added, because all of them already existed on the list
+                                //: notify the user that all new tasks already existed on the list and weren't added again
+                                taskListWindow.pushNotification("WARNING", qsTr("All tasks already exist!"), qsTr("No new tasks have been added to the list."))
+                            }
                         }
                     }
                 }
+
+                IconButton {
+                    id: nextList
+                    icon {
+                        source: "image://theme/icon-cover-next"
+                        height: taskAdd.height * 0.5
+                        width: taskAdd.width * 0.5
+                        fillMode: Image.PreserveAspectFit
+                    }
+                    anchors.verticalCenter: taskAdd.verticalCenter
+
+                    onClicked: {
+                        var listArray = taskListWindow.listOfLists.split(",")
+
+                        for (var i = 0; i < listArray.length; i++) {
+                            if (listArray[i] == listid) {
+                                if (i == listArray.length - 1)
+                                    listid = listArray[0]
+                                else
+                                    listid = listArray[i + 1]
+                                break
+                            }
+                        }
+
+                        reloadTaskList()
+                    }
+                }
+
             }
         }
 

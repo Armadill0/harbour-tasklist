@@ -59,6 +59,9 @@ ApplicationWindow {
     property int defaultPriority: 3
     property int maximumPriority: 5
 
+    property bool coverActionMultiple: false
+    property bool coverActionSingle
+
     // initilize default settings properties
     property int coverListSelection
     property int coverListChoose
@@ -153,6 +156,22 @@ ApplicationWindow {
 
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
+
+    // a function to fill litoflists with data
+    function fillListOfLists () {
+        // load lists into variable for "switch" action on cover and task page
+        var lists = DB.allLists()
+        listOfLists = lists.join(",")
+
+        // activate ListSwitch Button if more than one list is available or vice versa
+        if (lists.length > 1) {
+            coverActionMultiple = true
+            coverActionSingle = false
+        } else {
+            coverActionMultiple = false
+            coverActionSingle = true
+        }
+    }
 
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {

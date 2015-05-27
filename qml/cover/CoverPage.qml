@@ -80,19 +80,8 @@ CoverBackground {
 
     onStatusChanged: {
         switch(status) {
-        case Cover.Activating:
-            // load lists into variable for coveraction "switch"
-            var lists = DB.allLists()
-            taskListWindow.listOfLists = lists.join(",")
-
-            // activate ListSwitch Button if more than one list is available or vice versa
-            if (lists.length > 1) {
-                coverActionMultiple.enabled = true
-                coverActionSingle.enabled = false
-            } else {
-                coverActionMultiple.enabled = false
-                coverActionSingle.enabled = true
-            }
+        case Cover.Activating:ivating:
+            taskListWindow.fillListOfLists()
 
             if (taskListWindow.smartListType !== -1) {
                 taskListWindow.smartListType = -1
@@ -171,7 +160,7 @@ CoverBackground {
         CoverActionList {
             id: coverActionMultiple
             // disabled by default, because first installation comes with only one list
-            enabled: false
+            enabled: taskListWindow.coverActionMultiple
 
             CoverAction {
                 iconSource: "image://theme/icon-cover-new"
@@ -214,6 +203,7 @@ CoverBackground {
 
         CoverActionList {
             id: coverActionSingle
+            enabled: taskListWindow.coverActionSingle
 
             CoverAction {
                 iconSource: "image://theme/icon-cover-new"
