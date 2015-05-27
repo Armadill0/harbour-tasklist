@@ -552,7 +552,6 @@ Page {
                     id: taskMenu
 
                     MenuItem {
-                        height: 65
                         //: menu item to switch to the page where the selected task can be modified
                         text: qsTr("Edit")
                         onClicked: {
@@ -563,7 +562,6 @@ Page {
                     }
 
                     MenuItem {
-                        height: 65
                         //: menu item to delete the selected task
                         text: qsTr("Delete")
                         onClicked: {
