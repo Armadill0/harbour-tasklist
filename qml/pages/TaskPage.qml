@@ -292,7 +292,9 @@ Page {
             }
 
             Row {
-                width: parent.width
+                width: parent.width - 2 * Theme.paddingLarge
+                spacing: Theme.paddingLarge
+
                 TextField {
                     id: taskAdd
                     width: parent.width - nextList.width
@@ -374,15 +376,19 @@ Page {
 
                 IconButton {
                     id: nextList
+                    height: taskAdd.height * 0.5
+                    width: height
                     icon {
                         source: "image://theme/icon-cover-next"
-                        height: taskAdd.height * 0.5
-                        width: taskAdd.width * 0.5
+                        height: parent.height * 0.5
+                        width: height
                         fillMode: Image.PreserveAspectFit
                     }
-                    anchors.verticalCenter: taskAdd.verticalCenter
+                    anchors {
+                        verticalCenter: taskAdd.verticalCenter
+                    }
 
-                    onClicked: {
+                    function switchList() {
                         var listArray = taskListWindow.listOfLists.split(",")
 
                         for (var i = 0; i < listArray.length; i++) {
@@ -396,6 +402,24 @@ Page {
                         }
 
                         reloadTaskList()
+                    }
+
+                    onClicked: switchList()
+
+                    onPressAndHold: {
+                        switchList()
+                        switchListRepeat.start()
+                    }
+
+                    onReleased: switchListRepeat.stop()
+
+                    // timer to repeat list switching if the button is continuously pressed
+                    Timer {
+                        id: switchListRepeat
+                        interval: 500
+                        repeat: true
+
+                        onTriggered: parent.switchList()
                     }
                 }
 
