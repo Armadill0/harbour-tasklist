@@ -294,11 +294,11 @@ Page {
             Row {
                 width: parent.width - 2 * Theme.paddingLarge
                 spacing: Theme.paddingLarge
+                visible: smartListType === -1 ? true : false
 
                 TextField {
                     id: taskAdd
                     width: parent.width - nextList.width
-                    visible: smartListType === -1 ? true : false
                     //: placeholder where the user should enter a name for a new task
                     placeholderText: qsTr("Enter unique task name")
                     //: a label to inform the user how to confirm the new task
@@ -376,11 +376,11 @@ Page {
 
                 IconButton {
                     id: nextList
-                    height: taskAdd.height * 0.5
+                    height: taskAdd.height * 0.8
                     width: height
                     icon {
                         source: "image://theme/icon-cover-next"
-                        height: parent.height * 0.5
+                        height: parent.height * 0.8
                         width: height
                         fillMode: Image.PreserveAspectFit
                     }
@@ -388,6 +388,7 @@ Page {
                         verticalCenter: taskAdd.verticalCenter
                     }
 
+                    // function to switch to the next list, final switch is done by onListIdChanged
                     function switchList() {
                         var listArray = taskListWindow.listOfLists.split(",")
 
@@ -400,8 +401,6 @@ Page {
                                 break
                             }
                         }
-
-                        reloadTaskList()
                     }
 
                     onClicked: switchList()
