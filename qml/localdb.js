@@ -228,6 +228,18 @@ function checkTask(listID, taskname) {
     return result.rows.item(0).cID;
 }
 
+// select task and return id
+function getTaskId(listID, taskname) {
+    var db = connectDB();
+    var result;
+
+    db.transaction(function(tx) {
+        result = tx.executeSql("SELECT ID FROM tasks WHERE ListID=? AND Task=?;", [listID, taskname]);
+    });
+
+    return result.rows.item(0).ID;
+}
+
 // insert new task and return id or -1 if error
 function writeTask(listID, task, status, dueDate, duration, priority, note) {
     var db = connectDB();

@@ -1,6 +1,5 @@
-harbour-tasklist
+TaskList
 ================
-
 A small but mighty program to manage your daily tasks.
 
 Pull-Requests
@@ -34,6 +33,11 @@ Features
 - task can be marked as done
     - function to delete all done tasks
     - marking of done/open tasks can be inverted (user requested feature)
+- tags can be added to a task
+- several smart lists help you to keep an eye on tasks with simliar meta information
+    - e.g. open tasks, done tasks, new tasks, ...
+- due dates for each tasks can be specified
+    - reminders in the calendar is currently lacking due to missing SailfishOS calendar API
 - orientation can be temporary locked (user requested feature)
 - remorse items for all necessary actions (e.x. delete tasks/lists)
     - configurable remorse item times
@@ -55,6 +59,10 @@ see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3A
 Roadmap for Version 2.0
 ================
 see here: https://github.com/Armadill0/harbour-tasklist/milestones/2.0
+
+Roadmap for Version 3.0
+================
+see here: https://github.com/Armadill0/harbour-tasklist/milestones/3.0
 
 Contributors
 ================

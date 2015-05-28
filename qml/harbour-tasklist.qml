@@ -177,6 +177,9 @@ ApplicationWindow {
     function pushNotification(notificationType, notificationSummary, notificationBody) {
         var notificationCategory
         switch(notificationType) {
+        case "OK":
+            notificationCategory = "x-jolla.store.sideloading-success"
+            break
         case "INFO":
             notificationCategory = "x-jolla.lipstick.credentials.needUpdate.notification"
             break

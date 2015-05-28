@@ -320,9 +320,19 @@ Page {
                                 // reset textfield
                                 taskAdd.text = ""
                             } else {
-                                // display notification if task already exists
-                                //: notifying the user why the task couldn't be added
-                                taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
+                                var taskId = DB.getTaskId(listId, taskNew)
+                                if (parseInt(DB.getTaskDetails(taskId).Status) === 0) {
+                                    DB.setTaskStatus(taskId, 1)
+                                    reloadTaskList()
+                                    taskAdd.text = ""
+                                    //: notifying the user that the status of the task has been reopened
+                                    taskListWindow.pushNotification("OK", qsTr("Task has been reopened!"), qsTr("The task already existed and was marked as done."))
+                                }
+                                else {
+                                    // display notification if task already exists
+                                    //: notifying the user why the task couldn't be added
+                                    taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
+                                }
                             }
                         }
                         if (taskListWindow.backFocusAddTask === 1)
@@ -358,7 +368,7 @@ Page {
                                     }
                                     // notification for added tasks
                                     //: notifying the user that new tasks have been added and which were added exactly (Details)
-                                    taskListWindow.pushNotification("INFO",
+                                    taskListWindow.pushNotification("OK",
                                                                     //: notification if multiple tasks were successfully added
                                                                     tasksArray.length + " " + qsTr("new tasks have been added."),
                                                                     //: detailed list which tasks have been added simultaneously
