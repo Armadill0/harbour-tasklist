@@ -427,6 +427,24 @@ function validateParsed(tasksGrouped, version) {
     return true;
 }
 
+// set all priorities which are 0 by db upgrade to default
+function setDefaultPriority() {
+    var db = connectDB();
+    var ok = -1;
+    try {
+        db.transaction(function(tx) {
+            var result = tx.executeSql("UPDATE tasks SET Priority = ? WHERE Priority = 0;", [taskListWindow.defaultPriority]);
+            tx.executeSql("COMMIT;");
+
+            ok = result.rowsAffected;
+        });
+
+    } catch (sqlErr) {
+        console.log("An error occured while setting default priority.");
+    }
+    return ok;
+}
+
 function importData(json) {
     var db = connectDB();
     var parsed;

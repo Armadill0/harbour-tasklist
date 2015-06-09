@@ -152,8 +152,10 @@ ApplicationWindow {
                             //: hint which is the recommended upgrade option
                             text: dbUpgradeText + " (" + qsTr("recommended") + ")"
                             onClicked: {
-                                if (DB.replaceOldDB(true))
+                                if (DB.replaceOldDB(true)) {
+                                    DB.setDefaultPriority()
                                     pageStack.replace(initialTaskPage)
+                                }
                                 else
                                     Qt.quit()
                             }
