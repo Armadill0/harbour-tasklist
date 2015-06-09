@@ -15,7 +15,7 @@ SOURCES += src/harbour-tasklist.cpp \
     src/tasksexport.cpp
 
 OTHER_FILES += qml/harbour-tasklist.qml \
-    qml/cover/CoverPage.qml \
+    qml/pages/CoverPage.qml \
     rpm/harbour-tasklist.yaml \
     harbour-tasklist.desktop \
     qml/localdb.js \

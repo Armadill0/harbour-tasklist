@@ -228,6 +228,35 @@ label for the tags field</extracomment>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Drop data (very destructive!!!)</source>
+        <extracomment>headline for the database purge</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
+        <extracomment>warn user of destructive drop DB function</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, I know what I&apos;m doing.</source>
+        <extracomment>let user confirm the database purge</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop database</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Successfully dropped all data.</source>
+        <extracomment>informational notification about the successful dropped data tables</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart TaskList to work with the new database.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -425,14 +454,6 @@ label for the tags field</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>seconds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>on Mark task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -478,6 +499,21 @@ label for the tags field</extracomment>
     <message>
         <source>strike through done tasks</source>
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deactivated</source>
+        <extracomment>text to be shown if the slider is set to</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 second</source>
+        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 seconds</source>
+        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -537,6 +573,11 @@ label for the tags field</extracomment>
     <message>
         <source>Delete</source>
         <extracomment>context menu item to delete a tag</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -692,6 +733,25 @@ label for the tags field</extracomment>
         <extracomment>menu item to switch to export/import page</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reseting all done tasks</source>
+        <extracomment>remorse action to reset all done tasks</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Task has been reopened!</source>
+        <extracomment>notifying the user that the status of the task has been reopened</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The task already existed and was marked as done.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset all done tasks</source>
+        <extracomment>menu item to reset all done tasks to the open status</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
@@ -722,26 +782,52 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ATTENTION</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).</source>
+        <extracomment>Stop database upgrade dialog</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select an action to proceed.</source>
+        <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete</source>
+        <extracomment>text of the button to delete the old database and start overleo</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Upgrade</source>
+        <extracomment>text of the button to migrate the old to the new database format</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action required</source>
+        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for the informational upgrade dialog part</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose an option</source>
+        <extracomment>headline for the option section of the upgrade dialog</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
+        <extracomment>first part of the database upgrade description</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>recommended</source>
+        <extracomment>hint which is the recommended upgrade option</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

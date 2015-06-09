@@ -226,6 +226,35 @@ label for the tags field</extracomment>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
         <translation>Du kannst deine Daten in eine JSON formatierte Datei exportieren und aus einer JSON formatierten Datei importieren. Bitte beachte dabei, dass ALLE DEINE DATEN, also Aufgaben, Listen, usw. in einer Datei gespeichert werden!</translation>
     </message>
+    <message>
+        <source>Drop data (very destructive!!!)</source>
+        <extracomment>headline for the database purge</extracomment>
+        <translation>Daten löschen (sehr destruktiv!!!)</translation>
+    </message>
+    <message>
+        <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
+        <extracomment>warn user of destructive drop DB function</extracomment>
+        <translation>ACHTUNG: Diese Funktion löscht alle deine Daten! Deshalb bitte nur benutzen, wenn du weißt, was du tust!</translation>
+    </message>
+    <message>
+        <source>Yes, I know what I&apos;m doing.</source>
+        <extracomment>let user confirm the database purge</extracomment>
+        <translation>Ja, ich weiß was ich mache.</translation>
+    </message>
+    <message>
+        <source>Drop database</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Datenbank löschen</translation>
+    </message>
+    <message>
+        <source>Successfully dropped all data.</source>
+        <extracomment>informational notification about the successful dropped data tables</extracomment>
+        <translation>Alle Daten wurden erfolgreich gelöscht.</translation>
+    </message>
+    <message>
+        <source>Please restart TaskList to work with the new database.</source>
+        <translation>Bitte TaskList neustarten um die neue Datenbank zu benutzen.</translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
@@ -423,14 +452,6 @@ label for the tags field</extracomment>
         <translation>beim Löschen</translation>
     </message>
     <message>
-        <source>seconds</source>
-        <translation>Sekunden</translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation>Sekunde</translation>
-    </message>
-    <message>
         <source>on Mark task</source>
         <translation>beim Markieren</translation>
     </message>
@@ -477,6 +498,21 @@ label for the tags field</extracomment>
         <source>strike through done tasks</source>
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
         <translation>Erledigte Aufgaben durchstreichen</translation>
+    </message>
+    <message>
+        <source>deactivated</source>
+        <extracomment>text to be shown if the slider is set to</extracomment>
+        <translation>deaktiviert</translation>
+    </message>
+    <message>
+        <source>%1 second</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <translation>%1 Sekunde</translation>
+    </message>
+    <message>
+        <source>%1 seconds</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
+        <translation>%1 Sekunden</translation>
     </message>
 </context>
 <context>
@@ -536,6 +572,11 @@ label for the tags field</extracomment>
         <source>Delete</source>
         <extracomment>context menu item to delete a tag</extracomment>
         <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
+        <translation>Änderungen mit Enter/Return bestätigen</translation>
     </message>
 </context>
 <context>
@@ -690,6 +731,25 @@ label for the tags field</extracomment>
         <extracomment>menu item to switch to export/import page</extracomment>
         <translation>Daten exportieren/importieren</translation>
     </message>
+    <message>
+        <source>Reseting all done tasks</source>
+        <extracomment>remorse action to reset all done tasks</extracomment>
+        <translation>Erledigte Aufgaben zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Task has been reopened!</source>
+        <extracomment>notifying the user that the status of the task has been reopened</extracomment>
+        <translation>Aufgabe wurde als offen markiert!</translation>
+    </message>
+    <message>
+        <source>The task already existed and was marked as done.</source>
+        <translation>Die Aufgabe war bereits vorhanden und wurde als offen markiert.</translation>
+    </message>
+    <message>
+        <source>Reset all done tasks</source>
+        <extracomment>menu item to reset all done tasks to the open status</extracomment>
+        <translation>Erledigte Aufgaben zurücksetzen</translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
@@ -720,27 +780,53 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Exit</source>
+        <extracomment>Stop database upgrade dialog</extracomment>
         <translation>Beenden</translation>
     </message>
     <message>
-        <source>ATTENTION</source>
-        <translation>ACHTUNG</translation>
-    </message>
-    <message>
-        <source>A database from the previous versions of the app is found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).</source>
-        <translation>Es wurde eine Datenbank von einer alten Applikationsversion gefunden. Alte Datenbanken werden nicht mehr unterstützt. Du kannst sie löschen oder ein Upgrade der Daten versuchen (keine Gewähr für Vollständigkeit).</translation>
-    </message>
-    <message>
         <source>Please select an action to proceed.</source>
+        <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
         <translation>Bitte eine Option auswählen um fortzufahren.</translation>
     </message>
     <message>
         <source>Delete</source>
+        <extracomment>text of the button to delete the old database and start overleo</extracomment>
         <translation>Löschen</translation>
     </message>
     <message>
         <source>Upgrade</source>
+        <extracomment>text of the button to migrate the old to the new database format</extracomment>
         <translation>Upgrade</translation>
+    </message>
+    <message>
+        <source>Action required</source>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <translation>Aktion notwendig</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for the informational upgrade dialog part</extracomment>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <source>Choose an option</source>
+        <extracomment>headline for the option section of the upgrade dialog</extracomment>
+        <translation>Eine Option auswählen</translation>
+    </message>
+    <message>
+        <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
+        <extracomment>first part of the database upgrade description</extracomment>
+        <translation>Es wurde eine Datenbank einer alten TaskList-Version gefunden. Diese wird nicht mehr unterstützt.</translation>
+    </message>
+    <message>
+        <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
+        <translation>Wähle &apos;%1&apos; um die alte Datenbank in das neue Format zu migrieren oder &apos;%2&apos; um die alte Datenbank zu entfernen und mit einer komplett neuen Datenbank weiter zu machen.</translation>
+    </message>
+    <message>
+        <source>recommended</source>
+        <extracomment>hint which is the recommended upgrade option</extracomment>
+        <translation>empfohlen</translation>
     </message>
 </context>
 </TS>
