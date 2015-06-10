@@ -388,6 +388,7 @@ Page {
                     id: nextList
                     height: taskAdd.height * 0.8
                     width: height
+
                     icon {
                         source: "image://theme/icon-cover-next"
                         height: parent.height * 0.8
@@ -416,11 +417,17 @@ Page {
                     onClicked: switchList()
 
                     onPressAndHold: {
+                        tpPullDownMenu.enabled = false
+                        tpPushUpMenu.enabled = false
                         switchList()
                         switchListRepeat.start()
                     }
 
-                    onReleased: switchListRepeat.stop()
+                    onReleased: {
+                        tpPullDownMenu.enabled = true
+                        tpPushUpMenu.enabled = true
+                        switchListRepeat.stop()
+                    }
 
                     // timer to repeat list switching if the button is continuously pressed
                     Timer {
@@ -444,6 +451,7 @@ Page {
 
         // PullDownMenu and PushUpMenu
         PullDownMenu {
+            id: tpPullDownMenu
             MenuItem {
                 //: menu item to switch to settings page
                 text: qsTr("Settings")
@@ -479,6 +487,7 @@ Page {
             }
         }
         PushUpMenu {
+            id: tpPushUpMenu
             MenuItem {
                 //: menu item to switch to export/import page
                 text: qsTr("Export/Import data")
