@@ -13,6 +13,13 @@ function getMidnight() {
     return start + DAY_LENGTH;
 }
 
+// return the start of the current day
+function getDayStart() {
+    var today = new Date();
+    var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    return start;
+}
+
 // create DB with schema v2.0 from scratch
 function createDB(tx) {
     console.log("creating DB v2.0 from scratch..");
@@ -186,6 +193,7 @@ function readSmartListTasks(smartListType, callback) {
     var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
     var midnight = getMidnight();
     var tomorrowMidnight = midnight + DAY_LENGTH;
+    var dayStart = getDayStart();
     var condition = "";
 
     if (smartListType === 0)
@@ -195,7 +203,7 @@ function readSmartListTasks(smartListType, callback) {
     else if (smartListType === 2)
         condition = "CreationDate > '" + recentlyAddedOffsetTime + "'";
     else if (smartListType === 3)
-        condition = "'0' < DueDate AND DueDate < '" + midnight + "' AND Status= '1'";
+        condition = "'" + dayStart + "' <= DueDate AND DueDate < '" + midnight + "' AND Status= '1'";
     else if (smartListType === 4)
         condition = "'" + midnight + "' <= DueDate AND DueDate < '" + tomorrowMidnight + "' AND Status = '1'";
     else
@@ -542,16 +550,17 @@ function allLists(callback) {
 function readLists(recently, callback) {
     var db = connectDB();
     var midnight = getMidnight();
+    var dayStart = getDayStart();
     var tomorrowMidnight = midnight + DAY_LENGTH;
 
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS total,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS pending,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS recent ,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND '0' < DueDate AND DueDate < ? AND Status = '1') AS today, \
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? < DueDate AND DueDate < ? AND Status = '1') AS today, \
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tomorrow \
             FROM lists AS parent ORDER BY ID ASC;",
-            [recently, midnight, midnight, tomorrowMidnight]);
+            [recently, dayStart, midnight, midnight, tomorrowMidnight]);
         for(var i = 0; i < result.rows.length; i++) {
             var item = result.rows.item(i);
             callback(item.ID, item.ListName, item.total, item.pending, item.recent, item.today, item.tomorrow);
