@@ -415,28 +415,6 @@ Page {
                     }
 
                     onClicked: switchList()
-
-                    onPressAndHold: {
-                        tpPullDownMenu.enabled = false
-                        tpPushUpMenu.enabled = false
-                        switchList()
-                        switchListRepeat.start()
-                    }
-
-                    onReleased: {
-                        tpPullDownMenu.enabled = true
-                        tpPushUpMenu.enabled = true
-                        switchListRepeat.stop()
-                    }
-
-                    // timer to repeat list switching if the button is continuously pressed
-                    Timer {
-                        id: switchListRepeat
-                        interval: 500
-                        repeat: true
-
-                        onTriggered: parent.switchList()
-                    }
                 }
 
             }
@@ -451,7 +429,6 @@ Page {
 
         // PullDownMenu and PushUpMenu
         PullDownMenu {
-            id: tpPullDownMenu
             MenuItem {
                 //: menu item to switch to settings page
                 text: qsTr("Settings")
@@ -487,10 +464,10 @@ Page {
             }
         }
         PushUpMenu {
-            id: tpPushUpMenu
             MenuItem {
                 //: menu item to switch to export/import page
-                text: qsTr("Export/Import data")
+                text: qsTr("Expo
+            id: tpPushUpMenurt/Import data")
                 onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
             MenuItem {
