@@ -466,8 +466,7 @@ Page {
         PushUpMenu {
             MenuItem {
                 //: menu item to switch to export/import page
-                text: qsTr("Expo
-            id: tpPushUpMenurt/Import data")
+                text: qsTr("Export/Import data")
                 onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
             MenuItem {
