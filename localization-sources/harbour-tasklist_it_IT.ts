@@ -64,33 +64,13 @@
         <translation>Proprietà impegno</translation>
     </message>
     <message>
-        <source>Save changes in the upper right corner</source>
-        <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation>Salva le modifiche nell&apos;angolo in alto a destra</translation>
-    </message>
-    <message>
-        <source>task already exists on this list!</source>
-        <translation>impegno già esistente in questa lista!</translation>
-    </message>
-    <message>
         <source>task is done</source>
-        <extracomment>choose if this task is pending or done</extracomment>
         <translation>impegno compiuto</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Lista</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
-        <translation>Informazioni</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <extracomment>displays the date when the taks has been created by the user</extracomment>
-        <translation>Creato il</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -102,18 +82,191 @@
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>L&apos;impegno non può essere salvato!</translation>
     </message>
+    <message>
+        <source>none (tap to select)</source>
+        <extracomment>default value if no due date is selected
+----------
+default value if no tag is selected</extracomment>
+        <translation>nessuno (tocca per selezionare)</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Oggi</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Domani</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Ieri</translation>
+    </message>
+    <message>
+        <source>Task already exists on this list!</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
+        <translation>L&apos;impegno esiste giù in questa lista!</translation>
+    </message>
+    <message>
+        <source>Task name</source>
+        <translation>Nome impegno</translation>
+    </message>
+    <message>
+        <source>task is open</source>
+        <extracomment>choose if this task is pending or done</extracomment>
+        <translation>l&apos;impegno è da fare</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
+        <translation>Priorità</translation>
+    </message>
+    <message>
+        <source>Dates</source>
+        <extracomment>headline for the date and time properties of the task</extracomment>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>select the due date for a task</extracomment>
+        <translation>Scadenza</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
+        <translation>Creato</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>headline for the tags section
+----------
+label for the tags field</extracomment>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>headline for the section where notes for the task can be saved</extracomment>
+        <translation>Note</translation>
+    </message>
+    <message>
+        <source>Enter your notes or description here</source>
+        <extracomment>textfield to enter notes</extracomment>
+        <translation>Inserisci qui le tue note o la descrizione</translation>
+    </message>
+</context>
+<context>
+    <name>ExportPage</name>
+    <message>
+        <source>No files for import available.</source>
+        <extracomment>informing user that no former exports are available</extracomment>
+        <translation>Nessun file da importare.</translation>
+    </message>
+    <message>
+        <source>Export/Import</source>
+        <extracomment>export/import page headline</extracomment>
+        <translation>Esporta/Importa</translation>
+    </message>
+    <message>
+        <source>Export target</source>
+        <extracomment>headline for exports</extracomment>
+        <translation>Esporta in</translation>
+    </message>
+    <message>
+        <source>Enter a file name for export</source>
+        <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
+        <translation>Inserisci il nome del file da esportare</translation>
+    </message>
+    <message>
+        <source>Export data</source>
+        <extracomment>headline for the data export section</extracomment>
+        <translation>Esporta</translation>
+    </message>
+    <message>
+        <source>Successfully exported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Dati esportati</translation>
+    </message>
+    <message>
+        <source>File path</source>
+        <translation>Percorso file</translation>
+    </message>
+    <message>
+        <source>Select a file to import</source>
+        <extracomment>headline for imports</extracomment>
+        <translation>Seleziona file da importare</translation>
+    </message>
+    <message>
+        <source>Delete file</source>
+        <extracomment>Button to delete the selected data file</extracomment>
+        <translation>Elimina file</translation>
+    </message>
+    <message>
+        <source>Import data</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Importa</translation>
+    </message>
+    <message>
+        <source>Successfully imported all data.</source>
+        <extracomment>informational notification about the successful eported data</extracomment>
+        <translation>Dati importati</translation>
+    </message>
+    <message>
+        <source>Source file path</source>
+        <translation>Percorso file</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for information about import/export mechanism</extracomment>
+        <translation>Informazioni</translation>
+    </message>
+    <message>
+        <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
+        <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
+        <translation>Puoi esportare e importare i tuoi dati su un file json. Ricordati che TUTTI I TUOI DATI sono salvati su un singolo file!</translation>
+    </message>
+    <message>
+        <source>Drop data (very destructive!!!)</source>
+        <extracomment>headline for the database purge</extracomment>
+        <translation>Elimina dati</translation>
+    </message>
+    <message>
+        <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
+        <extracomment>warn user of destructive drop DB function</extracomment>
+        <translation>ATTENZIONE: Questa opzione eliminerà i tuoi dati irrimediabilmente! Continua solo se sai cosa stai facendo!</translation>
+    </message>
+    <message>
+        <source>Yes, I know what I&apos;m doing.</source>
+        <extracomment>let user confirm the database purge</extracomment>
+        <translation>Sì, so cosa sto facendo.</translation>
+    </message>
+    <message>
+        <source>Drop database</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Elimina database</translation>
+    </message>
+    <message>
+        <source>Successfully dropped all data.</source>
+        <extracomment>informational notification about the successful dropped data tables</extracomment>
+        <translation>Tutti i dati sono stati eliminati</translation>
+    </message>
+    <message>
+        <source>Please restart TaskList to work with the new database.</source>
+        <translation>Riavvia TaskList per creare il nuovo databse.</translation>
+    </message>
 </context>
 <context>
     <name>ListPage</name>
     <message>
         <source>Manage lists</source>
         <extracomment>headline for overview of all lists</extracomment>
-        <translation>Gestisci lista</translation>
+        <translation>Gestisci liste</translation>
     </message>
     <message>
         <source>Enter unique list name</source>
         <extracomment>the placeholder where the user can enter the name of a new list</extracomment>
-        <translation>Scrivi il nome della lista</translation>
+        <translation>Inserisci il nome della lista</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new list</source>
@@ -126,15 +279,15 @@
     </message>
     <message>
         <source>It already exists.</source>
-        <translation>Già esistente.</translation>
+        <translation>Esiste già.</translation>
     </message>
     <message>
         <source>Deleting</source>
-        <translation>Eliminando</translation>
+        <translation>Eliminazione</translation>
     </message>
     <message>
         <source>default</source>
-        <translation>default</translation>
+        <translation>predefinita</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
@@ -149,12 +302,12 @@
     <message>
         <source>Set as Default list</source>
         <extracomment>context menu item to set a list as the default list, which is shown at application start</extracomment>
-        <translation>Imposta di default</translation>
+        <translation>Imposta come lista predefinita</translation>
     </message>
     <message>
         <source>Set as Cover list</source>
         <extracomment>context menu item to set a list as the default cover list</extracomment>
-        <translation>Imposta di copertina</translation>
+        <translation>Imposta come lista per la cover</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -162,7 +315,7 @@
     </message>
     <message>
         <source>Cover</source>
-        <translation>Copertina</translation>
+        <translation>Cover</translation>
     </message>
     <message>
         <source>n/a</source>
@@ -194,6 +347,16 @@
         <extracomment>headline for the user created lists</extracomment>
         <translation>Le mie liste</translation>
     </message>
+    <message>
+        <source>%1 tag</source>
+        <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
+        <translation>%1 tag</translation>
+    </message>
+    <message>
+        <source>%1 tags</source>
+        <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
+        <translation>%1 tag</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -210,16 +373,16 @@
     <message>
         <source>Cover options</source>
         <extracomment>headline for cover (application state when app is in background mode) options</extracomment>
-        <translation>Opzioni copertina</translation>
+        <translation>Opzioni cover</translation>
     </message>
     <message>
         <source>Cover list</source>
         <extracomment>user option to choose which list should be shown on the cover</extracomment>
-        <translation>Lista di copertina</translation>
+        <translation>Lista sulla cover</translation>
     </message>
     <message>
         <source>Default list</source>
-        <translation>Lista di default</translation>
+        <translation>Lista predefinita</translation>
     </message>
     <message>
         <source>Selected list</source>
@@ -227,12 +390,12 @@
     </message>
     <message>
         <source>Choose in list management</source>
-        <translation>Scegli gestione liste</translation>
+        <translation>Scegli in gestione liste</translation>
     </message>
     <message>
         <source>Cover task order</source>
         <extracomment>user option to choose how the tasks should be ordered on the cover</extracomment>
-        <translation>Ordine impegni di copertina</translation>
+        <translation>Ordine impegni sulla cover</translation>
     </message>
     <message>
         <source>Last updated first</source>
@@ -258,11 +421,11 @@
     </message>
     <message>
         <source>List overview</source>
-        <translation>Panorama lista</translation>
+        <translation>Panoramica liste</translation>
     </message>
     <message>
         <source>Minimize to cover</source>
-        <translation>Riduci in copertina</translation>
+        <translation>Riduci sulla cover</translation>
     </message>
     <message>
         <source>Task options</source>
@@ -287,14 +450,6 @@
     <message>
         <source>on Delete</source>
         <translation>in Elimina</translation>
-    </message>
-    <message>
-        <source>seconds</source>
-        <translation>secondi</translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation>secondo</translation>
     </message>
     <message>
         <source>on Mark task</source>
@@ -339,17 +494,102 @@
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
         <translation>%1 settimana</translation>
     </message>
+    <message>
+        <source>strike through done tasks</source>
+        <extracomment>user option to strike through done tasks for better task overview</extracomment>
+        <translation>trova tra gli impegni compiuti</translation>
+    </message>
+    <message>
+        <source>deactivated</source>
+        <extracomment>text to be shown if the slider is set to</extracomment>
+        <translation>disattivato</translation>
+    </message>
+    <message>
+        <source>%1 second</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <translation>%1 secondo</translation>
+    </message>
+    <message>
+        <source>%1 seconds</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
+        <translation>%1 secondi</translation>
+    </message>
+</context>
+<context>
+    <name>TagDialog</name>
+    <message>
+        <source>Select tags</source>
+        <translation>Seleziona tag</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Conferma</translation>
+    </message>
+</context>
+<context>
+    <name>TagPage</name>
+    <message>
+        <source>Manage tags</source>
+        <extracomment>headline for the tags page</extracomment>
+        <translation>Gestisci tag</translation>
+    </message>
+    <message>
+        <source>Add new tag</source>
+        <extracomment>headline to create new tags</extracomment>
+        <translation>Aggiungi nuovo tag</translation>
+    </message>
+    <message>
+        <source>Enter unique tag name</source>
+        <extracomment>fallback text if no name for a new tag is specified</extracomment>
+        <translation>Inserisci nome tag</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to add the new tag</source>
+        <extracomment>hint how to confirm the new tag</extracomment>
+        <translation>Clicca Invio per aggiungere il nuovo tag</translation>
+    </message>
+    <message>
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>I tuoi tag</translation>
+    </message>
+    <message>
+        <source>no tags available</source>
+        <extracomment>fallback text if no tags are defined</extracomment>
+        <translation>nessun tag</translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <extracomment>remorse item when a tag is being deleted</extracomment>
+        <translation>Eliminazione</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>context menu item to edit a tag</extracomment>
+        <translation>Modifica</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>context menu item to delete a tag</extracomment>
+        <translation>Elimina</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
+        <translation>Premi Invio per salvare i cambiamenti</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
-        <translation>Eliminando impegni compiuti</translation>
+        <extracomment>remorse action to delete all done tasks</extracomment>
+        <translation>Eliminazione impegni compiuti</translation>
     </message>
     <message>
         <source>Enter unique task name</source>
         <extracomment>placeholder where the user should enter a name for a new task</extracomment>
-        <translation>Scrivi il nome dell&apos;impegno</translation>
+        <translation>Inserisci il nome dell&apos;impegno</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new task</source>
@@ -363,32 +603,34 @@
     </message>
     <message>
         <source>It already exists on this list.</source>
-        <translation>Già esistente in questa lista!</translation>
+        <translation>Esistente già in questa lista.</translation>
     </message>
     <message>
         <source>Adding multiple tasks</source>
+        <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
         <translation>Aggiunta impegni multipli</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
-        <translation>sono stati aggiunti nuovi impegni.</translation>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
+        <translation>i nuovi impegni sono stati aggiunti.</translation>
     </message>
     <message>
         <source>All tasks already exist!</source>
         <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
-        <translation>Tutti gli impegni già esistono!</translation>
+        <translation>Tutti gli impegni esistono già!</translation>
     </message>
     <message>
         <source>No new tasks have been added to the list.</source>
-        <translation>Non sono stati aggiunti nuovi impegni alla lista.</translation>
+        <translation>Nessun nuovo impegno nella lista.</translation>
     </message>
     <message>
         <source>no tasks available</source>
-        <translation>nessun impegno disponibile</translation>
+        <translation>nessun impegno</translation>
     </message>
     <message>
         <source>Settings</source>
+        <extracomment>menu item to switch to settings page</extracomment>
         <translation>Impostazioni</translation>
     </message>
     <message>
@@ -408,21 +650,21 @@
     <message>
         <source>About</source>
         <extracomment>menu item to jump to the application information page</extracomment>
-        <translation>Crediti</translation>
+        <translation>Info</translation>
     </message>
     <message>
         <source>Deleting</source>
         <extracomment>deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation>Eliminando</translation>
+        <translation>Eliminazione</translation>
     </message>
     <message>
         <source>mark as open</source>
         <extracomment>mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation>segna da fare</translation>
+        <translation>segna come da fare</translation>
     </message>
     <message>
         <source>mark as done</source>
-        <translation>segna compiuto</translation>
+        <translation>segna come compiuto</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -436,6 +678,7 @@
     </message>
     <message>
         <source>Details</source>
+        <extracomment>detailed list which tasks have been added simultaneously</extracomment>
         <translation>Dettagli</translation>
     </message>
     <message>
@@ -443,13 +686,77 @@
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Rotazione bloccata</translation>
     </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Oggi</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Domani</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Ieri</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
+        <translation>Lista</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
+        <translation>Scadenza</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
+        <translation>Note</translation>
+    </message>
+    <message>
+        <source>#%1</source>
+        <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
+        <translation>#%1</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Esporta/Importa dati</translation>
+    </message>
+    <message>
+        <source>Reseting all done tasks</source>
+        <extracomment>remorse action to reset all done tasks</extracomment>
+        <translation>Reset impegni compiuti</translation>
+    </message>
+    <message>
+        <source>Task has been reopened!</source>
+        <extracomment>notifying the user that the status of the task has been reopened</extracomment>
+        <translation>L&apos;impegno è stato riaperto!</translation>
+    </message>
+    <message>
+        <source>The task already existed and was marked as done.</source>
+        <translation>L&apos;impegno esiste già ed è stato segnato come completato.</translation>
+    </message>
+    <message>
+        <source>Reset all done tasks</source>
+        <extracomment>menu item to reset all done tasks to the open status</extracomment>
+        <translation>Resetta impegni compiuti</translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation>Compiuto</translation>
+        <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
+        <translation>Completato</translation>
     </message>
     <message>
         <source>Pending</source>
@@ -458,6 +765,68 @@
     <message>
         <source>New</source>
         <translation>Nuovo</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Oggi</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <translation>Domani</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <extracomment>Stop database upgrade dialog</extracomment>
+        <translation>Esci</translation>
+    </message>
+    <message>
+        <source>Please select an action to proceed.</source>
+        <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
+        <translation>Seleziona un&apos;azione per procedere</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>text of the button to delete the old database and start overleo</extracomment>
+        <translation>Elimina</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <extracomment>text of the button to migrate the old to the new database format</extracomment>
+        <translation>Aggiorna</translation>
+    </message>
+    <message>
+        <source>Action required</source>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <translation>Azione richiesta</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for the informational upgrade dialog part</extracomment>
+        <translation>Informazioni</translation>
+    </message>
+    <message>
+        <source>Choose an option</source>
+        <extracomment>headline for the option section of the upgrade dialog</extracomment>
+        <translation>Scegli un&apos;opzione</translation>
+    </message>
+    <message>
+        <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
+        <extracomment>first part of the database upgrade description</extracomment>
+        <translation>È stato trovato un database di una versione precedente di TaskList. I vecchi database non sono supportati.</translation>
+    </message>
+    <message>
+        <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
+        <translation> Premi &apos;%1&apos; per migrare il vecchio database nel nuovo formato o &apos;%2&apos; per eliminare il vecchio database e iniziare con uno nuovo.</translation>
+    </message>
+    <message>
+        <source>recommended</source>
+        <extracomment>hint which is the recommended upgrade option</extracomment>
+        <translation>raccomandato</translation>
     </message>
 </context>
 </TS>
