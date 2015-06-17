@@ -388,6 +388,7 @@ Page {
                     id: nextList
                     height: taskAdd.height * 0.8
                     width: height
+                    enabled: taskListWindow.coverActionMultiple
 
                     icon {
                         source: "image://theme/icon-cover-next"
