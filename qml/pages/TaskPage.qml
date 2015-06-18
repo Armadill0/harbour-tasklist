@@ -470,6 +470,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
             MenuItem {
+                text: qsTr("Sync with Dropbox")
+                onClicked: pageStack.push("sync/DropboxSync.qml")
+            }
+            MenuItem {
                 //: menu item to jump to the application information page
                 text: qsTr("About") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))

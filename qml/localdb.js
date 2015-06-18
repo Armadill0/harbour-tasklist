@@ -630,6 +630,23 @@ function getListName(id) {
 /*** SQL functions for SETTINGS handling ***/
 /*******************************************/
 
+/* UPSERT as in http://stackoverflow.com/a/15277374 */
+function upsertSetting(setting, value) {
+    var db = connectDB();
+    var ok = false;
+    try {
+        db.transaction(function(tx) {
+            tx.executeSql("INSERT OR IGNORE INTO settings (Setting, Value) VALUES (?, ?);", [setting, value]);
+            ok = true;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to insert or ignore setting " + setting);
+    }
+    if (ok)
+        ok = updateSetting(setting, value);
+    return ok;
+}
+
 function updateSetting(setting, value) {
     var db = connectDB();
     var ok = false;
@@ -645,18 +662,25 @@ function updateSetting(setting, value) {
     return ok;
 }
 
-function getSettingAsNumber(setting) {
+function getSetting(setting) {
     var db = connectDB();
-    var value;
+    var value = undefined;
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("SELECT * FROM settings WHERE Setting = ?;", setting);
             if (result.rows.length === 1)
-                value = Number(result.rows.item(0).Value);
+                value = result.rows.item(0).Value;
         });
     } catch (sqlErr) {
         console.log("Unable to get setting " + setting);
     }
+    return value;
+}
+
+function getSettingAsNumber(setting) {
+    var value = getSetting(setting);
+    if (typeof value !== "undefined")
+        value = Number(value);
     return value;
 }
 

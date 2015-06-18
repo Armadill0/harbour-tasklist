@@ -20,8 +20,10 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "pages"
+import "pages/sync"
 import "localdb.js" as DB
 import harbour.tasklist.notifications 1.0
+import harbour.tasklist.tasks_export 1.0
 
 ApplicationWindow {
     id: taskListWindow
@@ -206,6 +208,54 @@ ApplicationWindow {
             coverActionMultiple = false
             coverActionSingle = true
         }
+    }
+
+    TasksExport {
+        id: exporter
+    }
+
+    // at the moment it will open Dropbox site in browser
+    function authorizeInDropbox() {
+        exporter.authorizeInDropbox()
+    }
+
+    // after being authorized the app will try to get OAuth credentials and save them in DB
+    function getDropboxCredentials() {
+        var list = exporter.getDropboxCredentials()
+        if (list.length < 3) {
+            pushNotification("ERROR", qsTr("Cannot access Dropbox"), qsTr("Unable to fetch credentials from Dropbox"))
+            return false
+        }
+        // Dropbox OAuth token goes last, because its presence means full presence of credentials in DB
+        if (!DB.upsertSetting("dropboxTokenSecret", list[1]) ||
+              !DB.upsertSetting("dropboxUsername", list[2]) ||
+              !DB.upsertSetting("dropboxToken", list[0])) {
+            pushNotification("ERROR", qsTr("DB error"), qsTr("Unable to save credentials in DB"))
+            return false
+        }
+        return true
+    }
+
+    // set credentials from DB if app was authorized earlier
+    function setDropboxCredentials() {
+        var token = DB.getSetting("dropboxToken")
+        var tokenSecret = DB.getSetting("dropboxTokenSecret")
+        if (typeof token === "undefined" || typeof tokenSecret === "undefined")
+            return false
+        exporter.setDropboxCredentials(token, tokenSecret)
+        return true
+    }
+
+    // to debug
+    function doDropboxSync() {
+        var json = DB.dumpData()
+        console.log("Dump is composed")
+        var ret = exporter.uploadToDropbox(json)
+        if (ret)
+            pushNotification("OK", qsTr("Sync finished"), qsTr("All your data is successfully uploaded to Dropbox"))
+        else
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Unable to upload data to Dropbox"))
+        return ret
     }
 
     // notification function

@@ -1,11 +1,20 @@
 #include "tasksexport.h"
+#include <QDesktopServices>
 #include <QDirIterator>
 #include <QFile>
 #include <QTextStream>
 
+// FIXME
+#include <QDebug>
+
 TasksExport::TasksExport(QObject *parent) :
-    QObject(parent)
+    QObject(parent), dropbox(NULL), dropboxPath("/sandbox/harbour-tasklist.json")
 {
+}
+
+TasksExport::~TasksExport()
+{
+    exitDropbox();
 }
 
 QString TasksExport::load(const QString &path) const
@@ -62,4 +71,85 @@ bool TasksExport::remove(const QString &path) const
     QFile file(path);
     file.remove(path);
     return true;
+}
+
+// FIXME there may be a better way to provide Dropbox keys from outside
+#define STRINGIFY2(X) #X
+#define STRINGIFY(X) STRINGIFY2(X)
+
+bool TasksExport::authorizeInDropbox()
+{
+    initDropbox();
+    if (!dropbox->requestTokenAndWait()) {
+        qDebug() << "Dropbox auth error:" << dropbox->errorString();
+        dropbox->clearError();
+        exitDropbox();
+        return false;
+    }
+    QUrl url = dropbox->authorizeLink();
+    qDebug() << "auth link:" << url.toString();
+    // Theoretically, then we should call QDesktopServices::openUrl(url)
+    //exitDropbox();
+    return true;
+}
+
+QStringList TasksExport::getDropboxCredentials()
+{
+    QStringList result;
+    if(dropbox->requestAccessTokenAndWait()) {
+        result.append(dropbox->token());
+        result.append(dropbox->tokenSecret());
+        QDropboxAccount acc = dropbox->requestAccountInfoAndWait();
+        result.append(acc.displayName());
+    }
+    return result;
+}
+
+void TasksExport::setDropboxCredentials(const QString &token, const QString &tokenSecret)
+{
+    if (!dropbox)
+        initDropbox();
+    dropbox->setToken(token);
+    dropbox->setTokenSecret(tokenSecret);
+}
+
+QString TasksExport::downloadFromDropbox()
+{
+    // TODO impl.
+    return "";
+}
+
+bool TasksExport::uploadToDropbox(const QString &tasks)
+{
+    QDropboxFile file(dropbox);
+    file.setFilename(dropboxPath);
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "couldn't open file at Dropbox:" << dropboxPath;
+        return false;
+    }
+    QTextStream out(&file);
+    out << tasks;
+    out.flush();
+    if (!file.flush()) {
+        qDebug() << "couldn't flush data to Dropbox";
+        return false;
+    }
+    file.close();
+    qDebug() << "file is written";
+    return true;
+}
+
+void TasksExport::initDropbox()
+{
+    dropbox = new QDropbox;
+    dropbox->setKey(STRINGIFY(TASKLIST_DROPBOX_APPKEY));
+    dropbox->setSharedSecret(STRINGIFY(TASKLIST_DROPBOX_SHAREDSECRET));
+}
+
+void TasksExport::exitDropbox()
+{
+    if (dropbox) {
+        delete dropbox;
+        dropbox = NULL;
+    }
 }
