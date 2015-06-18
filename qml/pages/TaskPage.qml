@@ -32,6 +32,26 @@ Page {
     property int smartListType: taskListWindow.smartListType
     property bool doneTasksAvailable
 
+    // function to switch to the next list, final switch is done by onListIdChanged
+    function switchList(backwards) {
+        var listArray = taskListWindow.listOfLists.split(",")
+
+        for (var i = 0; i < listArray.length; i++) {
+
+            if (listArray[i] === listid) {
+                if (i == listArray.length - 1)
+                    listid = listArray[0]
+                else {
+                    if (backwards === true)
+                        listid = listArray[i - 1]
+                    else
+                        listid = listArray[i + 1]
+                }
+                break
+            }
+        }
+    }
+
     // human-readable representation of a due date
     function humanDueDate(unixTime) {
         if (typeof(unixTime) !== "number" || unixTime <= 0)
@@ -280,6 +300,10 @@ Page {
             id: taskListModel
         }
 
+        Keys.onLeftPressed: switchList(true)
+        Keys.onRightPressed: switchList()
+        Keys.onTabPressed: headerItem.children[1].forceActiveFocus()
+
         VerticalScrollDecorator { flickable: taskList }
 
         header: Column {
@@ -304,7 +328,7 @@ Page {
                     //: a label to inform the user how to confirm the new task
                     label: qsTr("Press Enter/Return to add the new task")
                     // enable enter key if minimum task length has been reached
-                    EnterKey.enabled: taskAdd.text.length > 0
+                    EnterKey.enabled: taskList.htaskAdd.text.length > 0
                     // set allowed chars and task length
                     //validator: RegExpValidator { regExp: /^.{,60}$/ }
 
@@ -398,21 +422,6 @@ Page {
                     }
                     anchors {
                         verticalCenter: taskAdd.verticalCenter
-                    }
-
-                    // function to switch to the next list, final switch is done by onListIdChanged
-                    function switchList() {
-                        var listArray = taskListWindow.listOfLists.split(",")
-
-                        for (var i = 0; i < listArray.length; i++) {
-                            if (listArray[i] == listid) {
-                                if (i == listArray.length - 1)
-                                    listid = listArray[0]
-                                else
-                                    listid = listArray[i + 1]
-                                break
-                            }
-                        }
                     }
 
                     onClicked: switchList()
