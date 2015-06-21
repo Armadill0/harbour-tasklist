@@ -471,7 +471,7 @@ Page {
             }
             MenuItem {
                 text: qsTr("Sync with Dropbox")
-                onClicked: pageStack.push("sync/DropboxSync.qml")
+                onClicked: pageStack.push("sync/DropboxSync.qml", { attemptedAuth: false })
             }
             MenuItem {
                 //: menu item to jump to the application information page

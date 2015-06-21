@@ -22,6 +22,9 @@ import ".."
 
 Page {
     id: dropboxSync
+
+    property bool attemptedAuth
+
     Column {
         id: column
         spacing: Theme.paddingLarge
@@ -45,11 +48,19 @@ Page {
         if (status === PageStatus.Active) {
             // try to load credentials from database, and authorize if they're missing
             if (!taskListWindow.setDropboxCredentials()) {
-                var dialog = pageStack.push("DropboxAuth.qml")
-                dialog.accepted.connect(function() {
-                    if (taskListWindow.getDropboxCredentials())
-                        startSync()
+                // may be user has already declined access
+                if (attemptedAuth) {
+                    pageStack.pop()
+                    return
+                }
+                attemptedAuth = true
+                var authLink = taskListWindow.dropboxAuthorizeLink()
+                var authPage = pageStack.push("DropboxAuth.qml", { url: authLink })
+                authPage.accepted.connect(function() {
+                    taskListWindow.getDropboxCredentials()
                 })
+                // when DropboxAuth page is closed, this page becomes active
+                // and this routine is executed again
             } else {
                 startSync()
             }

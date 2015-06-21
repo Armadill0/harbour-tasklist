@@ -73,24 +73,16 @@ bool TasksExport::remove(const QString &path) const
     return true;
 }
 
-// FIXME there may be a better way to provide Dropbox keys from outside
-#define STRINGIFY2(X) #X
-#define STRINGIFY(X) STRINGIFY2(X)
-
-bool TasksExport::authorizeInDropbox()
+QString TasksExport::dropboxAuthorizeLink()
 {
     initDropbox();
     if (!dropbox->requestTokenAndWait()) {
         qDebug() << "Dropbox auth error:" << dropbox->errorString();
         dropbox->clearError();
         exitDropbox();
-        return false;
+        return "";
     }
-    QUrl url = dropbox->authorizeLink();
-    qDebug() << "auth link:" << url.toString();
-    // Theoretically, then we should call QDesktopServices::openUrl(url)
-    //exitDropbox();
-    return true;
+    return dropbox->authorizeLink().toString();
 }
 
 QStringList TasksExport::getDropboxCredentials()
@@ -141,9 +133,16 @@ bool TasksExport::uploadToDropbox(const QString &tasks)
 
 void TasksExport::initDropbox()
 {
+    // FIXME there may be a better way to provide Dropbox keys from outside
+#define STRINGIFY2(X) #X
+#define STRINGIFY(X) STRINGIFY2(X)
+
     dropbox = new QDropbox;
     dropbox->setKey(STRINGIFY(TASKLIST_DROPBOX_APPKEY));
     dropbox->setSharedSecret(STRINGIFY(TASKLIST_DROPBOX_SHAREDSECRET));
+
+#undef STRINGIFY
+#undef STRINGIFY2
 }
 
 void TasksExport::exitDropbox()

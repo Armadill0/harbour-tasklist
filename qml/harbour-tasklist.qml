@@ -214,9 +214,9 @@ ApplicationWindow {
         id: exporter
     }
 
-    // at the moment it will open Dropbox site in browser
-    function authorizeInDropbox() {
-        exporter.authorizeInDropbox()
+    // generate URL to grant access for app at Dropbox
+    function dropboxAuthorizeLink() {
+        return exporter.dropboxAuthorizeLink()
     }
 
     // after being authorized the app will try to get OAuth credentials and save them in DB

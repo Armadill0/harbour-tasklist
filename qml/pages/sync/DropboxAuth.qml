@@ -20,57 +20,37 @@ import QtQuick 2.1
 import Sailfish.Silica 1.0
 import ".."
 
-Dialog {
-    id: dropboxAuthDialog
+Page {
+    id: dropboxAuth
 
-    canAccept: false
+    property alias url: webView.url
 
-    Column {
-        width: parent.width
-        spacing: Theme.itemSizeMedium
+    signal accepted
+    signal declined
 
-        DialogHeader {
-            acceptText: qsTr("Continue")
-        }
+    SilicaWebView {
+        id: webView
+        anchors.fill: parent
 
-        Label {
-            id: label1
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: Theme.paddingLarge
-                rightMargin: Theme.paddingLarge
-            }
-            text: qsTr("It looks like you do sync with Dropbox in the first time.")
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-        }
-
-        Label {
-            id: label2
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: Theme.paddingLarge
-                rightMargin: Theme.paddingLarge
-            }
-            text: qsTr("Click the button below to go to Dropbox website and allow the app to access your folder.")
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-        }
-
-        Button {
-            id: goToDropbox
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Allow access to Dropbox")
-            onClicked: {
-                goToDropbox.visible = false
-                // do the actual work here
-                taskListWindow.authorizeInDropbox()
-                label2.visible = false
-                label1.text = qsTr("Hopefully you have allowed access and can now go on with sync.")
-                canAccept = true
+        onLoadingChanged: {
+            // wait until request is executed: value "2" was determined from experiment
+            if (loadRequest.status !== 2)
+                return
+            var curUrl = loadRequest.url.toString()
+            console.log("loaded " + curUrl)
+            if (curUrl === "https://www.dropbox.com/1/oauth/authorize_submit") {
+                accepted()
+                pageStack.pop()
+            } else if (curUrl === "https://www.dropbox.com/home") {
+                declined()
+                pageStack.pop()
             }
         }
+    }
+
+    BusyIndicator {
+        running: webView.loading
+        anchors.centerIn: parent
+        size: BusyIndicatorSize.Large
     }
 }

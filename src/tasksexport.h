@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE QStringList getFilesList(const QString &directory) const;
     Q_INVOKABLE QString load(const QString &path) const;
 
-    Q_INVOKABLE bool authorizeInDropbox();
+    Q_INVOKABLE QString dropboxAuthorizeLink();
     /* returns 3 elements: OAuth token, OAuth token secret and Dropbox username */
     Q_INVOKABLE QStringList getDropboxCredentials();
     Q_INVOKABLE void setDropboxCredentials(const QString &token, const QString &tokenSecret);
