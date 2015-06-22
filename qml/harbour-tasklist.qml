@@ -226,23 +226,25 @@ ApplicationWindow {
             pushNotification("ERROR", qsTr("Cannot access Dropbox"), qsTr("Unable to fetch credentials from Dropbox"))
             return false
         }
-        // Dropbox OAuth token goes last, because its presence means full presence of credentials in DB
-        if (!DB.upsertSetting("dropboxTokenSecret", list[1]) ||
-              !DB.upsertSetting("dropboxUsername", list[2]) ||
-              !DB.upsertSetting("dropboxToken", list[0])) {
+        var values = { dropboxUsername: list[0], dropboxTokenSecret: list[1], dropboxToken: list[2] }
+        if (!DB.upsertDropboxCredentials(values)) {
             pushNotification("ERROR", qsTr("DB error"), qsTr("Unable to save credentials in DB"))
             return false
         }
         return true
     }
 
+    // remove Dropbox keys from DB
+    function removeDropboxCredentials() {
+        DB.removeDropboxCredentials()
+    }
+
     // set credentials from DB if app was authorized earlier
     function setDropboxCredentials() {
-        var token = DB.getSetting("dropboxToken")
-        var tokenSecret = DB.getSetting("dropboxTokenSecret")
-        if (typeof token === "undefined" || typeof tokenSecret === "undefined")
+        var values = DB.getDropboxCredentials()
+        if (typeof values.dropboxToken === "undefined" || typeof values.dropboxTokenSecret == "undefined")
             return false
-        exporter.setDropboxCredentials(token, tokenSecret)
+        exporter.setDropboxCredentials(values.dropboxToken, values.dropboxTokenSecret)
         return true
     }
 

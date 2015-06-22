@@ -89,10 +89,11 @@ QStringList TasksExport::getDropboxCredentials()
 {
     QStringList result;
     if(dropbox->requestAccessTokenAndWait()) {
-        result.append(dropbox->token());
-        result.append(dropbox->tokenSecret());
         QDropboxAccount acc = dropbox->requestAccountInfoAndWait();
         result.append(acc.displayName());
+
+        result.append(dropbox->tokenSecret());
+        result.append(dropbox->token());
     }
     return result;
 }

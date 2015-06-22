@@ -684,6 +684,35 @@ function getSettingAsNumber(setting) {
     return value;
 }
 
+var DROPBOX_FIELDS = {
+    dropboxUsername: "dropboxUsername",
+    dropboxTokenSecret: "dropboxTokenSecret",
+    dropboxToken: "dropboxToken"
+};
+
+function upsertDropboxCredentials(values) {
+    for (var i in DROPBOX_FIELDS)
+        if (!upsertSetting(DROPBOX_FIELDS[i], values[i]))
+            return false;
+    return true;
+}
+
+function getDropboxCredentials() {
+    var values = {};
+    for (var i in DROPBOX_FIELDS)
+        values[i] = getSetting(DROPBOX_FIELDS[i]);
+    return values;
+}
+
+function removeDropboxCredentials() {
+    var db = connectDB();
+    db.transaction(function(tx) {
+        for (var i in DROPBOX_FIELDS)
+            tx.executeSql("DELETE FROM settings WHERE Setting = ?;", DROPBOX_FIELDS[i]);
+        tx.executeSql("COMMIT;");
+    });
+}
+
 /***************************************/
 /*** SQL functions for TAGS handling ***/
 /***************************************/
