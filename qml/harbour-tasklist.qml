@@ -239,10 +239,16 @@ ApplicationWindow {
         DB.removeDropboxCredentials()
     }
 
+    // check presense
+    function checkDropboxCredentials() {
+        var values = DB.getDropboxCredentials()
+        return typeof values.dropboxToken !== "undefined" && typeof values.dropboxTokenSecret !== "undefined"
+    }
+
     // set credentials from DB if app was authorized earlier
     function setDropboxCredentials() {
         var values = DB.getDropboxCredentials()
-        if (typeof values.dropboxToken === "undefined" || typeof values.dropboxTokenSecret == "undefined")
+        if (typeof values.dropboxToken === "undefined" || typeof values.dropboxTokenSecret === "undefined")
             return false
         exporter.setDropboxCredentials(values.dropboxToken, values.dropboxTokenSecret)
         return true
