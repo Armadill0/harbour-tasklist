@@ -26,6 +26,27 @@ Dialog {
     allowedOrientations: Orientation.All
     canAccept: true
 
+    // function to compose the remorse action slider's text description
+    function composeRemorseSliderText(time) {
+        var result = ""
+        switch (time) {
+        case 0:
+            //: text to be shown if the slider is set to
+            result = qsTr("deactivated")
+            break
+        case 1:
+            //: '%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case
+            result = qsTr("%1 second").arg(time)
+            break
+        default:
+            //: '%1' will be replaced by the amount of seconds of the slider
+            result = qsTr("%1 seconds").arg(time)
+            break
+        }
+
+        return result
+    }
+
     onAccepted: {
         // update settings in database
         DB.updateSetting("coverListSelection", coverListSelection.currentIndex)
@@ -198,33 +219,44 @@ Dialog {
                 id: remorseOnDelete
                 width: parent.width
                 label: qsTr("on Delete")
-                minimumValue: 1
+                minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
                 value: taskListWindow.remorseOnDelete
-                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+                valueText: composeRemorseSliderText(value)
             }
 
             Slider {
                 id: remorseOnMark
                 width: parent.width
                 label: qsTr("on Mark task")
-                minimumValue: 1
+                minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
                 value: taskListWindow.remorseOnMark
-                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+                valueText: composeRemorseSliderText(value)
             }
 
             Slider {
                 id: remorseOnMultiAdd
                 width: parent.width
                 label: qsTr("on Adding multiple tasks")
-                minimumValue: 1
+                minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
                 value: taskListWindow.remorseOnMultiAdd
-                valueText: value + " " + ((value > 1) ? qsTr("seconds") : qsTr("second"))
+                valueText: composeRemorseSliderText(value)
+            }
+
+            Button {
+                id: signOutDropbox
+                anchors.horizontalCenter: parent.horizontalCenter
+                enabled: taskListWindow.checkDropboxCredentials()
+                text: qsTr("Dropbox sign out")
+                onClicked: {
+                    taskListWindow.removeDropboxCredentials()
+                    signOutDropbox.enabled = false
+                }
             }
         }
     }

@@ -64,33 +64,13 @@
         <translation>Propiedades de las tareas</translation>
     </message>
     <message>
-        <source>Save changes in the upper right corner</source>
-        <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation>Salvar cambios en la parte superior derecha</translation>
-    </message>
-    <message>
-        <source>task already exists on this list!</source>
-        <translation>Esta tarea ya existe!</translation>
-    </message>
-    <message>
         <source>task is done</source>
-        <extracomment>choose if this task is pending or done</extracomment>
         <translation>Tarea terminada</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Lista</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
-        <translation>Información</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <extracomment>displays the date when the task has been created by the user</extracomment>
-        <translation>Creado en</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -101,6 +81,79 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>¡La tarea no puede ser salvada!</translation>
+    </message>
+    <message>
+        <source>none (tap to select)</source>
+        <extracomment>default value if no due date is selected
+----------
+default value if no tag is selected</extracomment>
+        <translation>Ninguno (pincha para seleccionar)</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Hoy</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Mañana</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Ayer</translation>
+    </message>
+    <message>
+        <source>Task already exists on this list!</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
+        <translation>La tarea ya está en la lista!</translation>
+    </message>
+    <message>
+        <source>Task name</source>
+        <translation>Nombre de la tarea</translation>
+    </message>
+    <message>
+        <source>task is open</source>
+        <extracomment>choose if this task is pending or done</extracomment>
+        <translation>La tarea esta abierta</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
+        <translation>Prioridad</translation>
+    </message>
+    <message>
+        <source>Dates</source>
+        <extracomment>headline for the date and time properties of the task</extracomment>
+        <translation>Fechas</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>select the due date for a task</extracomment>
+        <translation>Debido</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
+        <translation>Creado</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>headline for the tags section
+----------
+label for the tags field</extracomment>
+        <translation>Etiqueta</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>headline for the section where notes for the task can be saved</extracomment>
+        <translation>Notas</translation>
+    </message>
+    <message>
+        <source>Enter your notes or description here</source>
+        <extracomment>textfield to enter notes</extracomment>
+        <translation>Entrar aquí, notas o descripción</translation>
     </message>
 </context>
 <context>
@@ -172,6 +225,35 @@
         <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
         <translation>Puedes exportar todos tus datos a un fichero en formato JSON e importarlo desde un fichero en formato JSON. Por favor, recuerda que TODOS tus datos que contienen tareas y listas son archivadas en un único fichero.</translation>
+    </message>
+    <message>
+        <source>Drop data (very destructive!!!)</source>
+        <extracomment>headline for the database purge</extracomment>
+        <translation>Borrar datos (¡ Destructivo !)</translation>
+    </message>
+    <message>
+        <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
+        <extracomment>warn user of destructive drop DB function</extracomment>
+        <translation>Cuidado: Esta opción borrará sus datos inmediatamente. Usar solo si sabes lo que haces.</translation>
+    </message>
+    <message>
+        <source>Yes, I know what I&apos;m doing.</source>
+        <extracomment>let user confirm the database purge</extracomment>
+        <translation>Si, se lo que hago.</translation>
+    </message>
+    <message>
+        <source>Drop database</source>
+        <extracomment>Button to import data form the selected file</extracomment>
+        <translation>Borrar base de datos.</translation>
+    </message>
+    <message>
+        <source>Successfully dropped all data.</source>
+        <extracomment>informational notification about the successful dropped data tables</extracomment>
+        <translation>datos borrados satisfactoriamente.</translation>
+    </message>
+    <message>
+        <source>Please restart TaskList to work with the new database.</source>
+        <translation>Por favor, reiniciar TaskList para trabajar con la nueva base de datos.</translation>
     </message>
 </context>
 <context>
@@ -266,9 +348,14 @@
         <translation>Sus listas</translation>
     </message>
     <message>
-        <source>Export/Import data</source>
-        <extracomment>menu item to switch to export/import page</extracomment>
-        <translation>Exportar/Importar datos</translation>
+        <source>%1 tag</source>
+        <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
+        <translation>Etiqueta %1 </translation>
+    </message>
+    <message>
+        <source>%1 tags</source>
+        <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
+        <translation>Etiquetas %1</translation>
     </message>
 </context>
 <context>
@@ -365,14 +452,6 @@
         <translation>En borrado</translation>
     </message>
     <message>
-        <source>seconds</source>
-        <translation>segundos</translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation>segundo</translation>
-    </message>
-    <message>
         <source>on Mark task</source>
         <translation>Al marcar tarea</translation>
     </message>
@@ -420,11 +499,91 @@
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
         <translation>Machacar las tareas finalizadas.</translation>
     </message>
+    <message>
+        <source>deactivated</source>
+        <extracomment>text to be shown if the slider is set to</extracomment>
+        <translation>desactivado</translation>
+    </message>
+    <message>
+        <source>%1 second</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <translation>%1 segundo</translation>
+    </message>
+    <message>
+        <source>%1 seconds</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
+        <translation>%1 segundos</translation>
+    </message>
+</context>
+<context>
+    <name>TagDialog</name>
+    <message>
+        <source>Select tags</source>
+        <translation>Selecciona etiqueta</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Confirmar</translation>
+    </message>
+</context>
+<context>
+    <name>TagPage</name>
+    <message>
+        <source>Manage tags</source>
+        <extracomment>headline for the tags page</extracomment>
+        <translation>Manejar etiquetas.</translation>
+    </message>
+    <message>
+        <source>Add new tag</source>
+        <extracomment>headline to create new tags</extracomment>
+        <translation>Añadir nueva etiqueta</translation>
+    </message>
+    <message>
+        <source>Enter unique tag name</source>
+        <extracomment>fallback text if no name for a new tag is specified</extracomment>
+        <translation>Entrar nomobre único de etiqueta</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to add the new tag</source>
+        <extracomment>hint how to confirm the new tag</extracomment>
+        <translation>Presiona ENTER/Return para añadir una nueva etiqueta.</translation>
+    </message>
+    <message>
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Tus etiquetas.</translation>
+    </message>
+    <message>
+        <source>no tags available</source>
+        <extracomment>fallback text if no tags are defined</extracomment>
+        <translation>No hay etiquetas.</translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <extracomment>remorse item when a tag is being deleted</extracomment>
+        <translation>Borrando.</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>context menu item to edit a tag</extracomment>
+        <translation>Editar</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>context menu item to delete a tag</extracomment>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
+        <translation>Presiona ENTER/RETURN para salvar los cambios</translation>
+    </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
+        <extracomment>remorse action to delete all done tasks</extracomment>
         <translation>Borrar todas las tareas hechas</translation>
     </message>
     <message>
@@ -448,11 +607,12 @@
     </message>
     <message>
         <source>Adding multiple tasks</source>
+        <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
         <translation>Añadiendo múltiples tareas.</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
         <translation>Nueva tarea ha sido añadida.</translation>
     </message>
     <message>
@@ -484,6 +644,7 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
+        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Borrar todas las tareas realizadas</translation>
     </message>
     <message>
@@ -517,6 +678,7 @@
     </message>
     <message>
         <source>Details</source>
+        <extracomment>detailed list which tasks have been added simultaneously</extracomment>
         <translation>Detalles.</translation>
     </message>
     <message>
@@ -524,12 +686,76 @@
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Orientación bloqueada.</translation>
     </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Hoy</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Mañana</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Ayer</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
+        <translation>Lista</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
+        <translation>Debe</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
+        <translation>Notas</translation>
+    </message>
+    <message>
+        <source>#%1</source>
+        <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
+        <translation>#%1</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Exportar/Importar datos</translation>
+    </message>
+    <message>
+        <source>Reseting all done tasks</source>
+        <extracomment>remorse action to reset all done tasks</extracomment>
+        <translation>Limpiando todas las tareas realizadas</translation>
+    </message>
+    <message>
+        <source>Task has been reopened!</source>
+        <extracomment>notifying the user that the status of the task has been reopened</extracomment>
+        <translation>La tarea ha sido abierta</translation>
+    </message>
+    <message>
+        <source>The task already existed and was marked as done.</source>
+        <translation>La tarea ya existe y esta marcada como realizada</translation>
+    </message>
+    <message>
+        <source>Reset all done tasks</source>
+        <extracomment>menu item to reset all done tasks to the open status</extracomment>
+        <translation>Limpiar todas las tareas realizadas</translation>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
+        <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Finalizado</translation>
     </message>
     <message>
@@ -539,6 +765,68 @@
     <message>
         <source>New</source>
         <translation>Nueva</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Hoy</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <translation>Mañana</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <extracomment>Stop database upgrade dialog</extracomment>
+        <translation>Salir</translation>
+    </message>
+    <message>
+        <source>Please select an action to proceed.</source>
+        <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
+        <translation>Por favor seleccionar una acción que realizar</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>text of the button to delete the old database and start overleo</extracomment>
+        <translation>Borrar</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <extracomment>text of the button to migrate the old to the new database format</extracomment>
+        <translation>Poner al día</translation>
+    </message>
+    <message>
+        <source>Action required</source>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <translation>Acción requerida</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for the informational upgrade dialog part</extracomment>
+        <translation>Información</translation>
+    </message>
+    <message>
+        <source>Choose an option</source>
+        <extracomment>headline for the option section of the upgrade dialog</extracomment>
+        <translation>Elige una opción</translation>
+    </message>
+    <message>
+        <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
+        <extracomment>first part of the database upgrade description</extracomment>
+        <translation>Se ha encontrado una base de datos antigua, esta ya no esta soportada.</translation>
+    </message>
+    <message>
+        <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
+        <translation>Presiona &apos;%1&apos; para migrar la vieja base de datos al nuevo formato o bien &apos;%2&apos; para borrar la vieja e iniciar con una base de datos nueva.</translation>
+    </message>
+    <message>
+        <source>recommended</source>
+        <extracomment>hint which is the recommended upgrade option</extracomment>
+        <translation>recomendado</translation>
     </message>
 </context>
 </TS>

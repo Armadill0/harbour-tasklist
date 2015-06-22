@@ -20,9 +20,10 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "pages"
-import "cover"
+import "pages/sync"
 import "localdb.js" as DB
 import harbour.tasklist.notifications 1.0
+import harbour.tasklist.tasks_export 1.0
 
 ApplicationWindow {
     id: taskListWindow
@@ -59,6 +60,9 @@ ApplicationWindow {
     property int defaultPriority: 3
     property int maximumPriority: 5
 
+    property bool coverActionMultiple: false
+    property bool coverActionSingle
+
     // initilize default settings properties
     property int coverListSelection
     property int coverListChoose
@@ -84,69 +88,105 @@ ApplicationWindow {
     Component {
         id: migrateConfirmation
         Dialog {
-            Column {
+            //: text of the button to migrate the old to the new database format
+            property string dbUpgradeText: qsTr("Upgrade")
+            //: text of the button to delete the old database and start overleo
+            property string dbDeleteText: qsTr("Delete")
+
+            SilicaListView {
+                id: migrateFlickable
                 width: parent.width
+                contentHeight: parent.height
 
-                DialogHeader {
-                    //: Stop database upgrade dialog
-                    acceptText: qsTr("Exit")
-                    //: get user's attention before starting database upgrade
-                    title: qsTr("ATTENTION")
-                }
+                VerticalScrollDecorator { flickable: migrateFlickable }
 
-                SectionHeader {
-                    //: headline for the informational upgrade dialog part
-                    text: qsTr("Information")
-                }
+                Column {
+                    width: parent.width
 
-                Label {
-                    width: parent.width - 2 * Theme.paddingLarge
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    //: upgrade description
-                    text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported. You can delete the database or try to upgrade the data (result is not guaranteed).")
-                    wrapMode: Text.WordWrap
-                    color: "red"
-                }
+                    DialogHeader {
+                        //: Stop database upgrade dialog
+                        acceptText: qsTr("Exit")
+                        //: get user's attention before starting database upgrade
+                        title: qsTr("Action required")
+                    }
 
-                SectionHeader {
-                    //: headline for the option section of the upgrade dialog
-                    text: qsTr("Choose an option")
-                }
+                    SectionHeader {
+                        //: headline for the informational upgrade dialog part
+                        text: qsTr("Information")
+                    }
 
-                Label {
-                    width: parent.width - 2 * Theme.paddingLarge
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    //: user has the possibility to choose the database upgrade or delete the old database
-                    text: qsTr("Please select an action to proceed.")
-                    wrapMode: Text.WordWrap
-                }
+                    Label {
+                        width: parent.width - 2 * Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        //: first part of the database upgrade description
+                        text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported.") + "\n" +
+                              //: second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog
+                              qsTr(" Press '%1' to migrate the old database into the new format or '%2' to delete the old database and start with a clean new database.").arg(dbUpgradeText).arg(dbDeleteText)
+                        wrapMode: Text.WordWrap
+                        color: Theme.highlightColor
+                        font.bold: true
+                    }
 
-                Row {
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    SectionHeader {
+                        //: headline for the option section of the upgrade dialog
+                        text: qsTr("Choose an option")
+                    }
 
-                    Button {
-                        //: delete old database option
-                        text: qsTr("Delete")
-                        onClicked: {
-                            if (DB.replaceOldDB())
-                                pageStack.replace(initialTaskPage)
-                            else
-                                Qt.quit()
+                    Label {
+                        width: parent.width - 2 * Theme.paddingLarge
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        //: user has the possibility to choose the database upgrade or delete the old database
+                        text: qsTr("Please select an action to proceed.")
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                        color: "transparent"
+                    }
+
+                    Row {
+                        width: parent.width
+
+                        Button {
+                            width: parent.width
+                            //: hint which is the recommended upgrade option
+                            text: dbUpgradeText + " (" + qsTr("recommended") + ")"
+                            onClicked: {
+                                if (DB.replaceOldDB(true)) {
+                                    DB.setDefaultPriority()
+                                    pageStack.replace(initialTaskPage)
+                                }
+                                else
+                                    Qt.quit()
+                            }
                         }
                     }
 
-                    Button {
-                        //: upgrade database option
-                        text: qsTr("Upgrade")
-                        onClicked: {
-                            if (DB.replaceOldDB(true))
-                                pageStack.replace(initialTaskPage)
-                            else
-                                Qt.quit()
+                    Rectangle {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                        color: "transparent"
+                    }
+
+                    Row {
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        Button {
+                            //: delete old database option
+                            text: dbDeleteText
+                            onClicked: {
+                                if (DB.replaceOldDB())
+                                    pageStack.replace(initialTaskPage)
+                                else
+                                    Qt.quit()
+                            }
                         }
                     }
                 }
             }
+
             onAccepted: Qt.quit()
         }
     }
@@ -154,10 +194,115 @@ ApplicationWindow {
     // a function to check which appearance should be used by open tasks
     function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
 
+    // a function to fill litoflists with data
+    function fillListOfLists () {
+        // load lists into variable for "switch" action on cover and task page
+        var lists = DB.allLists()
+        listOfLists = lists.join(",")
+
+        // activate ListSwitch Button if more than one list is available or vice versa
+        if (lists.length > 1) {
+            coverActionMultiple = true
+            coverActionSingle = false
+        } else {
+            coverActionMultiple = false
+            coverActionSingle = true
+        }
+    }
+
+    TasksExport {
+        id: exporter
+    }
+
+    // generate URL to grant access for app at Dropbox
+    function dropboxAuthorizeLink() {
+        return exporter.dropboxAuthorizeLink()
+    }
+
+    // after being authorized the app will try to get OAuth credentials and save them in DB
+    function getDropboxCredentials() {
+        var list = exporter.getDropboxCredentials()
+        if (list.length < 3) {
+            pushNotification("ERROR", qsTr("Cannot access Dropbox"), qsTr("Unable to fetch credentials from Dropbox"))
+            return false
+        }
+        var values = { dropboxUsername: list[0], dropboxTokenSecret: list[1], dropboxToken: list[2] }
+        if (!DB.upsertDropboxCredentials(values)) {
+            pushNotification("ERROR", qsTr("DB error"), qsTr("Unable to save credentials in DB"))
+            return false
+        }
+        return true
+    }
+
+    // remove Dropbox keys from DB
+    function removeDropboxCredentials() {
+        DB.removeDropboxCredentials()
+    }
+
+    // check presense
+    function checkDropboxCredentials() {
+        var values = DB.getDropboxCredentials()
+        return typeof values.dropboxToken !== "undefined" && typeof values.dropboxTokenSecret !== "undefined"
+    }
+
+    // set credentials from DB if app was authorized earlier
+    function setDropboxCredentials() {
+        var values = DB.getDropboxCredentials()
+        if (typeof values.dropboxToken === "undefined" || typeof values.dropboxTokenSecret === "undefined")
+            return false
+        exporter.setDropboxCredentials(values.dropboxToken, values.dropboxTokenSecret)
+        return true
+    }
+
+    function getRemoteRevision() {
+        var ret = exporter.getRevision()
+        if (ret === "")
+            ret = undefined
+        return ret
+    }
+
+    function lastSyncRevision() {
+        return DB.getSetting("lastSyncRevisionHash")
+    }
+
+    function uploadData() {
+        var json = DB.dumpData()
+        console.log("Dump is composed")
+        var ret = exporter.uploadToDropbox(json)
+        console.log("uploaded revision " + ret)
+        if (ret === "") {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Unable to upload data to Dropbox"))
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", ret)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully uploaded to Dropbox"))
+        return true
+    }
+
+    function downloadData() {
+        var list = exporter.downloadFromDropbox()
+        var rev = list[0], json = list[1]
+        console.log("downloaded revision " + rev)
+        if (typeof rev === "undefined" || typeof json === "undefined" || json === "") {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Invalid data received"))
+            return false
+        }
+        if (!DB.importData(json)) {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Data cannot be imported"))
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", rev)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully downloaded from Dropbox"))
+        return true
+    }
+
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {
         var notificationCategory
         switch(notificationType) {
+        case "OK":
+            notificationCategory = "x-jolla.store.sideloading-success"
+            break
         case "INFO":
             notificationCategory = "x-jolla.lipstick.credentials.needUpdate.notification"
             break

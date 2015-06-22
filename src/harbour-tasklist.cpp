@@ -40,6 +40,9 @@ int main(int argc, char *argv[])
     QProcess appinfo;
     QString appversion;
 
+    QCoreApplication::setOrganizationName("harbour-tasklist");
+    QCoreApplication::setApplicationName("harbour-tasklist");
+
     // read app version from rpm database on startup
     appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << "harbour-tasklist");
     appinfo.waitForFinished(-1);

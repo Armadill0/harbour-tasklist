@@ -13,6 +13,13 @@ function getMidnight() {
     return start + DAY_LENGTH;
 }
 
+// return the start of the current day
+function getDayStart() {
+    var today = new Date();
+    var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+    return start;
+}
+
 // create DB with schema v2.0 from scratch
 function createDB(tx) {
     console.log("creating DB v2.0 from scratch..");
@@ -186,6 +193,7 @@ function readSmartListTasks(smartListType, callback) {
     var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
     var midnight = getMidnight();
     var tomorrowMidnight = midnight + DAY_LENGTH;
+    var dayStart = getDayStart();
     var condition = "";
 
     if (smartListType === 0)
@@ -195,7 +203,7 @@ function readSmartListTasks(smartListType, callback) {
     else if (smartListType === 2)
         condition = "CreationDate > '" + recentlyAddedOffsetTime + "'";
     else if (smartListType === 3)
-        condition = "'0' < DueDate AND DueDate < '" + midnight + "' AND Status= '1'";
+        condition = "'" + dayStart + "' <= DueDate AND DueDate < '" + midnight + "' AND Status= '1'";
     else if (smartListType === 4)
         condition = "'" + midnight + "' <= DueDate AND DueDate < '" + tomorrowMidnight + "' AND Status = '1'";
     else
@@ -226,6 +234,18 @@ function checkTask(listID, taskname) {
     });
 
     return result.rows.item(0).cID;
+}
+
+// select task and return id
+function getTaskId(listID, taskname) {
+    var db = connectDB();
+    var result;
+
+    db.transaction(function(tx) {
+        result = tx.executeSql("SELECT ID FROM tasks WHERE ListID=? AND Task=?;", [listID, taskname]);
+    });
+
+    return result.rows.item(0).ID;
 }
 
 // insert new task and return id or -1 if error
@@ -415,6 +435,24 @@ function validateParsed(tasksGrouped, version) {
     return true;
 }
 
+// set all priorities which are 0 by db upgrade to default
+function setDefaultPriority() {
+    var db = connectDB();
+    var ok = -1;
+    try {
+        db.transaction(function(tx) {
+            var result = tx.executeSql("UPDATE tasks SET Priority = ? WHERE Priority = 0;", [taskListWindow.defaultPriority]);
+            tx.executeSql("COMMIT;");
+
+            ok = result.rowsAffected;
+        });
+
+    } catch (sqlErr) {
+        console.log("An error occured while setting default priority.");
+    }
+    return ok;
+}
+
 function importData(json) {
     var db = connectDB();
     var parsed;
@@ -512,16 +550,17 @@ function allLists(callback) {
 function readLists(recently, callback) {
     var db = connectDB();
     var midnight = getMidnight();
+    var dayStart = getDayStart();
     var tomorrowMidnight = midnight + DAY_LENGTH;
 
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS total,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS pending,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS recent ,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND '0' < DueDate AND DueDate < ? AND Status = '1') AS today, \
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? < DueDate AND DueDate < ? AND Status = '1') AS today, \
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tomorrow \
             FROM lists AS parent ORDER BY ID ASC;",
-            [recently, midnight, midnight, tomorrowMidnight]);
+            [recently, dayStart, midnight, midnight, tomorrowMidnight]);
         for(var i = 0; i < result.rows.length; i++) {
             var item = result.rows.item(i);
             callback(item.ID, item.ListName, item.total, item.pending, item.recent, item.today, item.tomorrow);
@@ -591,6 +630,23 @@ function getListName(id) {
 /*** SQL functions for SETTINGS handling ***/
 /*******************************************/
 
+/* UPSERT as in http://stackoverflow.com/a/15277374 */
+function upsertSetting(setting, value) {
+    var db = connectDB();
+    var ok = false;
+    try {
+        db.transaction(function(tx) {
+            tx.executeSql("INSERT OR IGNORE INTO settings (Setting, Value) VALUES (?, ?);", [setting, value]);
+            ok = true;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to insert or ignore setting " + setting);
+    }
+    if (ok)
+        ok = updateSetting(setting, value);
+    return ok;
+}
+
 function updateSetting(setting, value) {
     var db = connectDB();
     var ok = false;
@@ -606,19 +662,55 @@ function updateSetting(setting, value) {
     return ok;
 }
 
-function getSettingAsNumber(setting) {
+function getSetting(setting) {
     var db = connectDB();
-    var value;
+    var value = undefined;
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("SELECT * FROM settings WHERE Setting = ?;", setting);
             if (result.rows.length === 1)
-                value = Number(result.rows.item(0).Value);
+                value = result.rows.item(0).Value;
         });
     } catch (sqlErr) {
         console.log("Unable to get setting " + setting);
     }
     return value;
+}
+
+function getSettingAsNumber(setting) {
+    var value = getSetting(setting);
+    if (typeof value !== "undefined")
+        value = Number(value);
+    return value;
+}
+
+var DROPBOX_FIELDS = {
+    dropboxUsername: "dropboxUsername",
+    dropboxTokenSecret: "dropboxTokenSecret",
+    dropboxToken: "dropboxToken"
+};
+
+function upsertDropboxCredentials(values) {
+    for (var i in DROPBOX_FIELDS)
+        if (!upsertSetting(DROPBOX_FIELDS[i], values[i]))
+            return false;
+    return true;
+}
+
+function getDropboxCredentials() {
+    var values = {};
+    for (var i in DROPBOX_FIELDS)
+        values[i] = getSetting(DROPBOX_FIELDS[i]);
+    return values;
+}
+
+function removeDropboxCredentials() {
+    var db = connectDB();
+    db.transaction(function(tx) {
+        for (var i in DROPBOX_FIELDS)
+            tx.executeSql("DELETE FROM settings WHERE Setting = ?;", DROPBOX_FIELDS[i]);
+        tx.executeSql("COMMIT;");
+    });
 }
 
 /***************************************/
