@@ -27,21 +27,77 @@ Page {
 
     Column {
         id: column
-        spacing: Theme.paddingLarge
+        spacing: Theme.itemSizeSmall
         width: parent.width
 
-        PageHeader { title: qsTr("Sync in progress") }
+        PageHeader { title: qsTr("Sync with Dropbox") }
 
         BusyIndicator {
+            id: indicator
             running: true
             size: BusyIndicatorSize.Large
             anchors.horizontalCenter: parent.horizontalCenter
         }
+
+        Label {
+            id: label
+            anchors {
+                left: parent.left
+                right: parent.right
+                leftMargin: Theme.paddingLarge
+                rightMargin: Theme.paddingLarge
+            }
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            visible: false
+            text: qsTr("Remote copy cannot be updated. Please choose action:")
+        }
+
+        Button {
+            id: replaceRemote
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Replace remote copy")
+            visible: false
+            onClicked: upload()
+        }
+
+        Button {
+            id: replaceLocal
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Replace local copy")
+            visible: false
+            onClicked: download()
+        }
+    }
+
+    function toggleElements(busy) {
+        indicator.running = busy
+        label.visible = !busy
+        replaceRemote.visible = !busy
+        replaceLocal.visible = !busy
+    }
+
+    function upload() {
+        toggleElements(true)
+        taskListWindow.uploadData()
+        pageStack.pop()
+    }
+
+    function download() {
+        toggleElements(true)
+        taskListWindow.downloadData()
+        pageStack.pop()
     }
 
     function startSync() {
-        taskListWindow.doDropboxSync()
-        pageStack.pop()
+        var lastSync = taskListWindow.lastSyncRevision()
+        var remote = taskListWindow.getRemoteRevision()
+        if (typeof lastSync === "undefined" && typeof remote === "undefined") /* no prev sync */
+            upload()
+        else if (lastSync === remote) /* prev sync was done from this DB */
+            upload()
+        else /* prev sync was done from another DB, let user decide */
+            toggleElements(false)
     }
 
     onStatusChanged: {

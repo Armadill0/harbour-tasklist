@@ -106,30 +106,52 @@ void TasksExport::setDropboxCredentials(const QString &token, const QString &tok
     dropbox->setTokenSecret(tokenSecret);
 }
 
-QString TasksExport::downloadFromDropbox()
-{
-    // TODO impl.
-    return "";
-}
-
-bool TasksExport::uploadToDropbox(const QString &tasks)
+QString TasksExport::uploadToDropbox(const QString &tasks)
 {
     QDropboxFile file(dropbox);
     file.setFilename(dropboxPath);
     if (!file.open(QIODevice::WriteOnly)) {
         qDebug() << "couldn't open file at Dropbox:" << dropboxPath;
-        return false;
+        return "";
     }
     QTextStream out(&file);
     out << tasks;
     out.flush();
     if (!file.flush()) {
         qDebug() << "couldn't flush data to Dropbox";
-        return false;
+        return "";
     }
     file.close();
-    qDebug() << "file is written";
-    return true;
+    qDebug() << "file is written:" << file.metadata().revisionHash();
+    return file.metadata().revisionHash();
+}
+
+QStringList TasksExport::downloadFromDropbox()
+{
+    QDropboxFile file(dropbox);
+    file.setFilename(dropboxPath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "could not open file at Dropbox:" << dropboxPath;
+        return {};
+    }
+    QTextStream in(&file);
+    QStringList result = { file.metadata().revisionHash(), in.readAll() };
+    file.close();
+    return result;
+}
+
+QString TasksExport::getRevision()
+{
+    QDropboxFile file(dropbox);
+    file.setFilename(dropboxPath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "could not open file at Dropbox:" << dropboxPath;
+        return "";
+    }
+    QString rev = file.metadata().revisionHash();
+    file.close();
+    qDebug() << "revision:" << rev;
+    return rev;
 }
 
 void TasksExport::initDropbox()

@@ -254,16 +254,46 @@ ApplicationWindow {
         return true
     }
 
-    // to debug
-    function doDropboxSync() {
+    function getRemoteRevision() {
+        var ret = exporter.getRevision()
+        if (ret === "")
+            ret = undefined
+        return ret
+    }
+
+    function lastSyncRevision() {
+        return DB.getSetting("lastSyncRevisionHash")
+    }
+
+    function uploadData() {
         var json = DB.dumpData()
         console.log("Dump is composed")
         var ret = exporter.uploadToDropbox(json)
-        if (ret)
-            pushNotification("OK", qsTr("Sync finished"), qsTr("All your data is successfully uploaded to Dropbox"))
-        else
+        console.log("uploaded revision " + ret)
+        if (ret === "") {
             pushNotification("ERROR", qsTr("Sync failed"), qsTr("Unable to upload data to Dropbox"))
-        return ret
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", ret)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully uploaded to Dropbox"))
+        return true
+    }
+
+    function downloadData() {
+        var list = exporter.downloadFromDropbox()
+        var rev = list[0], json = list[1]
+        console.log("downloaded revision " + rev)
+        if (typeof rev === "undefined" || typeof json === "undefined" || json === "") {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Invalid data received"))
+            return false
+        }
+        if (!DB.importData(json)) {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Data cannot be imported"))
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", rev)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully downloaded from Dropbox"))
+        return true
     }
 
     // notification function

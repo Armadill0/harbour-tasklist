@@ -24,8 +24,11 @@ public:
     /* returns 3 elements: Dropbox username, OAuth token secret and OAuth token */
     Q_INVOKABLE QStringList getDropboxCredentials();
     Q_INVOKABLE void setDropboxCredentials(const QString &token, const QString &tokenSecret);
-    Q_INVOKABLE QString downloadFromDropbox();
-    Q_INVOKABLE bool uploadToDropbox(const QString &tasks);
+    /* returns revision hash of the uploaded file or empty string if fails */
+    Q_INVOKABLE QString uploadToDropbox(const QString &tasks);
+    /* { revision hash, JSON data } */
+    Q_INVOKABLE QStringList downloadFromDropbox();
+    Q_INVOKABLE QString getRevision();
 
     QString fileName() const {
         return mFileName;
