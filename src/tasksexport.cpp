@@ -115,6 +115,7 @@ QString TasksExport::uploadToDropbox(const QString &tasks)
         return "";
     }
     QTextStream out(&file);
+    out.setCodec("UTF-8");
     out << tasks;
     out.flush();
     if (!file.flush()) {
@@ -135,6 +136,7 @@ QStringList TasksExport::downloadFromDropbox()
         return {};
     }
     QTextStream in(&file);
+    in.setCodec("UTF-8");
     QStringList result = { file.metadata().revisionHash(), in.readAll() };
     file.close();
     return result;
