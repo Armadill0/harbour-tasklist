@@ -32,26 +32,6 @@ Page {
     property int smartListType: taskListWindow.smartListType
     property bool doneTasksAvailable
 
-    // function to switch to the next list, final switch is done by onListIdChanged
-    function switchList(backwards) {
-        var listArray = taskListWindow.listOfLists.split(",")
-
-        for (var i = 0; i < listArray.length; i++) {
-
-            if (listArray[i] === listid) {
-                if (i == listArray.length - 1)
-                    listid = listArray[0]
-                else {
-                    if (backwards === true)
-                        listid = listArray[i - 1]
-                    else
-                        listid = listArray[i + 1]
-                }
-                break
-            }
-        }
-    }
-
     // human-readable representation of a due date
     function humanDueDate(unixTime) {
         if (typeof(unixTime) !== "number" || unixTime <= 0)
@@ -194,6 +174,25 @@ Page {
         } , taskListWindow.remorseOnDelete * 1000)
     }
 
+    function refocusTaskAddField() {
+        taskList.headerItem.children[1].children[0].forceActiveFocus()
+    }
+
+    // function to switch to the next list, final switch is done by onListIdChanged
+    function switchList(backwards) {
+        var listArray = taskListWindow.listOfLists.split(",")
+
+        for (var i = 0; i < listArray.length; i++) {
+            if (listArray[i] == listid) {
+                    if (backwards === true)
+                        listid = i == 0 ? listArray[listArray.length - 1] : listArray[i - 1]
+                    else
+                        listid = i == listArray.length - 1 ? listArray[0] : listArray[i + 1]
+                break
+            }
+        }
+    }
+
     // workaround timer to push application to background after start
     Timer {
         id: startPageTimer
@@ -209,7 +208,7 @@ Page {
         interval: 100
         running: false
         repeat: false
-        onTriggered: taskList.headerItem.children[1].forceActiveFocus()
+        onTriggered: refocusTaskAddField()
     }
 
     // reload list if any change to the global listId property has been occured
@@ -302,7 +301,7 @@ Page {
 
         Keys.onLeftPressed: switchList(true)
         Keys.onRightPressed: switchList()
-        Keys.onTabPressed: headerItem.children[1].forceActiveFocus()
+        Keys.onTabPressed: refocusTaskAddField()
 
         VerticalScrollDecorator { flickable: taskList }
 
@@ -328,7 +327,7 @@ Page {
                     //: a label to inform the user how to confirm the new task
                     label: qsTr("Press Enter/Return to add the new task")
                     // enable enter key if minimum task length has been reached
-                    EnterKey.enabled: taskList.htaskAdd.text.length > 0
+                    EnterKey.enabled: text.length > 0
                     // set allowed chars and task length
                     //validator: RegExpValidator { regExp: /^.{,60}$/ }
 
@@ -363,6 +362,7 @@ Page {
                             timerAddTask.start()
                     }
 
+                    visible: smartListType === -1 ? true : false
                     EnterKey.onClicked: addTask()
 
                     onTextChanged: {
