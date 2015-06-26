@@ -22,6 +22,7 @@ import ".."
 
 Page {
     id: dropboxAuth
+    allowedOrientations: Orientation.All
 
     property alias url: webView.url
 

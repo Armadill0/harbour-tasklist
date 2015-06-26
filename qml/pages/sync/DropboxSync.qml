@@ -22,6 +22,7 @@ import ".."
 
 Page {
     id: dropboxSync
+    allowedOrientations: Orientation.All
 
     property bool attemptedAuth
 
