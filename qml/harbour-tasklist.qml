@@ -60,8 +60,9 @@ ApplicationWindow {
     property int defaultPriority: 3
     property int maximumPriority: 5
 
-    property bool coverActionMultiple: false
-    property bool coverActionSingle
+    property int listCount: 0
+    property bool coverActionMultiple: listCount > 1
+    property bool coverActionSingle: !coverActionMultiple
 
     // initilize default settings properties
     property int coverListSelection
@@ -88,19 +89,21 @@ ApplicationWindow {
     Component {
         id: migrateConfirmation
         Dialog {
+            allowedOrientations: Orientation.All
             //: text of the button to migrate the old to the new database format
             property string dbUpgradeText: qsTr("Upgrade")
             //: text of the button to delete the old database and start overleo
             property string dbDeleteText: qsTr("Delete")
 
-            SilicaListView {
+            SilicaFlickable {
                 id: migrateFlickable
-                width: parent.width
-                contentHeight: parent.height
+                anchors.fill: parent
+                contentHeight: migrateColumn.height
 
                 VerticalScrollDecorator { flickable: migrateFlickable }
 
                 Column {
+                    id: migrateColumn
                     width: parent.width
 
                     DialogHeader {
@@ -155,7 +158,16 @@ ApplicationWindow {
                             text: dbUpgradeText + " (" + qsTr("recommended") + ")"
                             onClicked: {
                                 if (DB.replaceOldDB(true)) {
-                                    DB.setDefaultPriority()
+                                    DB.setDef
+
+                                    // activate ListSwitch Button if more than one list is available or vice versa
+                                    if (lists.length > 1) {
+                                        coverActionMultiple = true
+                                        coverActionSingle = false
+                                    } else {
+                                        coverActionMultiple = false
+                                        coverActionSingle = true
+                                    }aultPriority()
                                     pageStack.replace(initialTaskPage)
                                 }
                                 else
@@ -199,15 +211,7 @@ ApplicationWindow {
         // load lists into variable for "switch" action on cover and task page
         var lists = DB.allLists()
         listOfLists = lists.join(",")
-
-        // activate ListSwitch Button if more than one list is available or vice versa
-        if (lists.length > 1) {
-            coverActionMultiple = true
-            coverActionSingle = false
-        } else {
-            coverActionMultiple = false
-            coverActionSingle = true
-        }
+        listCount = lists.length
     }
 
     TasksExport {
