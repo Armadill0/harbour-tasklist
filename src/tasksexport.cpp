@@ -1,20 +1,11 @@
 #include "tasksexport.h"
-#include <QDesktopServices>
 #include <QDirIterator>
 #include <QFile>
 #include <QTextStream>
 
-// FIXME
-#include <QDebug>
-
 TasksExport::TasksExport(QObject *parent) :
-    QObject(parent), dropbox(NULL), dropboxPath("/sandbox/harbour-tasklist.json")
+    QObject(parent)
 {
-}
-
-TasksExport::~TasksExport()
-{
-    exitDropbox();
 }
 
 QString TasksExport::load(const QString &path) const
@@ -71,109 +62,4 @@ bool TasksExport::remove(const QString &path) const
     QFile file(path);
     file.remove(path);
     return true;
-}
-
-QString TasksExport::dropboxAuthorizeLink()
-{
-    initDropbox();
-    if (!dropbox->requestTokenAndWait()) {
-        qDebug() << "Dropbox auth error:" << dropbox->errorString();
-        dropbox->clearError();
-        exitDropbox();
-        return "";
-    }
-    return dropbox->authorizeLink().toString();
-}
-
-QStringList TasksExport::getDropboxCredentials()
-{
-    QStringList result;
-    if(dropbox->requestAccessTokenAndWait()) {
-        QDropboxAccount acc = dropbox->requestAccountInfoAndWait();
-        result.append(acc.displayName());
-
-        result.append(dropbox->tokenSecret());
-        result.append(dropbox->token());
-    }
-    return result;
-}
-
-void TasksExport::setDropboxCredentials(const QString &token, const QString &tokenSecret)
-{
-    if (!dropbox)
-        initDropbox();
-    dropbox->setToken(token);
-    dropbox->setTokenSecret(tokenSecret);
-}
-
-QString TasksExport::uploadToDropbox(const QString &tasks)
-{
-    QDropboxFile file(dropbox);
-    file.setFilename(dropboxPath);
-    if (!file.open(QIODevice::WriteOnly)) {
-        qDebug() << "couldn't open file at Dropbox:" << dropboxPath;
-        return "";
-    }
-    QTextStream out(&file);
-    out.setCodec("UTF-8");
-    out << tasks;
-    out.flush();
-    if (!file.flush()) {
-        qDebug() << "couldn't flush data to Dropbox";
-        return "";
-    }
-    file.close();
-    qDebug() << "file is written:" << file.metadata().revisionHash();
-    return file.metadata().revisionHash();
-}
-
-QStringList TasksExport::downloadFromDropbox()
-{
-    QDropboxFile file(dropbox);
-    file.setFilename(dropboxPath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "could not open file at Dropbox:" << dropboxPath;
-        return {};
-    }
-    QTextStream in(&file);
-    in.setCodec("UTF-8");
-    QStringList result = { file.metadata().revisionHash(), in.readAll() };
-    file.close();
-    return result;
-}
-
-QString TasksExport::getRevision()
-{
-    QDropboxFile file(dropbox);
-    file.setFilename(dropboxPath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "could not open file at Dropbox:" << dropboxPath;
-        return "";
-    }
-    QString rev = file.metadata().revisionHash();
-    file.close();
-    qDebug() << "revision:" << rev;
-    return rev;
-}
-
-void TasksExport::initDropbox()
-{
-    // FIXME there may be a better way to provide Dropbox keys from outside
-#define STRINGIFY2(X) #X
-#define STRINGIFY(X) STRINGIFY2(X)
-
-    dropbox = new QDropbox;
-    dropbox->setKey(STRINGIFY(TASKLIST_DROPBOX_APPKEY));
-    dropbox->setSharedSecret(STRINGIFY(TASKLIST_DROPBOX_SHAREDSECRET));
-
-#undef STRINGIFY
-#undef STRINGIFY2
-}
-
-void TasksExport::exitDropbox()
-{
-    if (dropbox) {
-        delete dropbox;
-        dropbox = NULL;
-    }
 }
