@@ -156,16 +156,7 @@ ApplicationWindow {
                             text: dbUpgradeText + " (" + qsTr("recommended") + ")"
                             onClicked: {
                                 if (DB.replaceOldDB(true)) {
-                                    DB.setDef
-
-                                    // activate ListSwitch Button if more than one list is available or vice versa
-                                    if (lists.length > 1) {
-                                        coverActionMultiple = true
-                                        coverActionSingle = false
-                                    } else {
-                                        coverActionMultiple = false
-                                        coverActionSingle = true
-                                    }aultPriority()
+                                    DB.setDefaultPriority()
                                     pageStack.replace(initialTaskPage)
                                 }
                                 else
