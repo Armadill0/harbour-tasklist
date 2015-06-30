@@ -630,23 +630,6 @@ function getListName(id) {
 /*** SQL functions for SETTINGS handling ***/
 /*******************************************/
 
-/* UPSERT as in http://stackoverflow.com/a/15277374 */
-function upsertSetting(setting, value) {
-    var db = connectDB();
-    var ok = false;
-    try {
-        db.transaction(function(tx) {
-            tx.executeSql("INSERT OR IGNORE INTO settings (Setting, Value) VALUES (?, ?);", [setting, value]);
-            ok = true;
-        });
-    } catch (sqlErr) {
-        console.log("Unable to insert or ignore setting " + setting);
-    }
-    if (ok)
-        ok = updateSetting(setting, value);
-    return ok;
-}
-
 function updateSetting(setting, value) {
     var db = connectDB();
     var ok = false;
@@ -662,55 +645,19 @@ function updateSetting(setting, value) {
     return ok;
 }
 
-function getSetting(setting) {
+function getSettingAsNumber(setting) {
     var db = connectDB();
-    var value = undefined;
+    var value;
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("SELECT * FROM settings WHERE Setting = ?;", setting);
             if (result.rows.length === 1)
-                value = result.rows.item(0).Value;
+                value = Number(result.rows.item(0).Value);
         });
     } catch (sqlErr) {
         console.log("Unable to get setting " + setting);
     }
     return value;
-}
-
-function getSettingAsNumber(setting) {
-    var value = getSetting(setting);
-    if (typeof value !== "undefined")
-        value = Number(value);
-    return value;
-}
-
-var DROPBOX_FIELDS = {
-    dropboxUsername: "dropboxUsername",
-    dropboxTokenSecret: "dropboxTokenSecret",
-    dropboxToken: "dropboxToken"
-};
-
-function upsertDropboxCredentials(values) {
-    for (var i in DROPBOX_FIELDS)
-        if (!upsertSetting(DROPBOX_FIELDS[i], values[i]))
-            return false;
-    return true;
-}
-
-function getDropboxCredentials() {
-    var values = {};
-    for (var i in DROPBOX_FIELDS)
-        values[i] = getSetting(DROPBOX_FIELDS[i]);
-    return values;
-}
-
-function removeDropboxCredentials() {
-    var db = connectDB();
-    db.transaction(function(tx) {
-        for (var i in DROPBOX_FIELDS)
-            tx.executeSql("DELETE FROM settings WHERE Setting = ?;", DROPBOX_FIELDS[i]);
-        tx.executeSql("COMMIT;");
-    });
 }
 
 /***************************************/
