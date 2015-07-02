@@ -20,8 +20,10 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "pages"
+import "pages/sync"
 import "localdb.js" as DB
 import harbour.tasklist.notifications 1.0
+import harbour.tasklist.tasks_export 1.0
 
 ApplicationWindow {
     id: taskListWindow
@@ -201,6 +203,92 @@ ApplicationWindow {
         var lists = DB.allLists()
         listOfLists = lists.join(",")
         listCount = lists.length
+    }
+
+    TasksExport {
+        id: exporter
+    }
+
+    // generate URL to grant access for app at Dropbox
+    function dropboxAuthorizeLink() {
+        return exporter.dropboxAuthorizeLink()
+    }
+
+    // after being authorized the app will try to get OAuth credentials and save them in DB
+    function getDropboxCredentials() {
+        var list = exporter.getDropboxCredentials()
+        if (list.length < 3) {
+            pushNotification("ERROR", qsTr("Cannot access Dropbox"), qsTr("Unable to fetch credentials from Dropbox"))
+            return false
+        }
+        var values = { dropboxUsername: list[0], dropboxTokenSecret: list[1], dropboxToken: list[2] }
+        if (!DB.upsertDropboxCredentials(values)) {
+            pushNotification("ERROR", qsTr("DB error"), qsTr("Unable to save credentials in DB"))
+            return false
+        }
+        return true
+    }
+
+    // remove Dropbox keys from DB
+    function removeDropboxCredentials() {
+        DB.removeDropboxCredentials()
+    }
+
+    // check presense
+    function checkDropboxCredentials() {
+        var values = DB.getDropboxCredentials()
+        return typeof values.dropboxToken !== "undefined" && typeof values.dropboxTokenSecret !== "undefined"
+    }
+
+    // set credentials from DB if app was authorized earlier
+    function setDropboxCredentials() {
+        var values = DB.getDropboxCredentials()
+        if (typeof values.dropboxToken === "undefined" || typeof values.dropboxTokenSecret === "undefined")
+            return false
+        exporter.setDropboxCredentials(values.dropboxToken, values.dropboxTokenSecret)
+        return true
+    }
+
+    function getRemoteRevision() {
+        var ret = exporter.getRevision()
+        if (ret === "")
+            ret = undefined
+        return ret
+    }
+
+    function lastSyncRevision() {
+        return DB.getSetting("lastSyncRevisionHash")
+    }
+
+    function uploadData() {
+        var json = DB.dumpData()
+        console.log("Dump is composed")
+        var ret = exporter.uploadToDropbox(json)
+        console.log("uploaded revision " + ret)
+        if (ret === "") {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Unable to upload data to Dropbox"))
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", ret)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully uploaded to Dropbox"))
+        return true
+    }
+
+    function downloadData() {
+        var list = exporter.downloadFromDropbox()
+        var rev = list[0], json = list[1]
+        console.log("downloaded revision " + rev)
+        if (typeof rev === "undefined" || typeof json === "undefined" || json === "") {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Invalid data received"))
+            return false
+        }
+        if (!DB.importData(json)) {
+            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Data cannot be imported"))
+            return false
+        }
+        DB.upsertSetting("lastSyncRevisionHash", rev)
+        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully downloaded from Dropbox"))
+        return true
     }
 
     // notification function
