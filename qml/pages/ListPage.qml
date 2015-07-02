@@ -83,6 +83,14 @@ Page {
         return qsTr("%1 tasks").arg(countStr)
     }
 
+    function focusListAddField(releaseFocus) {
+        var listField = listList.headerItem.children[4]
+        if (releaseFocus && listField.focus)
+            listField.focus = false
+        else
+            listField.forceActiveFocus()
+    }
+
     onStatusChanged: {
         switch(status) {
         case PageStatus.Active:
@@ -147,6 +155,9 @@ Page {
         model: ListModel {
             id: listListModel
         }
+        focus: true
+
+        Keys.onTabPressed: focusListAddField(true)
 
         VerticalScrollDecorator { flickable: listList }
 

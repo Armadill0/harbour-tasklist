@@ -34,6 +34,14 @@ Page {
         DB.allTags(appendTag)
     }
 
+    function focusTagAddField(releaseFocus) {
+        var tagField = tagList.headerItem.children[2]
+        if (releaseFocus && tagField.focus)
+            tagField.focus = false
+        else
+            tagField.forceActiveFocus()
+    }
+
     Component.onCompleted: {
         reloadTagList()
     }
@@ -44,6 +52,9 @@ Page {
         model: ListModel {
             id: tagListModel
         }
+        focus: true
+
+        Keys.onTabPressed: focusTagAddField(true)
 
         header: Column {
             width: parent.width

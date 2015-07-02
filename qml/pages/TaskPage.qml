@@ -174,8 +174,12 @@ Page {
         } , taskListWindow.remorseOnDelete * 1000)
     }
 
-    function refocusTaskAddField() {
-        taskList.headerItem.children[1].children[0].forceActiveFocus()
+    function focusTaskAddField(releaseFocus) {
+        var taskField = taskList.headerItem.children[1].children[0]
+        if (releaseFocus && taskField.focus)
+            taskField.focus = false
+        else
+            taskField.forceActiveFocus()
     }
 
     // function to switch to the next list, final switch is done by onListIdChanged
@@ -208,7 +212,7 @@ Page {
         interval: 100
         running: false
         repeat: false
-        onTriggered: refocusTaskAddField()
+        onTriggered: focusTaskAddField()
     }
 
     // reload list if any change to the global listId property has been occured
@@ -298,10 +302,11 @@ Page {
         model: ListModel {
             id: taskListModel
         }
+        focus: true
 
         Keys.onLeftPressed: switchList(true)
         Keys.onRightPressed: switchList()
-        Keys.onTabPressed: refocusTaskAddField()
+        Keys.onTabPressed: focusTaskAddField(true)
 
         VerticalScrollDecorator { flickable: taskList }
 
