@@ -90,14 +90,14 @@ Page {
     function appendTask(id, task, status, listid, dueDate, priority, notes) {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
                                  listid: listid, listname: DB.getListName(listid),
-                                 dueDate: dueDate, priority: priority || taskListWindow.defaultPriority,
+                                 dueDate: dueDate, priority: priority,
                                  notes: notes })
     }
 
     function insertNewTask(index, id, task, listid) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
                                  listid: listid, listname: DB.getListName(listid),
-                                 dueDate: 0, priority: taskListWindow.defaultPriority,
+                                 dueDate: 0, priority: DB.PRIORITY_DEFAULT,
                                  notes: "" })
     }
 
@@ -340,7 +340,7 @@ Page {
                         var taskNew = newTask !== undefined ? newTask : taskAdd.text
                         if (taskNew.length > 0) {
                             // add task to db and tasklist
-                            var newid = DB.writeTask(listid, taskNew, 1, 0, 0, taskListWindow.defaultPriority, "")
+                            var newid = DB.writeTask(listid, taskNew, 1, 0, 0, DB.PRIORITY_DEFAULT, "")
                             // catch sql errors
                             if (newid >= 0) {
                                 insertNewTask(0, newid, taskNew, listid)

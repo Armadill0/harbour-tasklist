@@ -205,9 +205,9 @@ Dialog {
                 width: parent.width
                 //: select the tasks priority
                 label: qsTr("Priority")
-                minimumValue: taskListWindow.minimumPriority
-                maximumValue: taskListWindow.maximumPriority
-                stepSize: 1
+                minimumValue: DB.PRIORITY_MIN
+                maximumValue: DB.PRIORITY_MAX
+                stepSize: DB.PRIORITY_STEP
                 value: editTaskPage.taskpriority
                 valueText: value.toString()
             }

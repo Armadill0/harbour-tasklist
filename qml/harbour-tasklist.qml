@@ -55,10 +55,6 @@ ApplicationWindow {
     // define names of smart lists
     //: names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
     property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New"), qsTr("Today"), qsTr("Tomorrow"), qsTr("Tags")]
-    // set default priorities
-    property int minimumPriority: 1
-    property int defaultPriority: 3
-    property int maximumPriority: 5
 
     property int listCount: 0
     property bool coverActionMultiple: listCount > 1
@@ -157,10 +153,8 @@ ApplicationWindow {
                             //: hint which is the recommended upgrade option
                             text: dbUpgradeText + " (" + qsTr("recommended") + ")"
                             onClicked: {
-                                if (DB.replaceOldDB(true)) {
-                                    DB.setDefaultPriority()
+                                if (DB.replaceOldDB(true))
                                     pageStack.replace(initialTaskPage)
-                                }
                                 else
                                     Qt.quit()
                             }

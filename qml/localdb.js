@@ -2,6 +2,11 @@
 
 var DAY_LENGTH = 24 * 3600 * 1000;
 
+var PRIORITY_MIN = 1;
+var PRIORITY_MAX = 5;
+var PRIORITY_STEP = 1;
+var PRIORITY_DEFAULT = 3;
+
 function getUnixTime() {
     return (new Date()).getTime()
 }
@@ -162,7 +167,8 @@ function initializeDB() {
 function applyCallbackToTasks(callback, result) {
     for (var i = 0; i < result.rows.length; ++i) {
         var task = result.rows.item(i);
-        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority, task.Note);
+        callback(task.ID, task.Task, task.Status === 1, task.ListID,
+                 task.DueDate, task.Priority || PRIORITY_DEFAULT, task.Note);
     }
 }
 
@@ -435,24 +441,6 @@ function validateParsed(tasksGrouped, version) {
     return true;
 }
 
-// set all priorities which are 0 by db upgrade to default
-function setDefaultPriority() {
-    var db = connectDB();
-    var ok = -1;
-    try {
-        db.transaction(function(tx) {
-            var result = tx.executeSql("UPDATE tasks SET Priority = ? WHERE Priority = 0;", [taskListWindow.defaultPriority]);
-            tx.executeSql("COMMIT;");
-
-            ok = result.rowsAffected;
-        });
-
-    } catch (sqlErr) {
-        console.log("An error occured while setting default priority.");
-    }
-    return ok;
-}
-
 function importData(json) {
     var db = connectDB();
     var parsed;
@@ -510,7 +498,7 @@ function importData(json) {
                 tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, \
                                DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                                [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
-                                it.DueDate || 0, it.Duration || 0, it.Priority || 0, it.Note || ""]);
+                                it.DueDate || 0, it.Duration || 0, it.Priority || PRIORITY_DEFAULT, it.Note || ""]);
                 var tagIds = it.Tags;
                 if (typeof (tagIds) !== "undefined")
                     for (var k in tagIds) {
