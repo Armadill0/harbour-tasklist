@@ -204,7 +204,7 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Import data</source>
-        <extracomment>Button to import data form the selected file</extracomment>
+        <extracomment>Button to import data from the selected file</extracomment>
         <translation>Importér data</translation>
     </message>
     <message>
@@ -243,7 +243,7 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Drop database</source>
-        <extracomment>Button to import data form the selected file</extracomment>
+        <extracomment>Button to drop the database and start over with a new one</extracomment>
         <translation>Fjern database</translation>
     </message>
     <message>
@@ -821,12 +821,12 @@ label for the tags field</extracomment>
     <message>
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
         <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
-        <translation>Tryk &apos;% 1&apos; for at overføre den gamle database til det nye format eller &apos;% 2&apos; for at slette den gamle database og starte med en ren ny database.</translation>
+        <translation>Tryk &apos;%1&apos; for at overføre den gamle database til det nye format eller &apos;%2&apos; for at slette den gamle database og starte med en ren ny database.</translation>
     </message>
     <message>
         <source>recommended</source>
         <extracomment>hint which is the recommended upgrade option</extracomment>
-        <translation>anbefalede</translation>
+        <translation>anbefalet</translation>
     </message>
 </context>
 </TS>

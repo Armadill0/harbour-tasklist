@@ -64,33 +64,13 @@
         <translation>Свойства задачи</translation>
     </message>
     <message>
-        <source>Save changes in the upper right corner</source>
-        <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation>Сохранить изменения можно в верхнем правом углу</translation>
-    </message>
-    <message>
-        <source>task already exists on this list!</source>
-        <translation>Задача уже есть в этом списке!</translation>
-    </message>
-    <message>
         <source>task is done</source>
-        <extracomment>choose if this task is pending or done</extracomment>
         <translation>Задача выполнена</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>option to change the list where the task should be located</extracomment>
         <translation>Список</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <extracomment>headline for the section with information which can not be changed by the user directly</extracomment>
-        <translation>Информация</translation>
-    </message>
-    <message>
-        <source>Created at</source>
-        <extracomment>displays the date when the task has been created by the user</extracomment>
-        <translation>Создано</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -101,6 +81,79 @@
         <source>Task could not be saved!</source>
         <extracomment>informing the user that a new task already exists on the selected list</extracomment>
         <translation>Задача не может быть сохранена!</translation>
+    </message>
+    <message>
+        <source>none (tap to select)</source>
+        <extracomment>default value if no due date is selected
+----------
+default value if no tag is selected</extracomment>
+        <translation>ничего (нажмите для выбора)</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Сегодня</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Завтра</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Вчера</translation>
+    </message>
+    <message>
+        <source>Task already exists on this list!</source>
+        <extracomment>information how the currently made changes can be saved</extracomment>
+        <translation>Задача уже есть в этом списке!</translation>
+    </message>
+    <message>
+        <source>Task name</source>
+        <translation>Имя задачи</translation>
+    </message>
+    <message>
+        <source>task is open</source>
+        <extracomment>choose if this task is pending or done</extracomment>
+        <translation>задача открыта</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
+        <translation>Приоритет</translation>
+    </message>
+    <message>
+        <source>Dates</source>
+        <extracomment>headline for the date and time properties of the task</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>select the due date for a task</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Created</source>
+        <extracomment>displays the date when the task has been created by the user</extracomment>
+        <translation>Создано</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>headline for the tags section
+----------
+label for the tags field</extracomment>
+        <translation>Задачи</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>headline for the section where notes for the task can be saved</extracomment>
+        <translation>Заметки</translation>
+    </message>
+    <message>
+        <source>Enter your notes or description here</source>
+        <extracomment>textfield to enter notes</extracomment>
+        <translation>Введите свою заметку или описание здесь</translation>
     </message>
 </context>
 <context>
@@ -118,7 +171,7 @@
     <message>
         <source>Export target</source>
         <extracomment>headline for exports</extracomment>
-        <translation type="unfinished"/>
+        <translation>Экспорт задач</translation>
     </message>
     <message>
         <source>Enter a file name for export</source>
@@ -151,7 +204,7 @@
     </message>
     <message>
         <source>Import data</source>
-        <extracomment>Button to import data form the selected file</extracomment>
+        <extracomment>Button to import data from the selected file</extracomment>
         <translation>Импорт данных</translation>
     </message>
     <message>
@@ -172,6 +225,35 @@
         <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
         <translation>Вы можете экспортировать данные в виде файла формата .JSON и импортировать данные из файла формата .JSON. Пожалуйста, имейте в в виду, что все ваши задачи и списки хранятся в одном файле!</translation>
+    </message>
+    <message>
+        <source>Drop data (very destructive!!!)</source>
+        <extracomment>headline for the database purge</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
+        <extracomment>warn user of destructive drop DB function</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Yes, I know what I&apos;m doing.</source>
+        <extracomment>let user confirm the database purge</extracomment>
+        <translation>Да, я знаю, что делаю</translation>
+    </message>
+    <message>
+        <source>Drop database</source>
+        <extracomment>Button to drop the database and start over with a new one</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Successfully dropped all data.</source>
+        <extracomment>informational notification about the successful dropped data tables</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please restart TaskList to work with the new database.</source>
+        <translation>Пожалуйста, перезапустите программу обновления базы данных</translation>
     </message>
 </context>
 <context>
@@ -266,9 +348,14 @@
         <translation>Ваши списки</translation>
     </message>
     <message>
-        <source>Export/Import data</source>
-        <extracomment>menu item to switch to export/import page</extracomment>
-        <translation>Экспорт/импорт данных</translation>
+        <source>%1 tag</source>
+        <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
+        <translation>%1 задача</translation>
+    </message>
+    <message>
+        <source>%1 tags</source>
+        <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
+        <translation>%1 задачи</translation>
     </message>
 </context>
 <context>
@@ -365,14 +452,6 @@
         <translation>при удалении</translation>
     </message>
     <message>
-        <source>seconds</source>
-        <translation>секунды</translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation>секунда</translation>
-    </message>
-    <message>
         <source>on Mark task</source>
         <translation>при закрытии/открытии</translation>
     </message>
@@ -418,13 +497,93 @@
     <message>
         <source>strike through done tasks</source>
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
-        <translation>зачеркнуть выполненные задачи</translation>
+        <translation>Отмечать зачеркиванием выполненные задачи</translation>
+    </message>
+    <message>
+        <source>deactivated</source>
+        <extracomment>text to be shown if the slider is set to</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 second</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <translation>%1 секунда</translation>
+    </message>
+    <message>
+        <source>%1 seconds</source>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
+        <translation>%1 секунды</translation>
+    </message>
+</context>
+<context>
+    <name>TagDialog</name>
+    <message>
+        <source>Select tags</source>
+        <translation>Выбрать задачи</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Подтвердить</translation>
+    </message>
+</context>
+<context>
+    <name>TagPage</name>
+    <message>
+        <source>Manage tags</source>
+        <extracomment>headline for the tags page</extracomment>
+        <translation>Управление задачами</translation>
+    </message>
+    <message>
+        <source>Add new tag</source>
+        <extracomment>headline to create new tags</extracomment>
+        <translation>Добавить новую задачу</translation>
+    </message>
+    <message>
+        <source>Enter unique tag name</source>
+        <extracomment>fallback text if no name for a new tag is specified</extracomment>
+        <translation>Введите имя задачи</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to add the new tag</source>
+        <extracomment>hint how to confirm the new tag</extracomment>
+        <translation>Нажмите Enter/Return для добавления новой задачи</translation>
+    </message>
+    <message>
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Ваши списки</translation>
+    </message>
+    <message>
+        <source>no tags available</source>
+        <extracomment>fallback text if no tags are defined</extracomment>
+        <translation>Нет задач</translation>
+    </message>
+    <message>
+        <source>Deleting</source>
+        <extracomment>remorse item when a tag is being deleted</extracomment>
+        <translation>Удаление</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>context menu item to edit a tag</extracomment>
+        <translation>Редактирование</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>context menu item to delete a tag</extracomment>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Press Enter/Return to save changes</source>
+        <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
+        <translation>Нажмите Enter/Return для сохранения изменений</translation>
     </message>
 </context>
 <context>
     <name>TaskPage</name>
     <message>
         <source>Deleting all done tasks</source>
+        <extracomment>remorse action to delete all done tasks</extracomment>
         <translation>Удаляются все завершенные задачи</translation>
     </message>
     <message>
@@ -448,11 +607,12 @@
     </message>
     <message>
         <source>Adding multiple tasks</source>
+        <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
         <translation>Добавить несколько задач</translation>
     </message>
     <message>
         <source>new tasks have been added.</source>
-        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details)</extracomment>
+        <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
         <translation>Новая задача добавлена</translation>
     </message>
     <message>
@@ -484,6 +644,7 @@
     </message>
     <message>
         <source>Delete all done tasks</source>
+        <extracomment>menu item to delete all done tasks</extracomment>
         <translation>Удалить все завершенные задачи</translation>
     </message>
     <message>
@@ -517,6 +678,7 @@
     </message>
     <message>
         <source>Details</source>
+        <extracomment>detailed list which tasks have been added simultaneously</extracomment>
         <translation>Подробнее</translation>
     </message>
     <message>
@@ -524,12 +686,76 @@
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
         <translation>Ориентация заблокирована</translation>
     </message>
+    <message>
+        <source>Today</source>
+        <extracomment>due date string for today</extracomment>
+        <translation>Сегодня</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <extracomment>due date string for tomorrow</extracomment>
+        <translation>Завтра</translation>
+    </message>
+    <message>
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
+        <translation>Вчера</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
+        <translation>Список</translation>
+    </message>
+    <message>
+        <source>Due</source>
+        <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
+        <translation>Задачи</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
+        <translation>Заметки</translation>
+    </message>
+    <message>
+        <source>#%1</source>
+        <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
+        <translation>#%1</translation>
+    </message>
+    <message>
+        <source>Export/Import data</source>
+        <extracomment>menu item to switch to export/import page</extracomment>
+        <translation>Экспорт/импорт данных</translation>
+    </message>
+    <message>
+        <source>Reseting all done tasks</source>
+        <extracomment>remorse action to reset all done tasks</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Task has been reopened!</source>
+        <extracomment>notifying the user that the status of the task has been reopened</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The task already existed and was marked as done.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reset all done tasks</source>
+        <extracomment>menu item to reset all done tasks to the open status</extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>harbour-tasklist</name>
     <message>
         <source>Done</source>
-        <extracomment>names of the auotomatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
+        <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Завершённые</translation>
     </message>
     <message>
@@ -539,6 +765,68 @@
     <message>
         <source>New</source>
         <translation>Новая</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Сегодня</translation>
+    </message>
+    <message>
+        <source>Tomorrow</source>
+        <translation>Завтра</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Задачи</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <extracomment>Stop database upgrade dialog</extracomment>
+        <translation>Выход</translation>
+    </message>
+    <message>
+        <source>Please select an action to proceed.</source>
+        <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete</source>
+        <extracomment>text of the button to delete the old database and start overleo</extracomment>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <extracomment>text of the button to migrate the old to the new database format</extracomment>
+        <translation>Обновить</translation>
+    </message>
+    <message>
+        <source>Action required</source>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Information</source>
+        <extracomment>headline for the informational upgrade dialog part</extracomment>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Choose an option</source>
+        <extracomment>headline for the option section of the upgrade dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
+        <extracomment>first part of the database upgrade description</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>recommended</source>
+        <extracomment>hint which is the recommended upgrade option</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

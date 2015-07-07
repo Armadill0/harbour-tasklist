@@ -204,7 +204,7 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Import data</source>
-        <extracomment>Button to import data form the selected file</extracomment>
+        <extracomment>Button to import data from the selected file</extracomment>
         <translation>Zavést data</translation>
     </message>
     <message>
@@ -243,7 +243,7 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Drop database</source>
-        <extracomment>Button to import data form the selected file</extracomment>
+        <extracomment>Button to drop the database and start over with a new one</extracomment>
         <translation>Smazat databázi</translation>
     </message>
     <message>
