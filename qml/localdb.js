@@ -272,9 +272,6 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
     var creationDate = getUnixTime();
     var taskID = -1;
 
-    if (typeof(priority) === 'undefined')
-        priority = 0;
-
     try {
         db.transaction(function(tx) {
             var statement = "INSERT INTO tasks (Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
