@@ -27,13 +27,33 @@ Page {
 
     property int selectedElementId: -1
     property string selectedFileName : ""
+    property string directory: StandardPaths.documents + "/harbour-tasklist"
 
     function composeFullPath(baseName) {
-        return StandardPaths.documents + "/" + baseName + ".json";
+        var suffix = ".json"
+        if (baseName.indexOf(suffix, baseName.length - suffix.length) === -1)
+            baseName += ".json"
+        return directory + "/" + baseName;
+    }
+
+    function truncatePath(path) {
+        var pos = 0
+        while (path.length - pos > 38) {
+            var j = pos + 1
+            while (j < path.length && path[j] !== '/')
+                ++j
+            if (j < path.length)
+                pos = j
+            else
+                break
+        }
+        if (pos > 0)
+            return "..." + path.substring(pos)
+        return path
     }
 
     function getFiles() {
-        var list = exporter.getFilesList(StandardPaths.documents);
+        var list = exporter.getFilesList(directory);
         importFilesModel.clear()
         if (list.length < 1) {
             //: informing user that no former exports are available
@@ -72,7 +92,7 @@ Page {
                 placeholderText: qsTr("Enter a file name for export")
                 onTextChanged: {
                     var path = composeFullPath(text)
-                    label = path
+                    label = truncatePath(path)
                     exporter.fileName = path
                 }
                 validator: RegExpValidator { regExp: /^.{1,60}$/ }
@@ -94,7 +114,7 @@ Page {
                     var json = DB.dumpData()
                     var ret = exporter.save(json)
                     if (ret) {
-                        //: informational notification about the successful eported data
+                        //: informational notification about the successfully exported data
                         taskListWindow.pushNotification("INFO", qsTr("Successfully exported all data."), qsTr("File path") + ": " + composeFullPath(exportName.text))
                         exportName.text = ""
                         getFiles()
@@ -126,7 +146,7 @@ Page {
 
                     delegate: ValueButton {
                         label: fileName
-                        description: elementId !== 0 ? composeFullPath(fileName) : ""
+                        description: elementId !== 0 ? truncatePath(composeFullPath(fileName)) : ""
                         width: column.width
                         highlighted: elementId === selectedElementId
                         onClicked: {
@@ -178,7 +198,7 @@ Page {
                             return
                         var json = exporter.load(composeFullPath(selectedFileName));
                         if (DB.importData(json)) {
-                            //: informational notification about the successful eported data
+                            //: informational notification about the successfully imported data
                             taskListWindow.pushNotification("INFO", qsTr("Successfully imported all data."), qsTr("Source file path") + ": " + composeFullPath(selectedFileName))
                         }
                     }

@@ -51,6 +51,14 @@ bool TasksExport::save(const QString &tasks) const
 {
     if (mFileName.isEmpty())
         return false;
+    // check that directory is present
+    int slash = mFileName.lastIndexOf("/");
+    if (slash >= 0) {
+        QString directoryName = mFileName.left(slash);
+        QDir dir(directoryName);
+        if (!dir.exists())
+            dir.mkpath(".");
+    }
     QFile file(mFileName);
     if (!file.open(QFile::WriteOnly | QFile::Truncate))
         return false;
