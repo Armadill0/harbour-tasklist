@@ -458,6 +458,18 @@ Page {
                     }
 
                     MenuItem {
+                        text: qsTr("Copy into clipboard")
+                        visible: pending > 0
+                        onClicked: {
+                            var data = DB.getSimpleList(listid)
+                            if (data.length > 0)
+                                Clipboard.text = data
+                            else
+                                taskListWindow.pushNotification("WARNING", qsTr("List is not copied"), qsTr("Nothing to copy"))
+                        }
+                    }
+
+                    MenuItem {
                         text: qsTr("Delete")
                         // default list must not be deleted
                         visible: (taskListWindow.defaultlist !== listid) ? true : false

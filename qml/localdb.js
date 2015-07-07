@@ -193,6 +193,18 @@ function readTasks(listID, callback, status, sort) {
     });
 }
 
+function getSimpleList(listID) {
+    var db = connectDB();
+    var names = [];
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID = ? AND Status = '1' ORDER BY Task ASC;", listID);
+        for (var i = 0; i < result.rows.length; ++i) {
+            names.push(result.rows.item(i).Task);
+        }
+    });
+    return names.join("\n")
+}
+
 // select tasks on a global basis instead of list basis
 function readSmartListTasks(smartListType, callback) {
     var db = connectDB();
