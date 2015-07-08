@@ -1,5 +1,7 @@
 .import QtQuick.LocalStorage 2.0 as LS
 
+var DB_VERSION = "2.1";
+
 var DAY_LENGTH = 24 * 3600 * 1000;
 
 var PRIORITY_MIN = 1;
@@ -18,16 +20,16 @@ function getMidnight() {
     return start + DAY_LENGTH;
 }
 
-// create DB with schema v2.0 from scratch
+// create DB with the latest schema from scratch
 function createDB(tx) {
-    console.log("creating DB v2.0 from scratch..");
+    console.log("creating DB v" + DB_VERSION + " from scratch..");
 
     tx.executeSql("CREATE TABLE lists(ID INTEGER PRIMARY KEY AUTOINCREMENT, ListName TEXT UNIQUE);");
 
     tx.executeSql("CREATE TABLE tasks(ID INTEGER PRIMARY KEY AUTOINCREMENT, \
                         Task TEXT NOT NULL, ListID INTEGER NOT NULL, Status INTEGER, \
                         LastUpdate INTEGER NOT NULL, CreationDate INTEGER NOT NULL, \
-                        DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, \
+                        DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, Repeat TEXT, \
                         FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID));");
 
     tx.executeSql("CREATE TABLE tags(ID INTEGER PRIMARY KEY AUTOINCREMENT, Tag TEXT NOT NULL UNIQUE)");
@@ -72,11 +74,11 @@ function schemaIsUpToDate() {
     var db = connectDB();
     // create DB if it's the first run
     if (db.version === "") {
-        db.changeVersion("", "2.0", createDB);
-        // db.version is still empty, but the version is actually 2.0 now
+        db.changeVersion("", DB_VERSION, createDB);
+        // db.version is still empty, but the version is actually up-to-date now
         return true;
     }
-    return db.version === "2.0";
+    return db.version === DB_VERSION;
 }
 
 // delete the existing DB and create from scratch
@@ -94,11 +96,17 @@ function replaceOldDB(keepData) {
             tx.executeSql("COMMIT;");
         });
         // create brand new tables
-        db.changeVersion("1.0", "2.0", createDB);
+        db.changeVersion("1.0", DB_VERSION, createDB);
         // pour data in if necessary
         if (keepData && !importData(data))
             return false;
+    } else if (db.version === "2.0") {
+        // add Repeat field to table 'tasks'
+        db.changeVersion("2.0", DB_VERSION, function(tx) {
+            tx.executeSql("ALTER TABLE tasks ADD COLUMN Repeat TEXT;");
+        });
     }
+
     return true;
 }
 
@@ -330,7 +338,7 @@ function packTask(record) {
     return {ID: record.ID, Task: record.Task, ListID: record.ListID, Status: record.Status,
             LastUpdate: record.LastUpdate, CreationDate: record.CreationDate,
             DueDate: record.DueDate, Duration: record.Duration,
-            Priority: record.Priority, Note: record.Note};
+            Priority: record.Priority, Note: record.Note, Repeat: record.Repeat};
 }
 
 function getTaskDetails(id) {
@@ -366,7 +374,7 @@ function dumpData() {
             for (var j = 0; j < result.rows.length; ++j) {
                 var item = packTask(result.rows.item(j));
                 // add tags to task if tags are introduced already
-                if (db.version > 1.0) {
+                if (version > 1) {
                     var tagsResult = tx.executeSql("SELECT TagID FROM task_tags WHERE TaskID = ?;", item.ID);
                     var tagIds = [];
                     for (var k = 0; k < tagsResult.rows.length; ++k)
@@ -381,7 +389,7 @@ function dumpData() {
     // that's it for v1.0
     if (version === 1)
         return JSON.stringify(tasksGrouped);
-    // v2.0 also contains tags
+    // DB also contains tags since v2.0
     var tags = [];
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM tags;");
@@ -391,7 +399,7 @@ function dumpData() {
         }
     });
     var data = {
-        schema: "2.0",
+        schema: DB_VERSION,
         tasklists: tasksGrouped,
         tags: tags
     };
@@ -438,6 +446,8 @@ function validateParsed(tasksGrouped, version) {
                 if (!_check(it.Note)) return false;
                 if (!_check(it.Tags)) return false;
             }
+            if (version > 2)
+                if (!_check(it.Repeat)) return false
         }
     }
     return true;
@@ -452,15 +462,15 @@ function importData(json) {
         console.log("error in parse");
         return false;
     }
-    var version = (parsed instanceof Array) ? 1 : 2;
+    var version = (parsed instanceof Array) ? 1 : Number(parsed.schema);
 
     var tasksGrouped, tags;
     if (version === 1) {
         tasksGrouped = parsed;
         tags = [];
     } else {
-        if (parsed.schema !== "2.0") {
-            console.log("dump for v2.0: invalid schema");
+        if (version !== 2.0 && version !== 2.1) {
+            console.log("dump for v2.x: invalid schema");
             return false;
         }
         tasksGrouped = parsed.tasklists;
@@ -498,9 +508,9 @@ function importData(json) {
             for (var j in g.items) {
                 var it = g.items[j];
                 tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, \
-                               DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                               DueDate, Duration, Priority, Note, Repeat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                                [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
-                                it.DueDate || 0, it.Duration || 0, it.Priority || PRIORITY_DEFAULT, it.Note || ""]);
+                                it.DueDate || 0, it.Duration || 0, it.Priority || PRIORITY_DEFAULT, it.Note || "", it.Repeat || ""]);
                 var tagIds = it.Tags;
                 if (typeof (tagIds) !== "undefined")
                     for (var k in tagIds) {
