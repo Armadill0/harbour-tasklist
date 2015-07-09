@@ -285,6 +285,14 @@ ApplicationWindow {
         return true
     }
 
+    function getLanguage() {
+        return exporter.language
+    }
+
+    function setLanguage(lang) {
+        exporter.language = lang
+    }
+
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {
         var notificationCategory

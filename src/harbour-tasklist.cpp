@@ -29,6 +29,7 @@
 #include <QtQml>
 #include <QProcess>
 #include <QQuickView>
+#include <QSettings>
 #include "tasksexport.h"
 
 // third party code
@@ -54,10 +55,16 @@ int main(int argc, char *argv[])
         thanks to Antoine Reversat who mentioned this here:
         https://www.mail-archive.com/devel@lists.sailfishos.org/msg02602.html */
     QGuiApplication* app = SailfishApp::application(argc, argv);
-    QString locale = QLocale::system().name();
+    QSettings settings;
+    QString locale = settings.value("language", "").toString();
+    if (locale.isEmpty()) {
+        /* use system locale by default */
+        locale = QLocale::system().name();
+        settings.setValue("language", locale);
+    }
     QTranslator translator;
 
-    translator.load(locale,SailfishApp::pathTo(QString("localization")).toLocalFile());
+    translator.load(locale, SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");

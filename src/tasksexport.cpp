@@ -3,6 +3,7 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QTextStream>
+#include <QSettings>
 
 // FIXME
 #include <QDebug>
@@ -184,4 +185,16 @@ void TasksExport::exitDropbox()
         delete dropbox;
         dropbox = NULL;
     }
+}
+
+QString TasksExport::language()
+{
+    QSettings settings;
+    return settings.value("language", "").toString();
+}
+
+void TasksExport::setLanguage(const QString &lang)
+{
+    QSettings settings;
+    settings.setValue("language", lang);
 }
