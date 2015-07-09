@@ -9,6 +9,64 @@ var PRIORITY_MAX = 5;
 var PRIORITY_STEP = 1;
 var PRIORITY_DEFAULT = 3;
 
+function identity(unixTime) {
+    return unixTime;
+}
+
+function nextDay(unixTime) {
+    return unixTime + DAY_LENGTH;
+}
+
+function isWorkday(unixTime) {
+    var day = new Date(unixTime).getDay();
+    return 0 < day && day < 6;
+}
+
+function nextWorkday(unixTime) {
+    unixTime += DAY_LENGTH;
+    while (!isWorkday(unixTime))
+        unixTime += DAY_LENGTH;
+    return unixTime;
+}
+
+function nextWeek(unixTime) {
+    return unixTime + 7 * DAY_LENGTH;
+}
+
+function nextMonth(unixTime) {
+    var date = new Date(unixTime);
+    var goal = date.getDate();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    while (true) {
+        ++month;
+        if (month >= 12) {
+            ++year;
+            month = 0;
+        }
+        var cur = months[month];
+        if (month == 1 && (year % 4 === 0 && (year % 400 === 0 || year % 100 !== 0)))
+            ++cur;
+        if (goal <= cur)
+            break;
+    }
+    date.setFullYear(year);
+    date.setMonth(month);
+    date.setDate(goal);
+    return date.getTime();
+}
+
+var REPETITION_VARIANTS = [
+    { key: "", name: qsTr("none (tap to select)"), func: identity},
+    { key: "every day", name: qsTr("every day"), func: nextDay },
+    { key: "every workday", name: qsTr("every workday"), func: nextWorkday },
+    { key: "every week", name: qsTr("every week"), func: nextWeek },
+    { key: "every month", name: qsTr("every month"), func: nextMonth }
+];
+
 function getUnixTime() {
     return (new Date()).getTime()
 }
@@ -18,6 +76,31 @@ function getMidnight() {
     var today = new Date();
     var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
     return start + DAY_LENGTH;
+}
+
+// short human-readable representation of a due date
+function humanReadableDueDate(unixTime) {
+    var date = new Date(unixTime);
+    var today = new Date();
+    var tomorrow = new Date(today.getTime() + DAY_LENGTH);
+    var yesterday = new Date(today.getTime() - DAY_LENGTH);
+
+    var dateString = date.toDateString();
+    if (dateString === today.toDateString())
+        //: due date string for today
+        return qsTr("Today");
+    if (dateString === tomorrow.toDateString())
+        //: due date string for tomorrow
+        return qsTr("Tomorrow");
+    if (dateString === yesterday.toDateString())
+        //: due date string for yesterday
+        return qsTr("Yesterday");
+
+    // if the year is different from the current, then result has the view "09/07/2015"
+    if (date.getFullYear() !== today.getFullYear())
+        return date.toLocaleString(Qt.locale(), "dd/MM/yyyy");
+    // if the year is the same, then result has the view "Jul 9"
+    return date.toLocaleString(Qt.locale(), "MMM dd");
 }
 
 // create DB with the latest schema from scratch
@@ -168,8 +251,8 @@ function initializeDB() {
 function applyCallbackToTasks(callback, result) {
     for (var i = 0; i < result.rows.length; ++i) {
         var task = result.rows.item(i);
-        callback(task.ID, task.Task, task.Status === 1, task.ListID,
-                 task.DueDate, task.Priority || PRIORITY_DEFAULT, task.Note);
+        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.CreationDate,
+                 task.DueDate, task.Priority || PRIORITY_DEFAULT, task.Note, task.Repeat);
     }
 }
 
@@ -284,7 +367,7 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
     } catch (sqlErr) {
         console.log("Unable to write a new task");
     }
-    return taskID;
+    return {id: Number(taskID), creation: creationDate};
 }
 
 // delete task from database
@@ -297,7 +380,7 @@ function removeTask(id) {
     });
 }
 
-// change a task status
+// change a task status: status is a Number here
 function setTaskStatus(id, status) {
     var db = connectDB();
     var lastUpdate = getUnixTime();
@@ -314,16 +397,33 @@ function setTaskStatus(id, status) {
     return ok;
 }
 
+// change a task due date
+function setTaskDueDate(id, dueDate) {
+    var db = connectDB();
+    var lastUpdate = getUnixTime();
+    var ok = false;
+    try {
+        db.transaction(function(tx) {
+            var result = tx.executeSql("UPDATE tasks SET DueDate = ?, LastUpdate = ? WHERE ID = ?", [dueDate, lastUpdate, id]);
+            tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to change a due date in DB");
+    }
+    return ok;
+}
+
 // update task
-function updateTask(id, newListID, task, status, dueDate, duration, priority, note) {
+function updateTask(id, newListID, task, status, dueDate, duration, priority, note, repeat) {
     var db = connectDB();
     var lastUpdate = getUnixTime();
     var ok = false;
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("UPDATE tasks SET ListID = ?, Task = ?, Status = ?, \
-                                        LastUpdate = ?, DueDate = ?, Duration = ?, Priority = ?, Note = ? WHERE ID = ?;",
-                                        [newListID, task, status, lastUpdate, dueDate, duration, priority, note, id]);
+                                        LastUpdate = ?, DueDate = ?, Duration = ?, Priority = ?, Note = ?, Repeat = ? WHERE ID = ?;",
+                                        [newListID, task, status, lastUpdate, dueDate, duration, priority, note, repeat, id]);
             tx.executeSql("COMMIT;");
             ok = result.rowsAffected === 1;
         });
