@@ -69,7 +69,6 @@ Dialog {
         languages.append({ lang: "ru_RU", name: "Русский" })
         languages.append({ lang: "sv_SE", name: "Svenska" })
         languages.append({ lang: "tr_TR", name: "Türkçe"})
-        // keine Ahnung was das ist :-)
         languages.append({ lang: "zh_CN", name: "中文"})
 
 

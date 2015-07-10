@@ -140,7 +140,7 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit '%1'").arg(params.task)
+                title: qsTr("Edit") + " '" + params.task + "'"
                 //: save the currently made changes to the task
                 acceptText: qsTr("Save")
             }
@@ -177,7 +177,7 @@ Dialog {
                 id: list
                 anchors.left: parent.left
                 //: option to change the list where the task should be located
-                label: qsTr("List:")
+                label: qsTr("List") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -216,7 +216,7 @@ Dialog {
                     width: parent.width - clearButton.width
                     anchors.verticalCenter: clearButton.verticalCenter
                     //: select the due date for a task
-                    label: qsTr("Due:")
+                    label: qsTr("Due") + ":"
                     value: composeDueDate()
 
                     onClicked: {
@@ -252,7 +252,7 @@ Dialog {
             ComboBox {
                 id: repeat
                 width: parent.width
-                label: qsTr("Repeat:")
+                label: qsTr("Repeat") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -271,7 +271,7 @@ Dialog {
                 width: parent.width - 2 * Theme.paddingLarge
                 x: Theme.paddingLarge
                 //: displays the date when the task has been created by the user
-                text: qsTr("Created: %1").arg(Qt.formatDateTime(new Date(params.creation)).toLocaleString(Qt.locale()))
+                text: qsTr("Created") + ": " + Qt.formatDateTime(new Date(params.creation)).toLocaleString(Qt.locale())
             }
 
             SectionHeader {
@@ -282,7 +282,7 @@ Dialog {
             ValueButton {
                 id: editTags
                 //: label for the tags field
-                label: qsTr("Tags:")
+                label: qsTr("Tags") + ":"
                 value: humanTags()
                 property bool modified: false
 

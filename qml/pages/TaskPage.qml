@@ -40,11 +40,11 @@ Page {
 
         if (taskListWindow.smartListType >= 0)
             //: title for the list property in the task description (keep as short as possible)
-            result.push(qsTr("List: ") + task.listname)
+            result.push(qsTr("List") + ": " + task.listname)
 
         if (typeof task.dueDate === "number" && task.dueDate > 0)
             //: title for the due date in the task description (keep as short as possible)
-            result.push(qsTr("Due: ") + DB.humanReadableDueDate(task.dueDate))
+            result.push(qsTr("Due") + ": " + DB.humanReadableDueDate(task.dueDate))
 
         var tags = DB.readTaskTags(task.taskid)
         if (tags.length > 0)
@@ -53,7 +53,7 @@ Page {
 
         if (typeof task.notes !== "undefined" && task.notes.length > 0)
             //: title for the notes in the task description (keep as short as possible)
-            result.push(qsTr("Notes: ") + task.notes)
+            result.push(qsTr("Notes") + ": " + task.notes)
 
         return result.join(" - ")
     }
