@@ -315,6 +315,27 @@ ApplicationWindow {
         notification.publish()
     }
 
+    function initializeApplication() {
+        DB.initializeDB()
+        taskListWindow.listid = DB.getSettingAsNumber("defaultList")
+        taskListWindow.defaultlist = taskListWindow.listid
+        taskListWindow.justStarted = false
+
+        // initialize application settings
+        taskListWindow.coverListSelection = DB.getSettingAsNumber("coverListSelection")
+        taskListWindow.coverListChoose = DB.getSettingAsNumber("coverListChoose")
+        taskListWindow.coverListOrder = DB.getSettingAsNumber("coverListOrder")
+        taskListWindow.taskOpenAppearance = DB.getSettingAsNumber("taskOpenAppearance") === 1
+        taskListWindow.remorseOnDelete = DB.getSettingAsNumber("remorseOnDelete")
+        taskListWindow.remorseOnMark = DB.getSettingAsNumber("remorseOnMark")
+        taskListWindow.remorseOnMultiAdd = DB.getSettingAsNumber("remorseOnMultiAdd")
+        taskListWindow.startPage = DB.getSettingAsNumber("startPage")
+        taskListWindow.backFocusAddTask = DB.getSettingAsNumber("backFocusAddTask")
+        taskListWindow.smartListVisibility = DB.getSettingAsNumber("smartListVisibility") === 1
+        taskListWindow.recentlyAddedOffset = DB.getSettingAsNumber("recentlyAddedOffset")
+        taskListWindow.doneTasksStrikedThrough = DB.getSettingAsNumber("doneTasksStrikedThrough") === 1
+    }
+
     Notification {
         id: notification
         category: "x-nemo.email.error"

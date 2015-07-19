@@ -87,6 +87,7 @@ Page {
     function download() {
         toggleElements(true)
         taskListWindow.downloadData()
+        taskListWindow.justStarted = true
         pageStack.pop()
     }
 
