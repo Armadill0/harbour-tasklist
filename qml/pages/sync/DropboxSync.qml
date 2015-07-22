@@ -26,48 +26,57 @@ Page {
 
     property bool attemptedAuth
 
-    Column {
-        id: column
-        spacing: Theme.itemSizeSmall
+    SilicaFlickable {
+        id: dbFlickable
+        contentHeight: column.height
         width: parent.width
+        anchors.fill: parent
 
-        PageHeader { title: qsTr("Sync with Dropbox") }
+        VerticalScrollDecorator { flickable: dbFlickable }
 
-        BusyIndicator {
-            id: indicator
-            running: true
-            size: BusyIndicatorSize.Large
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+        Column {
+            id: column
+            spacing: Theme.itemSizeSmall
+            width: parent.width
 
-        Label {
-            id: label
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: Theme.paddingLarge
-                rightMargin: Theme.paddingLarge
+            PageHeader { title: qsTr("Sync with Dropbox") }
+
+            BusyIndicator {
+                id: indicator
+                running: true
+                size: BusyIndicatorSize.Large
+                anchors.horizontalCenter: parent.horizontalCenter
             }
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            visible: false
-            text: qsTr("Remote copy cannot be updated. Please choose action:")
-        }
 
-        Button {
-            id: replaceRemote
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Replace remote copy")
-            visible: false
-            onClicked: upload()
-        }
+            Label {
+                id: label
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingLarge
+                    rightMargin: Theme.paddingLarge
+                }
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                visible: false
+                text: qsTr("Remote copy cannot be updated. Please choose action:")
+            }
 
-        Button {
-            id: replaceLocal
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Replace local copy")
-            visible: false
-            onClicked: download()
+            Button {
+                id: replaceRemote
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Replace remote copy")
+                visible: false
+                onClicked: upload()
+            }
+
+            Button {
+                id: replaceLocal
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Replace local copy")
+                visible: false
+                onClicked: download()
+            }
         }
     }
 
