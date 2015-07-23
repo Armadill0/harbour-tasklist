@@ -48,11 +48,13 @@ localization.path = /usr/share/$${TARGET}
 
 INSTALLS += localization
 
+CONFIG += sailfishapp_i18n_idbased
+
 lupdate_only {
     SOURCES = qml/*.qml \
               qml/pages/*.qml \
               qml/pages/sync/*.qml
-    TRANSLATIONS = localization/*.ts
+    TRANSLATIONS = localization-sources/*.ts
 }
 
 HEADERS += \

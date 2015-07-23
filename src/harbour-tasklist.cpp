@@ -39,12 +39,13 @@ int main(int argc, char *argv[])
 {
     QProcess appinfo;
     QString appversion;
+    QString appname = "harbour-tasklist";
 
-    QCoreApplication::setOrganizationName("harbour-tasklist");
-    QCoreApplication::setApplicationName("harbour-tasklist");
+    QCoreApplication::setOrganizationName(appname);
+    QCoreApplication::setApplicationName(appname);
 
     // read app version from rpm database on startup
-    appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << "harbour-tasklist");
+    appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << appname);
     appinfo.waitForFinished(-1);
     if (appinfo.bytesAvailable() > 0) {
         appversion = appinfo.readAll();
@@ -54,10 +55,14 @@ int main(int argc, char *argv[])
         thanks to Antoine Reversat who mentioned this here:
         https://www.mail-archive.com/devel@lists.sailfishos.org/msg02602.html */
     QGuiApplication* app = SailfishApp::application(argc, argv);
-    QString locale = QLocale::system().name();
-    QTranslator translator;
 
-    translator.load(locale,SailfishApp::pathTo(QString("localization")).toLocalFile());
+    // load default translator and system locale's translator afterwards
+    QTranslator defaultTranslator;
+    defaultTranslator.load("en_US", SailfishApp::pathTo(QString("localization")).toLocalFile());
+    app->installTranslator(&defaultTranslator);
+
+    QTranslator translator;
+    translator.load(QLocale::system().name(), SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
