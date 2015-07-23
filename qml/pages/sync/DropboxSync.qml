@@ -44,7 +44,8 @@ Page {
         PageHeader {
             id: syncHeader
             //: dropbox sync page title
-            title: qsTr("Sync with Dropbox")
+            //% "Sync Dropbox"
+            title: qsTrId("db-sync-label") + " - TaskList"
         }
 
         Column {
@@ -63,31 +64,36 @@ Page {
                 }
                 wrapMode: Text.Wrap
                 //: sync headline when online data is newer than the local one
-                text: qsTr("Remote data cannot be updated. The remote data has been uploaded by another device.")
+                //% "Remote data cannot be updated. The remote data has been uploaded by another device."
+                text: qsTrId("db-sync-interrupt-label")
             }
 
             SectionHeader {
                 //: headline for the option section of the upgrade dialog
-                text: qsTr("Choose an option")
+                //% "Choose an option"
+                text: qsTrId("option-header")
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: button to upload the remote data
-                text: qsTr("Replace remote data")
+                //% "Replace remote data"
+                text: qsTrId("remote-replace-label")
                 onClicked: upload()
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: button to upload the local data
-                text: qsTr("Replace local data")
+                //% "Replace local data"
+                text: qsTrId("local-replace-label")
                 onClicked: download()
             }
 
             Label {
                 //: explanation what happens when sync buttons above are being pressed
-                text: qsTr("Hint: Those actions replace the particular target data and can not be revoked!")
+                //% "Hint: Those actions replace the particular target data and can not be revoked!"
+                text: qsTrId("db-sync-replace-description")
                 anchors {
                     left: parent.left
                     right: parent.right

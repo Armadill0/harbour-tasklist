@@ -54,7 +54,21 @@ ApplicationWindow {
     property int tagId
     // define names of smart lists
     //: names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-    property variant smartListNames: [qsTr("Done"), qsTr("Pending"), qsTr("New"), qsTr("Today"), qsTr("Tomorrow"), qsTr("Tags")]
+    //% ""
+    property variant smartListNames: [
+        //% "Done"
+        qsTrId("done-label"),
+        //% "Pending"
+        qsTrId("pending-label"),
+        //% "New"
+        qsTrId("new-label"),
+        //% "Today"
+        qsTrId("today-label"),
+        //% "Tomorrow"
+        qsTrId("tomorrow-label"),
+        //% "Tags"
+        qsTrId("tags-label")
+    ]
     // set default priorities
     property int minimumPriority: 1
     property int defaultPriority: 3
@@ -91,9 +105,11 @@ ApplicationWindow {
         Dialog {
             allowedOrientations: Orientation.All
             //: text of the button to migrate the old to the new database format
-            property string dbUpgradeText: qsTr("Upgrade")
+            //% "Upgrade"
+            property string dbUpgradeText: qsTrId("")
             //: text of the button to delete the old database and start overleo
-            property string dbDeleteText: qsTr("Delete")
+            //% "Delete"
+            property string dbDeleteText: qsTrId("")
 
             SilicaFlickable {
                 id: migrateFlickable
@@ -108,23 +124,28 @@ ApplicationWindow {
 
                     DialogHeader {
                         //: Stop database upgrade dialog
-                        acceptText: qsTr("Exit")
+                        //% "Exit"
+                        acceptText: qsTrId("")
                         //: get user's attention before starting database upgrade
-                        title: qsTr("Action required")
+                        //% "Action required"
+                        title: qsTrId("")
                     }
 
                     SectionHeader {
                         //: headline for the informational upgrade dialog part
-                        text: qsTr("Information")
+                        //% "Information"
+                        text: qsTrId("")
                     }
 
                     Label {
                         width: parent.width - 2 * Theme.paddingLarge
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: first part of the database upgrade description
-                        text: qsTr("A database from a previous version of TaskList has been found. Old databases are not supported.") + "\n" +
+                        //% "A database from a previous version of TaskList has been found. Old databases are not supported."
+                        text: qsTrId("") + "\n" +
                               //: second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog
-                              qsTr(" Press '%1' to migrate the old database into the new format or '%2' to delete the old database and start with a clean new database.").arg(dbUpgradeText).arg(dbDeleteText)
+                              //% " Press '%1' to migrate the old database into the new format or '%2' to delete the old database and start with a clean new database."
+                              qsTrId("").arg(dbUpgradeText).arg(dbDeleteText)
                         wrapMode: Text.WordWrap
                         color: Theme.highlightColor
                         font.bold: true
@@ -132,14 +153,16 @@ ApplicationWindow {
 
                     SectionHeader {
                         //: headline for the option section of the upgrade dialog
-                        text: qsTr("Choose an option")
+                        //% "Choose an option"
+                        text: qsTrId("")
                     }
 
                     Label {
                         width: parent.width - 2 * Theme.paddingLarge
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: user has the possibility to choose the database upgrade or delete the old database
-                        text: qsTr("Please select an action to proceed.")
+                        //% "Please select an action to proceed."
+                        text: qsTrId("")
                         wrapMode: Text.WordWrap
                     }
 
@@ -155,7 +178,8 @@ ApplicationWindow {
                         Button {
                             width: parent.width
                             //: hint which is the recommended upgrade option
-                            text: dbUpgradeText + " (" + qsTr("recommended") + ")"
+                            //% "recommended"
+                            text: dbUpgradeText + " (" + qsTrId("") + ")"
                             onClicked: {
                                 if (DB.replaceOldDB(true)) {
                                     DB.setDefaultPriority()
@@ -218,12 +242,18 @@ ApplicationWindow {
     function getDropboxCredentials() {
         var list = exporter.getDropboxCredentials()
         if (list.length < 3) {
-            pushNotification("ERROR", qsTr("Cannot access Dropbox"), qsTr("Unable to fetch credentials from Dropbox"))
+            //% "Cannot access Dropbox"
+            pushNotification("ERROR", qsTrId(""),
+                             //% "Unable to fetch credentials from Dropbox"
+                             qsTrId(""))
             return false
         }
         var values = { dropboxUsername: list[0], dropboxTokenSecret: list[1], dropboxToken: list[2] }
         if (!DB.upsertDropboxCredentials(values)) {
-            pushNotification("ERROR", qsTr("DB error"), qsTr("Unable to save credentials in DB"))
+            //% "DB error"
+            pushNotification("ERROR", qsTrId(""),
+                             //% "Unable to save credentials in DB"
+                             qsTrId(""))
             return false
         }
         return true
@@ -266,11 +296,17 @@ ApplicationWindow {
         var ret = exporter.uploadToDropbox(json)
         console.log("uploaded revision " + ret)
         if (ret === "") {
-            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Unable to upload data to Dropbox"))
+            //% "Sync failed"
+            pushNotification("ERROR", qsTrId(""),
+                             //% "Unable to upload data to Dropbox"
+                             qsTrId(""))
             return false
         }
         DB.upsertSetting("lastSyncRevisionHash", ret)
-        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully uploaded to Dropbox"))
+        //% "Sync finished"
+        pushNotification("OK", qsTrId(""),
+                         //% "Data successfully uploaded to Dropbox"
+                         qsTrId(""))
         return true
     }
 
@@ -279,15 +315,24 @@ ApplicationWindow {
         var rev = list[0], json = list[1]
         console.log("downloaded revision " + rev)
         if (typeof rev === "undefined" || typeof json === "undefined" || json === "") {
-            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Invalid data received"))
+            //% "Sync failed"
+            pushNotification("ERROR", qsTrId(""),
+                             //% "Invalid data received"
+                             qsTrId(""))
             return false
         }
         if (!DB.importData(json)) {
-            pushNotification("ERROR", qsTr("Sync failed"), qsTr("Data cannot be imported"))
+            //% "Sync failed"
+            pushNotification("ERROR", qsTrId(""),
+                             //% "Data cannot be imported"
+                             qsTrId(""))
             return false
         }
         DB.upsertSetting("lastSyncRevisionHash", rev)
-        pushNotification("OK", qsTr("Sync finished"), qsTr("Data successfully downloaded from Dropbox"))
+        //% "Sync finished"
+        pushNotification("OK", qsTrId(""),
+                         //% "Data successfully downloaded from Dropbox"
+                         qsTrId(""))
         return true
     }
 

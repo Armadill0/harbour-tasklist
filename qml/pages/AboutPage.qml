@@ -60,9 +60,11 @@ Dialog {
 
             DialogHeader {
                 //: headline of application information page
-                title: qsTr("About") + " - TaskList"
+                //% "About"
+                title: qsTrId("about-label") + " - TaskList"
                 //: switch from About back to application
-                acceptText: qsTr("Back")
+                //% "Back"
+                acceptText: qsTrId("back-button")
             }
 
             Image {
@@ -81,12 +83,14 @@ Dialog {
 
             SectionHeader {
                 //: headline for application description
-                text: qsTr("Description")
+                //% "Description"
+                text: qsTrId("description-label")
             }
 
             Label {
                 //: TaskList description
-                text: qsTr("A small but mighty program to manage your daily tasks.")
+                //% "A small but mighty program to manage your daily tasks."
+                text: qsTrId("app-description")
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
@@ -95,12 +99,16 @@ Dialog {
 
             SectionHeader {
                 //: headline for application licensing information
-                text: qsTr("Licensing")
+                //% "Licensing"
+                text: qsTrId("licensing-label")
             }
 
             Label {
                 //: Copyright and license information
-                text: qsTr("Copyright © by") + " Thomas Amler\n" + qsTr("License") + ": GPL v3"
+                //% "Copyright © by"
+                text: qsTrId("copyright-label") + " Thomas Amler\n" +
+                      //% "License"
+                      qsTrId("license-label") + ": GPL v3"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
@@ -108,13 +116,14 @@ Dialog {
 
             SectionHeader {
                 //: headline for application project information
-                text: qsTr("Project information")
+                //% "Project information"
+                text: qsTrId("project-header")
                 font.pixelSize: Theme.fontSizeSmall
             }
 
             Label {
                 textFormat: Text.RichText;
-                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style><a href=\"https://github.com/Armadill0/harbour-tasklist\">https://github.com/Armadill0/harbour-tasklist</a>"
+                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style><a href=\"https://github.com/Armadill0/harbour-tasklist\">TaskList @ Github.com</a>"
                 width: parent.width - Theme.paddingLarge * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeTiny
@@ -126,7 +135,8 @@ Dialog {
 
             SectionHeader {
                 //: headline for application contributors
-                text: qsTr("Contributors")
+                //% "Contributors"
+                text: qsTrId("contributors-label")
             }
 
             Repeater {

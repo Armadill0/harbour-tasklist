@@ -32,15 +32,18 @@ Dialog {
         switch (time) {
         case 0:
             //: text to be shown if the slider is set to
-            result = qsTr("deactivated")
+            //% "deactivated"
+            result = qsTrId("deactivated-label")
             break
         case 1:
             //: '%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case
-            result = qsTr("%1 second").arg(time)
+            //% "%1 second"
+            result = qsTrId("single-second-count-label").arg(time)
             break
         default:
             //: '%1' will be replaced by the amount of seconds of the slider
-            result = qsTr("%1 seconds").arg(time)
+            //% "%1 seconds"
+            result = qsTrId("second-count-label").arg(time)
             break
         }
 
@@ -88,27 +91,34 @@ Dialog {
 
             DialogHeader {
                 //: headline for all user options
-                title: qsTr("Settings") + " - TaskList"
+                //% "Settings"
+                title: qsTrId("settings-label") + " - TaskList"
                 //: saves the current made changes to user options
-                acceptText: qsTr("Save")
+                //% "Save"
+                acceptText: qsTrId("save-button")
             }
 
             SectionHeader {
                 //: headline for cover (application state when app is in background mode) options
-                text: qsTr("Cover options")
+                //% "Cover options"
+                text: qsTrId("cover-options-header")
             }
 
             ComboBox {
                 id: coverListSelection
                 width: parent.width
                 //: user option to choose which list should be shown on the cover
-                label: qsTr("Cover list") + ":"
+                //% "Cover list"
+                label: qsTrId("cover-list-label") + ":"
                 currentIndex: taskListWindow.coverListSelection
 
                 menu: ContextMenu {
-                    MenuItem { text: qsTr("Default list") }
-                    MenuItem { text: qsTr("Selected list") }
-                    MenuItem { text: qsTr("Choose in list management") }
+                    //% "Default list"
+                    MenuItem { text: qsTrId("default-list-label") }
+                    //% "Selected list"
+                    MenuItem { text: qsTrId("selected-list-label") }
+                    //% "Choose in list management"
+                    MenuItem { text: qsTrId("choose-cover-label") }
                 }
             }
 
@@ -116,45 +126,56 @@ Dialog {
                 id: coverListOrder
                 width: parent.width
                 //: user option to choose how the tasks should be ordered on the cover
-                label: qsTr("Cover task order") + ":"
+                //% "Cover task order"
+                label: qsTrId("cover-order-label") + ":"
                 currentIndex: taskListWindow.coverListOrder
 
                 menu: ContextMenu {
-                    MenuItem { text: qsTr("Last updated first") }
-                    MenuItem { text: qsTr("Sort by name ascending") }
-                    MenuItem { text: qsTr("Sort by name descending") }
+                    //% "Last updated first"
+                    MenuItem { text: qsTrId("last-updated-label") }
+                    //% "Sort by name ascending"
+                    MenuItem { text: qsTrId("name-asc-label") }
+                    //% "Sort by name descending"
+                    MenuItem { text: qsTrId("name-desc-label") }
                 }
             }
 
             SectionHeader {
                 //: headline for general options
-                text: qsTr("General options")
+                //% "General options"
+                text: qsTrId("general-options-label")
             }
 
             ComboBox {
                 id: startPage
                 width: parent.width
                 //: user option to choose what should be shown at application start
-                label: qsTr("Start page") + ":"
+                //% "Start page"
+                label: qsTrId("startpage-label") + ":"
                 currentIndex: taskListWindow.startPage
 
                 menu: ContextMenu {
-                    MenuItem { text: qsTr("Default list") }
-                    MenuItem { text: qsTr("List overview") }
-                    MenuItem { text: qsTr("Minimize to cover") }
+                    //% "Default list"
+                    MenuItem { text: qsTrId("default-list-label") }
+                    //% "List overview"
+                    MenuItem { text: qsTrId("list-overview-label") }
+                    //% "Minimize to cover"
+                    MenuItem { text: qsTrId("minimize-label") }
                 }
             }
 
             SectionHeader {
                 //: headline for task options
-                text: qsTr("Task options")
+                //% "Task options"
+                text: qsTrId("task-options-label")
             }
 
             TextSwitch {
                 id: taskOpenAppearance
                 width: parent.width
                 //: user option to choose whether pending tasks should be marked with a checked or not checked bullet
-                text: qsTr("open task appearance")
+                //% "open task appearance"
+                text: qsTrId("open-task-appearance-label")
                 checked: taskListWindow.taskOpenAppearance
             }
 
@@ -162,7 +183,8 @@ Dialog {
                 id: backFocusAddTask
                 width: parent.width
                 //: user option to directly jump back to the input field after a new task has been added by the user
-                text: qsTr("refocus task add field")
+                //% "refocus task add field"
+                text: qsTrId("refocus-label")
                 checked: taskListWindow.backFocusAddTask
             }
 
@@ -171,20 +193,23 @@ Dialog {
                 id: doneTasksStrikedThrough
                 width: parent.width
                 //: user option to strike through done tasks for better task overview
-                text: qsTr("strike through done tasks")
+                //% "strike through done tasks"
+                text: qsTrId("strike-through-label")
                 checked: taskListWindow.doneTasksStrikedThrough
             }
 
             SectionHeader {
                 //: headline for list options
-                text: qsTr("List options")
+                //% "List options"
+                text: qsTrId("list-options-label")
             }
 
             TextSwitch {
                 id: smartListVisibility
                 width: parent.width
                 //: user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-                text: qsTr("show smart lists")
+                //% "show smart lists"
+                text: qsTrId("show-smartlists-label")
                 checked: taskListWindow.smartListVisibility
             }
 
@@ -193,32 +218,41 @@ Dialog {
                 id: recentlyAddedOffset
                 width: parent.width
                 //: user option to select the time period how long tasks are recognized as new
-                label: qsTr("New task period") + ":"
+                //% "New task period"
+                label: qsTrId("new-task-period-label") + ":"
                 currentIndex: taskListWindow.recentlyAddedOffset
 
                 menu: ContextMenu {
                     //: use %1 as a placeholder for the number of hours
-                    MenuItem { text: qsTr("%1 hours").arg(3) }
-                    MenuItem { text: qsTr("%1 hours").arg(6) }
-                    MenuItem { text: qsTr("%1 hours").arg(12) }
+                    //% "%1 hours"
+                    MenuItem { text: qsTrId("hours-count-label").arg(3) }
+                    //% "%1 hours"
+                    MenuItem { text: qsTrId("hours-count-label").arg(6) }
+                    //% "%1 hours"
+                    MenuItem { text: qsTrId("hours-count-label").arg(12) }
                     //: use %1 as a placeholder for the number of the day, which is currently static "1"
-                    MenuItem { text: qsTr("%1 day").arg(1) }
+                    //% "%1 day"
+                    MenuItem { text: qsTrId("single-day-count-label").arg(1) }
                     //: use %1 as a placeholder for the number of days
-                    MenuItem { text: qsTr("%1 days").arg(2) }
+                    //% "%1 days"
+                    MenuItem { text: qsTrId("day-count-label").arg(2) }
                     //: use %1 as a placeholder for the number of the week, which is currently static "1"
-                    MenuItem { text: qsTr("%1 week").arg(1) }
+                    //% "%1 week"
+                    MenuItem { text: qsTrId("single-week-count-label").arg(1) }
                 }
             }
 
             SectionHeader {
                 //: headline for remorse (a Sailfish specific interaction element to stop a former started process) options
-                text: qsTr("Remorse options")
+                //% "Remorse options"
+                text: qsTrId("remorse-options-label")
             }
 
             Slider {
                 id: remorseOnDelete
                 width: parent.width
-                label: qsTr("on Delete")
+                //% "on Delete"
+                label: qsTrId("remorse-delete-label")
                 minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
@@ -229,7 +263,8 @@ Dialog {
             Slider {
                 id: remorseOnMark
                 width: parent.width
-                label: qsTr("on Mark task")
+                //% "on Mark task"
+                label: qsTrId("remorse-mark-label")
                 minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
@@ -240,7 +275,8 @@ Dialog {
             Slider {
                 id: remorseOnMultiAdd
                 width: parent.width
-                label: qsTr("on Adding multiple tasks")
+                //% "on Adding multiple tasks"
+                label: qsTrId("remorse-addmultiple-label")
                 minimumValue: 0
                 maximumValue: 10
                 stepSize: 1
@@ -250,7 +286,8 @@ Dialog {
 
             SectionHeader {
                 //: headline for Dropbox options
-                text: qsTr("Dropbox options")
+                //% "Dropbox options"
+                text: qsTrId("dropbox-options-label")
             }
 
             Button {
@@ -258,7 +295,8 @@ Dialog {
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: taskListWindow.checkDropboxCredentials()
                 //: Button to log out from the dropbox account
-                text: qsTr("Dropbox log out")
+                //% "Dropbox log out"
+                text: qsTrId("dropbox-logout-label")
                 onClicked: {
                     taskListWindow.removeDropboxCredentials()
                     signOutDropbox.enabled = false

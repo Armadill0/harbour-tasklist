@@ -37,7 +37,8 @@ Page {
         importFilesModel.clear()
         if (list.length < 1) {
             //: informing user that no former exports are available
-            importFilesModel.append({fileName: qsTr("No files for import available."), elementId: 0});
+            //% "No files for import available."
+            importFilesModel.append({fileName: qsTrId("no-importfiles-placeholder"), elementId: 0});
         } else {
             for (var i = 0; i < list.length; ++i)
                 importFilesModel.append({fileName: list[i], elementId: i + 1});
@@ -57,19 +58,22 @@ Page {
 
             PageHeader {
                 //: export/import page headline
-                title: qsTr("Export/Import") + " - TaskList"
+                //% "Export/Import"
+                title: qsTrId("export-import-header") + " - TaskList"
             }
 
             SectionHeader {
                 //: headline for exports
-                text: qsTr("Export target")
+                //% "Export target"
+                text: qsTrId("export-header")
             }
 
             TextField {
                 id: exportName
                 width: parent.width
                 //: placeholder message to remind the user that he has to enter a name for the data export
-                placeholderText: qsTr("Enter a file name for export")
+                //% "Enter a file name for export"
+                placeholderText: qsTrId("export-file-placeholder")
                 onTextChanged: {
                     var path = composeFullPath(text)
                     label = path
@@ -86,7 +90,8 @@ Page {
             Button {
                 id: exportButton
                 //: headline for the data export section
-                text: qsTr("Export data")
+                //% "Export data"
+                text: qsTrId("export-button")
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: exportName.acceptableInput
 
@@ -95,7 +100,10 @@ Page {
                     var ret = exporter.save(json)
                     if (ret) {
                         //: informational notification about the successful eported data
-                        taskListWindow.pushNotification("INFO", qsTr("Successfully exported all data."), qsTr("File path") + ": " + composeFullPath(exportName.text))
+                        //% "Successfully exported all data."
+                        taskListWindow.pushNotification("INFO", qsTrId("data-export-success"),
+                                                        //% "File path"
+                                                        qsTrId("data-export-path") + ": " + composeFullPath(exportName.text))
                         exportName.text = ""
                         getFiles()
                     }
@@ -104,7 +112,8 @@ Page {
 
             SectionHeader {
                 //: headline for imports
-                text: qsTr("Select a file to import")
+                //% "Select a file to import"
+                text: qsTrId("select-file-header")
             }
 
             ListModel {
@@ -151,7 +160,8 @@ Page {
                     id: deleteButton
                     width: parent.width / 2
                     //: Button to delete the selected data file
-                    text: qsTr("Delete file")
+                    //% "Delete file"
+                    text: qsTrId("delete-file-button")
                     enabled: selectedElementId !== -1
 
                     onClicked: {
@@ -170,7 +180,8 @@ Page {
                     id: importButton
                     width: parent.width / 2
                     //: Button to import data form the selected file
-                    text: qsTr("Import data")
+                    //% "Import data"
+                    text: qsTrId("import-button")
                     enabled: selectedElementId !== -1
 
                     onClicked: {
@@ -179,7 +190,10 @@ Page {
                         var json = exporter.load(composeFullPath(selectedFileName));
                         if (DB.importData(json)) {
                             //: informational notification about the successful eported data
-                            taskListWindow.pushNotification("INFO", qsTr("Successfully imported all data."), qsTr("Source file path") + ": " + composeFullPath(selectedFileName))
+                            //% "Successfully imported all data."
+                            taskListWindow.pushNotification("INFO", qsTrId("data-import-success"),
+                                                            //% "Source file path"
+                                                            qsTrId("data-import-path") + ": " + composeFullPath(selectedFileName))
                         }
                     }
                 }
@@ -187,7 +201,8 @@ Page {
 
             SectionHeader {
                 //: headline for information about import/export mechanism
-                text: qsTr("Information")
+                //% "Information"
+                text: qsTrId("information-label")
             }
 
             Label {
@@ -195,12 +210,14 @@ Page {
                 x: Theme.paddingLarge
                 wrapMode: Text.WordWrap
                 //: Explanation of how importing and exporting data works and where the files are/have to be located.
-                text: qsTr("You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!")
+                //% "You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!"
+                text: qsTrId("export-import-description")
             }
 
             SectionHeader {
                 //: headline for the database purge
-                text: qsTr("Drop data (very destructive!!!)")
+                //% "Drop data (very destructive!!!)"
+                text: qsTrId("drop-database-header")
             }
 
             Label {
@@ -208,7 +225,8 @@ Page {
                 x: Theme.paddingLarge
                 wrapMode: Text.WordWrap
                 //: warn user of destructive drop DB function
-                text: qsTr("CAUTION: This function will drop all your data immediately! So only use this if you know what you're doing!")
+                //% "CAUTION: This function will drop all your data immediately! So only use this if you know what you're doing!"
+                text: qsTrId("drop-database-warning")
                 color: "red"
             }
 
@@ -216,19 +234,24 @@ Page {
                 id: dropDBconfirmation
                 width: parent.width
                 //: let user confirm the database purge
-                text: qsTr("Yes, I know what I'm doing.")
+                //% "Yes, I know what I'm doing."
+                text: qsTrId("drop-database-confirmation")
             }
 
             Button {
                 width: parent.width
                 //: Button to import data form the selected file
-                text: qsTr("Drop database")
+                //% "Drop database"
+                text: qsTrId("drop-database-button")
                 enabled: dropDBconfirmation.checked
 
                 onClicked: {
                     if (DB.dropDB())
                         //: informational notification about the successful dropped data tables
-                        taskListWindow.pushNotification("WARNING", qsTr("Successfully dropped all data."), qsTr("Please restart TaskList to work with the new database."))
+                        //% "Successfully dropped all data."
+                        taskListWindow.pushNotification("WARNING", qsTrId("drop-database-success"),
+                                                        //% "Please restart TaskList to work with the new database."
+                                                        qsTrId("drop-database-detail"))
                 }
             }
 
