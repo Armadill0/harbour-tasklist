@@ -26,6 +26,13 @@ Page {
 
     property bool attemptedAuth
 
+    BusyIndicator {
+        id: indicator
+        running: true
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+    }
+
     SilicaFlickable {
         id: dbFlickable
         contentHeight: column.height
@@ -34,22 +41,20 @@ Page {
 
         VerticalScrollDecorator { flickable: dbFlickable }
 
+        PageHeader {
+            id: syncHeader
+            //: dropbox sync page title
+            title: qsTr("Sync with Dropbox")
+        }
+
         Column {
             id: column
-            spacing: Theme.itemSizeSmall
+            spacing: Theme.paddingLarge
             width: parent.width
-
-            PageHeader { title: qsTr("Sync with Dropbox") }
-
-            BusyIndicator {
-                id: indicator
-                running: true
-                size: BusyIndicatorSize.Large
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+            anchors.top: syncHeader.bottom
+            visible: false
 
             Label {
-                id: label
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -57,34 +62,46 @@ Page {
                     rightMargin: Theme.paddingLarge
                 }
                 wrapMode: Text.Wrap
-                horizontalAlignment: Text.AlignHCenter
-                visible: false
-                text: qsTr("Remote copy cannot be updated. Please choose action:")
+                //: sync headline when online data is newer than the local one
+                text: qsTr("Remote data cannot be updated. The remote data has been uploaded by another device.")
+            }
+
+            SectionHeader {
+                //: headline for the option section of the upgrade dialog
+                text: qsTr("Choose an option")
             }
 
             Button {
-                id: replaceRemote
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Replace remote copy")
-                visible: false
+                //: button to upload the remote data
+                text: qsTr("Replace remote data")
                 onClicked: upload()
             }
 
             Button {
-                id: replaceLocal
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Replace local copy")
-                visible: false
+                //: button to upload the local data
+                text: qsTr("Replace local data")
                 onClicked: download()
+            }
+
+            Label {
+                //: explanation what happens when sync buttons above are being pressed
+                text: qsTr("Hint: Those actions replace the particular target data and can not be revoked!")
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingLarge
+                    rightMargin: Theme.paddingLarge
+                }
+                wrapMode: Text.Wrap
             }
         }
     }
 
     function toggleElements(busy) {
         indicator.running = busy
-        label.visible = !busy
-        replaceRemote.visible = !busy
-        replaceLocal.visible = !busy
+        column.visible = !busy
     }
 
     function upload() {

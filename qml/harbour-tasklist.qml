@@ -64,7 +64,7 @@ ApplicationWindow {
     property bool coverActionMultiple: listCount > 1
     property bool coverActionSingle: !coverActionMultiple
 
-    // initilize default settings properties
+    // initialize default settings properties
     property int coverListSelection
     property int coverListChoose
     property int coverListOrder
