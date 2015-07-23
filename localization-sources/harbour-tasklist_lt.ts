@@ -229,12 +229,12 @@ label for the tags field</extracomment>
     <message>
         <source>Drop data (very destructive!!!)</source>
         <extracomment>headline for the database purge</extracomment>
-        <translation type="unfinished"/>
+        <translation>Šalinti duomenis (labai destruktyvu!!!)</translation>
     </message>
     <message>
         <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
         <extracomment>warn user of destructive drop DB function</extracomment>
-        <translation type="unfinished"/>
+        <translation>DĖMESIO: Ši funkcija nedelsiant pašalins visus jūsų duomenis! Taigi, naudokite tai tik tuo atveju, jei suprantate ką darote!</translation>
     </message>
     <message>
         <source>Yes, I know what I&apos;m doing.</source>
@@ -244,16 +244,16 @@ label for the tags field</extracomment>
     <message>
         <source>Drop database</source>
         <extracomment>Button to drop the database and start over with a new one</extracomment>
-        <translation type="unfinished"/>
+        <translation>Šalinti duomenų bazę</translation>
     </message>
     <message>
         <source>Successfully dropped all data.</source>
         <extracomment>informational notification about the successful dropped data tables</extracomment>
-        <translation type="unfinished"/>
+        <translation>Visi duomenys sėkmingai pašalinti.</translation>
     </message>
     <message>
         <source>Please restart TaskList to work with the new database.</source>
-        <translation type="unfinished"/>
+        <translation>Prašome iš naujo paleisti TaskList darbui su nauja duomenų baze.</translation>
     </message>
 </context>
 <context>
@@ -502,7 +502,7 @@ label for the tags field</extracomment>
     <message>
         <source>deactivated</source>
         <extracomment>text to be shown if the slider is set to</extracomment>
-        <translation type="unfinished"/>
+        <translation>pasyvinta</translation>
     </message>
     <message>
         <source>%1 second</source>
@@ -734,21 +734,21 @@ label for the tags field</extracomment>
     <message>
         <source>Reseting all done tasks</source>
         <extracomment>remorse action to reset all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation>Atstatomos visos atliktos užduotys</translation>
     </message>
     <message>
         <source>Task has been reopened!</source>
         <extracomment>notifying the user that the status of the task has been reopened</extracomment>
-        <translation type="unfinished"/>
+        <translation>Užduotis buvo atverta iš naujo!</translation>
     </message>
     <message>
         <source>The task already existed and was marked as done.</source>
-        <translation type="unfinished"/>
+        <translation>Užduotis jau egzistavo ir buvo pažymėta kaip atlikta.</translation>
     </message>
     <message>
         <source>Reset all done tasks</source>
         <extracomment>menu item to reset all done tasks to the open status</extracomment>
-        <translation type="unfinished"/>
+        <translation>Atstatyti visas atliktas užduotis</translation>
     </message>
 </context>
 <context>
@@ -801,32 +801,32 @@ label for the tags field</extracomment>
     <message>
         <source>Action required</source>
         <extracomment>get user's attention before starting database upgrade</extracomment>
-        <translation type="unfinished"/>
+        <translation>Reikalingas veiksmas</translation>
     </message>
     <message>
         <source>Information</source>
         <extracomment>headline for the informational upgrade dialog part</extracomment>
-        <translation type="unfinished"/>
+        <translation>Informacija</translation>
     </message>
     <message>
         <source>Choose an option</source>
         <extracomment>headline for the option section of the upgrade dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite parinktį</translation>
     </message>
     <message>
         <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
         <extracomment>first part of the database upgrade description</extracomment>
-        <translation type="unfinished"/>
+        <translation>Rasta ankstesnių TaskList versijų duomenų bazė. Senos duomenų bazės nėra palaikomos.</translation>
     </message>
     <message>
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
         <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation> Spauskite &apos;%1&apos;, kad perkeltumėte senąją duomenų bazę į naująjį formatą arba &apos;%2&apos;, kad ištrintumėte senąją duomenų bazę ir pradėtumėte su nauja, tuščia duomenų baze.</translation>
     </message>
     <message>
         <source>recommended</source>
         <extracomment>hint which is the recommended upgrade option</extracomment>
-        <translation type="unfinished"/>
+        <translation>rekomenduojama</translation>
     </message>
 </context>
 </TS>

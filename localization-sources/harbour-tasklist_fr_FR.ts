@@ -87,73 +87,73 @@
         <extracomment>default value if no due date is selected
 ----------
 default value if no tag is selected</extracomment>
-        <translation type="unfinished"/>
+        <translation>aucun (toucher pour sélectionner)</translation>
     </message>
     <message>
         <source>Today</source>
         <extracomment>due date string for today</extracomment>
-        <translation type="unfinished"/>
+        <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
         <source>Tomorrow</source>
         <extracomment>due date string for tomorrow</extracomment>
-        <translation type="unfinished"/>
+        <translation>Demain</translation>
     </message>
     <message>
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"/>
+        <translation>Hier</translation>
     </message>
     <message>
         <source>Task already exists on this list!</source>
         <extracomment>information how the currently made changes can be saved</extracomment>
-        <translation type="unfinished"/>
+        <translation>La tâche existe déjà dans cette liste !</translation>
     </message>
     <message>
         <source>Task name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de la tâche</translation>
     </message>
     <message>
         <source>task is open</source>
         <extracomment>choose if this task is pending or done</extracomment>
-        <translation type="unfinished"/>
+        <translation>tâche ouverte</translation>
     </message>
     <message>
         <source>Priority</source>
         <extracomment>select the tasks priority</extracomment>
-        <translation type="unfinished"/>
+        <translation>Priorité</translation>
     </message>
     <message>
         <source>Dates</source>
         <extracomment>headline for the date and time properties of the task</extracomment>
-        <translation type="unfinished"/>
+        <translation>Dates</translation>
     </message>
     <message>
         <source>Due</source>
         <extracomment>select the due date for a task</extracomment>
-        <translation type="unfinished"/>
+        <translation>Echéance</translation>
     </message>
     <message>
         <source>Created</source>
         <extracomment>displays the date when the task has been created by the user</extracomment>
-        <translation type="unfinished"/>
+        <translation>Créée</translation>
     </message>
     <message>
         <source>Tags</source>
         <extracomment>headline for the tags section
 ----------
 label for the tags field</extracomment>
-        <translation type="unfinished"/>
+        <translation>Etiquettes</translation>
     </message>
     <message>
         <source>Notes</source>
         <extracomment>headline for the section where notes for the task can be saved</extracomment>
-        <translation type="unfinished"/>
+        <translation>Notes</translation>
     </message>
     <message>
         <source>Enter your notes or description here</source>
         <extracomment>textfield to enter notes</extracomment>
-        <translation type="unfinished"/>
+        <translation>Entrer vos notes ou description ici</translation>
     </message>
 </context>
 <context>
@@ -161,99 +161,99 @@ label for the tags field</extracomment>
     <message>
         <source>No files for import available.</source>
         <extracomment>informing user that no former exports are available</extracomment>
-        <translation type="unfinished"/>
+        <translation>Aucun fichiers en import disponible.</translation>
     </message>
     <message>
         <source>Export/Import</source>
         <extracomment>export/import page headline</extracomment>
-        <translation type="unfinished"/>
+        <translation>Import/Export</translation>
     </message>
     <message>
         <source>Export target</source>
         <extracomment>headline for exports</extracomment>
-        <translation type="unfinished"/>
+        <translation>Exporter la cible</translation>
     </message>
     <message>
         <source>Enter a file name for export</source>
         <extracomment>placeholder message to remind the user that he has to enter a name for the data export</extracomment>
-        <translation type="unfinished"/>
+        <translation>Entrer un nom de fichier à exporter</translation>
     </message>
     <message>
         <source>Export data</source>
         <extracomment>headline for the data export section</extracomment>
-        <translation type="unfinished"/>
+        <translation>Exportation des données</translation>
     </message>
     <message>
         <source>Successfully exported all data.</source>
         <extracomment>informational notification about the successful eported data</extracomment>
-        <translation type="unfinished"/>
+        <translation>Données exportées avec succès</translation>
     </message>
     <message>
         <source>File path</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire</translation>
     </message>
     <message>
         <source>Select a file to import</source>
         <extracomment>headline for imports</extracomment>
-        <translation type="unfinished"/>
+        <translation>Choisir le fichier à importer</translation>
     </message>
     <message>
         <source>Delete file</source>
         <extracomment>Button to delete the selected data file</extracomment>
-        <translation type="unfinished"/>
+        <translation>Suppression de fichier</translation>
     </message>
     <message>
         <source>Import data</source>
         <extracomment>Button to import data from the selected file</extracomment>
-        <translation type="unfinished"/>
+        <translation>Importation de données</translation>
     </message>
     <message>
         <source>Successfully imported all data.</source>
         <extracomment>informational notification about the successful eported data</extracomment>
-        <translation type="unfinished"/>
+        <translation>Données importées avec succès</translation>
     </message>
     <message>
         <source>Source file path</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire d&apos;origine</translation>
     </message>
     <message>
         <source>Information</source>
         <extracomment>headline for information about import/export mechanism</extracomment>
-        <translation type="unfinished"/>
+        <translation>Information</translation>
     </message>
     <message>
         <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez exporter vos données au format de fichier JSON et importer à partir d&apos;un fichier au format JSON. Merci de garder à l&apos;esprit que TOUTES VOS DONNEES contenant des tâches et des listes sont stoquées dans un unique fichier. </translation>
     </message>
     <message>
         <source>Drop data (very destructive!!!)</source>
         <extracomment>headline for the database purge</extracomment>
-        <translation type="unfinished"/>
+        <translation>Perdre les données (très destructif !!! )</translation>
     </message>
     <message>
         <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
         <extracomment>warn user of destructive drop DB function</extracomment>
-        <translation type="unfinished"/>
+        <translation>AVERTISSEMENT : Cette fonction perdra toutes vos données immédiatement! Alors utiliser ceci uniquement si vous savez ce que vous faites!</translation>
     </message>
     <message>
         <source>Yes, I know what I&apos;m doing.</source>
         <extracomment>let user confirm the database purge</extracomment>
-        <translation type="unfinished"/>
+        <translation>Oui, je sais ce que je fais.</translation>
     </message>
     <message>
         <source>Drop database</source>
         <extracomment>Button to drop the database and start over with a new one</extracomment>
-        <translation type="unfinished"/>
+        <translation>Perdre la base de données</translation>
     </message>
     <message>
         <source>Successfully dropped all data.</source>
         <extracomment>informational notification about the successful dropped data tables</extracomment>
-        <translation type="unfinished"/>
+        <translation>Base de données perdue avec succès</translation>
     </message>
     <message>
         <source>Please restart TaskList to work with the new database.</source>
-        <translation type="unfinished"/>
+        <translation>Merci de redémarrer TaskList pour fonctionner avec la nouvelle base de données.</translation>
     </message>
 </context>
 <context>
@@ -350,12 +350,12 @@ label for the tags field</extracomment>
     <message>
         <source>%1 tag</source>
         <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 étiquette</translation>
     </message>
     <message>
         <source>%1 tags</source>
         <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 étiquettes</translation>
     </message>
 </context>
 <context>
@@ -497,33 +497,33 @@ label for the tags field</extracomment>
     <message>
         <source>strike through done tasks</source>
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ne pas prendre en compte les tâches terminées</translation>
     </message>
     <message>
         <source>deactivated</source>
         <extracomment>text to be shown if the slider is set to</extracomment>
-        <translation type="unfinished"/>
+        <translation>désactivé</translation>
     </message>
     <message>
         <source>%1 second</source>
         <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 seconde</translation>
     </message>
     <message>
         <source>%1 seconds</source>
         <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 secondes</translation>
     </message>
 </context>
 <context>
     <name>TagDialog</name>
     <message>
         <source>Select tags</source>
-        <translation type="unfinished"/>
+        <translation>Choisir les étiquettes</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer</translation>
     </message>
 </context>
 <context>
@@ -531,52 +531,52 @@ label for the tags field</extracomment>
     <message>
         <source>Manage tags</source>
         <extracomment>headline for the tags page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Gérer les étiquettes</translation>
     </message>
     <message>
         <source>Add new tag</source>
         <extracomment>headline to create new tags</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ajouter une étiquette</translation>
     </message>
     <message>
         <source>Enter unique tag name</source>
         <extracomment>fallback text if no name for a new tag is specified</extracomment>
-        <translation type="unfinished"/>
+        <translation>Entrer le nom unique de l&apos;étiquette</translation>
     </message>
     <message>
         <source>Press Enter/Return to add the new tag</source>
         <extracomment>hint how to confirm the new tag</extracomment>
-        <translation type="unfinished"/>
+        <translation>Appuyer sur Entrée/Retour pour ajouter une nouvelle étiquette</translation>
     </message>
     <message>
         <source>Your tags</source>
         <extracomment>headline for the user created tags</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vos étiquettes</translation>
     </message>
     <message>
         <source>no tags available</source>
         <extracomment>fallback text if no tags are defined</extracomment>
-        <translation type="unfinished"/>
+        <translation>pas d&apos;étiquette disponible</translation>
     </message>
     <message>
         <source>Deleting</source>
         <extracomment>remorse item when a tag is being deleted</extracomment>
-        <translation type="unfinished"/>
+        <translation>Supression</translation>
     </message>
     <message>
         <source>Edit</source>
         <extracomment>context menu item to edit a tag</extracomment>
-        <translation type="unfinished"/>
+        <translation>Edition</translation>
     </message>
     <message>
         <source>Delete</source>
         <extracomment>context menu item to delete a tag</extracomment>
-        <translation type="unfinished"/>
+        <translation>Suppression</translation>
     </message>
     <message>
         <source>Press Enter/Return to save changes</source>
         <extracomment>a label to inform the user how the changes on a tag can be saved</extracomment>
-        <translation type="unfinished"/>
+        <translation>Appuyer sur Entrée/Retour pour enregistrer les modifications</translation>
     </message>
 </context>
 <context>
@@ -689,66 +689,66 @@ label for the tags field</extracomment>
     <message>
         <source>Today</source>
         <extracomment>due date string for today</extracomment>
-        <translation type="unfinished"/>
+        <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
         <source>Tomorrow</source>
         <extracomment>due date string for tomorrow</extracomment>
-        <translation type="unfinished"/>
+        <translation>Demain</translation>
     </message>
     <message>
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"/>
+        <translation>Hier</translation>
     </message>
     <message>
         <source>List</source>
         <extracomment>title for the list property in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Liste</translation>
     </message>
     <message>
         <source>Due</source>
         <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Echéance</translation>
     </message>
     <message>
         <source>Tags</source>
         <extracomment>title for the tags in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Etiquette</translation>
     </message>
     <message>
         <source>Notes</source>
         <extracomment>title for the notes in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Notes</translation>
     </message>
     <message>
         <source>#%1</source>
         <extracomment># prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>n°%1</translation>
     </message>
     <message>
         <source>Export/Import data</source>
         <extracomment>menu item to switch to export/import page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Import/Export de données</translation>
     </message>
     <message>
         <source>Reseting all done tasks</source>
         <extracomment>remorse action to reset all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation>Effacement de toutes les tâches terminées</translation>
     </message>
     <message>
         <source>Task has been reopened!</source>
         <extracomment>notifying the user that the status of the task has been reopened</extracomment>
-        <translation type="unfinished"/>
+        <translation>La tâche a été reouverte !</translation>
     </message>
     <message>
         <source>The task already existed and was marked as done.</source>
-        <translation type="unfinished"/>
+        <translation>La tâche existe déjà et est marquée comme terminée</translation>
     </message>
     <message>
         <source>Reset all done tasks</source>
         <extracomment>menu item to reset all done tasks to the open status</extracomment>
-        <translation type="unfinished"/>
+        <translation>Effacer toutes les tâches terminées</translation>
     </message>
 </context>
 <context>
@@ -768,65 +768,65 @@ label for the tags field</extracomment>
     </message>
     <message>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
         <source>Tomorrow</source>
-        <translation type="unfinished"/>
+        <translation>Demain</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Etiquette</translation>
     </message>
     <message>
         <source>Exit</source>
         <extracomment>Stop database upgrade dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Quitter</translation>
     </message>
     <message>
         <source>Please select an action to proceed.</source>
         <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
-        <translation type="unfinished"/>
+        <translation>Merci de choisir une action pour poursuivre.</translation>
     </message>
     <message>
         <source>Delete</source>
         <extracomment>text of the button to delete the old database and start overleo</extracomment>
-        <translation type="unfinished"/>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <source>Upgrade</source>
         <extracomment>text of the button to migrate the old to the new database format</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mise à jour</translation>
     </message>
     <message>
         <source>Action required</source>
         <extracomment>get user's attention before starting database upgrade</extracomment>
-        <translation type="unfinished"/>
+        <translation>Action requise</translation>
     </message>
     <message>
         <source>Information</source>
         <extracomment>headline for the informational upgrade dialog part</extracomment>
-        <translation type="unfinished"/>
+        <translation>Information</translation>
     </message>
     <message>
         <source>Choose an option</source>
         <extracomment>headline for the option section of the upgrade dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Choisir une option</translation>
     </message>
     <message>
         <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
         <extracomment>first part of the database upgrade description</extracomment>
-        <translation type="unfinished"/>
+        <translation>Une base de donnée d&apos;une version précedente de TaskList a été trouvée. Les anciennes base de données ne sont pas supportées.</translation>
     </message>
     <message>
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
         <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Appuyer sur &apos;%1&apos; pour migrer l&apos;ancienne base de données dans un nouveau format ou &apos;%2&apos; pour supprimer l&apos;ancienne base de données et démarrer avec une nouvelle base de données vide.</translation>
     </message>
     <message>
         <source>recommended</source>
         <extracomment>hint which is the recommended upgrade option</extracomment>
-        <translation type="unfinished"/>
+        <translation>Recommandé</translation>
     </message>
 </context>
 </TS>

@@ -126,12 +126,12 @@ default value if no tag is selected</extracomment>
     <message>
         <source>Dates</source>
         <extracomment>headline for the date and time properties of the task</extracomment>
-        <translation type="unfinished"/>
+        <translation>Сроки</translation>
     </message>
     <message>
         <source>Due</source>
         <extracomment>select the due date for a task</extracomment>
-        <translation type="unfinished"/>
+        <translation>Срок</translation>
     </message>
     <message>
         <source>Created</source>
@@ -709,7 +709,7 @@ label for the tags field</extracomment>
     <message>
         <source>Due</source>
         <extracomment>title for the due date in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Срок</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -734,12 +734,12 @@ label for the tags field</extracomment>
     <message>
         <source>Reseting all done tasks</source>
         <extracomment>remorse action to reset all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation>Открытие все завершенные задачи</translation>
     </message>
     <message>
         <source>Task has been reopened!</source>
         <extracomment>notifying the user that the status of the task has been reopened</extracomment>
-        <translation type="unfinished"/>
+        <translation>Задачи были открыты!</translation>
     </message>
     <message>
         <source>The task already existed and was marked as done.</source>
@@ -748,7 +748,7 @@ label for the tags field</extracomment>
     <message>
         <source>Reset all done tasks</source>
         <extracomment>menu item to reset all done tasks to the open status</extracomment>
-        <translation type="unfinished"/>
+        <translation>Открыть все завершенные задачи</translation>
     </message>
 </context>
 <context>
@@ -816,12 +816,12 @@ label for the tags field</extracomment>
     <message>
         <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
         <extracomment>first part of the database upgrade description</extracomment>
-        <translation type="unfinished"/>
+        <translation>Найдена база данных из предыдущей версии программы. Старая база данных более не поддерживается. </translation>
     </message>
     <message>
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
         <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Нажмите &apos;%1&apos; для импорта старой база дынных в новую или &apos;%2&apos; для удаления старой базы данных и формирования нового списка задач.</translation>
     </message>
     <message>
         <source>recommended</source>
