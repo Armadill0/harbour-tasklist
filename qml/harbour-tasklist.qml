@@ -106,10 +106,10 @@ ApplicationWindow {
             allowedOrientations: Orientation.All
             //: text of the button to migrate the old to the new database format
             //% "Upgrade"
-            property string dbUpgradeText: qsTrId("")
+            property string dbUpgradeText: qsTrId("upgrade-label")
             //: text of the button to delete the old database and start overleo
             //% "Delete"
-            property string dbDeleteText: qsTrId("")
+            property string dbDeleteText: qsTrId("delete-label")
 
             SilicaFlickable {
                 id: migrateFlickable
@@ -125,16 +125,16 @@ ApplicationWindow {
                     DialogHeader {
                         //: Stop database upgrade dialog
                         //% "Exit"
-                        acceptText: qsTrId("")
+                        acceptText: qsTrId("exit-label")
                         //: get user's attention before starting database upgrade
                         //% "Action required"
-                        title: qsTrId("")
+                        title: qsTrId("upgradedialog-header")
                     }
 
                     SectionHeader {
                         //: headline for the informational upgrade dialog part
                         //% "Information"
-                        text: qsTrId("")
+                        text: qsTrId("information-label")
                     }
 
                     Label {
@@ -142,10 +142,10 @@ ApplicationWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: first part of the database upgrade description
                         //% "A database from a previous version of TaskList has been found. Old databases are not supported."
-                        text: qsTrId("") + "\n" +
+                        text: qsTrId("upgrade-description-part1") + "\n" +
                               //: second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog
                               //% " Press '%1' to migrate the old database into the new format or '%2' to delete the old database and start with a clean new database."
-                              qsTrId("").arg(dbUpgradeText).arg(dbDeleteText)
+                              qsTrId("upgrade-description-part2").arg(dbUpgradeText).arg(dbDeleteText)
                         wrapMode: Text.WordWrap
                         color: Theme.highlightColor
                         font.bold: true
@@ -154,7 +154,7 @@ ApplicationWindow {
                     SectionHeader {
                         //: headline for the option section of the upgrade dialog
                         //% "Choose an option"
-                        text: qsTrId("")
+                        text: qsTrId("option-header")
                     }
 
                     Label {
@@ -162,7 +162,7 @@ ApplicationWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: user has the possibility to choose the database upgrade or delete the old database
                         //% "Please select an action to proceed."
-                        text: qsTrId("")
+                        text: qsTrId("choose-option-label")
                         wrapMode: Text.WordWrap
                     }
 
@@ -179,7 +179,7 @@ ApplicationWindow {
                             width: parent.width
                             //: hint which is the recommended upgrade option
                             //% "recommended"
-                            text: dbUpgradeText + " (" + qsTrId("") + ")"
+                            text: dbUpgradeText + " (" + qsTrId("recommended-label") + ")"
                             onClicked: {
                                 if (DB.replaceOldDB(true)) {
                                     DB.setDefaultPriority()
@@ -243,17 +243,17 @@ ApplicationWindow {
         var list = exporter.getDropboxCredentials()
         if (list.length < 3) {
             //% "Cannot access Dropbox"
-            pushNotification("ERROR", qsTrId(""),
-                             //% "Unable to fetch credentials from Dropbox"
-                             qsTrId(""))
+            pushNotification("ERROR", qsTrId("dropbox-no-access-error"),
+                             //% "Unable to fetch credentials from Dropbox."
+                             qsTrId("dropbox-no-access-error-details"))
             return false
         }
         var values = { dropboxUsername: list[0], dropboxTokenSecret: list[1], dropboxToken: list[2] }
         if (!DB.upsertDropboxCredentials(values)) {
             //% "DB error"
-            pushNotification("ERROR", qsTrId(""),
-                             //% "Unable to save credentials in DB"
-                             qsTrId(""))
+            pushNotification("ERROR", qsTrId("database-error"),
+                             //% "Unable to save credentials in database."
+                             qsTrId("credential-save-error"))
             return false
         }
         return true
@@ -297,16 +297,16 @@ ApplicationWindow {
         console.log("uploaded revision " + ret)
         if (ret === "") {
             //% "Sync failed"
-            pushNotification("ERROR", qsTrId(""),
-                             //% "Unable to upload data to Dropbox"
-                             qsTrId(""))
+            pushNotification("ERROR", qsTrId("sync-failed-error"),
+                             //% "Unable to upload data to Dropbox."
+                             qsTrId("upload-failed-error"))
             return false
         }
         DB.upsertSetting("lastSyncRevisionHash", ret)
         //% "Sync finished"
-        pushNotification("OK", qsTrId(""),
-                         //% "Data successfully uploaded to Dropbox"
-                         qsTrId(""))
+        pushNotification("OK", qsTrId("sync-success"),
+                         //% "Data successfully uploaded to Dropbox."
+                         qsTrId("data-upload-success"))
         return true
     }
 
@@ -316,23 +316,23 @@ ApplicationWindow {
         console.log("downloaded revision " + rev)
         if (typeof rev === "undefined" || typeof json === "undefined" || json === "") {
             //% "Sync failed"
-            pushNotification("ERROR", qsTrId(""),
-                             //% "Invalid data received"
-                             qsTrId(""))
+            pushNotification("ERROR", qsTrId("sync-failed-error"),
+                             //% "Invalid data received."
+                             qsTrId("invalid-data-error"))
             return false
         }
         if (!DB.importData(json)) {
             //% "Sync failed"
-            pushNotification("ERROR", qsTrId(""),
-                             //% "Data cannot be imported"
-                             qsTrId(""))
+            pushNotification("ERROR", qsTrId("sync-failed-error"),
+                             //% "Data cannot be imported."
+                             qsTrId("import-failed-error"))
             return false
         }
         DB.upsertSetting("lastSyncRevisionHash", rev)
         //% "Sync finished"
-        pushNotification("OK", qsTrId(""),
-                         //% "Data successfully downloaded from Dropbox"
-                         qsTrId(""))
+        pushNotification("OK", qsTrId("sync-success"),
+                         //% "Data successfully downloaded from Dropbox."
+                         qsTrId("data-download-success"))
         return true
     }
 
