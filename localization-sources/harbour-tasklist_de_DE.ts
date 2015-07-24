@@ -93,47 +93,47 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Zugriff auf Dropbox fehlgeschlagen</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrufen der Dropbox Zugangsdaten fehlgeschlagen.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zugangsdaten können nicht in der Datenbank gespeichert werden.</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisation fehlgeschlagen</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten konnten nicht zu Dropbpx hochgeladen werden.</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisation abgeschlossen</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten erfolgreich zu Dropbox hochgeladen.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Daten empfangen.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten können nicht importiert werden.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten erfolgreich von Dropbox heruntergeladen.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
@@ -210,7 +210,7 @@ context menu item to edit a list
 context menu item to edit a tag
 ----------
 menu item to switch to the page where the selected task can be modified</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message id="save-button">
         <source>Save</source>
@@ -264,7 +264,7 @@ title for the list property in the task description (keep as short as possible)<
         <extracomment>select the due date for a task
 ----------
 title for the due date in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Fällig</translation>
     </message>
     <message id="created-date-label">
         <source>Created</source>
@@ -450,11 +450,11 @@ title for the notes in the task description (keep as short as possible)</extraco
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation>Lösche</translation>
     </message>
-    <message>
+    <message id="default-label">
         <source>default</source>
         <translation>Standard</translation>
     </message>
-    <message>
+    <message id="cover-label">
         <source>Cover</source>
         <translation>Cover</translation>
     </message>
@@ -629,12 +629,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox Optionen</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Von Dropbox abmelden</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -766,7 +766,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronisation mit Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -780,27 +780,27 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox synchronisieren</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Entfernte Daten konnten nicht aktualisiert werden. Sie wurden zuletzt von einem anderen Gerät hochgeladen.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Entfernte Daten ersetzen</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Lokale Daten ersetzen</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis: Diese Aktionen überschreiben die jeweiligen Daten vollständig. Dies kann nicht rückgängig gemacht werden!</translation>
     </message>
 </context>
 </TS>

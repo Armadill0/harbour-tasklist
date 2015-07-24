@@ -93,7 +93,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyksta pasiekti Dropbox</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
@@ -101,7 +101,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>DB klaida</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
@@ -450,11 +450,11 @@ title for the notes in the task description (keep as short as possible)</extraco
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message>
+    <message id="default-label">
         <source>default</source>
         <translation>pagal nutylėjimą</translation>
     </message>
-    <message>
+    <message id="cover-label">
         <source>Cover</source>
         <translation>Viršelis</translation>
     </message>
@@ -629,7 +629,7 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox parinktys</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>

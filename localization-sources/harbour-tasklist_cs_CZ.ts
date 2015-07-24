@@ -93,54 +93,54 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze přistupovat k Dropboxu</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze natáhnout přihlašovací údaje z Dropboxu.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba databáze</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze uložit přihlašovací údaje do databáze.</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřizování selhalo</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze nahrát data do Dropboxu.</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřizování dokončeno</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Data úspěšně nahrána do Dropboxu.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přijata neplatná data.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Data nelze zavést.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Data úspěšně stažena z Dropboxu.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
         <extracomment>headline of application information page
 ----------
 menu item to jump to the application information page</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>O programu</translation>
     </message>
     <message id="back-button">
         <source>Back</source>
@@ -450,11 +450,11 @@ title for the notes in the task description (keep as short as possible)</extraco
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation>Maže se</translation>
     </message>
-    <message>
+    <message id="default-label">
         <source>default</source>
         <translation>Výchozí</translation>
     </message>
-    <message>
+    <message id="cover-label">
         <source>Cover</source>
         <translation>Obálka</translation>
     </message>
@@ -629,12 +629,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Volby pro Dropbox</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Odhlášení z Dropboxu</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -766,7 +766,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřídit s Dropboxem</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -780,27 +780,27 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Seřídit Dropbox</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nelze aktualizovat vzdálená data. Vzdálená data byly nahrána jiným zařízením.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit vzdálená data</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit místní data</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Upozornění: Tyto kroky nahradí jednotlivá cílová data a nelze je vrátit zpět!</translation>
     </message>
 </context>
 </TS>

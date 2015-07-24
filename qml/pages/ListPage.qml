@@ -302,10 +302,10 @@ Page {
                 var listPropertiesString = "";
 
                 //% "default"
-                if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTrId("")) }
+                if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTrId("default-label")) }
 
                 //% "Cover"
-                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push(qsTrId("")) }
+                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push(qsTrId("cover-label")) }
 
                 for (var i = 0; i < listPropertiesArray.length; i++) {
                     if (i > 0)

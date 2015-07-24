@@ -33,7 +33,7 @@
 label for the tags field
 ----------
 title for the tags in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetas</translation>
     </message>
     <message id="upgrade-label">
         <source>Upgrade</source>
@@ -93,47 +93,47 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>No puedo acceder a Dropbox</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>No puedo acceder a las credenciales de Dropbox</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de BD</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>No puedo salvar las credenciales a la BD</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronización fallida</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>No puedo subir datos a Dropbox</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronización finalizada</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datos correctamente subidos a Dropbox</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datos recibidos incorrectos.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>No puedo importar datos.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datos correctamente bajados de Dropbox.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
@@ -165,7 +165,7 @@ menu item to jump to the application information page</extracomment>
     <message id="copyright-label">
         <source>Copyright © by</source>
         <extracomment>Copyright and license information</extracomment>
-        <translation>Derechos © a</translation>
+        <translation>Derechos de autor © a</translation>
     </message>
     <message id="license-label">
         <source>License</source>
@@ -264,7 +264,7 @@ title for the list property in the task description (keep as short as possible)<
         <extracomment>select the due date for a task
 ----------
 title for the due date in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Debido</translation>
     </message>
     <message id="created-date-label">
         <source>Created</source>
@@ -448,13 +448,13 @@ title for the notes in the task description (keep as short as possible)</extraco
         <extracomment>remorse item when a tag is being deleted
 ----------
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Borrando</translation>
     </message>
-    <message>
+    <message id="default-label">
         <source>default</source>
         <translation>defecto</translation>
     </message>
-    <message>
+    <message id="cover-label">
         <source>Cover</source>
         <translation>Portada</translation>
     </message>
@@ -463,7 +463,7 @@ deleting a task via displaying a remorse element (a Sailfish specific interactio
         <extracomment>a label to inform the user how the changes on a list can be saved
 ----------
 a label to inform the user how the changes on a tag can be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Presionar Enter/Return para salvar cambios</translation>
     </message>
     <message id="set-default-list-label">
         <source>Set as Default list</source>
@@ -629,12 +629,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Opciones Dropbox</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox logout</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -766,7 +766,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronización con Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -780,27 +780,27 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizar Dropbox</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Datos remotos no pueden ser mdificados. Estos fueron cargados desde otro dispositivo.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Reemplazar datos remotos</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Reemplazar datos locales</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Advertencia: Esta acción de reemplazo de datos particulares no puede ser revocada.</translation>
     </message>
 </context>
 </TS>

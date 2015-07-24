@@ -450,11 +450,11 @@ title for the notes in the task description (keep as short as possible)</extraco
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message>
+    <message id="default-label">
         <source>default</source>
         <translation>默认</translation>
     </message>
-    <message>
+    <message id="cover-label">
         <source>Cover</source>
         <translation>封面</translation>
     </message>
