@@ -60,11 +60,16 @@ function nextMonth(unixTime) {
 }
 
 var REPETITION_VARIANTS = [
-    { key: "", name: qsTr("none (tap to select)"), func: identity},
-    { key: "every day", name: qsTr("every day"), func: nextDay },
-    { key: "every workday", name: qsTr("every workday"), func: nextWorkday },
-    { key: "every week", name: qsTr("every week"), func: nextWeek },
-    { key: "every month", name: qsTr("every month"), func: nextMonth }
+    //% "none (tap to select)"
+    { key: "", name: qsTrId("noval-tap-label"), func: identity},
+    //% "every day"
+    { key: "every day", name: qsTrId("every-day-label"), func: nextDay },
+    //% "every workday"
+    { key: "every workday", name: qsTrId("every-workday-label"), func: nextWorkday },
+    //% "every week"
+    { key: "every week", name: qsTrId("every-week-label"), func: nextWeek },
+    //% "every month"
+    { key: "every month", name: qsTrId("every-month-label"), func: nextMonth }
 ];
 
 function getUnixTime() {
@@ -88,13 +93,16 @@ function humanReadableDueDate(unixTime) {
     var dateString = date.toDateString();
     if (dateString === today.toDateString())
         //: due date string for today
-        return qsTr("Today");
+	//% "Today"
+        return qsTrId("today-label");
     if (dateString === tomorrow.toDateString())
         //: due date string for tomorrow
-        return qsTr("Tomorrow");
+	//% "Tomorrow"
+        return qsTrId("tomorrow-label");
     if (dateString === yesterday.toDateString())
         //: due date string for yesterday
-        return qsTr("Yesterday");
+	//% "Yesterday"
+        return qsTrId("yesterday-label");
 
     // if the year is different from the current, then result has the view "09/07/2015"
     if (date.getFullYear() !== today.getFullYear())

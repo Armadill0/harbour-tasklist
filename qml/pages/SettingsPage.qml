@@ -87,7 +87,8 @@ Dialog {
             }
         }
         if (!found) {
-            languages.append({ lang: language, name: qsTr("Other") })
+	    //% "Other"
+            languages.append({ lang: language, name: qsTrId("other-label") })
             languageBox.currentIndex = languages.count - 1
             languageBox.currentItem = languageBox.menu.children[languageBox.currentIndex]
         }
@@ -151,7 +152,8 @@ Dialog {
             ComboBox {
                 id: languageBox
                 width: parent.width
-                label: qsTr("Language") + ":"
+	        //% "Language"
+                label: qsTrId("language-label") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -170,7 +172,8 @@ Dialog {
             Label {
                 id: languageTip
                 width: parent.width
-                text: qsTr("Language will be changed after app restart")
+	        //% "Language will be changed after app restart."
+                text: qsTrId("languagechange-needs-restart-description")
                 visible: false
                 font.pixelSize: Theme.fontSizeExtraSmall
                 horizontalAlignment: Text.AlignHCenter
