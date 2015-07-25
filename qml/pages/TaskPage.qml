@@ -43,13 +43,16 @@ Page {
         var dateString = date.toDateString()
         if (dateString === today.toDateString())
             //: due date string for today
-            return qsTr("Today")
+            //% "Today"
+            return qsTrId("today-label")
         if (dateString === tomorrow.toDateString())
             //: due date string for tomorrow
-            return qsTr("Tomorrow")
+            //% "Tomorrow"
+            return qsTrId("tomorrow-label")
         if (dateString === yesterday.toDateString())
             //: due date string for yesterday
-            return qsTr("Yesterday")
+            //% "Yesterday"
+            return qsTrId("yesterday-label")
         var result = date.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
         return result
     }
@@ -62,11 +65,13 @@ Page {
 
         if (taskListWindow.smartListType >= 0)
             //: title for the list property in the task description (keep as short as possible)
-            result.push(qsTr("List") + ": " + task.listname)
+            //% "List"
+            result.push(qsTrId("list-label") + ": " + task.listname)
 
         if (typeof(task.dueDate) === "number" && task.dueDate > 0)
             //: title for the due date in the task description (keep as short as possible)
-            result.push(qsTr("Due") + ": " + humanDueDate(task.dueDate))
+            //% "Due"
+            result.push(qsTrId("due-date-label") + ": " + humanDueDate(task.dueDate))
 
         var tags = DB.readTaskTags(task.taskid)
         for (var i in tags) {
@@ -75,11 +80,13 @@ Page {
         }
         if (tokens.length > 0)
             //: title for the tags in the task description (keep as short as possible)
-            result.push(qsTr("Tags") + ": " + tokens.join(", "))
+            //% "Tags"
+            result.push(qsTrId("tags-label") + ": " + tokens.join(", "))
 
         if (typeof(task.notes) !== "undefined" && task.notes !== "")
             //: title for the notes in the task description (keep as short as possible)
-            result.push(qsTr("Notes") + ": " + task.notes)
+            //% "Notes"
+            result.push(qsTrId("notes-label") + ": " + task.notes)
 
         return result.join(" - ")
     }
@@ -110,8 +117,7 @@ Page {
         wipeTaskList()
         if (taskListWindow.smartListType === 5) {
             var tagId = taskListWindow.tagId
-            //: # prefix for the listname because it is used to list the tasks which are tagged by %1, which is the tag name
-            listname = qsTr("#%1").arg(DB.getTagName(tagId))
+            listname = "#" + DB.getTagName(tagId)
             DB.readTasksWithTag(tagId, appendTask)
         } else if (taskListWindow.smartListType !== -1) {
             listname = taskListWindow.smartListNames[taskListWindow.smartListType]
@@ -140,7 +146,8 @@ Page {
     // function to delete all done tasks
     function deleteDoneTasks() {
         //: remorse action to delete all done tasks
-        tasklistRemorse.execute(qsTr("Deleting all done tasks"),function(){
+        //% "Deleting all done tasks"
+        tasklistRemorse.execute(qsTrId("deleting-done-tasks-label"),function(){
             // start deleting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
                 if (taskListModel.get(i).taskstatus === false) {
@@ -158,7 +165,8 @@ Page {
     // function to reset all done tasks
     function resetDoneTasks() {
         //: remorse action to reset all done tasks
-        tasklistRemorse.execute(qsTr("Reseting all done tasks"),function(){
+        //% "Reseting all done tasks"
+        tasklistRemorse.execute(qsTrId("reseting-done-tasks-label"),function(){
             // start reseting from the end of the list to not get a problem with already deleted items
             for(var i = taskListModel.count - 1; i >= 0; i--) {
                 if (taskListModel.get(i).taskstatus === false) {
@@ -317,9 +325,11 @@ Page {
                     id: taskAdd
                     width: parent.width - nextList.width
                     //: placeholder where the user should enter a name for a new task
-                    placeholderText: qsTr("Enter unique task name")
+                    //% "Enter unique task name"
+                    placeholderText: qsTrId("new-task-label")
                     //: a label to inform the user how to confirm the new task
-                    label: qsTr("Press Enter/Return to add the new task")
+                    //% "Press Enter/Return to add the new task"
+                    label: qsTrId("new-task-confirmation-description")
                     // enable enter key if minimum task length has been reached
                     EnterKey.enabled: text.length > 0
                     // set allowed chars and task length
@@ -343,12 +353,18 @@ Page {
                                     reloadTaskList()
                                     taskAdd.text = ""
                                     //: notifying the user that the status of the task has been reopened
-                                    taskListWindow.pushNotification("OK", qsTr("Task has been reopened!"), qsTr("The task already existed and was marked as done."))
+                                    //% "Task has been reopened!"
+                                    taskListWindow.pushNotification("OK", qsTrId("task-reopened-success"),
+                                                                    //% "The task already existed and was marked as done."
+                                                                    qsTrId("task-reopened-success-details"))
                                 }
                                 else {
                                     // display notification if task already exists
                                     //: notifying the user why the task couldn't be added
-                                    taskListWindow.pushNotification("WARNING", qsTr("Task could not be added!"), qsTr("It already exists on this list."))
+                                    //% "Task could not be added!"
+                                    taskListWindow.pushNotification("WARNING", qsTrId("task-not-added-warning"),
+                                                                    //% "It already exists on this list."
+                                                                    qsTrId("task-not-added-warning-details"))
                                 }
                             }
                         }
@@ -377,7 +393,8 @@ Page {
 
                             if (tasksArray.length > 0) {
                                 //: remorse action when multiple tasks are added simultaneously
-                                tasklistRemorse.execute(qsTr("Adding multiple tasks") + " (" + tasksArray.length + ")", function() {
+                                //% "Adding multiple tasks"
+                                tasklistRemorse.execute(qsTrId("task-multiadd-label") + " (" + tasksArray.length + ")", function() {
                                     var addedTasks = []
                                     // add all of them to the DB and the list
                                     for (var i = 0; i < tasksArray.length; i++) {
@@ -388,15 +405,20 @@ Page {
                                     //: notifying the user that new tasks have been added and which were added exactly (Details)
                                     taskListWindow.pushNotification("OK",
                                                                     //: notification if multiple tasks were successfully added
-                                                                    tasksArray.length + " " + qsTr("new tasks have been added."),
+                                                                    //% "new tasks have been added."
+                                                                    tasksArray.length + " " + qsTrId("tasks-added-success"),
                                                                     //: detailed list which tasks have been added simultaneously
-                                                                    qsTr("Details") + ": " + addedTasks.join(', '))
+                                                                    //% "Details"
+                                                                    qsTrId("details-label") + ": " + addedTasks.join(', '))
                                 } , taskListWindow.remorseOnMultiAdd * 1000)
                             }
                             else {
                                 // display notification if no task has been added, because all of them already existed on the list
                                 //: notify the user that all new tasks already existed on the list and weren't added again
-                                taskListWindow.pushNotification("WARNING", qsTr("All tasks already exist!"), qsTr("No new tasks have been added to the list."))
+                                //% "All tasks already exist!"
+                                taskListWindow.pushNotification("WARNING", qsTrId("tasks-exist-warning"),
+                                                                //% "No new tasks have been added to the list."
+                                                                qsTrId("tasks-exist-warning-details"))
                             }
                         }
                     }
@@ -428,20 +450,27 @@ Page {
         ViewPlaceholder {
             enabled: (taskList.count === 0) || taskListWindow.lockTaskOrientation
             //: hint to inform the user if the orientation is locked or there are no tasks on this list
-            text: taskListWindow.lockTaskOrientation ? qsTr("Orientation locked") : qsTr("no tasks available")
+            //% "Orientation locked"
+            text: taskListWindow.lockTaskOrientation ? qsTrId("orientation-lock-label") :
+                                                       //% "no tasks available"
+                                                       qsTrId("no-tasks-label")
         }
 
         // PullDownMenu and PushUpMenu
         PullDownMenu {
             MenuItem {
                 //: menu item to switch to settings page
-                text: qsTr("Settings")
+                //% "Settings"
+                text: qsTrId("settings-label")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             // Item to lock the screen orientation, which has been an user requested feature
             MenuItem {
                 //: menu item to lock or unlock the device orientation
-                text: taskListWindow.lockTaskOrientation === false ? qsTr("Lock orientation") : qsTr("Unlock orientation")
+                //% "Lock orientation"
+                text: taskListWindow.lockTaskOrientation === false ? qsTrId("lock-orientation-label") :
+                                                                     //% "Unlock orientation"
+                                                                     qsTrId("unlock-orientation-label")
                 onClicked: {
                     if (taskListWindow.lockTaskOrientation === false) {
                         taskPage.allowedOrientations = taskPage.orientation
@@ -457,29 +486,34 @@ Page {
             MenuItem {
                 enabled: doneTasksAvailable
                 //: menu item to delete all done tasks
-                text: qsTr("Delete all done tasks")
+                //% "Delete all done tasks"
+                text: qsTrId("delete-done-tasks-label")
                 onClicked: taskPage.deleteDoneTasks()
             }
             MenuItem {
                 enabled: doneTasksAvailable
                 //: menu item to reset all done tasks to the open status
-                text: qsTr("Reset all done tasks")
+                //% "Reset all done tasks"
+                text: qsTrId("reset-done-tasks-label")
                 onClicked: taskPage.resetDoneTasks()
             }
         }
         PushUpMenu {
             MenuItem {
                 //: menu item to switch to export/import page
-                text: qsTr("Export/Import data")
+                //% "Export/Import data"
+                text: qsTrId("export-import-label")
                 onClicked: pageStack.push(Qt.resolvedUrl("ExportPage.qml"))
             }
             MenuItem {
-                text: qsTr("Sync with Dropbox")
+                //% "Sync with Dropbox"
+                text: qsTrId("dropbox-sync-label")
                 onClicked: pageStack.push("sync/DropboxSync.qml", { attemptedAuth: false })
             }
             MenuItem {
                 //: menu item to jump to the application information page
-                text: qsTr("About") + " TaskList"
+                //% "About"
+                text: qsTrId("about-label") + " TaskList"
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
         }
@@ -496,7 +530,8 @@ Page {
             function remove() {
                 // run remove via a silica remorse item
                 //: deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
-                taskRemorse.execute(taskListItem, qsTr("Deleting") + " '" + task + "'", function() {
+                //% "Deleting"
+                taskRemorse.execute(taskListItem, qsTrId("deleting-label") + " '" + task + "'", function() {
                     DB.removeTask(taskListModel.get(index).taskid)
                     taskListModel.remove(index)
                 }, taskListWindow.remorseOnDelete * 1000)
@@ -517,7 +552,10 @@ Page {
                     priority: curTask.priority
                 }
                 //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
-                var changeStatusString = checkStatus ? qsTr("mark as open") : qsTr("mark as done")
+                //% "mark as open"
+                var changeStatusString = checkStatus ? qsTrId("mark-open-label") :
+                                                       //% "mark as done"
+                                                       qsTrId("mark-done-label")
                 // copy status into string because results from sqlite are also strings
                 var intStatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
@@ -550,7 +588,7 @@ Page {
                 id: taskLabel
                 x: Theme.paddingSmall
                 text: task
-                // hack (listname + "") to prevent an error (Unable to assign [undefined] to QString) when switching to a smartlist where the description should be shown
+                // hack (listname + "") to prevent an error (Unable to assign [undefined] to qsTrIding) when switching to a smartlist where the description should be shown
                 description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
                 automaticCheck: false
@@ -579,7 +617,8 @@ Page {
 
                     MenuItem {
                         //: menu item to switch to the page where the selected task can be modified
-                        text: qsTr("Edit")
+                        //% "Edit"
+                        text: qsTrId("edit-label")
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()
@@ -589,7 +628,8 @@ Page {
 
                     MenuItem {
                         //: menu item to delete the selected task
-                        text: qsTr("Delete")
+                        //% "Delete"
+                        text: qsTrId("delete-label")
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()

@@ -43,7 +43,8 @@ Dialog {
     function getDueDate(isoDate) {
         if (isoDate.length === 0)
             //: default value if no due date is selected
-            return qsTr("none (tap to select)")
+            //% "none (tap to select)"
+            return qsTrId("noval-top-label")
         var dueDate = new Date(isoDate)
         var dueDateString = new Date(isoDate).toDateString()
         var today = new Date()
@@ -52,13 +53,16 @@ Dialog {
 
         if (dueDateString === today.toDateString())
             //: due date string for today
-            return qsTr("Today")
+            //% "Today"
+            return qsTrId("today-label")
         if (dueDateString === tomorrow.toDateString())
             //: due date string for tomorrow
-            return qsTr("Tomorrow")
+            //% "Tomorrow"
+            return qsTrId("tomorrow-label")
         if (dueDateString === yesterday.toDateString())
             //: due date string for yesterday
-            return qsTr("Yesterday")
+            //% "Yesterday"
+            return qsTrId("yesterday-label")
         var result = dueDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
 
         return result;
@@ -81,9 +85,11 @@ Dialog {
             canAccept = false
             // display notification if task already exists on the selected list
             //: informing the user that a new task already exists on the selected list
-            taskListWindow.pushNotification("WARNING", qsTr("Task could not be saved!"),
-                                            /*: detailed information why the task modifications haven't been saved */
-                                            qsTr("It already exists on the selected list."))
+            //% "Task could not be saved!"
+            taskListWindow.pushNotification("WARNING", qsTrId("task-not-saved-error"),
+                                            //: detailed information why the task modifications haven't been saved
+                                            //% "It already exists on the selected list."
+                                            qsTrId("task-not-saved-detail"))
         } else {
             taskName.errorHighlight = false
             canAccept = true
@@ -147,14 +153,17 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                title: qsTr("Edit") + " '" + taskname + "'"
+                //% "Edit"
+                title: qsTrId("edit-label") + " '" + taskname + "'"
                 //: save the currently made changes to the task
-                acceptText: qsTr("Save")
+                //% "Save"
+                acceptText: qsTrId("save-button")
             }
 
             SectionHeader {
                 //: headline for the section with the task attributes
-                text: qsTr("Task properties")
+                //% "Task properties"
+                text: qsTrId("task-properties-label")
             }
 
             TextField {
@@ -162,7 +171,10 @@ Dialog {
                 width: parent.width
                 text: taskname
                 //: information how the currently made changes can be saved
-                label: errorHighlight ? qsTr("Task already exists on this list!") : qsTr("Task name")
+                //% "Task already exists on this list!"
+                label: errorHighlight ? qsTrId("task-exists-on-list-error") :
+                                        //% "Task name"
+                                        qsTrId("task-name-label")
                 // set allowed chars and task length
                 validator: RegExpValidator { regExp: /^([^\'|\;|\"]){,60}$/ }
                 onTextChanged: {
@@ -176,7 +188,10 @@ Dialog {
                 id: taskStatus
                 anchors.horizontalCenter: parent.Center
                 //: choose if this task is pending or done
-                text: taskListWindow.statusOpen(checked) ? qsTr("task is open") : qsTr("task is done")
+                //% "task is open"
+                text: taskListWindow.statusOpen(checked) ? qsTrId("task-open-label") :
+                                                           //% "task is done"
+                                                           qsTrId("task-done-label")
                 checked: taskListWindow.statusOpen(editTaskPage.taskstatus)
             }
 
@@ -184,7 +199,8 @@ Dialog {
                 id: listLocatedIn
                 anchors.left: parent.left
                 //: option to change the list where the task should be located
-                label: qsTr("List") + ":"
+                //% "List"
+                label: qsTrId("list-label") + ":"
 
                 menu: ContextMenu {
                     Repeater {
@@ -204,7 +220,8 @@ Dialog {
                 id: taskPriority
                 width: parent.width
                 //: select the tasks priority
-                label: qsTr("Priority")
+                //% "Priority"
+                label: qsTrId("priority-label")
                 minimumValue: taskListWindow.minimumPriority
                 maximumValue: taskListWindow.maximumPriority
                 stepSize: 1
@@ -214,7 +231,8 @@ Dialog {
 
             SectionHeader {
                 //: headline for the date and time properties of the task
-                text: qsTr("Dates")
+                //% "Dates"
+                text: qsTrId("dates-label")
             }
 
             Row {
@@ -229,7 +247,8 @@ Dialog {
                     // save due date value in component, because page's value would be lost after page re-activation
                     property string pseudoValue: taskduedate
                     //: select the due date for a task
-                    label: qsTr("Due") + ": "
+                    //% "Due"
+                    label: qsTrId("due-date-label") + ": "
                     value: getDueDate(pseudoValue)
 
                     onPseudoValueChanged: value = getDueDate(pseudoValue)
@@ -263,20 +282,24 @@ Dialog {
                 width: parent.width - 2 * Theme.paddingLarge
                 x: Theme.paddingLarge
                 //: displays the date when the task has been created by the user
-                text: qsTr("Created") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
+                //% "Created"
+                text: qsTrId("created-date-label") + ": " + Qt.formatDateTime(editTaskPage.taskcreationdate).toLocaleString(Qt.locale())
             }
 
             SectionHeader {
                 //: headline for the tags section
-                text: qsTr("Tags")
+                //% "Tags"
+                text: qsTrId("tags-label")
             }
 
             ValueButton {
                 id: editTags
                 //: default value if no tag is selected
-                value: selected || qsTr("none (tap to select)")
+                //% "none (tap to select)"
+                value: selected || qsTrId("noval-tap-label")
                 //: label for the tags field
-                label: qsTr("Tags") + ":"
+                //% "Tags"
+                label: qsTrId("tags-label") + ":"
                 property string selected: tasktags
 
                 onClicked: {
@@ -289,14 +312,16 @@ Dialog {
 
             SectionHeader {
                 //: headline for the section where notes for the task can be saved
-                text: qsTr("Notes")
+                //% "Notes"
+                text: qsTrId("notes-label")
             }
 
             TextArea {
                 id: taskNote
                 width: parent.width
                 //: textfield to enter notes
-                placeholderText: qsTr("Enter your notes or description here")
+                //% "Enter your notes or description here"
+                placeholderText: qsTrId("notes-placeholder")
                 focus: false
                 text: tasknote
             }

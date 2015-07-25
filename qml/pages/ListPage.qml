@@ -65,22 +65,27 @@ Page {
     function pluralizeItems(count, listType) {
         if (count < 0)
             //: default string for task count of smart lists, when value is not available (n/a)
-            return qsTr("n/a")
+            //% "n/a"
+            return qsTrId("not-available")
         var countStr = count > 999 ? "999+" : count.toString()
         // items can be tags
         if (listType === 5) {
             if (count === 1)
                 //: use %1 as a placeholder for the number of the existing tag, which should always be 1
-                return qsTr("%1 tag").arg(countStr)
+                //% "%1 tag"
+                return qsTrId("single-tag-count-label").arg(countStr)
             //: use %1 as a placeholder for the number of existing tags
-            return qsTr("%1 tags").arg(countStr)
+            //% "%1 tags"
+            return qsTrId("tag-count-label").arg(countStr)
         }
         // or items can be tasks
         if (count === 1)
             //: use %1 as a placeholder for the number of tasks of the smart lists
-            return qsTr("%1 task").arg(countStr)
+            //% "%1 task"
+            return qsTrId("single-task-count-label").arg(countStr)
         //: use %1 as a placeholder for the number of tasks of the smart lists
-        return qsTr("%1 tasks").arg(countStr)
+        //% "%1 tasks"
+        return qsTrId("task-count-label").arg(countStr)
     }
 
     function focusListAddField(releaseFocus) {
@@ -167,12 +172,14 @@ Page {
             PageHeader {
                 width: parent.width
                 //: headline for overview of all lists
-                title: qsTr("Manage lists") + " - TaskList"
+                //% "Manage lists"
+                title: qsTrId("listpage-header") + " - TaskList"
             }
 
             SectionHeader {
                 //: headline for all automatic smart lists
-                text: qsTr("Smart lists")
+                //% "Smart lists"
+                text: qsTrId("smartlist-header")
                 visible: taskListWindow.smartListVisibility
             }
 
@@ -211,16 +218,19 @@ Page {
 
             SectionHeader {
                 //: headline above the text field where the user can add new lists
-                text: qsTr("Add new list")
+                //% "Add new list"
+                text: qsTrId("new-list-header")
             }
 
             TextField {
                 id: listAdd
                 width: parent.width
                 //: the placeholder where the user can enter the name of a new list
-                placeholderText: qsTr("Enter unique list name")
+                //% "Enter unique list name"
+                placeholderText: qsTrId("list-name-placeholder")
                 //: a label to inform the user how to add the new list
-                label: qsTr("Press Enter/Return to add the new list")
+                //% "Press Enter/Return to add the new list"
+                label: qsTrId("new-list-confirmation-description")
                 // enable enter key if minimum list length has been reached
                 EnterKey.enabled: listAdd.text.length > 0
                 // set allowed chars and list length
@@ -235,7 +245,10 @@ Page {
                             listAdd.text = ""
                         } else {
                             // display notification if list already exists
-                            taskListWindow.pushNotification("WARNING", qsTr("List could not be added!"), qsTr("It already exists."))
+                            //% "List could not be added!"
+                            taskListWindow.pushNotification("ERROR", qsTrId("list-add-error"),
+                                                            //% "It already exists."
+                                                            qsTrId("list-add-error-detail"))
                         }
                     }
                 }
@@ -251,7 +264,8 @@ Page {
 
             SectionHeader {
                 //: headline for the user created lists
-                text: qsTr("Your lists")
+                //% "Your lists"
+                text: qsTrId("lists-header")
             }
         }
 
@@ -265,7 +279,8 @@ Page {
             // helper function to remove current item
             function remove() {
                 // run remove via a silica remorse item
-                listRemorse.execute(listListItem, qsTr("Deleting") + " '" + listListModel.get(index).listname + "'", function() {
+                //% "Deleting"
+                listRemorse.execute(listListItem, qsTrId("deleting-label") + " '" + listListModel.get(index).listname + "'", function() {
                     // if current list is deleted, change trigger variables to reload list and list name
                     if (taskListWindow.listid === listListModel.get(index).listid) {
                         taskListWindow.listid = taskListWindow.defaultlist
@@ -286,9 +301,11 @@ Page {
                 var listPropertiesArray = [];
                 var listPropertiesString = "";
 
-                if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTr("default")) }
+                //% "default"
+                if (taskListWindow.defaultlist === listid) { listPropertiesArray.push(qsTrId("default-label")) }
 
-                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push(qsTr("Cover")) }
+                //% "Cover"
+                if (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose === listListModel.get(index).listid) { listPropertiesArray.push(qsTrId("cover-label")) }
 
                 for (var i = 0; i < listPropertiesArray.length; i++) {
                     if (i > 0)
@@ -352,7 +369,8 @@ Page {
                 width: parent.width - 70
                 text: listname
                 //: a label to inform the user how the changes on a list can be saved
-                label: qsTr("Press Enter/Return to save changes")
+                //% "Press Enter/Return to save changes"
+                label: qsTrId("save-changes-description")
                 visible: false
                 anchors.top: parent.top
                 // enable enter key if minimum list length has been reached
@@ -414,7 +432,8 @@ Page {
 
                     MenuItem {
                         //: context menu item to edit a list
-                        text: qsTr("Edit")
+                        //% "Edit"
+                        text: qsTrId("edit-label")
                         onClicked: {
                             // close contextmenu
                             listContextMenu.hide()
@@ -428,7 +447,8 @@ Page {
 
                     MenuItem {
                         //: context menu item to set a list as the default list, which is shown at application start
-                        text: qsTr("Set as Default list")
+                        //% "Set as Default list"
+                        text: qsTrId("set-default-list-label")
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
                             // close contextmenu
@@ -443,7 +463,8 @@ Page {
 
                     MenuItem {
                         //: context menu item to set a list as the default cover list
-                        text: qsTr("Set as Cover list")
+                        //% "Set as Cover list"
+                        text: qsTrId("set-cover-list-label")
                         // only show if choose cover list is active and list is not the current chosen one
                         visible: (taskListWindow.coverListSelection === 2 && taskListWindow.coverListChoose !== listid) ? true : false
                         onClicked: {
@@ -458,7 +479,8 @@ Page {
                     }
 
                     MenuItem {
-                        text: qsTr("Delete")
+                        //% "Delete"
+                        text: qsTrId("delete-label")
                         // default list must not be deleted
                         visible: (taskListWindow.defaultlist !== listid) ? true : false
                         onClicked: {
