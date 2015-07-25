@@ -46,7 +46,7 @@ Page {
         if (typeof task.dueDate === "number" && task.dueDate > 0)
             //: title for the due date in the task description (keep as short as possible)
             //% "Due"
-            result.push(qsTrId("due-date-label") + ": " + DB.humanReadableDueDate(task.dueDate))
+            result.push(qsTrId("due-date-label") + ": " + taskListWindow.humanReadableDueDate(task.dueDate))
 
         var tags = DB.readTaskTags(task.taskid)
         if (tags.length > 0)

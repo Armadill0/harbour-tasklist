@@ -45,8 +45,8 @@ Dialog {
     function composeDueDate() {
         if (!dueDateIsPresent())
 	    //% "none (tap to select)"
-            return qsTrId("")
-        return DB.humanReadableDueDate(params.dueDate)
+            return qsTrId("noval-tap-label")
+        return taskListWindow.humanReadableDueDate(params.dueDate)
     }
 
     function humanTags() {

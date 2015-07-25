@@ -181,15 +181,9 @@ menu item to jump to the application information page</extracomment>
         <extracomment>headline for application contributors</extracomment>
         <translation>Участники</translation>
     </message>
-    <message id="noval-top-label">
+    <message id="noval-tap-label">
         <source>none (tap to select)</source>
-        <extracomment>default value if no due date is selected</extracomment>
         <translation>ничего (нажмите для выбора)</translation>
-    </message>
-    <message id="yesterday-label">
-        <source>Yesterday</source>
-        <extracomment>due date string for yesterday</extracomment>
-        <translation>Вчера</translation>
     </message>
     <message id="task-not-saved-error">
         <source>Task could not be saved!</source>
@@ -270,11 +264,6 @@ title for the due date in the task description (keep as short as possible)</extr
         <source>Created</source>
         <extracomment>displays the date when the task has been created by the user</extracomment>
         <translation>Создано</translation>
-    </message>
-    <message id="noval-tap-label">
-        <source>none (tap to select)</source>
-        <extracomment>default value if no tag is selected</extracomment>
-        <translation>ничего (нажмите для выбора)</translation>
     </message>
     <message id="notes-label">
         <source>Notes</source>
@@ -800,6 +789,64 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="repitition-resuires-due-decription">
+        <source>A due date is required for the repetition.</source>
+        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="repeat-label">
+        <source>Repeat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="to-clipboard-label">
+        <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="list-not-copied-warning">
+        <source>List not copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="list-empty-description">
+        <source>List is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="other-label">
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="language-label">
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="languagechange-needs-restart-description">
+        <source>Language will be changed after app restart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="every-day-label">
+        <source>Daily</source>
+        <oldsource>every day</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="every-workday-label">
+        <source>Worksdays</source>
+        <oldsource>every workday</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="every-week-label">
+        <source>Weekly</source>
+        <oldsource>every week</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="every-month-label">
+        <source>Monthly</source>
+        <oldsource>every month</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="yesterday-label">
+        <source>Yesterday</source>
+        <extracomment>due date string for yesterday</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

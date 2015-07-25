@@ -87,7 +87,7 @@ Dialog {
             }
         }
         if (!found) {
-	    //% "Other"
+            //% "Other"
             languages.append({ lang: language, name: qsTrId("other-label") })
             languageBox.currentIndex = languages.count - 1
             languageBox.currentItem = languageBox.menu.children[languageBox.currentIndex]
@@ -149,30 +149,10 @@ Dialog {
                 acceptText: qsTrId("save-button")
             }
 
-            ComboBox {
-                id: languageBox
-                width: parent.width
-	        //% "Language"
-                label: qsTrId("language-label") + ":"
-
-                menu: ContextMenu {
-                    Repeater {
-                        model: languages
-                        MenuItem {
-                            text: model.name
-                        }
-                    }
-                }
-
-                onCurrentIndexChanged: {
-                    languageTip.visible = language !== languages.get(currentIndex).lang
-                }
-            }
-
             Label {
                 id: languageTip
                 width: parent.width
-	        //% "Language will be changed after app restart."
+                //% "Language will be changed after app restart."
                 text: qsTrId("languagechange-needs-restart-description")
                 visible: false
                 font.pixelSize: Theme.fontSizeExtraSmall
@@ -225,6 +205,26 @@ Dialog {
                 //: headline for general options
                 //% "General options"
                 text: qsTrId("general-options-label")
+            }
+
+            ComboBox {
+                id: languageBox
+                width: parent.width
+                //% "Language"
+                label: qsTrId("language-label") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: languages
+                        MenuItem {
+                            text: model.name
+                        }
+                    }
+                }
+
+                onCurrentIndexChanged: {
+                    languageTip.visible = language !== languages.get(currentIndex).lang
+                }
             }
 
             ComboBox {

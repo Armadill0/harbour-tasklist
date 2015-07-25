@@ -62,13 +62,13 @@ function nextMonth(unixTime) {
 var REPETITION_VARIANTS = [
     //% "none (tap to select)"
     { key: "", name: qsTrId("noval-tap-label"), func: identity},
-    //% "every day"
+    //% "Daily"
     { key: "every day", name: qsTrId("every-day-label"), func: nextDay },
-    //% "every workday"
+    //% "Worksdays"
     { key: "every workday", name: qsTrId("every-workday-label"), func: nextWorkday },
-    //% "every week"
+    //% "Weekly"
     { key: "every week", name: qsTrId("every-week-label"), func: nextWeek },
-    //% "every month"
+    //% "Monthly"
     { key: "every month", name: qsTrId("every-month-label"), func: nextMonth }
 ];
 
@@ -81,34 +81,6 @@ function getMidnight() {
     var today = new Date();
     var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
     return start + DAY_LENGTH;
-}
-
-// short human-readable representation of a due date
-function humanReadableDueDate(unixTime) {
-    var date = new Date(unixTime);
-    var today = new Date();
-    var tomorrow = new Date(today.getTime() + DAY_LENGTH);
-    var yesterday = new Date(today.getTime() - DAY_LENGTH);
-
-    var dateString = date.toDateString();
-    if (dateString === today.toDateString())
-        //: due date string for today
-	//% "Today"
-        return qsTrId("today-label");
-    if (dateString === tomorrow.toDateString())
-        //: due date string for tomorrow
-	//% "Tomorrow"
-        return qsTrId("tomorrow-label");
-    if (dateString === yesterday.toDateString())
-        //: due date string for yesterday
-	//% "Yesterday"
-        return qsTrId("yesterday-label");
-
-    // if the year is different from the current, then result has the view "09/07/2015"
-    if (date.getFullYear() !== today.getFullYear())
-        return date.toLocaleString(Qt.locale(), "dd/MM/yyyy");
-    // if the year is the same, then result has the view "Jul 9"
-    return date.toLocaleString(Qt.locale(), "MMM dd");
 }
 
 // create DB with the latest schema from scratch
