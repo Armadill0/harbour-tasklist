@@ -26,56 +26,88 @@ Page {
 
     property bool attemptedAuth
 
-    Column {
-        id: column
-        spacing: Theme.itemSizeSmall
+    BusyIndicator {
+        id: indicator
+        running: true
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+    }
+
+    SilicaFlickable {
+        id: dbFlickable
+        contentHeight: column.height
         width: parent.width
+        anchors.fill: parent
 
-        PageHeader { title: qsTr("Sync with Dropbox") }
+        VerticalScrollDecorator { flickable: dbFlickable }
 
-        BusyIndicator {
-            id: indicator
-            running: true
-            size: BusyIndicatorSize.Large
-            anchors.horizontalCenter: parent.horizontalCenter
+        PageHeader {
+            id: syncHeader
+            //: dropbox sync page title
+            //% "Sync Dropbox"
+            title: qsTrId("db-sync-label") + " - TaskList"
         }
 
-        Label {
-            id: label
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: Theme.paddingLarge
-                rightMargin: Theme.paddingLarge
+        Column {
+            id: column
+            spacing: Theme.paddingLarge
+            width: parent.width
+            anchors.top: syncHeader.bottom
+            visible: false
+
+            Label {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingLarge
+                    rightMargin: Theme.paddingLarge
+                }
+                wrapMode: Text.Wrap
+                //: sync headline when online data is newer than the local one
+                //% "Remote data cannot be updated. The remote data has been uploaded by another device."
+                text: qsTrId("db-sync-interrupt-label")
             }
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            visible: false
-            text: qsTr("Remote copy cannot be updated. Please choose action:")
-        }
 
-        Button {
-            id: replaceRemote
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Replace remote copy")
-            visible: false
-            onClicked: upload()
-        }
+            SectionHeader {
+                //: headline for the option section of the upgrade dialog
+                //% "Choose an option"
+                text: qsTrId("option-header")
+            }
 
-        Button {
-            id: replaceLocal
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Replace local copy")
-            visible: false
-            onClicked: download()
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                //: button to upload the remote data
+                //% "Replace remote data"
+                text: qsTrId("remote-replace-label")
+                onClicked: upload()
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                //: button to upload the local data
+                //% "Replace local data"
+                text: qsTrId("local-replace-label")
+                onClicked: download()
+            }
+
+            Label {
+                //: explanation what happens when sync buttons above are being pressed
+                //% "Hint: Those actions replace the particular target data and can not be revoked!"
+                text: qsTrId("db-sync-replace-description")
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingLarge
+                    rightMargin: Theme.paddingLarge
+                }
+                wrapMode: Text.Wrap
+            }
         }
     }
 
     function toggleElements(busy) {
         indicator.running = busy
-        label.visible = !busy
-        replaceRemote.visible = !busy
-        replaceLocal.visible = !busy
+        column.visible = !busy
     }
 
     function upload() {
@@ -87,6 +119,7 @@ Page {
     function download() {
         toggleElements(true)
         taskListWindow.downloadData()
+        taskListWindow.justStarted = true
         pageStack.pop()
     }
 

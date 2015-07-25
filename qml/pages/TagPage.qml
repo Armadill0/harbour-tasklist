@@ -34,6 +34,14 @@ Page {
         DB.allTags(appendTag)
     }
 
+    function focusTagAddField(releaseFocus) {
+        var tagField = tagList.headerItem.children[2]
+        if (releaseFocus && tagField.focus)
+            tagField.focus = false
+        else
+            tagField.forceActiveFocus()
+    }
+
     Component.onCompleted: {
         reloadTagList()
     }
@@ -44,6 +52,9 @@ Page {
         model: ListModel {
             id: tagListModel
         }
+        focus: true
+
+        Keys.onTabPressed: focusTagAddField(true)
 
         header: Column {
             width: parent.width
@@ -51,21 +62,25 @@ Page {
             PageHeader {
                 width: parent.width
                 //: headline for the tags page
-                title: qsTr("Manage tags") + " - TaskList"
+                //% "Manage tags"
+                title: qsTrId("tagspage-header") + " - TaskList"
             }
 
             SectionHeader {
                 //: headline to create new tags
-                text: qsTr("Add new tag")
+                //% "Add new tag"
+                text: qsTrId("new-tag-label")
             }
 
             TextField {
                 id: tagAdd
                 width: parent.width
                 //: fallback text if no name for a new tag is specified
-                placeholderText: qsTr("Enter unique tag name")
+                //% "Enter unique tag name"
+                placeholderText: qsTrId("tagname-placeholder")
                 //: hint how to confirm the new tag
-                label: qsTr("Press Enter/Return to add the new tag")
+                //% "Press Enter/Return to add the new tag"
+                label: qsTrId("new-tag-confirmation-description")
                 EnterKey.enabled: text.length > 2
                 // no whitespaces are allowed, 2 to 64 chars are allowed
                 validator: RegExpValidator { regExp: /^\S{2,64}$/ }
@@ -80,14 +95,16 @@ Page {
 
             SectionHeader {
                 //: headline for the user created tags
-                text: qsTr("Your tags")
+                //% "Your tags"
+                text: qsTrId("tags-label")
             }
         }
 
         ViewPlaceholder {
             enabled: tagList.count === 0
             //: fallback text if no tags are defined
-            text: qsTr("no tags available")
+            //% "no tags available"
+            text: qsTrId("no-tags-label")
         }
 
         delegate: ListItem {
@@ -100,7 +117,8 @@ Page {
 
             function remove() {
                 //: remorse item when a tag is being deleted
-                tagRemorse.execute(tagListItem, qsTr("Deleting") + " '" + tagListModel.get(index).tagName + "'", function() {
+                //% "Deleting"
+                tagRemorse.execute(tagListItem, qsTrId("deleting-label") + " '" + tagListModel.get(index).tagName + "'", function() {
                     DB.removeTag(tagListModel.get(index).tagId)
                     tagListModel.remove(index)
                 }, taskListWindow.remorseOnDelete * 1000)
@@ -128,7 +146,8 @@ Page {
                 x: Theme.paddingSmall
                 text: tagName
                 //: a label to inform the user how the changes on a tag can be saved
-                label: qsTr("Press Enter/Return to save changes")
+                //% "Press Enter/Return to save changes"
+                label: qsTrId("save-changes-description")
                 visible: false
                 EnterKey.enabled: text.length > 0
                 // no whitespaces are allowed, up to 64 chars are allowed
@@ -185,7 +204,8 @@ Page {
                 ContextMenu {
                     MenuItem {
                         //: context menu item to edit a tag
-                        text: qsTr("Edit")
+                        //% "Edit"
+                        text: qsTrId("edit-label")
                         onClicked: {
                             // close contextmenu
                             tagContextMenu.hide()
@@ -197,7 +217,8 @@ Page {
                     }
                     MenuItem {
                         //: context menu item to delete a tag
-                        text: qsTr("Delete")
+                        //% "Delete"
+                        text: qsTrId("delete-label")
                         onClicked: {
                             tagContextMenu.hide()
                             remove()

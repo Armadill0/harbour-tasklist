@@ -27,6 +27,11 @@ Features
     - lock/unlock orientation on demand (user requested feature)
 - add multiple tasks from the clipboard, devided by new lines (user requested feature)
     - to avoid invalid massive task additions this is done via a remorse action
+- keyboard support (e.g. TOHKBD 2 by dirkvl, kimmoli and wazd)
+    - Tab switchs to TextFields on Task, List and Tag page
+    - Cursor left/right switchs lists on Task page
+- export and import all your data to a single JSON file
+    - synchronize all your data with a Dropbox account
 - cover shows current, it's own or the default task list
     - cover action to add task to list shown in cover
     - cover action to switch between lists (user requested feature)
@@ -51,10 +56,6 @@ Internationalization
     - Feel free to request new languages or complete existing ones there. :-)
     - If you don't want to create a new account there, you can Login via Github, LinkedIn, Google, Facebook or Twitter. I hope this fits all your needs.
     - Every contributor will be mentioned in the About page!
-
-Known Issues
-================
-see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3Aissue+label%3Abug
 
 Roadmap for Version 2.0
 ================
@@ -81,3 +82,7 @@ Contributors
 - Peter Jespersen
 - Moo
 - Murat Khairulin
+
+Known Issues
+================
+see here: https://github.com/Armadill0/harbour-tasklist/issues?q=is%3Aopen+is%3Aissue+label%3Abug
