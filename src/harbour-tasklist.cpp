@@ -29,6 +29,7 @@
 #include <QtQml>
 #include <QProcess>
 #include <QQuickView>
+#include <QSettings>
 #include "tasksexport.h"
 
 // third party code
@@ -61,8 +62,16 @@ int main(int argc, char *argv[])
     defaultTranslator.load("en_US", SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&defaultTranslator);
 
+    QSettings settings;
+    QString locale = settings.value("language", "").toString();
+    if (locale.isEmpty()) {
+        /* use system locale by default */
+        locale = QLocale::system().name();
+        settings.setValue("language", locale);
+    }
+
     QTranslator translator;
-    translator.load(QLocale::system().name(), SailfishApp::pathTo(QString("localization")).toLocalFile());
+    translator.load(locale, SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
     qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");

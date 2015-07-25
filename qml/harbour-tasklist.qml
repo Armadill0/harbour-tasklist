@@ -54,7 +54,6 @@ ApplicationWindow {
     property int tagId
     // define names of smart lists
     //: names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-    //% ""
     property variant smartListNames: [
         //% "Done"
         qsTrId("done-label"),
@@ -181,10 +180,8 @@ ApplicationWindow {
                             //% "recommended"
                             text: dbUpgradeText + " (" + qsTrId("recommended-label") + ")"
                             onClicked: {
-                                if (DB.replaceOldDB(true)) {
-                                    DB.setDefaultPriority()
+                                if (DB.replaceOldDB(true))
                                     pageStack.replace(initialTaskPage)
-                                }
                                 else
                                     Qt.quit()
                             }
@@ -334,6 +331,14 @@ ApplicationWindow {
                          //% "Data successfully downloaded from Dropbox."
                          qsTrId("data-download-success"))
         return true
+    }
+
+    function getLanguage() {
+        return exporter.language
+    }
+
+    function setLanguage(lang) {
+        exporter.language = lang
     }
 
     // notification function

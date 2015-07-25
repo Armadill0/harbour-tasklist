@@ -26,6 +26,8 @@ Dialog {
     allowedOrientations: Orientation.All
     canAccept: true
 
+    property string language: ""
+
     // function to compose the remorse action slider's text description
     function composeRemorseSliderText(time) {
         var result = ""
@@ -48,6 +50,47 @@ Dialog {
         }
 
         return result
+    }
+
+    ListModel {
+        id: languages
+    }
+
+    Component.onCompleted: {
+        languages.append({ lang: "ca",    name: "Català" })
+        languages.append({ lang: "cs_CZ", name: "Čeština" })
+        languages.append({ lang: "da_DK", name: "Dansk" })
+        languages.append({ lang: "de_DE", name: "Deutsch" })
+        languages.append({ lang: "en_EN", name: "English" })
+        languages.append({ lang: "es_ES", name: "Español" })
+        languages.append({ lang: "fi_FI", name: "Suomi" })
+        languages.append({ lang: "fr_FR", name: "Français" })
+        languages.append({ lang: "it_IT", name: "Italiano" })
+        languages.append({ lang: "ku_IQ", name: "Kurdî" })
+        languages.append({ lang: "lt",    name: "Lietuvių" })
+        languages.append({ lang: "nl_NL", name: "Nederlands" })
+        languages.append({ lang: "ru_RU", name: "Русский" })
+        languages.append({ lang: "sv_SE", name: "Svenska" })
+        languages.append({ lang: "tr_TR", name: "Türkçe"})
+        languages.append({ lang: "zh_CN", name: "中文"})
+
+
+        language = taskListWindow.getLanguage()
+        var found = false
+        for (var i = 0; i < languages.count; ++i) {
+            var item = languages.get(i)
+            if (item.lang === language) {
+                languageBox.currentIndex = i
+                languageBox.currentItem = languageBox.menu.children[languageBox.currentIndex]
+                found = true
+                break
+            }
+        }
+        if (!found) {
+            languages.append({ lang: language, name: qsTr("Other") })
+            languageBox.currentIndex = languages.count - 1
+            languageBox.currentItem = languageBox.menu.children[languageBox.currentIndex]
+        }
     }
 
     onAccepted: {
@@ -76,6 +119,13 @@ Dialog {
         taskListWindow.smartListVisibility = smartListVisibility.checked === true ? 1 : 0
         taskListWindow.recentlyAddedOffset = recentlyAddedOffset.currentIndex
         taskListWindow.doneTasksStrikedThrough = doneTasksStrikedThrough.checked === true ? 1 : 0
+
+        var langId = languageBox.currentIndex
+        if (0 <= langId && langId < languages.count) {
+            var lang = languages.get(langId).lang
+            if (lang !== language)
+                taskListWindow.setLanguage(lang)
+        }
     }
 
     SilicaFlickable {
@@ -96,6 +146,34 @@ Dialog {
                 //: saves the current made changes to user options
                 //% "Save"
                 acceptText: qsTrId("save-button")
+            }
+
+            ComboBox {
+                id: languageBox
+                width: parent.width
+                label: qsTr("Language") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: languages
+                        MenuItem {
+                            text: model.name
+                        }
+                    }
+                }
+
+                onCurrentIndexChanged: {
+                    languageTip.visible = language !== languages.get(currentIndex).lang
+                }
+            }
+
+            Label {
+                id: languageTip
+                width: parent.width
+                text: qsTr("Language will be changed after app restart")
+                visible: false
+                font.pixelSize: Theme.fontSizeExtraSmall
+                horizontalAlignment: Text.AlignHCenter
             }
 
             SectionHeader {
