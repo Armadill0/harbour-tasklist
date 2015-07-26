@@ -48,6 +48,8 @@ Features
     - configurable remorse item times
 - multiple languages supported (depending on system language), for more information see below
 - app can be started to background, in list view or to default list by setting
+- sync your data to your Dropbox account
+- copy list to clipboard for usage in other applications
 
 Internationalization
 ================

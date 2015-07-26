@@ -216,7 +216,7 @@ ApplicationWindow {
     }
 
     // a function to check which appearance should be used by open tasks
-    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
+    function statusOpen(a) { return a === taskOpenAppearance }
 
     // a function to fill litoflists with data
     function fillListOfLists () {
@@ -419,7 +419,7 @@ ApplicationWindow {
     onApplicationActiveChanged: {
         if (applicationActive === true) {
             // reset currentCoverList to default (-1)
-            taskListWindow.currentCoverList = -1
+            currentCoverList = -1
         }
     }
 }
