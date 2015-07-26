@@ -479,6 +479,22 @@ Page {
                     }
 
                     MenuItem {
+		    	//% "Copy to clipboard"
+                        text: qsTrId("to-clipboard-label")
+                        visible: pending > 0
+                        onClicked: {
+                            var data = DB.getSimpleList(listid)
+                            if (data.length > 0)
+                                Clipboard.text = data
+                            else
+		    		//% "List not copied"
+                                taskListWindow.pushNotification("WARNING", qsTrId("list-not-copied-warning"),
+		    							   //% "List is empty."
+									   qsTrId("list-empty-description"))
+                        }
+                    }
+
+                    MenuItem {
                         //% "Delete"
                         text: qsTrId("delete-label")
                         // default list must not be deleted

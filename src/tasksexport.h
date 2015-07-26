@@ -33,6 +33,12 @@ public:
     QString fileName() const {
         return mFileName;
     }
+
+    // proxy to Qt QSettings, because QtQuick module "Qt.labs.settings" is not available
+    Q_PROPERTY(QString language READ language WRITE setLanguage)
+    QString language();
+    void setLanguage(const QString &lang);
+
 signals:
     void fileNameChanged(const QString &fileName);
 

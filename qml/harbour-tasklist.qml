@@ -54,7 +54,6 @@ ApplicationWindow {
     property int tagId
     // define names of smart lists
     //: names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-    //% ""
     property variant smartListNames: [
         //% "Done"
         qsTrId("done-label"),
@@ -181,10 +180,8 @@ ApplicationWindow {
                             //% "recommended"
                             text: dbUpgradeText + " (" + qsTrId("recommended-label") + ")"
                             onClicked: {
-                                if (DB.replaceOldDB(true)) {
-                                    DB.setDefaultPriority()
+                                if (DB.replaceOldDB(true))
                                     pageStack.replace(initialTaskPage)
-                                }
                                 else
                                     Qt.quit()
                             }
@@ -219,7 +216,7 @@ ApplicationWindow {
     }
 
     // a function to check which appearance should be used by open tasks
-    function statusOpen(a) { return a === taskListWindow.taskOpenAppearance }
+    function statusOpen(a) { return a === taskOpenAppearance }
 
     // a function to fill litoflists with data
     function fillListOfLists () {
@@ -227,6 +224,30 @@ ApplicationWindow {
         var lists = DB.allLists()
         listOfLists = lists.join(",")
         listCount = lists.length
+    }
+
+    // short human-readable representation of a due date
+    function humanReadableDueDate(unixTime) {
+        var date = new Date(unixTime);
+        var today = new Date();
+        var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH);
+        var yesterday = new Date(today.getTime() - DB.DAY_LENGTH);
+
+        var dateString = date.toDateString();
+        if (dateString === today.toDateString())
+            //: due date string for today
+            //% "Today"
+            return qsTrId("today-label");
+        if (dateString === tomorrow.toDateString())
+            //: due date string for tomorrow
+            //% "Tomorrow"
+            return qsTrId("tomorrow-label");
+        if (dateString === yesterday.toDateString())
+            //: due date string for yesterday
+            //% "Yesterday"
+            return qsTrId("yesterday-label");
+
+        return date.toLocaleDateString(Qt.locale(), Locale.ShortFormat);
     }
 
     TasksExport {
@@ -336,6 +357,14 @@ ApplicationWindow {
         return true
     }
 
+    function getLanguage() {
+        return exporter.language
+    }
+
+    function setLanguage(lang) {
+        exporter.language = lang
+    }
+
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {
         var notificationCategory
@@ -390,7 +419,7 @@ ApplicationWindow {
     onApplicationActiveChanged: {
         if (applicationActive === true) {
             // reset currentCoverList to default (-1)
-            taskListWindow.currentCoverList = -1
+            currentCoverList = -1
         }
     }
 }

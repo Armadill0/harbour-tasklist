@@ -3,6 +3,7 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QTextStream>
+#include <QSettings>
 
 // FIXME
 #include <QDebug>
@@ -51,6 +52,14 @@ bool TasksExport::save(const QString &tasks) const
 {
     if (mFileName.isEmpty())
         return false;
+    // check that directory is present
+    int slash = mFileName.lastIndexOf("/");
+    if (slash >= 0) {
+        QString directoryName = mFileName.left(slash);
+        QDir dir(directoryName);
+        if (!dir.exists())
+            dir.mkpath(".");
+    }
     QFile file(mFileName);
     if (!file.open(QFile::WriteOnly | QFile::Truncate))
         return false;
@@ -176,4 +185,16 @@ void TasksExport::exitDropbox()
         delete dropbox;
         dropbox = NULL;
     }
+}
+
+QString TasksExport::language()
+{
+    QSettings settings;
+    return settings.value("language", "").toString();
+}
+
+void TasksExport::setLanguage(const QString &lang)
+{
+    QSettings settings;
+    settings.setValue("language", lang);
 }

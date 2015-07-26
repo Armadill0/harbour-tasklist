@@ -52,6 +52,7 @@ CONFIG += sailfishapp_i18n_idbased
 
 lupdate_only {
     SOURCES = qml/*.qml \
+              qml/*.js \
               qml/pages/*.qml \
               qml/pages/sync/*.qml
     TRANSLATIONS = localization-sources/*.ts

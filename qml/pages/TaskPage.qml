@@ -32,35 +32,10 @@ Page {
     property int smartListType: taskListWindow.smartListType
     property bool doneTasksAvailable
 
-    // human-readable representation of a due date
-    function humanDueDate(unixTime) {
-        if (typeof(unixTime) !== "number" || unixTime <= 0)
-            return ""
-        var date = new Date(unixTime)
-        var today = new Date()
-        var tomorrow = new Date(today.getTime() + DB.DAY_LENGTH)
-        var yesterday = new Date(today.getTime() - DB.DAY_LENGTH)
-        var dateString = date.toDateString()
-        if (dateString === today.toDateString())
-            //: due date string for today
-            //% "Today"
-            return qsTrId("today-label")
-        if (dateString === tomorrow.toDateString())
-            //: due date string for tomorrow
-            //% "Tomorrow"
-            return qsTrId("tomorrow-label")
-        if (dateString === yesterday.toDateString())
-            //: due date string for yesterday
-            //% "Yesterday"
-            return qsTrId("yesterday-label")
-        var result = date.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
-        return result
-    }
-
     function composeTaskLabel(task) {
-        if (typeof(task) === "undefined")
+        if (typeof task === "undefined")
             return ""
-        var tokens = []
+
         var result = []
 
         if (taskListWindow.smartListType >= 0)
@@ -68,22 +43,18 @@ Page {
             //% "List"
             result.push(qsTrId("list-label") + ": " + task.listname)
 
-        if (typeof(task.dueDate) === "number" && task.dueDate > 0)
+        if (typeof task.dueDate === "number" && task.dueDate > 0)
             //: title for the due date in the task description (keep as short as possible)
             //% "Due"
-            result.push(qsTrId("due-date-label") + ": " + humanDueDate(task.dueDate))
+            result.push(qsTrId("due-date-label") + ": " + taskListWindow.humanReadableDueDate(task.dueDate))
 
         var tags = DB.readTaskTags(task.taskid)
-        for (var i in tags) {
-            var next = tags[i]
-            tokens.push(next)
-        }
-        if (tokens.length > 0)
+        if (tags.length > 0)
             //: title for the tags in the task description (keep as short as possible)
             //% "Tags"
-            result.push(qsTrId("tags-label") + ": " + tokens.join(", "))
+            result.push(qsTrId("tags-label") + ": " + tags.join(", "))
 
-        if (typeof(task.notes) !== "undefined" && task.notes !== "")
+        if (typeof task.notes !== "undefined" && task.notes.length > 0)
             //: title for the notes in the task description (keep as short as possible)
             //% "Notes"
             result.push(qsTrId("notes-label") + ": " + task.notes)
@@ -94,18 +65,25 @@ Page {
     // helper function to add tasks to the list
     // @status - boolean
     // @dueDate - number, in milliseconds
-    function appendTask(id, task, status, listid, dueDate, priority, notes) {
+    function appendTask(id, task, status, listid, creation, dueDate, priority, notes, repeat) {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
                                  listid: listid, listname: DB.getListName(listid),
-                                 dueDate: dueDate, priority: priority || taskListWindow.defaultPriority,
-                                 notes: notes })
+                                 creation: creation, dueDate: dueDate, priority: priority,
+                                 notes: notes, repeat: repeat })
     }
 
-    function insertNewTask(index, id, task, listid) {
+    function insertNewTask(index, id, task, listid, creation) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
                                  listid: listid, listname: DB.getListName(listid),
-                                 dueDate: 0, priority: taskListWindow.defaultPriority,
-                                 notes: "" })
+                                 creation: creation, dueDate: 0, priority: DB.PRIORITY_DEFAULT,
+                                 notes: "", repeat: "" })
+    }
+
+    function copyTaskModel(item) {
+        return { taskid: item.taskid, task: item.task, taskstatus: item.taskstatus,
+                 listid: item.listid, listname: item.listname,
+                 creation: item.creation, dueDate: item.dueDate, priority: item.priority,
+                 notes: item.notes, repeat: item.repeat }
     }
 
     // helper function to wipe the tasklist element
@@ -339,10 +317,10 @@ Page {
                         var taskNew = newTask !== undefined ? newTask : taskAdd.text
                         if (taskNew.length > 0) {
                             // add task to db and tasklist
-                            var newid = DB.writeTask(listid, taskNew, 1, 0, 0, taskListWindow.defaultPriority, "")
+                            var result = DB.writeTask(listid, taskNew, 1, 0, 0, DB.PRIORITY_DEFAULT, "")
                             // catch sql errors
-                            if (newid >= 0) {
-                                insertNewTask(0, newid, taskNew, listid)
+                            if (result.id >= 0) {
+                                insertNewTask(0, result.id, taskNew, listid, result.creation)
                                 taskListWindow.coverAddTask = true
                                 // reset textfield
                                 taskAdd.text = ""
@@ -537,35 +515,53 @@ Page {
                 }, taskListWindow.remorseOnDelete * 1000)
             }
 
-            // helper function to mark current item as done
-            function changeStatus(checkStatus) {
+            // helper function to toggle current item between open/done
+            function changeStatus(status) {
                 var curTask = taskListModel.get(index)
-                var taskID = curTask.taskid
-                if (curTask.taskstatus === checkStatus)
+                if (curTask.taskstatus === status)
                     return
-                var newTask = {
-                    taskid: curTask.taskid,
-                    task: curTask.task,
-                    taskstatus: checkStatus,
-                    listid: curTask.listid,
-                    dueDate: curTask.dueDate,
-                    priority: curTask.priority
+                // check if task is recurring and it's possible to process it
+                var recurring = typeof curTask.repeat === "string" && curTask.repeat.length > 0
+                if (recurring) {
+                    if (status) {
+                        console.log("ERROR: a recurring task could only be closed")
+                        return
+                    }
+                    if (typeof curTask.dueDate !== 'number' || curTask.dueDate <= 0) {
+                        console.log("ERROR: a recurring task without due date could not be closed")
+                        return
+                    }
+                }
+                // create a new copy of the task and modify it
+                var newTask = copyTaskModel(curTask)
+                if (recurring) {
+                    // a recurring task due date is to be moved forward
+                    for (var i in DB.REPETITION_VARIANTS) {
+                        var rep = DB.REPETITION_VARIANTS[i]
+                        if (curTask.repeat === rep.key) {
+                            newTask.dueDate = rep.func(curTask.dueDate)
+                            break
+                        }
+                    }
+                } else {
+                    // ordinary task only changes status
+                    newTask.taskstatus = status
                 }
                 //: mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)
                 //% "mark as open"
-                var changeStatusString = checkStatus ? qsTrId("mark-open-label") :
+                var changeStatusString = status ? qsTrId("mark-open-label") :
                                                        //% "mark as done"
                                                        qsTrId("mark-done-label")
-                // copy status into string because results from sqlite are also strings
-                var intStatus = (checkStatus === true) ? 1 : 0
                 taskRemorse.execute(taskListItem, changeStatusString, function() {
                     // update DB
-                    if (!DB.setTaskStatus(taskID, intStatus))
+                    if (recurring && !DB.setTaskDueDate(newTask.taskid, newTask.dueDate))
+                        return
+                    else if (!recurring && !DB.setTaskStatus(newTask.taskid, Number(newTask.taskstatus)))
                         return
                     // delete current entry to simplify list sorting
                     taskListModel.remove(index)
                     // insert Item to correct position
-                    if (checkStatus) {
+                    if (status && !recurring) {
                         taskListModel.insert(0, newTask)
                     } else {
                         var i;
@@ -622,7 +618,7 @@ Page {
                         onClicked: {
                             // close contextmenu
                             taskContextMenu.hide()
-                            pageStack.push(Qt.resolvedUrl("EditPage.qml"), {"taskid": taskListModel.get(index).taskid, "taskname": taskListModel.get(index).task, "listindex": index})
+                            pageStack.push(Qt.resolvedUrl("EditPage.qml"), {params: copyTaskModel(model)})
                         }
                     }
 

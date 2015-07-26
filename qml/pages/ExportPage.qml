@@ -27,13 +27,33 @@ Page {
 
     property int selectedElementId: -1
     property string selectedFileName : ""
+    property string directory: StandardPaths.documents + "/harbour-tasklist"
 
     function composeFullPath(baseName) {
-        return StandardPaths.documents + "/" + baseName + ".json";
+        var suffix = ".json"
+        if (baseName.indexOf(suffix, baseName.length - suffix.length) === -1)
+            baseName += ".json"
+        return directory + "/" + baseName;
+    }
+
+    function truncatePath(path) {
+        var pos = 0
+        while (path.length - pos > 38) {
+            var j = pos + 1
+            while (j < path.length && path[j] !== '/')
+                ++j
+            if (j < path.length)
+                pos = j
+            else
+                break
+        }
+        if (pos > 0)
+            return "..." + path.substring(pos)
+        return path
     }
 
     function getFiles() {
-        var list = exporter.getFilesList(StandardPaths.documents);
+        var list = exporter.getFilesList(directory);
         importFilesModel.clear()
         if (list.length < 1) {
             //: informing user that no former exports are available
@@ -76,7 +96,7 @@ Page {
                 placeholderText: qsTrId("export-file-placeholder")
                 onTextChanged: {
                     var path = composeFullPath(text)
-                    label = path
+                    label = truncatePath(path)
                     exporter.fileName = path
                 }
                 validator: RegExpValidator { regExp: /^.{1,60}$/ }
@@ -135,7 +155,7 @@ Page {
 
                     delegate: ValueButton {
                         label: fileName
-                        description: elementId !== 0 ? composeFullPath(fileName) : ""
+                        description: elementId !== 0 ? truncatePath(composeFullPath(fileName)) : ""
                         width: column.width
                         highlighted: elementId === selectedElementId
                         onClicked: {

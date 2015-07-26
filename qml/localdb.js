@@ -1,6 +1,76 @@
 .import QtQuick.LocalStorage 2.0 as LS
 
+var DB_VERSION = "2.1";
+
 var DAY_LENGTH = 24 * 3600 * 1000;
+
+var PRIORITY_MIN = 1;
+var PRIORITY_MAX = 5;
+var PRIORITY_STEP = 1;
+var PRIORITY_DEFAULT = 3;
+
+function identity(unixTime) {
+    return unixTime;
+}
+
+function nextDay(unixTime) {
+    return unixTime + DAY_LENGTH;
+}
+
+function isWorkday(unixTime) {
+    var day = new Date(unixTime).getDay();
+    return 0 < day && day < 6;
+}
+
+function nextWorkday(unixTime) {
+    unixTime += DAY_LENGTH;
+    while (!isWorkday(unixTime))
+        unixTime += DAY_LENGTH;
+    return unixTime;
+}
+
+function nextWeek(unixTime) {
+    return unixTime + 7 * DAY_LENGTH;
+}
+
+function nextMonth(unixTime) {
+    var date = new Date(unixTime);
+    var goal = date.getDate();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    while (true) {
+        ++month;
+        if (month >= 12) {
+            ++year;
+            month = 0;
+        }
+        var cur = months[month];
+        if (month == 1 && (year % 4 === 0 && (year % 400 === 0 || year % 100 !== 0)))
+            ++cur;
+        if (goal <= cur)
+            break;
+    }
+    date.setFullYear(year);
+    date.setMonth(month);
+    date.setDate(goal);
+    return date.getTime();
+}
+
+var REPETITION_VARIANTS = [
+    //% "none (tap to select)"
+    { key: "", name: qsTrId("noval-tap-label"), func: identity},
+    //% "Daily"
+    { key: "every day", name: qsTrId("every-day-label"), func: nextDay },
+    //% "Worksdays"
+    { key: "every workday", name: qsTrId("every-workday-label"), func: nextWorkday },
+    //% "Weekly"
+    { key: "every week", name: qsTrId("every-week-label"), func: nextWeek },
+    //% "Monthly"
+    { key: "every month", name: qsTrId("every-month-label"), func: nextMonth }
+];
 
 function getUnixTime() {
     return (new Date()).getTime()
@@ -13,23 +83,16 @@ function getMidnight() {
     return start + DAY_LENGTH;
 }
 
-// return the start of the current day
-function getDayStart() {
-    var today = new Date();
-    var start = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
-    return start;
-}
-
-// create DB with schema v2.0 from scratch
+// create DB with the latest schema from scratch
 function createDB(tx) {
-    console.log("creating DB v2.0 from scratch..");
+    console.log("creating DB v" + DB_VERSION + " from scratch..");
 
     tx.executeSql("CREATE TABLE lists(ID INTEGER PRIMARY KEY AUTOINCREMENT, ListName TEXT UNIQUE);");
 
     tx.executeSql("CREATE TABLE tasks(ID INTEGER PRIMARY KEY AUTOINCREMENT, \
                         Task TEXT NOT NULL, ListID INTEGER NOT NULL, Status INTEGER, \
                         LastUpdate INTEGER NOT NULL, CreationDate INTEGER NOT NULL, \
-                        DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, \
+                        DueDate INTEGER, Duration INTEGER, Priority INTEGER NOT NULL, Note TEXT, Repeat TEXT, \
                         FOREIGN KEY(ListID) REFERENCES lists(ID), CONSTRAINT unq UNIQUE (Task, ListID));");
 
     tx.executeSql("CREATE TABLE tags(ID INTEGER PRIMARY KEY AUTOINCREMENT, Tag TEXT NOT NULL UNIQUE)");
@@ -74,11 +137,11 @@ function schemaIsUpToDate() {
     var db = connectDB();
     // create DB if it's the first run
     if (db.version === "") {
-        db.changeVersion("", "2.0", createDB);
-        // db.version is still empty, but the version is actually 2.0 now
+        db.changeVersion("", DB_VERSION, createDB);
+        // db.version is still empty, but the version is actually up-to-date now
         return true;
     }
-    return db.version === "2.0";
+    return db.version === DB_VERSION;
 }
 
 // delete the existing DB and create from scratch
@@ -96,11 +159,17 @@ function replaceOldDB(keepData) {
             tx.executeSql("COMMIT;");
         });
         // create brand new tables
-        db.changeVersion("1.0", "2.0", createDB);
+        db.changeVersion("1.0", DB_VERSION, createDB);
         // pour data in if necessary
         if (keepData && !importData(data))
             return false;
+    } else if (db.version === "2.0") {
+        // add Repeat field to table 'tasks'
+        db.changeVersion("2.0", DB_VERSION, function(tx) {
+            tx.executeSql("ALTER TABLE tasks ADD COLUMN Repeat TEXT;");
+        });
     }
+
     return true;
 }
 
@@ -162,7 +231,8 @@ function initializeDB() {
 function applyCallbackToTasks(callback, result) {
     for (var i = 0; i < result.rows.length; ++i) {
         var task = result.rows.item(i);
-        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.DueDate, task.Priority, task.Note);
+        callback(task.ID, task.Task, task.Status === 1, task.ListID, task.CreationDate,
+                 task.DueDate, task.Priority || PRIORITY_DEFAULT, task.Note, task.Repeat);
     }
 }
 
@@ -187,13 +257,25 @@ function readTasks(listID, callback, status, sort) {
     });
 }
 
+function getSimpleList(listID) {
+    var db = connectDB();
+    var names = [];
+    db.transaction(function(tx) {
+        var result = tx.executeSql("SELECT * FROM tasks WHERE ListID = ? AND Status = '1' ORDER BY Task ASC;", listID);
+        for (var i = 0; i < result.rows.length; ++i) {
+            names.push(result.rows.item(i).Task);
+        }
+    });
+    return names.join("\n")
+}
+
 // select tasks on a global basis instead of list basis
 function readSmartListTasks(smartListType, callback) {
     var db = connectDB();
     var recentlyAddedOffsetTime = getUnixTime() - taskListWindow.recentlyAddedPeriods[taskListWindow.recentlyAddedOffset] * 1000;
     var midnight = getMidnight();
     var tomorrowMidnight = midnight + DAY_LENGTH;
-    var dayStart = getDayStart();
+    var dayStart = midnight - DAY_LENGTH;
     var condition = "";
 
     if (smartListType === 0)
@@ -254,9 +336,6 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
     var creationDate = getUnixTime();
     var taskID = -1;
 
-    if (typeof(priority) === 'undefined')
-        priority = 0;
-
     try {
         db.transaction(function(tx) {
             var statement = "INSERT INTO tasks (Task, ListID, Status, LastUpdate, CreationDate, DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -268,7 +347,7 @@ function writeTask(listID, task, status, dueDate, duration, priority, note) {
     } catch (sqlErr) {
         console.log("Unable to write a new task");
     }
-    return taskID;
+    return {id: Number(taskID), creation: creationDate};
 }
 
 // delete task from database
@@ -281,7 +360,7 @@ function removeTask(id) {
     });
 }
 
-// change a task status
+// change a task status: status is a Number here
 function setTaskStatus(id, status) {
     var db = connectDB();
     var lastUpdate = getUnixTime();
@@ -298,16 +377,33 @@ function setTaskStatus(id, status) {
     return ok;
 }
 
+// change a task due date
+function setTaskDueDate(id, dueDate) {
+    var db = connectDB();
+    var lastUpdate = getUnixTime();
+    var ok = false;
+    try {
+        db.transaction(function(tx) {
+            var result = tx.executeSql("UPDATE tasks SET DueDate = ?, LastUpdate = ? WHERE ID = ?", [dueDate, lastUpdate, id]);
+            tx.executeSql("COMMIT;");
+            ok = result.rowsAffected === 1;
+        });
+    } catch (sqlErr) {
+        console.log("Unable to change a due date in DB");
+    }
+    return ok;
+}
+
 // update task
-function updateTask(id, newListID, task, status, dueDate, duration, priority, note) {
+function updateTask(id, newListID, task, status, dueDate, duration, priority, note, repeat) {
     var db = connectDB();
     var lastUpdate = getUnixTime();
     var ok = false;
     try {
         db.transaction(function(tx) {
             var result = tx.executeSql("UPDATE tasks SET ListID = ?, Task = ?, Status = ?, \
-                                        LastUpdate = ?, DueDate = ?, Duration = ?, Priority = ?, Note = ? WHERE ID = ?;",
-                                        [newListID, task, status, lastUpdate, dueDate, duration, priority, note, id]);
+                                        LastUpdate = ?, DueDate = ?, Duration = ?, Priority = ?, Note = ?, Repeat = ? WHERE ID = ?;",
+                                        [newListID, task, status, lastUpdate, dueDate, duration, priority, note, repeat, id]);
             tx.executeSql("COMMIT;");
             ok = result.rowsAffected === 1;
         });
@@ -322,7 +418,7 @@ function packTask(record) {
     return {ID: record.ID, Task: record.Task, ListID: record.ListID, Status: record.Status,
             LastUpdate: record.LastUpdate, CreationDate: record.CreationDate,
             DueDate: record.DueDate, Duration: record.Duration,
-            Priority: record.Priority, Note: record.Note};
+            Priority: record.Priority, Note: record.Note, Repeat: record.Repeat};
 }
 
 function getTaskDetails(id) {
@@ -358,7 +454,7 @@ function dumpData() {
             for (var j = 0; j < result.rows.length; ++j) {
                 var item = packTask(result.rows.item(j));
                 // add tags to task if tags are introduced already
-                if (db.version > 1.0) {
+                if (version > 1) {
                     var tagsResult = tx.executeSql("SELECT TagID FROM task_tags WHERE TaskID = ?;", item.ID);
                     var tagIds = [];
                     for (var k = 0; k < tagsResult.rows.length; ++k)
@@ -373,7 +469,7 @@ function dumpData() {
     // that's it for v1.0
     if (version === 1)
         return JSON.stringify(tasksGrouped);
-    // v2.0 also contains tags
+    // DB also contains tags since v2.0
     var tags = [];
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT * FROM tags;");
@@ -383,7 +479,7 @@ function dumpData() {
         }
     });
     var data = {
-        schema: "2.0",
+        schema: DB_VERSION,
         tasklists: tasksGrouped,
         tags: tags
     };
@@ -430,27 +526,11 @@ function validateParsed(tasksGrouped, version) {
                 if (!_check(it.Note)) return false;
                 if (!_check(it.Tags)) return false;
             }
+            if (version > 2)
+                if (!_check(it.Repeat)) return false
         }
     }
     return true;
-}
-
-// set all priorities which are 0 by db upgrade to default
-function setDefaultPriority() {
-    var db = connectDB();
-    var ok = -1;
-    try {
-        db.transaction(function(tx) {
-            var result = tx.executeSql("UPDATE tasks SET Priority = ? WHERE Priority = 0;", [taskListWindow.defaultPriority]);
-            tx.executeSql("COMMIT;");
-
-            ok = result.rowsAffected;
-        });
-
-    } catch (sqlErr) {
-        console.log("An error occured while setting default priority.");
-    }
-    return ok;
 }
 
 function importData(json) {
@@ -462,15 +542,15 @@ function importData(json) {
         console.log("error in parse");
         return false;
     }
-    var version = (parsed instanceof Array) ? 1 : 2;
+    var version = (parsed instanceof Array) ? 1 : Number(parsed.schema);
 
     var tasksGrouped, tags;
     if (version === 1) {
         tasksGrouped = parsed;
         tags = [];
     } else {
-        if (parsed.schema !== "2.0") {
-            console.log("dump for v2.0: invalid schema");
+        if (version !== 2.0 && version !== 2.1) {
+            console.log("dump for v2.x: invalid schema");
             return false;
         }
         tasksGrouped = parsed.tasklists;
@@ -508,9 +588,9 @@ function importData(json) {
             for (var j in g.items) {
                 var it = g.items[j];
                 tx.executeSql("INSERT INTO tasks (ID, Task, ListID, Status, LastUpdate, CreationDate, \
-                               DueDate, Duration, Priority, Note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                               DueDate, Duration, Priority, Note, Repeat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                                [it.ID, it.Task, it.ListID, it.Status, it.LastUpdate, it.CreationDate,
-                                it.DueDate || 0, it.Duration || 0, it.Priority || 0, it.Note || ""]);
+                                it.DueDate || 0, it.Duration || 0, it.Priority || PRIORITY_DEFAULT, it.Note || "", it.Repeat || ""]);
                 var tagIds = it.Tags;
                 if (typeof (tagIds) !== "undefined")
                     for (var k in tagIds) {
@@ -550,14 +630,14 @@ function allLists(callback) {
 function readLists(recently, callback) {
     var db = connectDB();
     var midnight = getMidnight();
-    var dayStart = getDayStart();
+    var dayStart = midnight - DAY_LENGTH;
     var tomorrowMidnight = midnight + DAY_LENGTH;
 
     db.transaction(function(tx) {
         var result = tx.executeSql("SELECT *, (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID) AS total,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND Status = '1') AS pending,\
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND CreationDate > ?) AS recent ,\
-            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? < DueDate AND DueDate < ? AND Status = '1') AS today, \
+            (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS today, \
             (SELECT COUNT(ID) FROM tasks WHERE ListID = parent.ID AND ? <= DueDate AND DueDate < ? AND Status = '1') AS tomorrow \
             FROM lists AS parent ORDER BY ID ASC;",
             [recently, dayStart, midnight, midnight, tomorrowMidnight]);
