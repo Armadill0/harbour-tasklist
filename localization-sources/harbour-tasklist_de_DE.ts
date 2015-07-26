@@ -794,60 +794,60 @@ menu item to switch to settings page</extracomment>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
         <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Für eine Wiederholung wird ein Fälligkeitsdatum benötigt.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholung</translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>In die Zwischenablage kopieren</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste nicht kopiert</translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Liste ist leer.</translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Andere</translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Sprache wird nach dem App Neustart übernommen.</translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Täglich</translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Werktags</translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Wöchentlich</translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Monatlich</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Gestern</translation>
     </message>
 </context>
 </TS>
