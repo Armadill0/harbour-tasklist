@@ -7,4 +7,5 @@ moc*
 RPMS
 rpm/harbour-tasklist.spec
 *.o
+localization
 *.qm
