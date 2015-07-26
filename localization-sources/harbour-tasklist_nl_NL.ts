@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nl_NL" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl_NL" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Actie vereist</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation>Druk op &apos;%1&apos; om de oude database te migreren van het oude naar het nieuwe formaat of druk op &apos;%2&apos; om de oude database te vernietigen en te beginnen met een schone, nieuwe.</translation>
     </message>
     <message id="option-header">
@@ -93,47 +91,47 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan Dropbox niet benaderen</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het is mislukt om de inloggegevens op te halen van Dropbox.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>DB-fout</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het is mislukt om de inloggegevens op te slaan in de database.</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Het synchroniseren is mislukt</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het is mislukt om gegevens te uploaden naar Dropbox.</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Het synchroniseren is voltooid</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>De gegevens zijn succesvol geüpload naar Dropbox.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongeldige gegevens ontvangen.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>De gegevens kunnen niet worden geïmporteerd.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>De gegevens zijn succesvol opgehaald van Dropbox.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
@@ -192,7 +190,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Het bestaat al op de geselecteerde lijst.</translation>
     </message>
     <message id="edit-label">
@@ -471,12 +469,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 seconde</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 seconden</translation>
     </message>
     <message id="settings-label">
@@ -618,12 +616,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox-opties</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Uitloggen van Dropbox</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -689,7 +687,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>De taak kan niet worden toegevoegd!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +711,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Alle taken bestaan al!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -755,7 +753,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchroniseren met Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -769,85 +767,85 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dropbox synchroniseren</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>De gegevens op afstand kunnen niet worden bijgewerkt. De gegevens op afstand zijn geüpload door een ander apparaat.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Gegevens op afstand vervangen</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Lokale gegevens vervangen</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Let op: deze acties vervangen de doelgegevens en dit kan niet worden teruggedraaid!</translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
+        <translation>Een vervaldatum is benodigd voor de repetitie.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Herhalen</translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiëren naar klembord</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"></translation>
+        <translation>De lijst is niet gekopieerd</translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>De lijst is leeg.</translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Overig</translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Taal</translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"></translation>
+        <translation>De taal zal worden gewijzigd nadat de app is herstart.</translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Dagelijks</translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Werkdagen</translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Wekelijks</translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Maandelijks</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Gisteren</translation>
     </message>
 </context>
 </TS>
