@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru_RU" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -33,7 +31,7 @@
 label for the tags field
 ----------
 title for the tags in the task description (keep as short as possible)</extracomment>
-        <translation>Задачи</translation>
+        <translation>Теги</translation>
     </message>
     <message id="upgrade-label">
         <source>Upgrade</source>
@@ -56,8 +54,8 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <translation>Необходимое действие</translation>
     </message>
     <message id="information-label">
         <source>Information</source>
@@ -73,74 +71,74 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation>Нажмите &apos;%1&apos; для импорта старой база дынных в новую или &apos;%2&apos; для удаления старой базы данных и формирования нового списка задач.</translation>
     </message>
     <message id="option-header">
         <source>Choose an option</source>
         <extracomment>headline for the option section of the upgrade dialog</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Выберите вариант</translation>
     </message>
     <message id="choose-option-label">
         <source>Please select an action to proceed.</source>
         <extracomment>user has the possibility to choose the database upgrade or delete the old database</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите действие для продолжения.</translation>
     </message>
     <message id="recommended-label">
         <source>recommended</source>
         <extracomment>hint which is the recommended upgrade option</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>рекомендуется</translation>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу соединиться с Dropbox</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось извлечь учетных данных из Dropbox.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>ошибка DB</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось сохранить учетные данные в базу данных.</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка синхронизации</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить данные в Dropbox.</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизация завешена</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Данные успешно загружены в Dropbox.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Получены недопустимые данные.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Данные не могут быть импортированы.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Данные успешно загружены в Dropbox.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
         <extracomment>headline of application information page
 ----------
 menu item to jump to the application information page</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>О программе</translation>
     </message>
     <message id="back-button">
         <source>Back</source>
@@ -192,7 +190,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Уже существует в выбранном списке.</translation>
     </message>
     <message id="edit-label">
@@ -204,7 +202,7 @@ context menu item to edit a list
 context menu item to edit a tag
 ----------
 menu item to switch to the page where the selected task can be modified</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Изменить</translation>
     </message>
     <message id="save-button">
         <source>Save</source>
@@ -343,12 +341,12 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="drop-database-header">
         <source>Drop data (very destructive!!!)</source>
         <extracomment>headline for the database purge</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Сбрасывание данных (очень плохо!!!)</translation>
     </message>
     <message id="drop-database-warning">
         <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
         <extracomment>warn user of destructive drop DB function</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Осторожно: эта функция удалит все ваши данные! Используйте, только если вы знаете, что делаете!</translation>
     </message>
     <message id="drop-database-confirmation">
         <source>Yes, I know what I&apos;m doing.</source>
@@ -358,12 +356,12 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="drop-database-button">
         <source>Drop database</source>
         <extracomment>Button to import data form the selected file</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Сбрасывание базы данных</translation>
     </message>
     <message id="drop-database-success">
         <source>Successfully dropped all data.</source>
         <extracomment>informational notification about the successful dropped data tables</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Все данные успешно сброшены.</translation>
     </message>
     <message id="drop-database-detail">
         <source>Please restart TaskList to work with the new database.</source>
@@ -382,7 +380,7 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="tag-count-label">
         <source>%1 tags</source>
         <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
-        <translation>%1 задачи</translation>
+        <translation>%1 теги</translation>
     </message>
     <message id="single-task-count-label">
         <source>%1 task</source>
@@ -437,11 +435,11 @@ title for the notes in the task description (keep as short as possible)</extraco
         <extracomment>remorse item when a tag is being deleted
 ----------
 deleting a task via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Удаление</translation>
     </message>
     <message id="default-label">
         <source>default</source>
-        <translation>По умолчанию</translation>
+        <translation>по умолчанию</translation>
     </message>
     <message id="cover-label">
         <source>Cover</source>
@@ -467,16 +465,16 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     <message id="deactivated-label">
         <source>deactivated</source>
         <extracomment>text to be shown if the slider is set to</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>отключен</translation>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 секунда</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 секунды</translation>
     </message>
     <message id="settings-label">
@@ -618,16 +616,16 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Настройки Dropbox </translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Выйти из аккаунта Dropbox</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
-        <translation>Выбрать задачи</translation>
+        <translation>Выбрать теги</translation>
     </message>
     <message id="confirm-button">
         <source>Confirm</source>
@@ -636,12 +634,12 @@ menu item to switch to settings page</extracomment>
     <message id="tagspage-header">
         <source>Manage tags</source>
         <extracomment>headline for the tags page</extracomment>
-        <translation>Управление задачами</translation>
+        <translation>Управление тегами</translation>
     </message>
     <message id="new-tag-label">
         <source>Add new tag</source>
         <extracomment>headline to create new tags</extracomment>
-        <translation>Добавить новую задачу</translation>
+        <translation>Добавить новый тег</translation>
     </message>
     <message id="tagname-placeholder">
         <source>Enter unique tag name</source>
@@ -656,7 +654,7 @@ menu item to switch to settings page</extracomment>
     <message id="no-tags-label">
         <source>no tags available</source>
         <extracomment>fallback text if no tags are defined</extracomment>
-        <translation>Нет задач</translation>
+        <translation>нет тегов</translation>
     </message>
     <message id="deleting-done-tasks-label">
         <source>Deleting all done tasks</source>
@@ -685,11 +683,11 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-reopened-success-details">
         <source>The task already existed and was marked as done.</source>
-        <translation type="unfinished"></translation>
+        <translation>Задача уже существовала и была отмечена как &quot;завершенная&quot;.</translation>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Задача не может быть добавлена!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +711,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Все задачи уже существует!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -755,7 +753,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизация с Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -769,85 +767,85 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизация с Dropbox</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Удаленные данные не могут быть обновлены. Удаленный данные были загружены с другого устройства.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Заменить удаленные данные</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Заменить локальные данные</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Подсказка: эти действия заменят частности целевых данных и не могут быть отменены!</translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
+        <translation>Требуется срок для повторения.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Повтор</translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Скопировано</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"></translation>
+        <translation>Список не скопирован</translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Список пуст.</translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Другие</translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Язык</translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения вступят в силу после перезагрузки программы</translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ежедневно</translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Будни</translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Еженедельно</translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ежемесачно</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Вчера</translation>
     </message>
 </context>
 </TS>
