@@ -13,4 +13,5 @@ then
 fi
 
 echo "Release languages as idbased qm files..."
-for i in $(ls ${TS_SOURCES}); do lrelease -idbased ${TS_SOURCES}/$i -qm ${QM_TARGET}/$(echo $i | sed -e 's/${APP_NAME}_\(.\+\)\.ts/\1\.qm/'); done
+echo $APP_NAME
+for i in $(ls ${TS_SOURCES}); do lrelease -idbased ${TS_SOURCES}/$i -qm ${QM_TARGET}/$(echo $i | awk -F'_' '{print $2 "_" $3}' | awk -F'.' '{print $1}').qm; done

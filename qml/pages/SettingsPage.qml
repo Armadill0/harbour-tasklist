@@ -61,7 +61,7 @@ Dialog {
         languages.append({ lang: "cs_CZ", name: "Čeština" })
         languages.append({ lang: "da_DK", name: "Dansk" })
         languages.append({ lang: "de_DE", name: "Deutsch" })
-        languages.append({ lang: "en_EN", name: "English" })
+        languages.append({ lang: "en_US", name: "English" })
         languages.append({ lang: "es_ES", name: "Español" })
         languages.append({ lang: "fi_FI", name: "Suomi" })
         languages.append({ lang: "fr_FR", name: "Français" })
