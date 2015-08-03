@@ -149,16 +149,6 @@ Dialog {
                 acceptText: qsTrId("save-button")
             }
 
-            Label {
-                id: languageTip
-                width: parent.width
-                //% "Language will be changed after app restart."
-                text: qsTrId("languagechange-needs-restart-description")
-                visible: false
-                font.pixelSize: Theme.fontSizeExtraSmall
-                horizontalAlignment: Text.AlignHCenter
-            }
-
             SectionHeader {
                 //: headline for cover (application state when app is in background mode) options
                 //% "Cover options"
@@ -225,6 +215,17 @@ Dialog {
                 onCurrentIndexChanged: {
                     languageTip.visible = language !== languages.get(currentIndex).lang
                 }
+            }
+
+            Label {
+                id: languageTip
+                width: parent.width
+                x: Theme.paddingLarge
+                //% "Language will be changed after app restart."
+                text: qsTrId("languagechange-needs-restart-description")
+                visible: false
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.highlightColor
             }
 
             ComboBox {
