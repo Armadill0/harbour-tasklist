@@ -170,17 +170,12 @@ Page {
 
     // function to switch to the next list, final switch is done by onListIdChanged
     function switchList(backwards) {
-        var listArray = taskListWindow.listOfLists.split(",")
-
-        for (var i = 0; i < listArray.length; i++) {
-            if (listArray[i] == listid) {
-                    if (backwards === true)
-                        listid = i == 0 ? listArray[listArray.length - 1] : listArray[i - 1]
-                    else
-                        listid = i == listArray.length - 1 ? listArray[0] : listArray[i + 1]
-                break
-            }
-        }
+        var index = listOfLists.indexOf(listid)
+        if (backwards)
+            index = (index + listOfLists.length - 1) % listOfLists.length
+        else
+            index = (index + 1) % listOfLists.length
+        listid = listOfLists[index]
     }
 
     // workaround timer to push application to background after start

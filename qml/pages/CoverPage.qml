@@ -133,6 +133,7 @@ CoverBackground {
             height: 7 * (Theme.fontSizeSmall + Theme.paddingSmall) + (Theme.paddingSmall / 3)
             width: parent.width
             model: taskListModel
+            clip: true
 
             delegate: Item {
                 id: taskListItem
@@ -148,13 +149,6 @@ CoverBackground {
                     truncationMode: TruncationMode.Fade
                 }
             }
-        }
-
-        // hack to display only 7 list items
-        OpacityRampEffect {
-            slope: 1
-            offset: 0.5
-            sourceItem: taskList
         }
 
         CoverActionList {
@@ -177,24 +171,12 @@ CoverBackground {
             CoverAction {
                 iconSource: "image://theme/icon-cover-next"
                 onTriggered: {
-                    var listArray = taskListWindow.listOfLists.split(",")
-
-                    for (var i = 0; i < listArray.length; i++) {
-                        if (listArray[i] == currentList) {
-                            if (i == listArray.length - 1)
-                                currentList = listArray[0]
-                            else
-                                currentList = listArray[i + 1]
-
-                            // wipe list and read new tasks
-                            wipeTaskList()
-                            DB.readTasks(currentList, appendTask, 1, listorder)
-                            taskListWindow.currentCoverList = currentList
-
-                            break
-                        }
-                    }
-
+                    var index = (listOfLists.indexOf(currentList) + 1) % listOfLists.length
+                    currentList = listOfLists[index]
+                    // wipe list and read new tasks
+                    wipeTaskList()
+                    DB.readTasks(currentList, appendTask, 1, listorder)
+                    currentCoverList = currentList
                     // also change list in application
                     taskListWindow.listid = currentList
                 }
