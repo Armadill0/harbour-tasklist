@@ -80,7 +80,7 @@ CoverBackground {
 
     onStatusChanged: {
         switch(status) {
-        case Cover.Activating:ivating:
+        case Cover.Activating:
             taskListWindow.fillListOfLists()
 
             if (taskListWindow.smartListType !== -1) {
