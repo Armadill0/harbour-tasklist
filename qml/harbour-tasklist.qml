@@ -43,7 +43,7 @@ ApplicationWindow {
     // a variable to trigger the switch of tha start page
     property bool switchStartPage: true
     // variable to save the list of lists as a string
-    property string listOfLists
+    property var listOfLists: []
     // variable to save the current cover list as a variable which overlives changing from Dovers screen to lock screen and back
     property int currentCoverList: -1
     // list of current time periods in seconds for the "recently added tasks" smart list
@@ -73,8 +73,7 @@ ApplicationWindow {
     property int defaultPriority: 3
     property int maximumPriority: 5
 
-    property int listCount: 0
-    property bool coverActionMultiple: listCount > 1
+    property bool coverActionMultiple: listOfLists.length > 1
     property bool coverActionSingle: !coverActionMultiple
 
     // initialize default settings properties
@@ -221,9 +220,7 @@ ApplicationWindow {
     // a function to fill litoflists with data
     function fillListOfLists () {
         // load lists into variable for "switch" action on cover and task page
-        var lists = DB.allLists()
-        listOfLists = lists.join(",")
-        listCount = lists.length
+        listOfLists = DB.allLists()
     }
 
     // short human-readable representation of a due date
