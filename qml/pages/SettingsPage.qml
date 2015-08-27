@@ -65,6 +65,7 @@ Dialog {
         languages.append({ lang: "es_ES", name: "Español" })
         languages.append({ lang: "fi_FI", name: "Suomi" })
         languages.append({ lang: "fr_FR", name: "Français" })
+        languages.append({ lang: "hu",    name: "Magyar" })
         languages.append({ lang: "it_IT", name: "Italiano" })
         languages.append({ lang: "ku_IQ", name: "Kurdî" })
         languages.append({ lang: "lt",    name: "Lietuvių" })
@@ -223,6 +224,7 @@ Dialog {
                 x: Theme.paddingLarge
                 //% "Language will be changed after app restart."
                 text: qsTrId("languagechange-needs-restart-description")
+                wrapMode: Text.WordWrap
                 visible: false
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.highlightColor
