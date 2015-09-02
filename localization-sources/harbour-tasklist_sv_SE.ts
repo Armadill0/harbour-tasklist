@@ -849,5 +849,10 @@ menu item to switch to settings page</extracomment>
         <extracomment>due date string for yesterday</extracomment>
         <translation>I går</translation>
     </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

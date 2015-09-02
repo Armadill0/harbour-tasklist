@@ -64,10 +64,11 @@ int main(int argc, char *argv[])
 
     QSettings settings;
     QString locale = settings.value("language", "").toString();
-    if (locale.isEmpty()) {
+    if (locale.isEmpty() || locale == QString("system_default")) {
         /* use system locale by default */
+        if (locale.isEmpty())
+            settings.setValue("language", "system_default");
         locale = QLocale::system().name();
-        settings.setValue("language", locale);
     }
 
     QTranslator translator;
