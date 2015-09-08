@@ -2,6 +2,10 @@ TaskList
 ================
 A small but mighty program to manage your daily tasks.
 
+Developing
+================
+Have a look here to prepare your build environment for TaskList: https://github.com/Armadill0/harbour-tasklist/wiki
+
 Pull-Requests
 ================
 Pull-Requests are always welcome. But please respect the following rules to make the life of the collaborators easier. ;-)

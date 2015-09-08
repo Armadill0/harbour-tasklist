@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 
 APP_NAME=$(pwd | awk -F'/' '{print $NF}')
 QM_TARGET=localization
