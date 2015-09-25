@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="da_DK" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="da_DK" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -10,7 +8,7 @@
     </message>
     <message id="pending-label">
         <source>Pending</source>
-        <translation>Udføres</translation>
+        <translation>Verserende</translation>
     </message>
     <message id="new-label">
         <source>New</source>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Handling påkrævet</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation>Tryk &apos;%1&apos; for at overføre den gamle database til det nye format eller &apos;%2&apos; for at slette den gamle database og starte med en ren ny database.</translation>
     </message>
     <message id="option-header">
@@ -192,7 +190,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Den eksisterer allerede i valgte liste.</translation>
     </message>
     <message id="edit-label">
@@ -471,12 +469,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 sekund</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 sekunder</translation>
     </message>
     <message id="settings-label">
@@ -689,7 +687,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Opgave kunne ikke tilføjes!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +711,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Alle opgaver eksisterer allerede!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -793,7 +791,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
         <translation>En deadline kræves for gentagelsen.</translation>
     </message>
     <message id="repeat-label">
@@ -852,7 +850,7 @@ menu item to switch to settings page</extracomment>
     <message id="system-default-label">
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Systemstandard</translation>
     </message>
 </context>
 </TS>
