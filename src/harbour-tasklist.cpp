@@ -33,7 +33,7 @@
 #include "tasksexport.h"
 
 // third party code
-#include <notification.h>
+//#include <notification.h>
 
 
 int main(int argc, char *argv[])
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     translator.load(locale, SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
-    qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
+    //qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
     qmlRegisterType<TasksExport>("harbour.tasklist.tasks_export", 1, 0, "TasksExport");
 
     QQuickView* view = SailfishApp::createView();

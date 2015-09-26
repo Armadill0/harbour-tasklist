@@ -19,10 +19,10 @@
 
 import QtQuick 2.1
 import Sailfish.Silica 1.0
+import org.nemomobile.notifications 1.0
 import "pages"
 import "pages/sync"
 import "localdb.js" as DB
-import harbour.tasklist.notifications 1.0
 import harbour.tasklist.tasks_export 1.0
 
 ApplicationWindow {

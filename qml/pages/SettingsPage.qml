@@ -389,6 +389,12 @@ Dialog {
                     signOutDropbox.enabled = false
                 }
             }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
+            }
         }
     }
 }
