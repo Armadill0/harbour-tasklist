@@ -379,6 +379,7 @@ Dialog {
 
             Button {
                 id: signOutDropbox
+                width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: taskListWindow.checkDropboxCredentials()
                 //: Button to log out from the dropbox account
