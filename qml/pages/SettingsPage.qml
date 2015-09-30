@@ -57,22 +57,26 @@ Dialog {
     }
 
     Component.onCompleted: {
-        languages.append({ lang: "ca",    name: "Català" })
-        languages.append({ lang: "cs_CZ", name: "Čeština" })
-        languages.append({ lang: "da_DK", name: "Dansk" })
-        languages.append({ lang: "de_DE", name: "Deutsch" })
-        languages.append({ lang: "en_US", name: "English" })
-        languages.append({ lang: "es_ES", name: "Español" })
-        languages.append({ lang: "fi_FI", name: "Suomi" })
-        languages.append({ lang: "fr_FR", name: "Français" })
-        languages.append({ lang: "it_IT", name: "Italiano" })
-        languages.append({ lang: "ku_IQ", name: "Kurdî" })
-        languages.append({ lang: "lt",    name: "Lietuvių" })
-        languages.append({ lang: "nl_NL", name: "Nederlands" })
-        languages.append({ lang: "ru_RU", name: "Русский" })
-        languages.append({ lang: "sv_SE", name: "Svenska" })
-        languages.append({ lang: "tr_TR", name: "Türkçe"})
-        languages.append({ lang: "zh_CN", name: "中文"})
+        //: label for a settings "system default" option
+        //% "System default"
+        languages.append({ lang: "system_default",  name: qsTrId("system-default-label") })
+        languages.append({ lang: "ca",              name: "Català" })
+        languages.append({ lang: "cs_CZ",           name: "Čeština" })
+        languages.append({ lang: "da_DK",           name: "Dansk" })
+        languages.append({ lang: "de_DE",           name: "Deutsch" })
+        languages.append({ lang: "en_US",           name: "English" })
+        languages.append({ lang: "es_ES",           name: "Español" })
+        languages.append({ lang: "fi_FI",           name: "Suomi" })
+        languages.append({ lang: "fr_FR",           name: "Français" })
+        languages.append({ lang: "hu",              name: "Magyar" })
+        languages.append({ lang: "it_IT",           name: "Italiano" })
+        languages.append({ lang: "ku_IQ",           name: "Kurdî" })
+        languages.append({ lang: "lt",              name: "Lietuvių" })
+        languages.append({ lang: "nl_NL",           name: "Nederlands" })
+        languages.append({ lang: "ru_RU",           name: "Русский" })
+        languages.append({ lang: "sv_SE",           name: "Svenska" })
+        languages.append({ lang: "tr_TR",           name: "Türkçe"})
+        languages.append({ lang: "zh_CN",           name: "中文"})
 
 
         language = taskListWindow.getLanguage()
@@ -223,6 +227,7 @@ Dialog {
                 x: Theme.paddingLarge
                 //% "Language will be changed after app restart."
                 text: qsTrId("languagechange-needs-restart-description")
+                wrapMode: Text.WordWrap
                 visible: false
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.highlightColor
@@ -374,6 +379,7 @@ Dialog {
 
             Button {
                 id: signOutDropbox
+                width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: taskListWindow.checkDropboxCredentials()
                 //: Button to log out from the dropbox account
@@ -383,6 +389,12 @@ Dialog {
                     taskListWindow.removeDropboxCredentials()
                     signOutDropbox.enabled = false
                 }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
             }
         }
     }

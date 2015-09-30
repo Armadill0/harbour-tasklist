@@ -31,7 +31,6 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/sync/DropboxAuth.qml \
     qml/pages/sync/DropboxSync.qml
 
-include(third_party/notifications.pri)
 include(third_party/QtDropbox/qtdropbox.pri)
 
 !defined(TASKLIST_DROPBOX_APPKEY, var) {

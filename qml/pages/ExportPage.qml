@@ -112,7 +112,10 @@ Page {
                 //: headline for the data export section
                 //% "Export data"
                 text: qsTrId("export-button")
+                width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
+                anchors.leftMargin: Theme.paddingLarge
+                anchors.rightMargin: Theme.paddingLarge
                 enabled: exportName.acceptableInput
 
                 onClicked: {
@@ -175,10 +178,12 @@ Page {
 
             Row {
                 width: parent.width
+                spacing: 2 * Theme.paddingLarge
+                x: Theme.paddingLarge
 
                 Button {
                     id: deleteButton
-                    width: parent.width / 2
+                    width: parent.width / 2 - 2 * Theme.paddingLarge
                     //: Button to delete the selected data file
                     //% "Delete file"
                     text: qsTrId("delete-file-button")
@@ -198,7 +203,7 @@ Page {
 
                 Button {
                     id: importButton
-                    width: parent.width / 2
+                    width: parent.width / 2 - 2 * Theme.paddingLarge
                     //: Button to import data form the selected file
                     //% "Import data"
                     text: qsTrId("import-button")
@@ -259,7 +264,8 @@ Page {
             }
 
             Button {
-                width: parent.width
+                width: parent.width * 0.75
+                anchors.horizontalCenter: parent.horizontalCenter
                 //: Button to import data form the selected file
                 //% "Drop database"
                 text: qsTrId("drop-database-button")

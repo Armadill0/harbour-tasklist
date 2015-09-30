@@ -93,54 +93,54 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile accedere a Dropbox</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile recuperare credenziali da Dropbox.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore DB</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile salvare le credenziali nel database.</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinc. fallita</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile caricare dati su Dropbox.</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinc. completata</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dati caricati su Dropbox.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dati ricevuti non validi.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>I dati non possono essere importati.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dati scaricati da Dropbox.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
         <extracomment>headline of application information page
 ----------
 menu item to jump to the application information page</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Info</translation>
     </message>
     <message id="back-button">
         <source>Back</source>
@@ -441,7 +441,7 @@ deleting a task via displaying a remorse element (a Sailfish specific interactio
     </message>
     <message id="default-label">
         <source>default</source>
-        <translation>predefinita</translation>
+        <translation>predefinito</translation>
     </message>
     <message id="cover-label">
         <source>Cover</source>
@@ -452,7 +452,7 @@ deleting a task via displaying a remorse element (a Sailfish specific interactio
         <extracomment>a label to inform the user how the changes on a list can be saved
 ----------
 a label to inform the user how the changes on a tag can be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Premi Invio per salvare le modifiche</translation>
     </message>
     <message id="set-default-list-label">
         <source>Set as Default list</source>
@@ -618,12 +618,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Dropbox</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Esci da Dropbox</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -755,7 +755,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Sinc. con Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -769,84 +769,89 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sinc. Dropbox</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>I dati remoti non possono essere aggiornati, perché sono stati caricati da un altro dispositivo.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sostituisci dati remoti</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sostituisci dati locali</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Queste azioni sostituiscono i dati nella destinazione e non possono essere annullate!</translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
         <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Una data di scadenza è richiesta per la ripetizione.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripeti</translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia negli appunti</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista non copiata</translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista vuota.</translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Altro</translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Lingua</translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"></translation>
+        <translation>La lingua verrà cambiata al riavvio dell&apos;app.</translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ogni giorno</translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Giorni lavorativi</translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ogni settimana</translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ogni mese</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
+        <translation>Ieri</translation>
+    </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

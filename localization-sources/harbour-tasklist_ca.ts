@@ -64,7 +64,7 @@ menu item to delete the selected task</extracomment>
         <extracomment>headline for the informational upgrade dialog part
 ----------
 headline for information about import/export mechanism</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Informació</translation>
     </message>
     <message id="upgrade-description-part1">
         <source>A database from a previous version of TaskList has been found. Old databases are not supported.</source>
@@ -93,47 +93,47 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="dropbox-no-access-error">
         <source>Cannot access Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>No es pot accedir a Dropbox</translation>
     </message>
     <message id="dropbox-no-access-error-details">
         <source>Unable to fetch credentials from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;han pogut obtenir les credencials de Dropbox.</translation>
     </message>
     <message id="database-error">
         <source>DB error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error a la BD</translation>
     </message>
     <message id="credential-save-error">
         <source>Unable to save credentials in database.</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;han pogut desar les credencials a la base de dades</translation>
     </message>
     <message id="sync-failed-error">
         <source>Sync failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Error a la sincronització</translation>
     </message>
     <message id="upload-failed-error">
         <source>Unable to upload data to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;ha pogut pujar cap dada a Dropbox</translation>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation type="unfinished"></translation>
+        <translation>La sincronització ha finalitzat</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;han pujat les dades a Dropbox.</translation>
     </message>
     <message id="invalid-data-error">
         <source>Invalid data received.</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;han rebut dades invàlides.</translation>
     </message>
     <message id="import-failed-error">
         <source>Data cannot be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>No es poden importar dades.</translation>
     </message>
     <message id="data-download-success">
         <source>Data successfully downloaded from Dropbox.</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;han descarregat les dades de Dropbox.</translation>
     </message>
     <message id="about-label">
         <source>About</source>
@@ -258,7 +258,7 @@ title for the list property in the task description (keep as short as possible)<
         <extracomment>select the due date for a task
 ----------
 title for the due date in the task description (keep as short as possible)</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Prevista el</translation>
     </message>
     <message id="created-date-label">
         <source>Created</source>
@@ -452,7 +452,7 @@ deleting a task via displaying a remorse element (a Sailfish specific interactio
         <extracomment>a label to inform the user how the changes on a list can be saved
 ----------
 a label to inform the user how the changes on a tag can be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Premeu Retorn per desar els canvis</translation>
     </message>
     <message id="set-default-list-label">
         <source>Set as Default list</source>
@@ -618,12 +618,12 @@ menu item to switch to settings page</extracomment>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Opcions de Dropbox</translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Desconnexió de Dropbox</translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
@@ -755,7 +755,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronitza amb Dropbox</translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
@@ -769,84 +769,89 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sincronització amb Dropbox</translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>No es poden actualitzar les dades remotes. Aquestes dades s&apos;han pujat des d&apos;un altre dispositiu.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Substitueix les dades remotes</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Substitueix les dades locals</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Avís: aquestes accions substitueixen les dades i no poden desfer-se!</translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
         <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Cal una data final per a la repetició.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Repeteix</translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia al porta-retalls</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;ha copiat la llista</translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>La llista és buida.</translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Altres</translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;idioma canviarà en reiniciar l&apos;aplicació.</translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Diari</translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Dies laborables</translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Setmanal</translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Mensual</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
+        <translation>Ahir</translation>
+    </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

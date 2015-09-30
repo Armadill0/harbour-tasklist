@@ -32,10 +32,6 @@
 #include <QSettings>
 #include "tasksexport.h"
 
-// third party code
-#include <notification.h>
-
-
 int main(int argc, char *argv[])
 {
     QProcess appinfo;
@@ -64,17 +60,17 @@ int main(int argc, char *argv[])
 
     QSettings settings;
     QString locale = settings.value("language", "").toString();
-    if (locale.isEmpty()) {
+    if (locale.isEmpty() || locale == QString("system_default")) {
         /* use system locale by default */
+        if (locale.isEmpty())
+            settings.setValue("language", "system_default");
         locale = QLocale::system().name();
-        settings.setValue("language", locale);
     }
 
     QTranslator translator;
     translator.load(locale, SailfishApp::pathTo(QString("localization")).toLocalFile());
     app->installTranslator(&translator);
 
-    qmlRegisterType<Notification>("harbour.tasklist.notifications", 1, 0, "Notification");
     qmlRegisterType<TasksExport>("harbour.tasklist.tasks_export", 1, 0, "TasksExport");
 
     QQuickView* view = SailfishApp::createView();

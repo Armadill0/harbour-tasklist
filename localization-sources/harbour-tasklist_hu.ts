@@ -1,6 +1,8 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" sourcelanguage="en_US" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hu" sourcelanguage="en_US">
 <context>
-    <name/>
+    <name></name>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -54,7 +56,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user's attention before starting database upgrade</extracomment>
+        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
         <translation>Beavatkozás szükséges</translation>
     </message>
     <message id="information-label">
@@ -71,7 +73,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
         <translation>Nyomd meg a &apos;%1&apos; gombot a régi adatbázis új formátumra való konverzálásához, vagy a &apos;%2&apos; gombot a régi adatbázis törléséhez, és új, tiszta adatbázis létrehozásához.</translation>
     </message>
     <message id="option-header">
@@ -190,7 +192,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
         <translation>Már létezik a kiválasztott listában.</translation>
     </message>
     <message id="edit-label">
@@ -469,12 +471,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 másodperc</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 másodperc</translation>
     </message>
     <message id="settings-label">
@@ -504,348 +506,353 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="choose-cover-label">
         <source>Choose in list management</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="cover-order-label">
         <source>Cover task order</source>
         <extracomment>user option to choose how the tasks should be ordered on the cover</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="last-updated-label">
         <source>Last updated first</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="name-asc-label">
         <source>Sort by name ascending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="name-desc-label">
         <source>Sort by name descending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="general-options-label">
         <source>General options</source>
         <extracomment>headline for general options</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="startpage-label">
         <source>Start page</source>
         <extracomment>user option to choose what should be shown at application start</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="list-overview-label">
         <source>List overview</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="minimize-label">
         <source>Minimize to cover</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-options-label">
         <source>Task options</source>
         <extracomment>headline for task options</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="open-task-appearance-label">
         <source>open task appearance</source>
         <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="refocus-label">
         <source>refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="strike-through-label">
         <source>strike through done tasks</source>
         <extracomment>user option to strike through done tasks for better task overview</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="list-options-label">
         <source>List options</source>
         <extracomment>headline for list options</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="show-smartlists-label">
         <source>show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="new-task-period-label">
         <source>New task period</source>
         <extracomment>user option to select the time period how long tasks are recognized as new</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="hours-count-label">
         <source>%1 hours</source>
         <extracomment>use %1 as a placeholder for the number of hours</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="single-day-count-label">
         <source>%1 day</source>
         <extracomment>use %1 as a placeholder for the number of the day, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="day-count-label">
         <source>%1 days</source>
         <extracomment>use %1 as a placeholder for the number of days</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="single-week-count-label">
         <source>%1 week</source>
         <extracomment>use %1 as a placeholder for the number of the week, which is currently static &quot;1&quot;</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="remorse-options-label">
         <source>Remorse options</source>
         <extracomment>headline for remorse (a Sailfish specific interaction element to stop a former started process) options</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="remorse-delete-label">
         <source>on Delete</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="remorse-mark-label">
         <source>on Mark task</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="remorse-addmultiple-label">
         <source>on Adding multiple tasks</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
         <extracomment>headline for Dropbox options</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="dropbox-logout-label">
         <source>Dropbox log out</source>
         <extracomment>Button to log out from the dropbox account</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="confirm-button">
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="tagspage-header">
         <source>Manage tags</source>
         <extracomment>headline for the tags page</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="new-tag-label">
         <source>Add new tag</source>
         <extracomment>headline to create new tags</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="tagname-placeholder">
         <source>Enter unique tag name</source>
         <extracomment>fallback text if no name for a new tag is specified</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="new-tag-confirmation-description">
         <source>Press Enter/Return to add the new tag</source>
         <extracomment>hint how to confirm the new tag</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="no-tags-label">
         <source>no tags available</source>
         <extracomment>fallback text if no tags are defined</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="deleting-done-tasks-label">
         <source>Deleting all done tasks</source>
         <extracomment>remorse action to delete all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="reseting-done-tasks-label">
         <source>Reseting all done tasks</source>
         <extracomment>remorse action to reset all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="new-task-label">
         <source>Enter unique task name</source>
         <extracomment>placeholder where the user should enter a name for a new task</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="new-task-confirmation-description">
         <source>Press Enter/Return to add the new task</source>
         <extracomment>a label to inform the user how to confirm the new task</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-reopened-success">
         <source>Task has been reopened!</source>
         <extracomment>notifying the user that the status of the task has been reopened</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-reopened-success-details">
         <source>The task already existed and was marked as done.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn't be added</extracomment>
-        <translation type="unfinished"/>
+        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-not-added-warning-details">
         <source>It already exists on this list.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="task-multiadd-label">
         <source>Adding multiple tasks</source>
         <extracomment>remorse action when multiple tasks are added simultaneously</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="tasks-added-success">
         <source>new tasks have been added.</source>
         <extracomment>notifying the user that new tasks have been added and which were added exactly (Details) notification if multiple tasks were successfully added</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="details-label">
         <source>Details</source>
         <extracomment>detailed list which tasks have been added simultaneously</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
-        <translation type="unfinished"/>
+        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <translation type="unfinished"></translation>
     </message>
     <message id="tasks-exist-warning-details">
         <source>No new tasks have been added to the list.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="orientation-lock-label">
         <source>Orientation locked</source>
         <extracomment>hint to inform the user if the orientation is locked or there are no tasks on this list</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="no-tasks-label">
         <source>no tasks available</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="lock-orientation-label">
         <source>Lock orientation</source>
         <extracomment>menu item to lock or unlock the device orientation</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="unlock-orientation-label">
         <source>Unlock orientation</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="delete-done-tasks-label">
         <source>Delete all done tasks</source>
         <extracomment>menu item to delete all done tasks</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="reset-done-tasks-label">
         <source>Reset all done tasks</source>
         <extracomment>menu item to reset all done tasks to the open status</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="export-import-label">
         <source>Export/Import data</source>
         <extracomment>menu item to switch to export/import page</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="dropbox-sync-label">
         <source>Sync with Dropbox</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="mark-open-label">
         <source>mark as open</source>
         <extracomment>mark a task as open or done via displaying a remorse element (a Sailfish specific interaction element to stop a former started process)</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="mark-done-label">
         <source>mark as done</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="db-sync-label">
         <source>Sync Dropbox</source>
         <extracomment>dropbox sync page title</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can't be saved</extracomment>
-        <translation type="unfinished"/>
+        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <translation type="unfinished"></translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="list-empty-description">
         <source>List is empty.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="other-label">
         <source>Other</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="language-label">
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="languagechange-needs-restart-description">
         <source>Language will be changed after app restart.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="every-day-label">
         <source>Daily</source>
         <oldsource>every day</oldsource>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="every-workday-label">
         <source>Worksdays</source>
         <oldsource>every workday</oldsource>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="every-week-label">
         <source>Weekly</source>
         <oldsource>every week</oldsource>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

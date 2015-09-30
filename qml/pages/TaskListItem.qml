@@ -47,8 +47,8 @@ MouseArea {
     property bool automaticCheck: true
     property real leftMargin
     property real rightMargin: Theme.paddingLarge
-    property bool down: pressed && containsMouse
-    property bool highlighted: down
+    property bool highlighted: blinker.isOn || (pressed && containsMouse)
+    property bool blinking: blinker.remainingBlinks > 0
     property bool busy
     property int priorityValue
     property variant priorityColors: ["--", "-", "", "+", "++"]
@@ -103,6 +103,46 @@ MouseArea {
                 falloffRadius = falloffRadius === 0.075 ? indicator.defaultFalloffRadius : 0.075
                 brightness = brightness == 0.4 ? 1.0 : 0.4
             }
+        }
+    }
+
+    /* @blinks has to be an odd number */
+    function startBlink(duration, blinks) {
+        blinker.launch(duration, blinks)
+    }
+
+    function stopBlink() {
+        blinker.reset()
+    }
+
+    Timer {
+        id: blinker
+        triggeredOnStart: false
+
+        property int remainingBlinks: 0
+        property bool isOn: false   /* has to be false, when an even number of blinks remains */
+
+        function launch(duration, blinks) {
+            interval = duration / blinks
+            remainingBlinks = blinks
+            isOn = true
+            start()
+        }
+
+        function reset() {
+            stop()
+            isOn = false
+            remainingBlinks = 0
+        }
+
+        onTriggered: {
+            --remainingBlinks
+            if (remainingBlinks <= 0) {
+                reset()
+                return
+            }
+            isOn = !isOn
+            restart()
         }
     }
 

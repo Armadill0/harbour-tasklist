@@ -340,7 +340,7 @@ Page {
 
             Label {
                 id: listTaskNumber
-                text: total > 999 ? "999+" : total
+                text: pending + "/" + (total > 999 ? "999+" : total)
                 // FIXME don't use fixed pixel sizes
                 width: 70
                 height: editListLabel.height * 0.55

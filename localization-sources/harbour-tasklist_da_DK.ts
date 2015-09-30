@@ -8,7 +8,7 @@
     </message>
     <message id="pending-label">
         <source>Pending</source>
-        <translation>Udføres</translation>
+        <translation>Verserende</translation>
     </message>
     <message id="new-label">
         <source>New</source>
@@ -846,6 +846,11 @@ menu item to switch to settings page</extracomment>
         <source>Yesterday</source>
         <extracomment>due date string for yesterday</extracomment>
         <translation>I går</translation>
+    </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
+        <translation>Systemstandard</translation>
     </message>
 </context>
 </TS>

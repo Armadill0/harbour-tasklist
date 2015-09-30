@@ -847,5 +847,10 @@ menu item to switch to settings page</extracomment>
         <extracomment>due date string for yesterday</extracomment>
         <translation>Vakar</translation>
     </message>
+    <message id="system-default-label">
+        <source>System default</source>
+        <extracomment>label for a settings &quot;system default&quot; option</extracomment>
+        <translation>Sistemos numatytoji reikšmė</translation>
+    </message>
 </context>
 </TS>
