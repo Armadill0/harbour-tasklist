@@ -147,12 +147,20 @@ Dialog {
             width: parent.width
 
             DialogHeader {
-                //: headline of the editing dialog of a task
-                //% "Edit"
-                title: qsTrId("edit-label") + " '" + params.task + "'"
                 //: save the currently made changes to the task
                 //% "Save"
                 acceptText: qsTrId("save-button")
+            }
+
+            Label {
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                }
+                //: headline of the editing dialog of a task
+                //% "Edit task"
+                text: qsTrId("edit-label")
+                font.pixelSize: Theme.fontSizeLarge
             }
 
             SectionHeader {
