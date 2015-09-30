@@ -572,7 +572,7 @@ Page {
 
             ListView.onAdd: {
                 if (typeof fresh !== 'undefined' && fresh) {
-                    taskLabel.startBlink(taskListWindow.remorseOnMark * 2000, 5)
+                    taskLabel.startBlink(taskListWindow.remorseOnMark * 2250, 9)
                     fresh = false
                 }
             }
