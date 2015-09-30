@@ -215,7 +215,7 @@ Dialog {
                 label: qsTrId("priority-label")
                 minimumValue: DB.PRIORITY_MIN
                 maximumValue: DB.PRIORITY_MAX
-                stepSize: DB.PRIORITY_STEP
+                stepSize: 1
                 value: parseInt(params.priority)
                 valueText: value.toString()
             }
