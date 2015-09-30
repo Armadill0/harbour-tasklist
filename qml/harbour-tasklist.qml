@@ -364,23 +364,23 @@ ApplicationWindow {
 
     // notification function
     function pushNotification(notificationType, notificationSummary, notificationBody) {
-        var notificationCategory
+        var notificationIcon
         switch(notificationType) {
         case "OK":
-            notificationCategory = "x-jolla.store.sideloading-success"
+            notificationIcon = "icon-lock-installed"
             break
         case "INFO":
-            notificationCategory = "x-jolla.lipstick.credentials.needUpdate.notification"
+            notificationIcon = "icon-lock-information"
             break
         case "WARNING":
-            notificationCategory = "x-jolla.store.error"
+            notificationIcon = "icon-lock-warning"
             break
         case "ERROR":
-            notificationCategory = "x-jolla.store.error"
+            notificationIcon = "icon-lock-warning"
             break
         }
 
-        notification.category = notificationCategory
+        notification.appIcon = notificationIcon
         notification.previewSummary = notificationSummary
         notification.previewBody = notificationBody
         notification.publish()
@@ -409,7 +409,8 @@ ApplicationWindow {
 
     Notification {
         id: notification
-        category: "x-nemo.email.error"
+        appName: appname
+        appIcon: "icon-lock-warning"
         itemCount: 1
     }
 
