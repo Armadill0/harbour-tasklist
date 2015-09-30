@@ -97,6 +97,8 @@ Dialog {
         // populate list combobox
         DB.allLists(appendList)
 
+        priorityBox.currentIndex = DB.PRIORITY_MAX - parseInt(params.priority)
+
         // populate repeat combobox
         for (var i in DB.REPETITION_VARIANTS) {
             var item = DB.REPETITION_VARIANTS[i]
@@ -114,7 +116,7 @@ Dialog {
     onAccepted: {
         var ok = DB.updateTask(params.taskid, listModel.get(list.currentIndex).id,
                                task.text, taskListWindow.statusOpen(status.checked) ? 1 : 0,
-                               params.dueDate, 0, priority.value, notes.text,
+                               params.dueDate, 0, priorityBox.selectedPriority(), notes.text,
                                DB.REPETITION_VARIANTS[repeat.currentIndex].key)
         if (ok)
             taskListWindow.listchanged = true
@@ -207,17 +209,23 @@ Dialog {
                 onCurrentIndexChanged: checkContent()
             }
 
-            Slider {
-                id: priority
-                width: parent.width
-                //: select the tasks priority
-                //% "Priority"
-                label: qsTrId("priority-label")
-                minimumValue: DB.PRIORITY_MIN
-                maximumValue: DB.PRIORITY_MAX
-                stepSize: 1
-                value: parseInt(params.priority)
-                valueText: value.toString()
+            ComboBox {
+                id: priorityBox
+                anchors.left: parent.left
+                label: qsTrId("priority-label") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: DB.PRIORITY_MAX - DB.PRIORITY_MIN + 1
+                        MenuItem {
+                            text: DB.PRIORITY_MAX - index
+                        }
+                    }
+                }
+
+                function selectedPriority() {
+                    return DB.PRIORITY_MAX - currentIndex
+                }
             }
 
             SectionHeader {
