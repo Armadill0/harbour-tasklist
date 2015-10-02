@@ -22,30 +22,61 @@ import Sailfish.Silica 1.0
 
 Page {
     id: helpPage
+    allowedOrientations: Orientation.All
 
-    SilicaFlickable {
+    ListModel {
+        id: helpModel
+    }
+
+    Component.onCompleted: {
+        helpModel.append({"label": "new task flashing", "description": "Tap on a newly added task while it's still flashing. This leads you directly to the Edit page where you can set more options to your task."})
+    }
+
+    SilicaListView {
         anchors.fill: parent
-        contentHeight: helpContent.height
+
+        model: helpModel
 
         header: PageHeader {
-            //: headline for the help page
-            //% "Help"
-            title: qsTrId("helppage-header") + " - " + appname
+                //: headline for the help page
+                //% "Help"
+                title: qsTrId("helppage-header") + " - " + appname
         }
 
-        Column {
-            id: helpContent
+        delegate: Item {
+            width: parent.width - 2 * Theme.horizontalPageMargin
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: childrenRect.height
 
             SectionHeader {
+                id: taskPageHeader
                 //% "Task page"
                 text: qsTrId("taskpage-header")
             }
 
-            HelpItem {
+            Label {
+                id: itemLabel
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    top: taskPageHeader.bottom
+                }
+
                 //% "New task flashing"
-                label: qsTrId("edit-after-add-label")
+                text: label
+            }
+
+            Label {
+                id: itemDescription
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    top: itemLabel.bottom
+                }
+                font.pixelSize: Theme.fontSizeSmall
                 //% "Tap on a newly added task while it's still flashing. This leads you directly to the Edit page where you can set more options to your task."
-                description: qsTrId("edit-after-add-description")
+                text: description
+                wrapMode: Text.WordWrap
             }
         }
     }

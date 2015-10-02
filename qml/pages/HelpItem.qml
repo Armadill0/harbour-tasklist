@@ -22,11 +22,18 @@ import Sailfish.Silica 1.0
 
 MouseArea {
     id: root
+    width: parent ? parent.width : Screen.width
+    implicitHeight: Math.max(toggle.height, desc.y + desc.height)
 
     property string label
     property string description
 
     Item {
+        anchors {
+            left: parent.left;
+            leftMargin: root.leftMargin
+        }
+
         Label {
             text: label
         }
