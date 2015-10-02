@@ -88,7 +88,12 @@ ApplicationWindow {
     property int backFocusAddTask
     property bool smartListVisibility
     property int recentlyAddedOffset
-    property bool doneTasksStrikedThrough
+    /* How closed task appears:
+     * - 0: don't show
+     * - 1: not selected text switch
+     * - 2: striked through text switch
+     */
+    property int closedTaskAppearance
 
     initialPage: DB.schemaIsUpToDate() ? initialTaskPage : migrateConfirmation
     cover: Component { CoverPage {} }
@@ -404,7 +409,10 @@ ApplicationWindow {
         backFocusAddTask = DB.getSettingAsNumber("backFocusAddTask")
         smartListVisibility = DB.getSettingAsNumber("smartListVisibility") === 1
         recentlyAddedOffset = DB.getSettingAsNumber("recentlyAddedOffset")
-        doneTasksStrikedThrough = DB.getSettingAsNumber("doneTasksStrikedThrough") === 1
+        // default appearance: not shown
+        closedTaskAppearance = DB.getSettingAsNumber("closedTaskAppearance", 0)
+        // check range
+        closedTaskAppearance = Math.min(Math.max(closedTaskAppearance, 0), 2)
     }
 
     Notification {

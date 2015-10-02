@@ -102,7 +102,11 @@ Page {
             DB.readSmartListTasks(taskListWindow.smartListType, appendTask)
         } else {
             listname = DB.getListName(listid)
-            DB.readTasks(listid, appendTask)
+            var statusFilter = undefined
+            // check if we need to filter out closed tasks
+            if (taskListWindow.closedTaskAppearance === 0)
+                statusFilter = "1"
+            DB.readTasks(listid, appendTask, statusFilter)
         }
 
         // disable pulldown menus if no done tasks available
@@ -558,7 +562,7 @@ Page {
                     // insert Item to correct position
                     if (status && !recurring) {
                         taskListModel.insert(0, newTask)
-                    } else {
+                    } else if (taskListWindow.closedTaskAppearance > 0) {
                         var i;
                         for (i = 0; i < taskListModel.count; i++)
                             if (!taskListModel.get(i).taskstatus)
