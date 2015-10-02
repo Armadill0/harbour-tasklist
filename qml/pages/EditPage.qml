@@ -147,20 +147,12 @@ Dialog {
             width: parent.width
 
             DialogHeader {
+                //: headline of the editing dialog of a task
+                //% "Edit task"
+                title: qsTrId("edit-task-label")
                 //: save the currently made changes to the task
                 //% "Save"
                 acceptText: qsTrId("save-button")
-            }
-
-            Label {
-                anchors {
-                    left: parent.left
-                    leftMargin: Theme.paddingLarge
-                }
-                //: headline of the editing dialog of a task
-                //% "Edit task"
-                text: qsTrId("edit-label")
-                font.pixelSize: Theme.fontSizeLarge
             }
 
             SectionHeader {
@@ -251,7 +243,7 @@ Dialog {
                     anchors.verticalCenter: clearButton.verticalCenter
                     //: select the due date for a task
                     //% "Due"
-                    label: qsTrId("due-date-label") + ": "
+                    label: qsTrId("due-date-label") + ":"
                     value: composeDueDate()
 
                     onClicked: {
