@@ -68,11 +68,6 @@ ApplicationWindow {
         //% "Tags"
         qsTrId("tags-label")
     ]
-    // set default priorities
-    property int minimumPriority: 1
-    property int defaultPriority: 3
-    property int maximumPriority: 5
-
     property bool coverActionMultiple: listOfLists.length > 1
     property bool coverActionSingle: !coverActionMultiple
 
