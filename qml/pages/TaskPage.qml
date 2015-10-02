@@ -69,14 +69,14 @@ Page {
         taskListModel.append({ taskid: id, task: task, taskstatus: status,
                                  listid: listid, listname: DB.getListName(listid),
                                  creation: creation, dueDate: dueDate, priority: priority,
-                                 notes: notes, repeat: repeat })
+                                 notes: notes, repeat: repeat, fresh: false })
     }
 
     function insertNewTask(index, id, task, listid, creation) {
         taskListModel.insert(index, { taskid: id, task: task, taskstatus: true,
                                  listid: listid, listname: DB.getListName(listid),
                                  creation: creation, dueDate: 0, priority: DB.PRIORITY_DEFAULT,
-                                 notes: "", repeat: "" })
+                                 notes: "", repeat: "", fresh: true })
     }
 
     function copyTaskModel(item) {
@@ -570,6 +570,13 @@ Page {
                 }, taskListWindow.remorseOnMark * 1000)
             }
 
+            ListView.onAdd: {
+                if (typeof fresh !== 'undefined' && fresh) {
+                    taskLabel.startBlink(taskListWindow.remorseOnMark * 2250, 9)
+                    fresh = false
+                }
+            }
+
             // remorse item for all remorse actions
             RemorseItem {
                 id: taskRemorse
@@ -587,6 +594,8 @@ Page {
 
                 // show context menu
                 onPressAndHold: {
+                    if (blinking)
+                        stopBlink()
                     if (!taskContextMenu) {
                         taskContextMenu = contextMenuComponent.createObject(taskList)
                     }
@@ -594,6 +603,11 @@ Page {
                 }
 
                 onClicked: {
+                    if (blinking) {
+                        stopBlink()
+                        pageStack.push(Qt.resolvedUrl("EditPage.qml"), {params: copyTaskModel(model)})
+                        return
+                    }
                     // because of the smart list concept, the status change is deactivated for them
                     if (smartListType === -1)
                         changeStatus(!taskstatus)
