@@ -29,10 +29,14 @@ Page {
     }
 
     Component.onCompleted: {
-        helpModel.append({"label": "new task flashing", "description": "Tap on a newly added task while it's still flashing. This leads you directly to the Edit page where you can set more options to your task."})
+        //% "Task page"
+        helpModel.append({"page": "taskpage-header",
+                             "label": "new task flashing",
+                             "description": "Tap on a newly added task while it's still flashing." +
+                             " This leads you directly to the Edit page where you can set more options to your task."})
     }
 
-    SilicaListView {
+    ListView {
         anchors.fill: parent
 
         model: helpModel
@@ -43,16 +47,18 @@ Page {
                 title: qsTrId("helppage-header") + " - " + appname
         }
 
+        section {
+            property: "page"
+            criteria: ViewSection.FullString
+            delegate: SectionHeader {
+                text: page
+            }
+        }
+
         delegate: Item {
             width: parent.width - 2 * Theme.horizontalPageMargin
             anchors.horizontalCenter: parent.horizontalCenter
             height: childrenRect.height
-
-            SectionHeader {
-                id: taskPageHeader
-                //% "Task page"
-                text: qsTrId("taskpage-header")
-            }
 
             Label {
                 id: itemLabel
