@@ -29,6 +29,7 @@ Page {
     }
 
     Component.onCompleted: {
+        //: task page header of help page
         //% "Task page"
         helpModel.append({"sectionid": qsTrId("taskpage-header"),
                              //% "New task is flashing"
@@ -40,12 +41,14 @@ Page {
                              "label": qsTrId("add-multiple-tasks-label"),
                              //% "By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task."
                              "description": qsTrId("add-multiple-tasks-description")})
+        //: tag page header of help page
         //% "Tag Page"
         helpModel.append({"sectionid": qsTrId("tagpage-header"),
                              //% "Manage Tags"
                              "label": qsTrId("tag-management-label"),
                              //% "Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future."
                              "description": qsTrId("tag-management-description")})
+        //: keyboard header of help page
         //% "Keyboard Support"
         helpModel.append({"sectionid": qsTrId("keyboard-header"),
                              //% "Jump to text field"
