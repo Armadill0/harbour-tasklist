@@ -135,7 +135,6 @@ Page {
         smartListModel.clear()
         for (var i in taskListWindow.smartListNames) {
             // push default values to task number of smart lists
-            //: default string for task count of smart lists, when value is not available (n/a)
             addSmartList(parseInt(i), -1)
         }
 

@@ -212,7 +212,8 @@ Dialog {
             ComboBox {
                 id: priorityBox
                 anchors.left: parent.left
-                //% Priority
+                //: select the tasks priority
+                //% "Priority"
                 label: qsTrId("priority-label") + ":"
 
                 menu: ContextMenu {

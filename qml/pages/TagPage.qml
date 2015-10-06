@@ -96,7 +96,7 @@ Page {
             SectionHeader {
                 //: headline for the user created tags
                 //% "Your tags"
-                text: qsTrId("tags-label")
+                text: qsTrId("tags-header")
             }
         }
 

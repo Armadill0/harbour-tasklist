@@ -197,7 +197,6 @@ ApplicationWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
 
                         Button {
-                            //: delete old database option
                             text: dbDeleteText
                             onClicked: {
                                 if (DB.replaceOldDB())

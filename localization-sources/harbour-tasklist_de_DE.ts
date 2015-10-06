@@ -240,8 +240,8 @@ title for the list property in the task description (keep as short as possible)<
         <translation>Liste</translation>
     </message>
     <message id="priority-label">
-        <source/>
-        <oldsource>Priority</oldsource>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
         <translation>Priorität</translation>
     </message>
     <message id="dates-label">
@@ -916,13 +916,19 @@ menu item to switch to settings page</extracomment>
         <translation>Hilfe</translation>
     </message>
     <message id="helppage-description">
-        <source>This page describes all hidden and unapparent features.</source>
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
         <translation>Diese Seite erklärt alle versteckten und schwer auffindbaren Features.</translation>
     </message>
     <message id="help-label">
         <source>Help</source>
         <extracomment>menu item to jump to the application's help page</extracomment>
         <translation>Hilfe</translation>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Deine Markierungen</translation>
     </message>
 </context>
 </TS>
