@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,13 +36,14 @@ int main(int argc, char *argv[])
 {
     QProcess appinfo;
     QString appversion;
-    QString appname = "harbour-tasklist";
+    QString appname = "TaskList";
+    QString pkgname = "harbour-tasklist";
 
-    QCoreApplication::setOrganizationName(appname);
-    QCoreApplication::setApplicationName(appname);
+    QCoreApplication::setOrganizationName(pkgname);
+    QCoreApplication::setApplicationName(pkgname);
 
     // read app version from rpm database on startup
-    appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << appname);
+    appinfo.start("/bin/rpm", QStringList() << "-qa" << "--queryformat" << "%{version}" << pkgname);
     appinfo.waitForFinished(-1);
     if (appinfo.bytesAvailable() > 0) {
         appversion = appinfo.readAll();
@@ -76,6 +77,7 @@ int main(int argc, char *argv[])
     QQuickView* view = SailfishApp::createView();
     QObject::connect(view->engine(), SIGNAL(quit()), app, SLOT(quit()));
     view->rootContext()->setContextProperty("version", appversion);
+    view->rootContext()->setContextProperty("appname", appname);
     view->setSource(SailfishApp::pathTo("qml/harbour-tasklist.qml"));
     view->show();    
 

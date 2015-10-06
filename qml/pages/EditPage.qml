@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -97,6 +97,8 @@ Dialog {
         // populate list combobox
         DB.allLists(appendList)
 
+        priorityBox.currentIndex = DB.PRIORITY_MAX - parseInt(params.priority)
+
         // populate repeat combobox
         for (var i in DB.REPETITION_VARIANTS) {
             var item = DB.REPETITION_VARIANTS[i]
@@ -114,7 +116,7 @@ Dialog {
     onAccepted: {
         var ok = DB.updateTask(params.taskid, listModel.get(list.currentIndex).id,
                                task.text, taskListWindow.statusOpen(status.checked) ? 1 : 0,
-                               params.dueDate, 0, priority.value, notes.text,
+                               params.dueDate, 0, priorityBox.selectedPriority(), notes.text,
                                DB.REPETITION_VARIANTS[repeat.currentIndex].key)
         if (ok)
             taskListWindow.listchanged = true
@@ -146,8 +148,8 @@ Dialog {
 
             DialogHeader {
                 //: headline of the editing dialog of a task
-                //% "Edit"
-                title: qsTrId("edit-label") + " '" + params.task + "'"
+                //% "Edit task"
+                title: qsTrId("edit-task-label")
                 //: save the currently made changes to the task
                 //% "Save"
                 acceptText: qsTrId("save-button")
@@ -207,17 +209,23 @@ Dialog {
                 onCurrentIndexChanged: checkContent()
             }
 
-            Slider {
-                id: priority
-                width: parent.width
-                //: select the tasks priority
-                //% "Priority"
-                label: qsTrId("priority-label")
-                minimumValue: DB.PRIORITY_MIN
-                maximumValue: DB.PRIORITY_MAX
-                stepSize: DB.PRIORITY_STEP
-                value: parseInt(params.priority)
-                valueText: value.toString()
+            ComboBox {
+                id: priorityBox
+                anchors.left: parent.left
+                label: qsTrId("priority-label") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: DB.PRIORITY_MAX - DB.PRIORITY_MIN + 1
+                        MenuItem {
+                            text: DB.PRIORITY_MAX - index
+                        }
+                    }
+                }
+
+                function selectedPriority() {
+                    return DB.PRIORITY_MAX - currentIndex
+                }
             }
 
             SectionHeader {
@@ -235,7 +243,7 @@ Dialog {
                     anchors.verticalCenter: clearButton.verticalCenter
                     //: select the due date for a task
                     //% "Due"
-                    label: qsTrId("due-date-label") + ": "
+                    label: qsTrId("due-date-label") + ":"
                     value: composeDueDate()
 
                     onClicked: {

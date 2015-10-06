@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -173,7 +173,7 @@ Page {
                 width: parent.width
                 //: headline for overview of all lists
                 //% "Manage lists"
-                title: qsTrId("listpage-header") + " - TaskList"
+                title: qsTrId("listpage-header") + " - " + appname
             }
 
             SectionHeader {

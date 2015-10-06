@@ -6,7 +6,6 @@ var DAY_LENGTH = 24 * 3600 * 1000;
 
 var PRIORITY_MIN = 1;
 var PRIORITY_MAX = 5;
-var PRIORITY_STEP = 1;
 var PRIORITY_DEFAULT = 3;
 
 function identity(unixTime) {
