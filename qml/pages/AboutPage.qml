@@ -27,7 +27,10 @@ Dialog {
 
     SilicaFlickable {
         id: aboutTaskList
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            bottomMargin: Theme.paddingLarge
+        }
         contentHeight: aboutRectangle.height
 
         VerticalScrollDecorator { flickable: aboutTaskList }
@@ -148,12 +151,6 @@ Dialog {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: Theme.fontSizeSmall
                 }
-            }
-
-            Rectangle {
-                width: parent.width
-                height: Theme.paddingLarge
-                color: "transparent"
             }
         }
     }

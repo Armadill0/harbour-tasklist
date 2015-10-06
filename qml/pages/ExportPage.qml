@@ -66,7 +66,10 @@ Page {
     }
 
     SilicaFlickable {
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            bottomMargin: Theme.paddingLarge
+        }
         contentHeight: column.height
 
         VerticalScrollDecorator { }
@@ -279,12 +282,6 @@ Page {
                                                         //% "Please restart TaskList to work with the new database."
                                                         qsTrId("drop-database-detail"))
                 }
-            }
-
-            Rectangle {
-                width: parent.width
-                height: Theme.paddingLarge
-                color: "transparent"
             }
         }
     }

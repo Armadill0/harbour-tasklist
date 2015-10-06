@@ -30,8 +30,7 @@ OTHER_FILES += qml/harbour-tasklist.qml \
     qml/pages/TagDialog.qml \
     qml/pages/sync/DropboxAuth.qml \
     qml/pages/sync/DropboxSync.qml \
-    qml/pages/HelpPage.qml \
-    qml/pages/HelpItem.qml
+    qml/pages/HelpPage.qml
 
 include(third_party/QtDropbox/qtdropbox.pri)
 

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en_US" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en_US" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Action required</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</translation>
     </message>
     <message id="option-header">
@@ -192,7 +190,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>It already exists on the selected list.</translation>
     </message>
     <message id="edit-label">
@@ -242,9 +240,9 @@ title for the list property in the task description (keep as short as possible)<
         <translation>List</translation>
     </message>
     <message id="priority-label">
-        <source></source>
+        <source/>
         <oldsource>Priority</oldsource>
-        <translation type="unfinished">Priority</translation>
+        <translation>Priority</translation>
     </message>
     <message id="dates-label">
         <source>Dates</source>
@@ -469,12 +467,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 second</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 seconds</translation>
     </message>
     <message id="settings-label">
@@ -687,7 +685,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Task could not be added!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -711,7 +709,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>All tasks already exist!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -791,7 +789,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
         <translation>A due date is required for the repetition.</translation>
     </message>
     <message id="repeat-label">
@@ -855,73 +853,76 @@ menu item to switch to settings page</extracomment>
     <message id="edit-task-label">
         <source>Edit task</source>
         <extracomment>headline of the editing dialog of a task</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Edit task</translation>
     </message>
     <message id="taskpage-header">
         <source>Task page</source>
-        <translation type="unfinished"></translation>
+        <extracomment>task page header of help page</extracomment>
+        <translation>Task page</translation>
     </message>
     <message id="new-task-flashing-label">
         <source>New task is flashing</source>
-        <translation type="unfinished"></translation>
+        <translation>New task is flashing</translation>
     </message>
     <message id="new-task-flashing-description">
         <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</translation>
     </message>
     <message id="add-multiple-tasks-label">
         <source>Add multiple tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>Add multiple tasks</translation>
     </message>
     <message id="add-multiple-tasks-description">
         <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
-        <translation type="unfinished"></translation>
+        <translation>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</translation>
     </message>
     <message id="tagpage-header">
         <source>Tag Page</source>
-        <translation type="unfinished"></translation>
+        <extracomment>tag page header of help page</extracomment>
+        <translation>Tag Page</translation>
     </message>
     <message id="tag-management-label">
         <source>Manage Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Manage Tags</translation>
     </message>
     <message id="tag-management-description">
         <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
-        <translation type="unfinished"></translation>
+        <translation>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</translation>
     </message>
     <message id="keyboard-header">
         <source>Keyboard Support</source>
-        <translation type="unfinished"></translation>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation>Keyboard Support</translation>
     </message>
     <message id="keyboard-tab-label">
         <source>Jump to text field</source>
-        <translation type="unfinished"></translation>
+        <translation>Jump to text field</translation>
     </message>
     <message id="keyboard-tab-description">
         <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
-        <translation type="unfinished"></translation>
+        <translation>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</translation>
     </message>
     <message id="keyboard-arrows-lr-label">
         <source>Jump to next/previous list</source>
-        <translation type="unfinished"></translation>
+        <translation>Jump to next/previous list</translation>
     </message>
     <message id="keyboard-arrows-lr-description">
         <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
-        <translation type="unfinished"></translation>
+        <translation>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</translation>
     </message>
     <message id="helppage-header">
         <source>Help</source>
         <extracomment>headline for the help page</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Help</translation>
     </message>
     <message id="helppage-description">
         <source>This page describes all hidden and unapparent features.</source>
-        <translation type="unfinished"></translation>
+        <translation>This page describes all hidden and unapparent features.</translation>
     </message>
     <message id="help-label">
         <source>Help</source>
-        <extracomment>menu item to jump to the application&apos;s help page</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation>Help</translation>
     </message>
 </context>
 </TS>

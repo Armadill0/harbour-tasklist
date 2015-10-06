@@ -135,7 +135,10 @@ Dialog {
 
     SilicaFlickable {
         id: settingsList
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            bottomMargin: Theme.paddingLarge
+        }
         contentHeight: settingsColumn.height
 
         VerticalScrollDecorator { flickable: settingsList }
@@ -389,12 +392,6 @@ Dialog {
                     taskListWindow.removeDropboxCredentials()
                     signOutDropbox.enabled = false
                 }
-            }
-
-            Rectangle {
-                width: parent.width
-                height: Theme.paddingLarge
-                color: "transparent"
             }
         }
     }

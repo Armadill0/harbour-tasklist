@@ -64,7 +64,11 @@ Page {
 
     SilicaListView {
         id: helpPageList
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            bottomMargin: Theme.paddingLarge
+        }
+        spacing: Theme.paddingLarge
 
         model: helpModel
 
@@ -110,6 +114,7 @@ Page {
                 }
 
                 text: label
+                truncationMode: TruncationMode.Fade
             }
 
             Label {
@@ -122,13 +127,6 @@ Page {
                 font.pixelSize: Theme.fontSizeExtraSmall
                 text: description
                 wrapMode: Text.WordWrap
-            }
-
-            Rectangle {
-                width: parent.width
-                height: Theme.paddingLarge
-                anchors.top: itemDescription.bottom
-                color: "transparent"
             }
         }
     }
