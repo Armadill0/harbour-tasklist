@@ -86,7 +86,7 @@ Page {
             Label {
                 width: parent.width - 2 * Theme.horizontalPageMargin
                 anchors.horizontalCenter: parent.horizontalCenter
-                //% "This page describes all hidden and unapparent features."
+                //% "This page describes all hidden and not apparent features."
                 text: qsTrId("helppage-description")
                 wrapMode: Text.WordWrap
             }

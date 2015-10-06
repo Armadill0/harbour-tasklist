@@ -212,6 +212,7 @@ Dialog {
             ComboBox {
                 id: priorityBox
                 anchors.left: parent.left
+                //% Priority
                 label: qsTrId("priority-label") + ":"
 
                 menu: ContextMenu {

@@ -916,7 +916,8 @@ menu item to switch to settings page</extracomment>
         <translation>Help</translation>
     </message>
     <message id="helppage-description">
-        <source>This page describes all hidden and unapparent features.</source>
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
         <translation>This page describes all hidden and unapparent features.</translation>
     </message>
     <message id="help-label">
