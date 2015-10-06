@@ -240,8 +240,8 @@ title for the list property in the task description (keep as short as possible)<
         <translation>Lista</translation>
     </message>
     <message id="priority-label">
-        <source/>
-        <oldsource>Priority</oldsource>
+        <source>Priority</source>
+        <extracomment>select the tasks priority</extracomment>
         <translation>Prioritet</translation>
     </message>
     <message id="dates-label">
@@ -924,6 +924,11 @@ menu item to switch to settings page</extracomment>
         <source>Help</source>
         <extracomment>menu item to jump to the application's help page</extracomment>
         <translation>Hjälp</translation>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Dina taggar</translation>
     </message>
 </context>
 </TS>
