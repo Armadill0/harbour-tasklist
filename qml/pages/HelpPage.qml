@@ -30,10 +30,16 @@ Page {
 
     Component.onCompleted: {
         //% "Task page"
-        helpModel.append({"page": "taskpage-header",
-                             "label": "new task flashing",
-                             "description": "Tap on a newly added task while it's still flashing." +
-                             " This leads you directly to the Edit page where you can set more options to your task."})
+        helpModel.append({"page": qsTrId("taskpage-header"),
+                             //% "New task flashing"
+                             "label": qsTrId("new-task-flashing-label"),
+                             //% "Tap on a newly added task while it's still flashing. This leads you directly to the Edit page where you can set more options to your task."
+                             "description": qsTrId("new-task-flashing-description")})
+        helpModel.append({"page": qsTrId("taskpage-header"),
+                             //% "Add multiple tasks"
+                             "label": qsTrId("add-multiple-tasks-label"),
+                             //% "By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task."
+                             "description": qsTrId("add-multiple-tasks-description")})
     }
 
     ListView {
@@ -51,7 +57,7 @@ Page {
             property: "page"
             criteria: ViewSection.FullString
             delegate: SectionHeader {
-                text: page
+                text: section
             }
         }
 
@@ -65,10 +71,9 @@ Page {
                 width: parent.width
                 anchors {
                     left: parent.left
-                    top: taskPageHeader.bottom
+                    top: parent.top
                 }
 
-                //% "New task flashing"
                 text: label
             }
 
@@ -79,8 +84,7 @@ Page {
                     left: parent.left
                     top: itemLabel.bottom
                 }
-                font.pixelSize: Theme.fontSizeSmall
-                //% "Tap on a newly added task while it's still flashing. This leads you directly to the Edit page where you can set more options to your task."
+                font.pixelSize: Theme.fontSizeExtraSmall
                 text: description
                 wrapMode: Text.WordWrap
             }
