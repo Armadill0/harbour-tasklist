@@ -298,8 +298,8 @@ Dialog {
 
             Label {
                 id: creation
-                width: parent.width - 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 //: displays the date when the task has been created by the user
                 //% "Created"
                 text: qsTrId("created-date-label") + ": " + Qt.formatDateTime(new Date(params.creation)).toLocaleString(Qt.locale())

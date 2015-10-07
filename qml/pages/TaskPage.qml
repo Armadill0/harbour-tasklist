@@ -290,7 +290,7 @@ Page {
             }
 
             Row {
-                width: parent.width - 2 * Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
                 spacing: Theme.paddingLarge
                 visible: smartListType === -1 ? true : false
 
@@ -499,8 +499,9 @@ Page {
 
         delegate: ListItem {
             id: taskListItem
-            width: ListView.view.width
+            width: parent.width
             height: menuOpen ? taskContextMenu.height + taskLabel.height : taskLabel.height
+            anchors.left: parent.left
 
             property Item taskContextMenu
             property bool menuOpen: taskContextMenu != null && taskContextMenu.parent === taskListItem
@@ -590,9 +591,9 @@ Page {
 
             TaskListItem {
                 id: taskLabel
-                x: Theme.paddingSmall
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 text: task
-                // hack (listname + "") to prevent an error (Unable to assign [undefined] to qsTrIding) when switching to a smartlist where the description should be shown
                 description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
                 automaticCheck: false

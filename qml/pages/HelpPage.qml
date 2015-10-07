@@ -62,17 +62,14 @@ Page {
                              "description": qsTrId("keyboard-arrows-lr-description")})
     }
 
+    VerticalScrollDecorator { flickable: helpPageList }
+
     SilicaListView {
         id: helpPageList
-        anchors {
-            fill: parent
-            bottomMargin: Theme.paddingLarge
-        }
+        anchors.fill: parent
         spacing: Theme.paddingLarge
 
         model: helpModel
-
-        VerticalScrollDecorator { flickable: helpPageList }
 
         header: Column {
             width: parent.width
@@ -90,6 +87,12 @@ Page {
                 text: qsTrId("helppage-description")
                 wrapMode: Text.WordWrap
             }
+        }
+
+        footer: Rectangle {
+            width: parent.width
+            height: Theme.paddingLarge
+            color: "transparent"
         }
 
         section {

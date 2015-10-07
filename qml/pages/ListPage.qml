@@ -34,8 +34,8 @@ Page {
     // helper function to add lists to the list
     function appendList(ID, name, total, pending, recent, today, tomorrow) {
         listListModel.append({ listid: ID, listname: name, total: total,
-                               pending: pending, recent: recent,
-                               today: today, tomorrow: tomorrow });
+                                 pending: pending, recent: recent,
+                                 today: today, tomorrow: tomorrow });
     }
 
     // helper function to wipe the list element
@@ -57,7 +57,7 @@ Page {
         if (typeof(buttonActive) === "undefined")
             buttonActive = tasks > 0
         smartListModel.append({ listName: taskListWindow.smartListNames[listType], taskCount: tasks,
-                                buttonActive: buttonActive, listType: listType })
+                                  buttonActive: buttonActive, listType: listType })
     }
 
     // simplified: distinguishes only cases '1' and '> 1', which is right in English,
@@ -325,84 +325,86 @@ Page {
                 id: listRemorse
             }
 
-            Label {
-                id: listLabel
-                text: listname
-                // FIXME don't use fixed pixel sizes
-                width: parent.width - 105
-                x: Theme.paddingLarge
-                height: editListLabel.height * 0.55
-                anchors.top: parent.top
-                verticalAlignment: Text.AlignVCenter
-                truncationMode: TruncationMode.Fade
-            }
+            Rectangle {
+                id: listContainer
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "transparent"
 
-            Label {
-                id: listTaskNumber
-                text: pending + "/" + (total > 999 ? "999+" : total)
-                // FIXME don't use fixed pixel sizes
-                width: 70
-                height: editListLabel.height * 0.55
-                anchors.top: parent.top
-                anchors.left: listLabel.right
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignRight
-            }
+                Label {
+                    id: listLabel
+                    text: listname
+                    width: parent.width - listTaskNumber.width
+                    height: editListLabel.height * 0.55
+                    anchors.top: parent.top
+                    verticalAlignment: Text.AlignVCenter
+                    truncationMode: TruncationMode.Fade
+                }
 
-            Label {
-                id: listProperties
-                width: parent.width
-                x: Theme.paddingLarge
-                height: editListLabel.height * 0.45
-                font.pixelSize: Theme.fontSizeSmall
-                font.italic: true
-                color: Theme.secondaryColor
-                truncationMode: TruncationMode.Fade
-                verticalAlignment: Text.AlignTop
-                anchors.top: listLabel.bottom
-            }
+                Label {
+                    id: listTaskNumber
+                    text: pending + "/" + (total > 1 ? "999+" : total)
+                    width: 3 * Theme.paddingLarge
+                    height: editListLabel.height * 0.55
+                    anchors.top: parent.top
+                    anchors.left: listLabel.right
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignRight
+                }
 
-            TextField {
-                id: editListLabel
-                // FIXME don't use fixed pixel sizes
-                width: parent.width - 70
-                text: listname
-                //: a label to inform the user how the changes on a list can be saved
-                //% "Press Enter/Return to save changes"
-                label: qsTrId("save-changes-description")
-                visible: false
-                anchors.top: parent.top
-                // enable enter key if minimum list length has been reached
-                EnterKey.enabled: text.length > 0
+                Label {
+                    id: listProperties
+                    width: parent.width
+                    height: editListLabel.height * 0.45
+                    font.pixelSize: Theme.fontSizeSmall
+                    font.italic: true
+                    color: Theme.secondaryColor
+                    truncationMode: TruncationMode.Fade
+                    verticalAlignment: Text.AlignTop
+                    anchors.top: listLabel.bottom
+                }
 
-                // set allowed chars and list length
-                validator: RegExpValidator { regExp: /^.{,60}$/ }
+                TextField {
+                    id: editListLabel
+                    width: parent.width
+                    text: listname
+                    //: a label to inform the user how the changes on a list can be saved
+                    //% "Press Enter/Return to save changes"
+                    label: qsTrId("save-changes-description")
+                    visible: false
+                    anchors.top: parent.top
+                    // enable enter key if minimum list length has been reached
+                    EnterKey.enabled: text.length > 0
 
-                function changeList(newName) {
-                    // update list in db
-                    if (DB.updateList(listid, newName)) {
-                        // small hack to automatically reload the current selected list which name has been changed
-                        if (taskListWindow.listid === listid)
-                            taskListWindow.listchanged = true
+                    // set allowed chars and list length
+                    validator: RegExpValidator { regExp: /^.{,60}$/ }
+
+                    function changeList(newName) {
+                        // update list in db
+                        if (DB.updateList(listid, newName)) {
+                            // small hack to automatically reload the current selected list which name has been changed
+                            if (taskListWindow.listid === listid)
+                                taskListWindow.listchanged = true
+                        }
+                        // finally reload list overview to update the items
+                        reloadListList()
                     }
-                    // finally reload list overview to update the items
-                    reloadListList()
-                }
 
-                // if enter or return is pressed add the new list
-                Keys.onEnterPressed: {
-                    changeList(editListLabel.text)
-                }
-                Keys.onReturnPressed: {
-                    changeList(editListLabel.text)
-                }
+                    // if enter or return is pressed add the new list
+                    Keys.onEnterPressed: {
+                        changeList(editListLabel.text)
+                    }
+                    Keys.onReturnPressed: {
+                        changeList(editListLabel.text)
+                    }
 
-                onActiveFocusChanged: {
-                    // reset label and textfield when user leaves textfield before confirming changes
-                    if (activeFocus === false && editListLabel.visible === true) {
-                        editListLabel.visible = false
-                        listLabel.visible = true
-                        listProperties.visible = true
+                    onActiveFocusChanged: {
+                        // reset label and textfield when user leaves textfield before confirming changes
+                        if (activeFocus === false && editListLabel.visible === true) {
+                            editListLabel.visible = false
+                            listLabel.visible = true
+                            listProperties.visible = true
+                        }
                     }
                 }
             }
@@ -478,7 +480,7 @@ Page {
                     }
 
                     MenuItem {
-		    	//% "Copy to clipboard"
+                        //% "Copy to clipboard"
                         text: qsTrId("to-clipboard-label")
                         visible: pending > 0
                         onClicked: {
@@ -486,10 +488,10 @@ Page {
                             if (data.length > 0)
                                 Clipboard.text = data
                             else
-		    		//% "List not copied"
+                                //% "List not copied"
                                 taskListWindow.pushNotification("WARNING", qsTrId("list-not-copied-warning"),
-		    							   //% "List is empty."
-									   qsTrId("list-empty-description"))
+                                                                //% "List is empty."
+                                                                qsTrId("list-empty-description"))
                         }
                     }
 

@@ -27,10 +27,7 @@ Dialog {
 
     SilicaFlickable {
         id: aboutTaskList
-        anchors {
-            fill: parent
-            bottomMargin: Theme.paddingLarge
-        }
+        anchors.fill: parent
         contentHeight: aboutRectangle.height
 
         VerticalScrollDecorator { flickable: aboutTaskList }
@@ -80,7 +77,7 @@ Dialog {
             Label {
                 text: "TaskList " + version
                 horizontalAlignment: Text.Center
-                width: parent.width - Theme.paddingLarge * 2
+                width: parent.width - Theme.horizontalPageMargin * 2
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
@@ -94,7 +91,7 @@ Dialog {
                 //: TaskList description
                 //% "A small but mighty program to manage your daily tasks."
                 text: qsTrId("app-description")
-                width: parent.width - Theme.paddingLarge * 2
+                width: parent.width - Theme.horizontalPageMargin * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
                 font.pixelSize: Theme.fontSizeSmall
@@ -112,7 +109,7 @@ Dialog {
                 text: qsTrId("copyright-label") + " Thomas Amler\n" +
                       //% "License"
                       qsTrId("license-label") + ": GPL v3"
-                width: parent.width - Theme.paddingLarge * 2
+                width: parent.width - Theme.horizontalPageMargin * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
             }
@@ -127,7 +124,7 @@ Dialog {
             Label {
                 textFormat: Text.RichText;
                 text: "<style>a:link { color: " + Theme.highlightColor + "; }</style><a href=\"https://github.com/Armadill0/harbour-tasklist\">TaskList @ Github.com</a>"
-                width: parent.width - Theme.paddingLarge * 2
+                width: parent.width - Theme.horizontalPageMargin * 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeTiny
 
@@ -147,10 +144,16 @@ Dialog {
 
                 delegate: Label {
                     text: "- " + name
-                    width: parent.width - Theme.paddingLarge * 2
+                    width: parent.width - Theme.horizontalPageMargin * 2
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: Theme.fontSizeSmall
                 }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
             }
         }
     }

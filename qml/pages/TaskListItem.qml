@@ -62,8 +62,8 @@ MouseArea {
         width: Theme.itemSizeExtraSmall
         height: Theme.itemSizeSmall
         anchors {
-            left: parent.left; leftMargin: root.leftMargin
-
+            left: parent.left
+            leftMargin: root.leftMargin
         }
 
         GlassItem {
