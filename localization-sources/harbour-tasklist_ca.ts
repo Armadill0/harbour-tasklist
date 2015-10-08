@@ -874,12 +874,12 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="add-multiple-tasks-description">
         <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
-        <translation type="unfinished"/>
+        <translation>En copiar múltiples línies, per exemple d&apos;un correu electrònic, i enganxar-les al camp de text, es poden afegir múltiples tasques de cop. Cada línia definirà una tasca individual.</translation>
     </message>
     <message id="tagpage-header">
         <source>Tag Page</source>
         <extracomment>tag page header of help page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Pàgina d&apos;etiquetes</translation>
     </message>
     <message id="tag-management-label">
         <source>Manage Tags</source>
@@ -892,38 +892,38 @@ menu item to switch to settings page</extracomment>
     <message id="keyboard-header">
         <source>Keyboard Support</source>
         <extracomment>keyboard header of help page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Suport de teclat</translation>
     </message>
     <message id="keyboard-tab-label">
         <source>Jump to text field</source>
-        <translation type="unfinished"/>
+        <translation>Vés al camp de text</translation>
     </message>
     <message id="keyboard-tab-description">
         <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
-        <translation type="unfinished"/>
+        <translation>En prémer el Tabulador en un teclat extern, permet entrar o sortir dels camps de text.</translation>
     </message>
     <message id="keyboard-arrows-lr-label">
         <source>Jump to next/previous list</source>
-        <translation type="unfinished"/>
+        <translation>Vés a la llista dels següents/anteriors</translation>
     </message>
     <message id="keyboard-arrows-lr-description">
         <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
-        <translation type="unfinished"/>
+        <translation>Quan el camp de text a la pàgina de la Tasca no té el cursor, permet commutar entre llistes prement les fletxes cap a la dreta (següent) o esquerra (anterior).</translation>
     </message>
     <message id="helppage-header">
         <source>Help</source>
         <extracomment>headline for the help page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ajuda</translation>
     </message>
     <message id="helppage-description">
         <source>This page describes all hidden and not apparent features.</source>
         <oldsource>This page describes all hidden and unapparent features.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Aquesta pàgina descriu totes les funcions, per ocultes o inversemblants que siguin.</translation>
     </message>
     <message id="help-label">
         <source>Help</source>
         <extracomment>menu item to jump to the application's help page</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ajuda</translation>
     </message>
     <message id="tags-header">
         <source>Your tags</source>
