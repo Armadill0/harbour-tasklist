@@ -343,7 +343,7 @@ Page {
 
                 Label {
                     id: listTaskNumber
-                    text: pending + "/" + (total > 1 ? "999+" : total)
+                    text: (total > 999 ? "" : pending + "/") + (total > 999 ? "999+" : total)
                     width: 3 * Theme.paddingLarge
                     height: editListLabel.height * 0.55
                     anchors.top: parent.top

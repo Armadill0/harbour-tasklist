@@ -132,8 +132,8 @@ Page {
             Label {
                 id: tagLabel
                 text: tagName
-                width: parent.width
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 height: editTagLabel.height * 0.55
                 anchors.top: parent.top
                 verticalAlignment: Text.AlignVCenter
@@ -143,7 +143,7 @@ Page {
             TextField {
                 id: editTagLabel
                 width: parent.width
-                x: Theme.paddingSmall
+                anchors.horizontalCenter: parent.horizontalCenter
                 text: tagName
                 //: a label to inform the user how the changes on a tag can be saved
                 //% "Press Enter/Return to save changes"
