@@ -114,8 +114,6 @@ Page {
                 text: qsTrId("export-button")
                 width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.leftMargin: Theme.paddingLarge
-                anchors.rightMargin: Theme.paddingLarge
                 enabled: exportName.acceptableInput
 
                 onClicked: {
@@ -177,13 +175,13 @@ Page {
             }
 
             Row {
-                width: parent.width
-                spacing: 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                spacing: 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 Button {
                     id: deleteButton
-                    width: parent.width / 2 - 2 * Theme.paddingLarge
+                    width: parent.width / 2 - Theme.horizontalPageMargin
                     //: Button to delete the selected data file
                     //% "Delete file"
                     text: qsTrId("delete-file-button")
@@ -203,7 +201,7 @@ Page {
 
                 Button {
                     id: importButton
-                    width: parent.width / 2 - 2 * Theme.paddingLarge
+                    width: parent.width / 2 - Theme.horizontalPageMargin
                     //: Button to import data form the selected file
                     //% "Import data"
                     text: qsTrId("import-button")
@@ -231,8 +229,8 @@ Page {
             }
 
             Label {
-                width: parent.width - 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
                 //: Explanation of how importing and exporting data works and where the files are/have to be located.
                 //% "You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!"
@@ -246,8 +244,8 @@ Page {
             }
 
             Label {
-                width: parent.width - 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
                 //: warn user of destructive drop DB function
                 //% "CAUTION: This function will drop all your data immediately! So only use this if you know what you're doing!"

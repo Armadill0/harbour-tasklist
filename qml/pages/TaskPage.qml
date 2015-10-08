@@ -591,7 +591,7 @@ Page {
 
             TaskListItem {
                 id: taskLabel
-                width: parent.width - 2 * Theme.horizontalPageMargin
+                width: parent.width - 2 * Theme.horizontalPageMargin + 2 * Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: task
                 description: composeTaskLabel(taskListModel.get(index))
