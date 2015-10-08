@@ -136,7 +136,7 @@ ApplicationWindow {
                     }
 
                     Label {
-                        width: parent.width - 2 * Theme.paddingLarge
+                        width: parent.width - 2 * Theme.horizontalPageMargin
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: first part of the database upgrade description
                         //% "A database from a previous version of TaskList has been found. Old databases are not supported."
@@ -156,7 +156,7 @@ ApplicationWindow {
                     }
 
                     Label {
-                        width: parent.width - 2 * Theme.paddingLarge
+                        width: parent.width - 2 * Theme.horizontalPageMargin
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: user has the possibility to choose the database upgrade or delete the old database
                         //% "Please select an action to proceed."
@@ -174,7 +174,7 @@ ApplicationWindow {
                         width: parent.width
 
                         Button {
-                            width: parent.width
+                            width: parent.width * 0.75
                             //: hint which is the recommended upgrade option
                             //% "recommended"
                             text: dbUpgradeText + " (" + qsTrId("recommended-label") + ")"

@@ -363,16 +363,21 @@ Page {
                     verticalAlignment: Text.AlignTop
                     anchors.top: listLabel.bottom
                 }
+            }
 
                 TextField {
                     id: editListLabel
-                    width: parent.width
+                    width: parent.width - 2 * Theme.horizontalPageMargin
+                    anchors.horizontalCenter: parent.horizontalCenter
                     text: listname
                     //: a label to inform the user how the changes on a list can be saved
                     //% "Press Enter/Return to save changes"
                     label: qsTrId("save-changes-description")
                     visible: false
-                    anchors.top: parent.top
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                    }
                     // enable enter key if minimum list length has been reached
                     EnterKey.enabled: text.length > 0
 
@@ -402,12 +407,10 @@ Page {
                         // reset label and textfield when user leaves textfield before confirming changes
                         if (activeFocus === false && editListLabel.visible === true) {
                             editListLabel.visible = false
-                            listLabel.visible = true
-                            listProperties.visible = true
+                            listContainer.visible = true
                         }
                     }
                 }
-            }
 
             // show context menu
             onPressAndHold: {
@@ -439,8 +442,7 @@ Page {
                             // close contextmenu
                             listContextMenu.hide()
                             editListLabel.text = listListModel.get(index).listname
-                            listLabel.visible = false
-                            listProperties.visible = false
+                            listContainer.visible = false
                             editListLabel.visible = true
                             editListLabel.forceActiveFocus()
                         }
