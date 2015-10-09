@@ -110,7 +110,7 @@ Dialog {
         DB.updateSetting("startPage", startPage.currentIndex)
         DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
         DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
-        DB.updateSetting("closedTaskApearance", closedTasksAppearance.currentIndex)
+        var ret = DB.updateSetting("closedTaskAppearance", closedTasksAppearance.currentIndex)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
