@@ -78,7 +78,6 @@ Dialog {
         languages.append({ lang: "tr_TR",           name: "Türkçe"})
         languages.append({ lang: "zh_CN",           name: "中文"})
 
-
         language = taskListWindow.getLanguage()
         var found = false
         for (var i = 0; i < languages.count; ++i) {
@@ -110,7 +109,7 @@ Dialog {
         DB.updateSetting("startPage", startPage.currentIndex)
         DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
         DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
-        var ret = DB.updateSetting("closedTaskAppearance", closedTasksAppearance.currentIndex)
+        DB.updateSetting("closedTaskAppearance", closedTasksAppearance.currentIndex)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
