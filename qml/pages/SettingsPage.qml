@@ -73,6 +73,7 @@ Dialog {
         languages.append({ lang: "ku_IQ",           name: "Kurdî" })
         languages.append({ lang: "lt",              name: "Lietuvių" })
         languages.append({ lang: "nl_NL",           name: "Nederlands" })
+        languages.append({ lang: "pl_PL",           name: "Polskie" })
         languages.append({ lang: "ru_RU",           name: "Русский" })
         languages.append({ lang: "sv_SE",           name: "Svenska" })
         languages.append({ lang: "tr_TR",           name: "Türkçe"})
