@@ -32,8 +32,8 @@ ApplicationWindow {
     property int listid
     // save defaultlist in a global context
     property int defaultlist
-    // helper variable to reload list on list name or task name changes
-    property bool listchanged: false
+    // helper variable to indicate the need to update list model data in TaskPage
+    property bool needListModelReload: false
     // helper varable for adding directly through coveraction
     property bool coverAddTask: false
     // helper varable to lock task Page Orientation
@@ -96,6 +96,10 @@ ApplicationWindow {
     Component {
         id: initialTaskPage
         TaskPage { }
+    }
+
+    onClosedTaskAppearanceChanged: {
+        needListModelReload = true
     }
 
     Component {

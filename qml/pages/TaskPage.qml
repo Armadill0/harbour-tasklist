@@ -121,7 +121,7 @@ Page {
                 doneTaskCheck = true
         }
 
-        // final decision to enable or diable the menu item
+        // final decision to enable or disable the menu item
         doneTasksAvailable = doneTaskCheck
     }
 
@@ -215,16 +215,15 @@ Page {
         case PageStatus.Activating:
             if (taskListWindow.justStarted === true) {
                 taskListWindow.initializeApplication()
-
-                taskListWindow.listchanged = true
+                taskListWindow.needListModelReload = true
             }
 
             taskListWindow.fillListOfLists()
 
             // reload tasklist if task has been edited or current list is renamed
-            if (taskListWindow.listchanged === true) {
+            if (taskListWindow.needListModelReload) {
                 reloadTaskList()
-                taskListWindow.listchanged = false
+                taskListWindow.needListModelReload = false
             }
 
             break
@@ -296,7 +295,7 @@ Page {
             Row {
                 width: parent.width - 2 * Theme.paddingLarge
                 spacing: Theme.paddingLarge
-                visible: smartListType === -1 ? true : false
+                visible: smartListType === -1
 
                 TextField {
                     id: taskAdd
@@ -309,11 +308,9 @@ Page {
                     label: qsTrId("new-task-confirmation-description")
                     // enable enter key if minimum task length has been reached
                     EnterKey.enabled: text.length > 0
-                    // set allowed chars and task length
-                    //validator: RegExpValidator { regExp: /^.{,60}$/ }
 
                     function addTask(newTask) {
-                        var taskNew = newTask !== undefined ? newTask : taskAdd.text
+                        var taskNew = (typeof newTask !== 'undefined') ? newTask : taskAdd.text
                         if (taskNew.length > 0) {
                             // add task to db and tasklist
                             var result = DB.writeTask(listid, taskNew, 1, 0, 0, DB.PRIORITY_DEFAULT, "")
@@ -349,7 +346,7 @@ Page {
                             timerAddTask.start()
                     }
 
-                    visible: smartListType === -1 ? true : false
+                    visible: smartListType === -1
                     EnterKey.onClicked: addTask()
 
                     onTextChanged: {

@@ -85,7 +85,7 @@ CoverBackground {
 
             if (taskListWindow.smartListType !== -1) {
                 taskListWindow.smartListType = -1
-                taskListWindow.listchanged = true
+                taskListWindow.needListModelReload = true
             }
 
             // reload tasklist if navigateBack was used from list page
