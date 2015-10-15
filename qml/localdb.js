@@ -200,7 +200,7 @@ function initializeDB() {
                 "backFocusAddTask": 1,
                 "smartListVisibility": 1,
                 "recentlyAddedOffset": 3,
-                "closedTaskAppearance": 0
+                "closedTaskAppearance": 1
             };
             for (var settingKey in defaultSettings) {
                 var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting = ?;", settingKey);

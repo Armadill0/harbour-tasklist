@@ -260,7 +260,7 @@ Dialog {
                 id: taskOpenAppearance
                 width: parent.width
                 //: user option to choose whether pending tasks should be marked with a checked or not checked bullet
-                //% "open task appearance"
+                //% "Open task appearance"
                 text: qsTrId("open-task-appearance-label")
                 checked: taskListWindow.taskOpenAppearance
             }
@@ -269,7 +269,7 @@ Dialog {
                 id: backFocusAddTask
                 width: parent.width
                 //: user option to directly jump back to the input field after a new task has been added by the user
-                //% "refocus task add field"
+                //% "Refocus task add field"
                 text: qsTrId("refocus-label")
                 checked: taskListWindow.backFocusAddTask
             }
@@ -279,14 +279,20 @@ Dialog {
                 id: closedTasksAppearance
                 width: parent.width
                 //: user option to select closed tasks appearance
-                //% "Closed tasks"
-                label: qsTrId("closed-task") + ":"
+                //% "Done tasks"
+                label: qsTrId("done-task-label") + ":"
                 currentIndex: taskListWindow.closedTaskAppearance
 
                 menu: ContextMenu {
-                    MenuItem { text: qsTrId("hide") }
-                    MenuItem { text: qsTrId("unselect") }
-                    MenuItem { text: qsTrId("strike through") }
+                    //: option to not show done tasks
+                    //% "Hidden"
+                    MenuItem { text: qsTrId("hidden-label") }
+                    //: option to how done tasks unselected
+                    //% "Status change"
+                    MenuItem { text: qsTrId("status-change-label") }
+                    //: option to show done tasks as striked through items
+                    //% "Striked through"
+                    MenuItem { text: qsTrId("striked-through-label") }
                 }
             }
 
@@ -300,7 +306,7 @@ Dialog {
                 id: smartListVisibility
                 width: parent.width
                 //: user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-                //% "show smart lists"
+                //% "Show smart lists"
                 text: qsTrId("show-smartlists-label")
                 checked: taskListWindow.smartListVisibility
             }
