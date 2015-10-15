@@ -78,7 +78,6 @@ Dialog {
         languages.append({ lang: "tr_TR",           name: "Türkçe"})
         languages.append({ lang: "zh_CN",           name: "中文"})
 
-
         language = taskListWindow.getLanguage()
         var found = false
         for (var i = 0; i < languages.count; ++i) {
@@ -110,8 +109,7 @@ Dialog {
         DB.updateSetting("startPage", startPage.currentIndex)
         DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
         DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
-        DB.updateSetting("doneTasksStrikedThrough", doneTasksStrikedThrough.checked === true ? 1 : 0)
-
+        DB.updateSetting("closedTaskAppearance", closedTasksAppearance.currentIndex)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
@@ -123,7 +121,7 @@ Dialog {
         taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
         taskListWindow.smartListVisibility = smartListVisibility.checked === true ? 1 : 0
         taskListWindow.recentlyAddedOffset = recentlyAddedOffset.currentIndex
-        taskListWindow.doneTasksStrikedThrough = doneTasksStrikedThrough.checked === true ? 1 : 0
+        taskListWindow.closedTaskAppearance = closedTasksAppearance.currentIndex
 
         var langId = languageBox.currentIndex
         if (0 <= langId && langId < languages.count) {
@@ -276,13 +274,19 @@ Dialog {
             }
 
 
-            TextSwitch {
-                id: doneTasksStrikedThrough
+            ComboBox {
+                id: closedTasksAppearance
                 width: parent.width
-                //: user option to strike through done tasks for better task overview
-                //% "strike through done tasks"
-                text: qsTrId("strike-through-label")
-                checked: taskListWindow.doneTasksStrikedThrough
+                //: user option to select closed tasks appearance
+                //% "Closed tasks"
+                label: qsTrId("closed-task") + ":"
+                currentIndex: taskListWindow.closedTaskAppearance
+
+                menu: ContextMenu {
+                    MenuItem { text: qsTrId("hide") }
+                    MenuItem { text: qsTrId("unselect") }
+                    MenuItem { text: qsTrId("strike through") }
+                }
             }
 
             SectionHeader {

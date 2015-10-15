@@ -157,7 +157,7 @@ MouseArea {
             right: prio.left
         }
         wrapMode: Text.NoWrap
-        font.strikeout: taskListWindow.doneTasksStrikedThrough === true ? !taskListWindow.statusOpen(checked) : false
+        font.strikeout: taskListWindow.closedTaskAppearance === 2 ? !taskListWindow.statusOpen(checked) : false
         color: highlighted ? Theme.highlightColor : (checked ? Theme.primaryColor : Theme.secondaryColor)
         truncationMode: TruncationMode.Elide
     }
