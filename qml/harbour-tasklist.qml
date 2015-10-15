@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@ ApplicationWindow {
                     }
 
                     Label {
-                        width: parent.width - 2 * Theme.paddingLarge
+                        width: parent.width - 2 * Theme.horizontalPageMargin
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: first part of the database upgrade description
                         //% "A database from a previous version of TaskList has been found. Old databases are not supported."
@@ -160,7 +160,7 @@ ApplicationWindow {
                     }
 
                     Label {
-                        width: parent.width - 2 * Theme.paddingLarge
+                        width: parent.width - 2 * Theme.horizontalPageMargin
                         anchors.horizontalCenter: parent.horizontalCenter
                         //: user has the possibility to choose the database upgrade or delete the old database
                         //% "Please select an action to proceed."
@@ -178,7 +178,7 @@ ApplicationWindow {
                         width: parent.width
 
                         Button {
-                            width: parent.width
+                            width: parent.width * 0.75
                             //: hint which is the recommended upgrade option
                             //% "recommended"
                             text: dbUpgradeText + " (" + qsTrId("recommended-label") + ")"
@@ -201,7 +201,6 @@ ApplicationWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
 
                         Button {
-                            //: delete old database option
                             text: dbDeleteText
                             onClicked: {
                                 if (DB.replaceOldDB())

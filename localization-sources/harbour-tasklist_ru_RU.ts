@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru_RU" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Необходимое действие</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation>Нажмите &apos;%1&apos; для импорта старой база дынных в новую или &apos;%2&apos; для удаления старой базы данных и формирования нового списка задач.</translation>
     </message>
     <message id="option-header">
@@ -117,7 +115,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="sync-success">
         <source>Sync finished</source>
-        <translation>Синхронизация завешена</translation>
+        <translation>Синхронизация завершена</translation>
     </message>
     <message id="data-upload-success">
         <source>Data successfully uploaded to Dropbox.</source>
@@ -192,14 +190,12 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Уже существует в выбранном списке.</translation>
     </message>
     <message id="edit-label">
         <source>Edit</source>
-        <extracomment>headline of the editing dialog of a task
-----------
-context menu item to edit a list
+        <extracomment>context menu item to edit a list
 ----------
 context menu item to edit a tag
 ----------
@@ -338,12 +334,12 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="export-import-description">
         <source>You can export your data to a json formatted file and import it from a json formatted file. Please keep in mind that ALL YOUR DATA containing tasks and lists is stored in a single file!</source>
         <extracomment>Explanation of how importing and exporting data works and where the files are/have to be located.</extracomment>
-        <translation>Вы можете экспортировать данные в виде файла формата .JSON и импортировать данные из файла формата .JSON. Пожалуйста, имейте в в виду, что все ваши задачи и списки хранятся в одном файле!</translation>
+        <translation>Вы можете экспортировать данные в виде файла формата .JSON и импортировать данные из файла формата .JSON. Пожалуйста, имейте в виду, что все ваши задачи и списки хранятся в одном файле!</translation>
     </message>
     <message id="drop-database-header">
         <source>Drop data (very destructive!!!)</source>
         <extracomment>headline for the database purge</extracomment>
-        <translation>Сбрасывание данных (очень плохо!!!)</translation>
+        <translation>Сброс данных (необратимое действие)</translation>
     </message>
     <message id="drop-database-warning">
         <source>CAUTION: This function will drop all your data immediately! So only use this if you know what you&apos;re doing!</source>
@@ -358,7 +354,7 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="drop-database-button">
         <source>Drop database</source>
         <extracomment>Button to import data form the selected file</extracomment>
-        <translation>Сбрасывание базы данных</translation>
+        <translation>Сброс базы данных</translation>
     </message>
     <message id="drop-database-success">
         <source>Successfully dropped all data.</source>
@@ -367,7 +363,7 @@ title for the notes in the task description (keep as short as possible)</extraco
     </message>
     <message id="drop-database-detail">
         <source>Please restart TaskList to work with the new database.</source>
-        <translation>Пожалуйста, перезапустите программу обновления базы данных</translation>
+        <translation>Пожалуйста, перезапустите программу, чтобы начать работу с новой базой данных</translation>
     </message>
     <message id="not-available">
         <source>n/a</source>
@@ -377,12 +373,12 @@ title for the notes in the task description (keep as short as possible)</extraco
     <message id="single-tag-count-label">
         <source>%1 tag</source>
         <extracomment>use %1 as a placeholder for the number of the existing tag, which should always be 1</extracomment>
-        <translation>%1 задача</translation>
+        <translation>%1 тег</translation>
     </message>
     <message id="tag-count-label">
         <source>%1 tags</source>
         <extracomment>use %1 as a placeholder for the number of existing tags</extracomment>
-        <translation>%1 теги</translation>
+        <translation>Тегов: %1</translation>
     </message>
     <message id="single-task-count-label">
         <source>%1 task</source>
@@ -471,12 +467,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 секунда</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 секунды</translation>
     </message>
     <message id="settings-label">
@@ -498,11 +494,11 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="default-list-label">
         <source>Default list</source>
-        <translation>По умолчанию</translation>
+        <translation>по умолчанию</translation>
     </message>
     <message id="selected-list-label">
         <source>Selected list</source>
-        <translation>Открытый сейчас</translation>
+        <translation>текущий</translation>
     </message>
     <message id="choose-cover-label">
         <source>Choose in list management</source>
@@ -537,7 +533,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="list-overview-label">
         <source>List overview</source>
-        <translation>Обзор списка</translation>
+        <translation>Управление списками</translation>
     </message>
     <message id="minimize-label">
         <source>Minimize to cover</source>
@@ -556,7 +552,7 @@ menu item to switch to settings page</extracomment>
     <message id="refocus-label">
         <source>refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation>Перейти к добавленному полю</translation>
+        <translation>Сохранять фокус на поле ввода новой задачи</translation>
     </message>
     <message id="strike-through-label">
         <source>strike through done tasks</source>
@@ -613,7 +609,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="remorse-addmultiple-label">
         <source>on Adding multiple tasks</source>
-        <translation>при добавлении нескольких задач.</translation>
+        <translation>при добавлении нескольких задач</translation>
     </message>
     <message id="dropbox-options-label">
         <source>Dropbox options</source>
@@ -627,7 +623,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="select-tags-header">
         <source>Select tags</source>
-        <translation>Выбрать теги</translation>
+        <translation>Выберите теги</translation>
     </message>
     <message id="confirm-button">
         <source>Confirm</source>
@@ -646,12 +642,12 @@ menu item to switch to settings page</extracomment>
     <message id="tagname-placeholder">
         <source>Enter unique tag name</source>
         <extracomment>fallback text if no name for a new tag is specified</extracomment>
-        <translation>Введите имя задачи</translation>
+        <translation>Введите имя тега</translation>
     </message>
     <message id="new-tag-confirmation-description">
         <source>Press Enter/Return to add the new tag</source>
         <extracomment>hint how to confirm the new tag</extracomment>
-        <translation>Нажмите Enter/Return для добавления новой задачи</translation>
+        <translation>Нажмите Enter/Return для добавления нового тега</translation>
     </message>
     <message id="no-tags-label">
         <source>no tags available</source>
@@ -681,7 +677,7 @@ menu item to switch to settings page</extracomment>
     <message id="task-reopened-success">
         <source>Task has been reopened!</source>
         <extracomment>notifying the user that the status of the task has been reopened</extracomment>
-        <translation>Задачи были открыты!</translation>
+        <translation>Задача снова открыта!</translation>
     </message>
     <message id="task-reopened-success-details">
         <source>The task already existed and was marked as done.</source>
@@ -689,7 +685,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>Задача не может быть добавлена!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +709,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Все задачи уже существует!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -774,27 +770,27 @@ menu item to switch to settings page</extracomment>
     <message id="db-sync-interrupt-label">
         <source>Remote data cannot be updated. The remote data has been uploaded by another device.</source>
         <extracomment>sync headline when online data is newer than the local one</extracomment>
-        <translation>Удаленные данные не могут быть обновлены. Удаленный данные были загружены с другого устройства.</translation>
+        <translation>Данные на сервере не могут быть обновлены. Данные на сервере были загружены с другого устройства.</translation>
     </message>
     <message id="remote-replace-label">
         <source>Replace remote data</source>
         <extracomment>button to upload the remote data</extracomment>
-        <translation>Заменить удаленные данные</translation>
+        <translation>Заменить данные на сервере</translation>
     </message>
     <message id="local-replace-label">
         <source>Replace local data</source>
         <extracomment>button to upload the local data</extracomment>
-        <translation>Заменить локальные данные</translation>
+        <translation>Заменить данные на устройстве</translation>
     </message>
     <message id="db-sync-replace-description">
         <source>Hint: Those actions replace the particular target data and can not be revoked!</source>
         <extracomment>explanation what happens when sync buttons above are being pressed</extracomment>
-        <translation>Подсказка: эти действия заменят частности целевых данных и не могут быть отменены!</translation>
+        <translation>Подсказка: эти действия заменят данные в указанном месте и не могут быть отменены!</translation>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
-        <translation>Требуется срок для повторения.</translation>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
+        <translation>Выберите срок, чтобы установить повторение.</translation>
     </message>
     <message id="repeat-label">
         <source>Repeat</source>
@@ -802,7 +798,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="to-clipboard-label">
         <source>Copy to clipboard</source>
-        <translation>Скопировано</translation>
+        <translation>Скопировать в буфер обмена</translation>
     </message>
     <message id="list-not-copied-warning">
         <source>List not copied</source>
@@ -842,7 +838,7 @@ menu item to switch to settings page</extracomment>
     <message id="every-month-label">
         <source>Monthly</source>
         <oldsource>every month</oldsource>
-        <translation>Ежемесачно</translation>
+        <translation>Ежемесячно</translation>
     </message>
     <message id="yesterday-label">
         <source>Yesterday</source>
@@ -852,7 +848,87 @@ menu item to switch to settings page</extracomment>
     <message id="system-default-label">
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>По умолчанию (системный)</translation>
+    </message>
+    <message id="edit-task-label">
+        <source>Edit task</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="taskpage-header">
+        <source>Task page</source>
+        <extracomment>task page header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="new-task-flashing-label">
+        <source>New task is flashing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="new-task-flashing-description">
+        <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="add-multiple-tasks-label">
+        <source>Add multiple tasks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="add-multiple-tasks-description">
+        <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tagpage-header">
+        <source>Tag Page</source>
+        <extracomment>tag page header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tag-management-label">
+        <source>Manage Tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tag-management-description">
+        <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-header">
+        <source>Keyboard Support</source>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-label">
+        <source>Jump to text field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-description">
+        <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-label">
+        <source>Jump to next/previous list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-description">
+        <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="helppage-header">
+        <source>Help</source>
+        <extracomment>headline for the help page</extracomment>
+        <translation>Помощь</translation>
+    </message>
+    <message id="helppage-description">
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
+        <translation>В этом разделе описаны все скрытые и незаметные возможности программы.</translation>
+    </message>
+    <message id="help-label">
+        <source>Help</source>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation>Помощь</translation>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

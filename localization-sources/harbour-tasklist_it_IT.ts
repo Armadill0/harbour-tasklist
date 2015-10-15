@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="it_IT" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it_IT" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Azione richiesta</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation> Premi &apos;%1&apos; per migrare il vecchio database nel nuovo formato o &apos;%2&apos; per eliminare il vecchio database e iniziare con uno nuovo.</translation>
     </message>
     <message id="option-header">
@@ -192,14 +190,12 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Già esistente nella lista selezionata.</translation>
     </message>
     <message id="edit-label">
         <source>Edit</source>
-        <extracomment>headline of the editing dialog of a task
-----------
-context menu item to edit a list
+        <extracomment>context menu item to edit a list
 ----------
 context menu item to edit a tag
 ----------
@@ -471,12 +467,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 secondo</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 secondi</translation>
     </message>
     <message id="settings-label">
@@ -689,7 +685,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>L&apos;impegno non può essere aggiunto!</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +709,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Tutti gli impegni esistono già!</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -793,7 +789,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
         <translation>Una data di scadenza è richiesta per la ripetizione.</translation>
     </message>
     <message id="repeat-label">
@@ -852,7 +848,87 @@ menu item to switch to settings page</extracomment>
     <message id="system-default-label">
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Predefinito sistema</translation>
+    </message>
+    <message id="edit-task-label">
+        <source>Edit task</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation>Modifica impegno</translation>
+    </message>
+    <message id="taskpage-header">
+        <source>Task page</source>
+        <extracomment>task page header of help page</extracomment>
+        <translation>Impegno</translation>
+    </message>
+    <message id="new-task-flashing-label">
+        <source>New task is flashing</source>
+        <translation>Il nuovo impegno lampeggia</translation>
+    </message>
+    <message id="new-task-flashing-description">
+        <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
+        <translation>Clicca su un impegno appena inserito mentre sta ancora lampeggiando per modificarne i dettagli.</translation>
+    </message>
+    <message id="add-multiple-tasks-label">
+        <source>Add multiple tasks</source>
+        <translation>Aggiungi impegni multipli</translation>
+    </message>
+    <message id="add-multiple-tasks-description">
+        <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
+        <translation>Copiando diverse linee di testo da altri programmi (ad esempio una e-mail) ed incollandole nel campo di testo, è possibile aggiungere diversi impegni. Ogni linea corrisponde ad un impegno.</translation>
+    </message>
+    <message id="tagpage-header">
+        <source>Tag Page</source>
+        <extracomment>tag page header of help page</extracomment>
+        <translation>Tag</translation>
+    </message>
+    <message id="tag-management-label">
+        <source>Manage Tags</source>
+        <translation>Gestisci tag</translation>
+    </message>
+    <message id="tag-management-description">
+        <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
+        <translation>La gestione dei tag per ora è possibile solo attraverso la lista smart Tag. </translation>
+    </message>
+    <message id="keyboard-header">
+        <source>Keyboard Support</source>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation>Supporto tastiera</translation>
+    </message>
+    <message id="keyboard-tab-label">
+        <source>Jump to text field</source>
+        <translation>Vai a campo di testo</translation>
+    </message>
+    <message id="keyboard-tab-description">
+        <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
+        <translation>Premendo Tab su una tastiera collegata è possibile navigare tra i campi di testo.</translation>
+    </message>
+    <message id="keyboard-arrows-lr-label">
+        <source>Jump to next/previous list</source>
+        <translation>Vai a lista precedente/successiva</translation>
+    </message>
+    <message id="keyboard-arrows-lr-description">
+        <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
+        <translation>Se il campo di testo non è selezionato puoi cambiare lista premendo le frecce sinistra e destra.</translation>
+    </message>
+    <message id="helppage-header">
+        <source>Help</source>
+        <extracomment>headline for the help page</extracomment>
+        <translation>Aiuto</translation>
+    </message>
+    <message id="helppage-description">
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
+        <translation>Questa pagina spiega le funzionalità nascoste.</translation>
+    </message>
+    <message id="help-label">
+        <source>Help</source>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation>Aiuto</translation>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>I miei tag</translation>
     </message>
 </context>
 </TS>

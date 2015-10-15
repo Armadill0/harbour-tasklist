@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -212,6 +212,8 @@ Dialog {
             ComboBox {
                 id: priorityBox
                 anchors.left: parent.left
+                //: select the tasks priority
+                //% "Priority"
                 label: qsTrId("priority-label") + ":"
 
                 menu: ContextMenu {
@@ -296,8 +298,8 @@ Dialog {
 
             Label {
                 id: creation
-                width: parent.width - 2 * Theme.paddingLarge
-                x: Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                anchors.horizontalCenter: parent.horizontalCenter
                 //: displays the date when the task has been created by the user
                 //% "Created"
                 text: qsTrId("created-date-label") + ": " + Qt.formatDateTime(new Date(params.creation)).toLocaleString(Qt.locale())

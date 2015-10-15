@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,6 +73,7 @@ Dialog {
         languages.append({ lang: "ku_IQ",           name: "Kurdî" })
         languages.append({ lang: "lt",              name: "Lietuvių" })
         languages.append({ lang: "nl_NL",           name: "Nederlands" })
+        languages.append({ lang: "pl_PL",           name: "Polskie" })
         languages.append({ lang: "ru_RU",           name: "Русский" })
         languages.append({ lang: "sv_SE",           name: "Svenska" })
         languages.append({ lang: "tr_TR",           name: "Türkçe"})

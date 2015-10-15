@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" sourcelanguage="en_US" version="2.1">
 <context>
-    <name></name>
+    <name/>
     <message id="done-label">
         <source>Done</source>
         <extracomment>names of the automatic smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
@@ -56,7 +54,7 @@ menu item to delete the selected task</extracomment>
     </message>
     <message id="upgradedialog-header">
         <source>Action required</source>
-        <extracomment>get user&apos;s attention before starting database upgrade</extracomment>
+        <extracomment>get user's attention before starting database upgrade</extracomment>
         <translation>Cal seleccionar una acció</translation>
     </message>
     <message id="information-label">
@@ -73,7 +71,7 @@ headline for information about import/export mechanism</extracomment>
     </message>
     <message id="upgrade-description-part2">
         <source> Press &apos;%1&apos; to migrate the old database into the new format or &apos;%2&apos; to delete the old database and start with a clean new database.</source>
-        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the &apos;Upgrade&apos; and &apos;Delete&apos; options of the upgrade Dialog</extracomment>
+        <extracomment>second part of the database upgrade description; %1 and %2 are the placeholders for the 'Upgrade' and 'Delete' options of the upgrade Dialog</extracomment>
         <translation>Premeu &apos;%1&apos; per migrar la base dades antiga al nou format, o bé &apos;%2&apos; per eliminar-la i començar de zero.</translation>
     </message>
     <message id="option-header">
@@ -192,14 +190,12 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="task-not-saved-detail">
         <source>It already exists on the selected list.</source>
-        <extracomment>detailed information why the task modifications haven&apos;t been saved</extracomment>
+        <extracomment>detailed information why the task modifications haven't been saved</extracomment>
         <translation>Aquest element ja existeix a la llista seleccionada.</translation>
     </message>
     <message id="edit-label">
         <source>Edit</source>
-        <extracomment>headline of the editing dialog of a task
-----------
-context menu item to edit a list
+        <extracomment>context menu item to edit a list
 ----------
 context menu item to edit a tag
 ----------
@@ -471,12 +467,12 @@ a label to inform the user how the changes on a tag can be saved</extracomment>
     </message>
     <message id="single-second-count-label">
         <source>%1 second</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider, which is always 1 in this case</extracomment>
         <translation>%1 segon</translation>
     </message>
     <message id="second-count-label">
         <source>%1 seconds</source>
-        <extracomment>&apos;%1&apos; will be replaced by the amount of seconds of the slider</extracomment>
+        <extracomment>'%1' will be replaced by the amount of seconds of the slider</extracomment>
         <translation>%1 segons</translation>
     </message>
     <message id="settings-label">
@@ -689,7 +685,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="task-not-added-warning">
         <source>Task could not be added!</source>
-        <extracomment>notifying the user why the task couldn&apos;t be added</extracomment>
+        <extracomment>notifying the user why the task couldn't be added</extracomment>
         <translation>No s&apos;ha pogut afegir la tasca.</translation>
     </message>
     <message id="task-not-added-warning-details">
@@ -713,7 +709,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="tasks-exist-warning">
         <source>All tasks already exist!</source>
-        <extracomment>notify the user that all new tasks already existed on the list and weren&apos;t added again</extracomment>
+        <extracomment>notify the user that all new tasks already existed on the list and weren't added again</extracomment>
         <translation>Totes les tasques ja existeixen.</translation>
     </message>
     <message id="tasks-exist-warning-details">
@@ -793,7 +789,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="repitition-resuires-due-decription">
         <source>A due date is required for the repetition.</source>
-        <extracomment>detailed information why the task modifications can&apos;t be saved</extracomment>
+        <extracomment>detailed information why the task modifications can't be saved</extracomment>
         <translation>Cal una data final per a la repetició.</translation>
     </message>
     <message id="repeat-label">
@@ -852,7 +848,87 @@ menu item to switch to settings page</extracomment>
     <message id="system-default-label">
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Per defecte del sistema</translation>
+    </message>
+    <message id="edit-task-label">
+        <source>Edit task</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation>Edita la tasca</translation>
+    </message>
+    <message id="taskpage-header">
+        <source>Task page</source>
+        <extracomment>task page header of help page</extracomment>
+        <translation>Pàgina de la tasca</translation>
+    </message>
+    <message id="new-task-flashing-label">
+        <source>New task is flashing</source>
+        <translation>La nova tasca s&apos;està ressaltant</translation>
+    </message>
+    <message id="new-task-flashing-description">
+        <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
+        <translation>En prémer sobre una nova tasca mentre està ressaltada porta directament a la pàgina d&apos;edició on es poden canviar-ne els detalls.</translation>
+    </message>
+    <message id="add-multiple-tasks-label">
+        <source>Add multiple tasks</source>
+        <translation>Afegeix múltiples tasques</translation>
+    </message>
+    <message id="add-multiple-tasks-description">
+        <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
+        <translation>En copiar múltiples línies, per exemple d&apos;un correu electrònic, i enganxar-les al camp de text, es poden afegir múltiples tasques de cop. Cada línia definirà una tasca individual.</translation>
+    </message>
+    <message id="tagpage-header">
+        <source>Tag Page</source>
+        <extracomment>tag page header of help page</extracomment>
+        <translation>Pàgina d&apos;etiquetes</translation>
+    </message>
+    <message id="tag-management-label">
+        <source>Manage Tags</source>
+        <translation>Gestiona etiquetes</translation>
+    </message>
+    <message id="tag-management-description">
+        <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
+        <translation>La gestió d&apos;etiquetes només és possible actualment si premeu a la llista d&apos;etiquetes a la pàgina de llistes. </translation>
+    </message>
+    <message id="keyboard-header">
+        <source>Keyboard Support</source>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation>Suport de teclat</translation>
+    </message>
+    <message id="keyboard-tab-label">
+        <source>Jump to text field</source>
+        <translation>Vés al camp de text</translation>
+    </message>
+    <message id="keyboard-tab-description">
+        <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
+        <translation>En prémer el Tabulador en un teclat extern, permet entrar o sortir dels camps de text.</translation>
+    </message>
+    <message id="keyboard-arrows-lr-label">
+        <source>Jump to next/previous list</source>
+        <translation>Vés a la llista dels següents/anteriors</translation>
+    </message>
+    <message id="keyboard-arrows-lr-description">
+        <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
+        <translation>Quan el camp de text a la pàgina de la Tasca no té el cursor, permet commutar entre llistes prement les fletxes cap a la dreta (següent) o esquerra (anterior).</translation>
+    </message>
+    <message id="helppage-header">
+        <source>Help</source>
+        <extracomment>headline for the help page</extracomment>
+        <translation>Ajuda</translation>
+    </message>
+    <message id="helppage-description">
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
+        <translation>Aquesta pàgina descriu totes les funcions, per ocultes o inversemblants que siguin.</translation>
+    </message>
+    <message id="help-label">
+        <source>Help</source>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation>Ajuda</translation>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Les vostres etiquetes</translation>
     </message>
 </context>
 </TS>

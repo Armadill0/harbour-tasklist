@@ -1,7 +1,7 @@
 /*
     TaskList - A small but mighty program to manage your daily tasks.
-    Copyright (C) 2014 Thomas Amler
-    Contact: Thomas Amler <armadillo@penguinfriends.org>
+    Copyright (C) 2015 Thomas Amler
+    Contact: Thomas Amler <takslist@penguinfriends.org>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -289,11 +289,11 @@ Page {
 
             PageHeader {
                 width: parent.width
-                title: listname + " - TaskList"
+                title: listname + " - " + appname
             }
 
             Row {
-                width: parent.width - 2 * Theme.paddingLarge
+                width: parent.width - 2 * Theme.horizontalPageMargin
                 spacing: Theme.paddingLarge
                 visible: smartListType === -1
 
@@ -485,6 +485,12 @@ Page {
                 onClicked: pageStack.push("sync/DropboxSync.qml", { attemptedAuth: false })
             }
             MenuItem {
+                //: menu item to jump to the application's help page
+                //% "Help"
+                text: qsTrId("help-label")
+                onClicked: pageStack.push(Qt.resolvedUrl("HelpPage.qml"))
+            }
+            MenuItem {
                 //: menu item to jump to the application information page
                 //% "About"
                 text: qsTrId("about-label") + " TaskList"
@@ -494,8 +500,9 @@ Page {
 
         delegate: ListItem {
             id: taskListItem
-            width: ListView.view.width
+            width: parent.width
             height: menuOpen ? taskContextMenu.height + taskLabel.height : taskLabel.height
+            anchors.left: parent.left
 
             property Item taskContextMenu
             property bool menuOpen: taskContextMenu != null && taskContextMenu.parent === taskListItem
@@ -585,9 +592,9 @@ Page {
 
             TaskListItem {
                 id: taskLabel
-                x: Theme.paddingSmall
+                width: parent.width - 2 * Theme.horizontalPageMargin + 2 * Theme.paddingLarge
+                anchors.horizontalCenter: parent.horizontalCenter
                 text: task
-                // hack (listname + "") to prevent an error (Unable to assign [undefined] to qsTrIding) when switching to a smartlist where the description should be shown
                 description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
                 automaticCheck: false

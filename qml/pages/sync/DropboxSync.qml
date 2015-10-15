@@ -51,17 +51,15 @@ Page {
         Column {
             id: column
             spacing: Theme.paddingLarge
-            width: parent.width
-            anchors.top: syncHeader.bottom
+            width: parent.width - 2 * Theme.horizontalPageMargin
+            anchors {
+                top: syncHeader.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
             visible: false
 
             Label {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: Theme.paddingLarge
-                    rightMargin: Theme.paddingLarge
-                }
+                width: parent.width
                 wrapMode: Text.Wrap
                 //: sync headline when online data is newer than the local one
                 //% "Remote data cannot be updated. The remote data has been uploaded by another device."
@@ -75,6 +73,7 @@ Page {
             }
 
             Button {
+                width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: button to upload the remote data
                 //% "Replace remote data"
@@ -83,6 +82,7 @@ Page {
             }
 
             Button {
+                width: parent.width * 0.75
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: button to upload the local data
                 //% "Replace local data"
@@ -91,16 +91,11 @@ Page {
             }
 
             Label {
+                width: parent.width
+                wrapMode: Text.Wrap
                 //: explanation what happens when sync buttons above are being pressed
                 //% "Hint: Those actions replace the particular target data and can not be revoked!"
                 text: qsTrId("db-sync-replace-description")
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: Theme.paddingLarge
-                    rightMargin: Theme.paddingLarge
-                }
-                wrapMode: Text.Wrap
             }
         }
     }

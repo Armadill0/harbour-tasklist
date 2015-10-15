@@ -195,9 +195,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="edit-label">
         <source>Edit</source>
-        <extracomment>headline of the editing dialog of a task
-----------
-context menu item to edit a list
+        <extracomment>context menu item to edit a list
 ----------
 context menu item to edit a tag
 ----------
@@ -851,6 +849,86 @@ menu item to switch to settings page</extracomment>
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
         <translation>Systeemstandaard</translation>
+    </message>
+    <message id="edit-task-label">
+        <source>Edit task</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation>Taak bewerken</translation>
+    </message>
+    <message id="taskpage-header">
+        <source>Task page</source>
+        <extracomment>task page header of help page</extracomment>
+        <translation>Taakpagina</translation>
+    </message>
+    <message id="new-task-flashing-label">
+        <source>New task is flashing</source>
+        <translation>Nieuwe taak is aan het knipperen</translation>
+    </message>
+    <message id="new-task-flashing-description">
+        <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="add-multiple-tasks-label">
+        <source>Add multiple tasks</source>
+        <translation>Meerdere taken toevoegen</translation>
+    </message>
+    <message id="add-multiple-tasks-description">
+        <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tagpage-header">
+        <source>Tag Page</source>
+        <extracomment>tag page header of help page</extracomment>
+        <translation>Sleutelwoord toevoegen aan pagina</translation>
+    </message>
+    <message id="tag-management-label">
+        <source>Manage Tags</source>
+        <translation>Sleutelwoorden beheren</translation>
+    </message>
+    <message id="tag-management-description">
+        <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-header">
+        <source>Keyboard Support</source>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-label">
+        <source>Jump to text field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-description">
+        <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-label">
+        <source>Jump to next/previous list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-description">
+        <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="helppage-header">
+        <source>Help</source>
+        <extracomment>headline for the help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="helppage-description">
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
+        <translation type="unfinished"/>
+    </message>
+    <message id="help-label">
+        <source>Help</source>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

@@ -57,10 +57,9 @@ Features
 
 Internationalization
 ================
-- current languages: English (default), German, Spanish, Russian, French, Turkish, Czech, Finnish, Swedish, Dutch, Catalan, Italian, Chinese (Mainland), Danish, Lithuanian, Kurdish, Hungarian
+- current languages: English (default), German, Spanish, Russian, French, Turkish, Czech, Finnish, Swedish, Dutch, Catalan, Italian, Chinese (Mainland), Danish, Lithuanian, Kurdish, Hungarian, Polish
 - translations are managed via Transifex: https://www.transifex.com/projects/p/tasklist/
     - Feel free to request new languages or complete existing ones there. :-)
-    - If you don't want to create a new account there, you can Login via Github, LinkedIn, Google, Facebook or Twitter. I hope this fits all your needs.
     - Every contributor will be mentioned in the About page!
 
 Roadmap for Version 2.0
