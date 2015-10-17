@@ -185,7 +185,7 @@ Page {
                 //  because smart list type change is being monitored
                 taskListWindow.tagId = tagId
                 taskListWindow.smartListType = 5
-                taskListWindow.listchanged = true
+                taskListWindow.needListModelReload = true
                 // 2 steps back to get to TaskPage
                 var prev = pageStack.previousPage()
                 var to = pageStack.previousPage(prev)
