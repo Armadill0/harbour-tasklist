@@ -208,7 +208,7 @@ Page {
                             }
                             // set smart list type, mark flag that list changed, navigate back to task page
                             taskListWindow.smartListType = listType
-                            taskListWindow.listchanged = true
+                            taskListWindow.needListModelReload = true
                             pageStack.navigateBack()
                         }
                     }
@@ -389,7 +389,7 @@ Page {
                         if (DB.updateList(listid, newName)) {
                             // small hack to automatically reload the current selected list which name has been changed
                             if (taskListWindow.listid === listid)
-                                taskListWindow.listchanged = true
+                                taskListWindow.needListModelReload = true
                         }
                         // finally reload list overview to update the items
                         reloadListList()
@@ -424,7 +424,7 @@ Page {
                 // set current global list and jump to taskPage
                 taskListWindow.listid = listid
                 taskListWindow.smartListType = -1
-                taskListWindow.listchanged = true
+                taskListWindow.needListModelReload = true
                 pageStack.navigateBack()
             }
 
