@@ -119,11 +119,11 @@ Dialog {
                                params.dueDate, 0, priorityBox.selectedPriority(), notes.text,
                                DB.REPETITION_VARIANTS[repeat.currentIndex].key)
         if (ok)
-            taskListWindow.listchanged = true
+            taskListWindow.needListModelReload = true
         if (editTags.modified) {
             var newTags = tags.length > 0 ? tags.split(", ") : []
             DB.updateTaskTags(params.taskid, newTags)
-            taskListWindow.listchanged = true
+            taskListWindow.needListModelReload = true
         }
     }
 
