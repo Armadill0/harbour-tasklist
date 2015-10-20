@@ -74,7 +74,6 @@ Page {
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingLarge
 
             PageHeader {
                 //: export/import page headline
@@ -86,6 +85,24 @@ Page {
                 //: headline for exports
                 //% "Export target"
                 text: qsTrId("export-header")
+            }
+
+            TextSwitch {
+                id: storageInternal
+                //% "Use internal storage"
+                text: qsTrId("target-internal-label")
+                description: StandardPaths.documents
+                checked: true
+
+                onCheckedChanged: storageSDCard.checked = checked ? false : true
+            }
+
+            TextSwitch {
+                id: storageSDCard
+                //% "Use SD-Card storage"
+                text: qsTrId("target-sdcard-label")
+
+                onCheckedChanged: storageInternal.checked = checked ? false : true
             }
 
             TextField {

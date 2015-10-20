@@ -67,7 +67,6 @@ Page {
     SilicaListView {
         id: helpPageList
         anchors.fill: parent
-        spacing: Theme.paddingLarge
 
         model: helpModel
 
