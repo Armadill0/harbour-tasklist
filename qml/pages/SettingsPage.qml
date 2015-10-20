@@ -79,7 +79,6 @@ Dialog {
         languages.append({ lang: "tr_TR",           name: "Türkçe"})
         languages.append({ lang: "zh_CN",           name: "中文"})
 
-
         language = taskListWindow.getLanguage()
         var found = false
         for (var i = 0; i < languages.count; ++i) {
@@ -111,8 +110,7 @@ Dialog {
         DB.updateSetting("startPage", startPage.currentIndex)
         DB.updateSetting("smartListVisibility", smartListVisibility.checked === true ? 1 : 0)
         DB.updateSetting("recentlyAddedOffset", recentlyAddedOffset.currentIndex)
-        DB.updateSetting("doneTasksStrikedThrough", doneTasksStrikedThrough.checked === true ? 1 : 0)
-
+        DB.updateSetting("closedTaskAppearance", closedTasksAppearance.currentIndex)
 
         // push new settings to runtime variables
         taskListWindow.coverListSelection = coverListSelection.currentIndex
@@ -124,7 +122,7 @@ Dialog {
         taskListWindow.remorseOnMultiAdd = remorseOnMultiAdd.value
         taskListWindow.smartListVisibility = smartListVisibility.checked === true ? 1 : 0
         taskListWindow.recentlyAddedOffset = recentlyAddedOffset.currentIndex
-        taskListWindow.doneTasksStrikedThrough = doneTasksStrikedThrough.checked === true ? 1 : 0
+        taskListWindow.closedTaskAppearance = closedTasksAppearance.currentIndex
 
         var langId = languageBox.currentIndex
         if (0 <= langId && langId < languages.count) {
@@ -262,7 +260,7 @@ Dialog {
                 id: taskOpenAppearance
                 width: parent.width
                 //: user option to choose whether pending tasks should be marked with a checked or not checked bullet
-                //% "open task appearance"
+                //% "Open task appearance"
                 text: qsTrId("open-task-appearance-label")
                 checked: taskListWindow.taskOpenAppearance
             }
@@ -271,19 +269,31 @@ Dialog {
                 id: backFocusAddTask
                 width: parent.width
                 //: user option to directly jump back to the input field after a new task has been added by the user
-                //% "refocus task add field"
+                //% "Refocus task add field"
                 text: qsTrId("refocus-label")
                 checked: taskListWindow.backFocusAddTask
             }
 
 
-            TextSwitch {
-                id: doneTasksStrikedThrough
+            ComboBox {
+                id: closedTasksAppearance
                 width: parent.width
-                //: user option to strike through done tasks for better task overview
-                //% "strike through done tasks"
-                text: qsTrId("strike-through-label")
-                checked: taskListWindow.doneTasksStrikedThrough
+                //: user option to select closed tasks appearance
+                //% "Done tasks"
+                label: qsTrId("done-task-label") + ":"
+                currentIndex: taskListWindow.closedTaskAppearance
+
+                menu: ContextMenu {
+                    //: option to not show done tasks
+                    //% "Hidden"
+                    MenuItem { text: qsTrId("hidden-label") }
+                    //: option to how done tasks unselected
+                    //% "Status change"
+                    MenuItem { text: qsTrId("status-change-label") }
+                    //: option to show done tasks as striked through items
+                    //% "Striked through"
+                    MenuItem { text: qsTrId("striked-through-label") }
+                }
             }
 
             SectionHeader {
@@ -296,7 +306,7 @@ Dialog {
                 id: smartListVisibility
                 width: parent.width
                 //: user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)
-                //% "show smart lists"
+                //% "Show smart lists"
                 text: qsTrId("show-smartlists-label")
                 checked: taskListWindow.smartListVisibility
             }

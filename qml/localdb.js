@@ -200,7 +200,7 @@ function initializeDB() {
                 "backFocusAddTask": 1,
                 "smartListVisibility": 1,
                 "recentlyAddedOffset": 3,
-                "doneTasksStrikedThrough": 0
+                "closedTaskAppearance": 1
             };
             for (var settingKey in defaultSettings) {
                 var res = tx.executeSql("SELECT count(Setting) as cSetting FROM settings WHERE Setting = ?;", settingKey);
@@ -756,11 +756,17 @@ function getSetting(setting) {
     return value;
 }
 
-function getSettingAsNumber(setting) {
+/*
+ *  If no value is found, then default_val will be
+ * saved (if it's not empty) and returned
+ */
+function getSettingAsNumber(setting, defaultValue) {
     var value = getSetting(setting);
     if (typeof value !== "undefined")
-        value = Number(value);
-    return value;
+        return Number(value);
+    if (typeof defaultValue !== "undefined")
+        updateSetting(setting, defaultValue);
+    return defaultValue;
 }
 
 var DROPBOX_FIELDS = {

@@ -545,19 +545,14 @@ menu item to switch to settings page</extracomment>
         <translation>Task options</translation>
     </message>
     <message id="open-task-appearance-label">
-        <source>open task appearance</source>
+        <source>Open task appearance</source>
         <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
-        <translation>open task appearance</translation>
+        <translation>Open task appearance</translation>
     </message>
     <message id="refocus-label">
-        <source>refocus task add field</source>
+        <source>Refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation>refocus task add field</translation>
-    </message>
-    <message id="strike-through-label">
-        <source>strike through done tasks</source>
-        <extracomment>user option to strike through done tasks for better task overview</extracomment>
-        <translation>strike through done tasks</translation>
+        <translation>Refocus task add field</translation>
     </message>
     <message id="list-options-label">
         <source>List options</source>
@@ -565,9 +560,9 @@ menu item to switch to settings page</extracomment>
         <translation>List options</translation>
     </message>
     <message id="show-smartlists-label">
-        <source>show smart lists</source>
+        <source>Show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation>show smart lists</translation>
+        <translation>Show smart lists</translation>
     </message>
     <message id="new-task-period-label">
         <source>New task period</source>
@@ -929,6 +924,28 @@ menu item to switch to settings page</extracomment>
         <source>Your tags</source>
         <extracomment>headline for the user created tags</extracomment>
         <translation>Your tags</translation>
+    </message>
+    <message id="hidden-label">
+        <source>Hidden</source>
+        <oldsource>hidden</oldsource>
+        <extracomment>option to not show done tasks</extracomment>
+        <translation>Hidden</translation>
+    </message>
+    <message id="striked-through-label">
+        <source>Striked through</source>
+        <oldsource>striked through</oldsource>
+        <extracomment>option to show done tasks as striked through items</extracomment>
+        <translation>Striked through</translation>
+    </message>
+    <message id="status-change-label">
+        <source>Status change</source>
+        <extracomment>option to how done tasks unselected</extracomment>
+        <translation>Status change</translation>
+    </message>
+    <message id="done-task-label">
+        <source>Done tasks</source>
+        <extracomment>user option to select closed tasks appearance</extracomment>
+        <translation>Done tasks</translation>
     </message>
 </context>
 </TS>
