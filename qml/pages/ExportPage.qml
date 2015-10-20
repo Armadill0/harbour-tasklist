@@ -27,13 +27,13 @@ Page {
 
     property int selectedElementId: -1
     property string selectedFileName : ""
-    property string directory: StandardPaths.documents + "/harbour-tasklist"
+    property string directory: StandardPaths.documents
 
     function composeFullPath(baseName) {
         var suffix = ".json"
         if (baseName.indexOf(suffix, baseName.length - suffix.length) === -1)
             baseName += ".json"
-        return directory + "/" + baseName;
+        return directory + "/" + appname + "/" + baseName;
     }
 
     function truncatePath(path) {
@@ -65,6 +65,14 @@ Page {
         }
     }
 
+    function composeExportPath() {
+        var path = composeFullPath(exportName.text)
+        exportName.label = truncatePath(path)
+        exporter.fileName = path
+    }
+
+    onDirectoryChanged: composeExportPath()
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -94,15 +102,27 @@ Page {
                 description: StandardPaths.documents
                 checked: true
 
-                onCheckedChanged: storageSDCard.checked = checked ? false : true
+                onCheckedChanged: {
+                    if (checked === true) {
+                        storageSDCard.checked = false
+                        directory = StandardPaths.documents
+                    }
+                }
             }
 
             TextSwitch {
                 id: storageSDCard
                 //% "Use SD-Card storage"
                 text: qsTrId("target-sdcard-label")
+                description: "/media/sdcard"
 
-                onCheckedChanged: storageInternal.checked = checked ? false : true
+                onCheckedChanged: {
+                    if (checked === true) {
+                        storageInternal.checked = false
+                        directory = "/media/sdcard"
+                        exportName.text = exportName.text
+                    }
+                }
             }
 
             TextField {
@@ -111,11 +131,7 @@ Page {
                 //: placeholder message to remind the user that he has to enter a name for the data export
                 //% "Enter a file name for export"
                 placeholderText: qsTrId("export-file-placeholder")
-                onTextChanged: {
-                    var path = composeFullPath(text)
-                    label = truncatePath(path)
-                    exporter.fileName = path
-                }
+                onTextChanged: composeExportPath()
                 validator: RegExpValidator { regExp: /^.{1,60}$/ }
                 inputMethodHints: Qt.ImhNoPredictiveText
             }
