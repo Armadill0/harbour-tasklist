@@ -947,5 +947,18 @@ menu item to switch to settings page</extracomment>
         <extracomment>user option to select closed tasks appearance</extracomment>
         <translation>Done tasks</translation>
     </message>
+    <message id="choose-target-label">
+        <source>Choose target</source>
+        <translation>Choose target</translation>
+    </message>
+    <message id="internal-storage-label">
+        <source>Internal storage</source>
+        <translation>Internal storage</translation>
+    </message>
+    <message id="sdcard-label">
+        <source>SD-Card %1</source>
+        <extracomment>Label for SD-Cards where %1 represents the increasing number for each card</extracomment>
+        <translation>SD-Card %1</translation>
+    </message>
 </context>
 </TS>

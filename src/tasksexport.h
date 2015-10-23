@@ -19,6 +19,8 @@ public:
     Q_INVOKABLE bool remove(const QString &path) const;
     Q_INVOKABLE QStringList getFilesList(const QString &directory) const;
     Q_INVOKABLE QString load(const QString &path) const;
+    Q_INVOKABLE QStringList sdcardPath(const QString &path) const;
+    Q_INVOKABLE QStringList mountPoints() const;
 
     Q_INVOKABLE QString dropboxAuthorizeLink();
     /* returns 3 elements: Dropbox username, OAuth token secret and OAuth token */

@@ -546,13 +546,11 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="open-task-appearance-label">
         <source>Open task appearance</source>
-        <oldsource>open task appearance</oldsource>
         <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
         <translation>Öppna aktivitetsvyn</translation>
     </message>
     <message id="refocus-label">
         <source>Refocus task add field</source>
-        <oldsource>refocus task add field</oldsource>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
         <translation>Fokusera fältet för ny aktivitet</translation>
     </message>
@@ -563,7 +561,6 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="show-smartlists-label">
         <source>Show smart lists</source>
-        <oldsource>show smart lists</oldsource>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
         <translation>Visa smarta listor</translation>
     </message>
@@ -949,6 +946,19 @@ menu item to switch to settings page</extracomment>
         <source>Done tasks</source>
         <extracomment>user option to select closed tasks appearance</extracomment>
         <translation>Slutförda aktiviteter</translation>
+    </message>
+    <message id="choose-target-label">
+        <source>Choose target</source>
+        <translation>Välj mål</translation>
+    </message>
+    <message id="internal-storage-label">
+        <source>Internal storage</source>
+        <translation>Intern lagring</translation>
+    </message>
+    <message id="sdcard-label">
+        <source>SD-Card %1</source>
+        <extracomment>Label for SD-Cards where %1 represents the increasing number for each card</extracomment>
+        <translation>SD-kort %1</translation>
     </message>
 </context>
 </TS>

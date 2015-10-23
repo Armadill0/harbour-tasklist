@@ -56,7 +56,6 @@ Dialog {
             id: aboutRectangle
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
-            spacing: Theme.paddingSmall
 
             DialogHeader {
                 //: headline of application information page

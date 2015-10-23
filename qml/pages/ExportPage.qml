@@ -27,13 +27,13 @@ Page {
 
     property int selectedElementId: -1
     property string selectedFileName : ""
-    property string directory: StandardPaths.documents + "/harbour-tasklist"
+    property string directory: StandardPaths.documents
 
     function composeFullPath(baseName) {
         var suffix = ".json"
         if (baseName.indexOf(suffix, baseName.length - suffix.length) === -1)
             baseName += ".json"
-        return directory + "/" + baseName;
+        return directory + "/" + appname + "/" + baseName;
     }
 
     function truncatePath(path) {
@@ -53,7 +53,7 @@ Page {
     }
 
     function getFiles() {
-        var list = exporter.getFilesList(directory);
+        var list = exporter.getFilesList(directory + "/" + appname);
         importFilesModel.clear()
         if (list.length < 1) {
             //: informing user that no former exports are available
@@ -65,6 +65,37 @@ Page {
         }
     }
 
+    function composeExportPath() {
+        var path = composeFullPath(exportName.text)
+        exportName.label = truncatePath(path)
+        exporter.fileName = path
+    }
+
+    function scanTargets() {
+        var internalStorage = "/media/sdcard/"
+        targetModel.clear()
+        //% "Internal storage"
+        targetModel.append({"name": qsTrId("internal-storage-label"), "path": StandardPaths.documents})
+        var sdcardArray = exporter.sdcardPath(internalStorage)
+        for (var i = 0; i < sdcardArray.length; i++)
+            //: Label for SD-Cards where %1 represents the increasing number for each card
+            //% "SD-Card %1"
+            targetModel.append({"name": qsTrId("sdcard-label").arg(i + 1), "path": internalStorage + sdcardArray[i]})
+    }
+
+    onDirectoryChanged: {
+        composeExportPath()
+        getFiles()
+    }
+
+    Component.onCompleted: {
+        scanTargets()
+    }
+
+    ListModel {
+        id: targetModel
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -74,7 +105,6 @@ Page {
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingLarge
 
             PageHeader {
                 //: export/import page headline
@@ -88,19 +118,34 @@ Page {
                 text: qsTrId("export-header")
             }
 
+            ComboBox {
+                id: storageTarget
+                //% "Choose target"
+                label: qsTrId("choose-target-label") + ":"
+
+                menu: ContextMenu {
+                    Repeater {
+                        model: targetModel
+                        MenuItem {
+                            text: name
+                        }
+                    }
+                }
+
+                onCurrentIndexChanged: directory = targetModel.get(currentIndex).path
+            }
+
             TextField {
                 id: exportName
                 width: parent.width
                 //: placeholder message to remind the user that he has to enter a name for the data export
                 //% "Enter a file name for export"
                 placeholderText: qsTrId("export-file-placeholder")
-                onTextChanged: {
-                    var path = composeFullPath(text)
-                    label = truncatePath(path)
-                    exporter.fileName = path
-                }
+                onTextChanged: composeExportPath()
                 validator: RegExpValidator { regExp: /^.{1,60}$/ }
                 inputMethodHints: Qt.ImhNoPredictiveText
+
+                EnterKey.onClicked: focus = false
             }
 
             TasksExport {
@@ -174,14 +219,20 @@ Page {
                 getFiles()
             }
 
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
+            }
+
             Row {
                 width: parent.width - 2 * Theme.horizontalPageMargin
-                spacing: 2 * Theme.horizontalPageMargin
+                spacing: Theme.horizontalPageMargin
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Button {
                     id: deleteButton
-                    width: parent.width / 2 - Theme.horizontalPageMargin
+                    width: parent.width / 2 - 0.5 * Theme.horizontalPageMargin
                     //: Button to delete the selected data file
                     //% "Delete file"
                     text: qsTrId("delete-file-button")
@@ -201,7 +252,7 @@ Page {
 
                 Button {
                     id: importButton
-                    width: parent.width / 2 - Theme.horizontalPageMargin
+                    width: parent.width / 2 - 0.5 * Theme.horizontalPageMargin
                     //: Button to import data form the selected file
                     //% "Import data"
                     text: qsTrId("import-button")

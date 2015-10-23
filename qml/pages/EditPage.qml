@@ -177,6 +177,8 @@ Dialog {
                     if (editTaskPage.status === PageStatus.Active)
                         checkContent()
                 }
+
+                EnterKey.onClicked: focus = false
             }
 
             TextSwitch {
