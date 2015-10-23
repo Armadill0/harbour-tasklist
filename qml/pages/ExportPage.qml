@@ -53,7 +53,7 @@ Page {
     }
 
     function getFiles() {
-        var list = exporter.getFilesList(directory);
+        var list = exporter.getFilesList(directory + "/" + appname);
         importFilesModel.clear()
         if (list.length < 1) {
             //: informing user that no former exports are available
@@ -71,7 +71,30 @@ Page {
         exporter.fileName = path
     }
 
-    onDirectoryChanged: composeExportPath()
+    function scanTargets() {
+        var internalStorage = "/media/sdcard/"
+        targetModel.clear()
+        //% "Internal storage"
+        targetModel.append({"name": qsTrId("internal-storage-label"), "path": StandardPaths.documents})
+        var sdcardArray = exporter.sdcardPath(internalStorage)
+        for (var i = 0; i < sdcardArray.length; i++)
+            //: Label for SD-Cards where %1 represents the increasing number for each card
+            //% "SD-Card %1"
+            targetModel.append({"name": qsTrId("sdcard-label").arg(i + 1), "path": internalStorage + sdcardArray[i]})
+    }
+
+    onDirectoryChanged: {
+        composeExportPath()
+        getFiles()
+    }
+
+    Component.onCompleted: {
+        scanTargets()
+    }
+
+    ListModel {
+        id: targetModel
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -95,34 +118,21 @@ Page {
                 text: qsTrId("export-header")
             }
 
-            TextSwitch {
-                id: storageInternal
-                //% "Use internal storage"
-                text: qsTrId("target-internal-label")
-                description: StandardPaths.documents
-                checked: true
+            ComboBox {
+                id: storageTarget
+                //% "Choose target"
+                label: qsTrId("choose-target-label") + ":"
 
-                onCheckedChanged: {
-                    if (checked === true) {
-                        storageSDCard.checked = false
-                        directory = StandardPaths.documents
+                menu: ContextMenu {
+                    Repeater {
+                        model: targetModel
+                        MenuItem {
+                            text: name
+                        }
                     }
                 }
-            }
 
-            TextSwitch {
-                id: storageSDCard
-                //% "Use SD-Card storage"
-                text: qsTrId("target-sdcard-label")
-                description: "/media/sdcard"
-
-                onCheckedChanged: {
-                    if (checked === true) {
-                        storageInternal.checked = false
-                        directory = "/media/sdcard"
-                        exportName.text = exportName.text
-                    }
-                }
+                onCurrentIndexChanged: directory = targetModel.get(currentIndex).path
             }
 
             TextField {
@@ -134,6 +144,8 @@ Page {
                 onTextChanged: composeExportPath()
                 validator: RegExpValidator { regExp: /^.{1,60}$/ }
                 inputMethodHints: Qt.ImhNoPredictiveText
+
+                EnterKey.onClicked: focus = false
             }
 
             TasksExport {
@@ -207,14 +219,20 @@ Page {
                 getFiles()
             }
 
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingLarge
+                color: "transparent"
+            }
+
             Row {
                 width: parent.width - 2 * Theme.horizontalPageMargin
-                spacing: 2 * Theme.horizontalPageMargin
+                spacing: Theme.horizontalPageMargin
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Button {
                     id: deleteButton
-                    width: parent.width / 2 - Theme.horizontalPageMargin
+                    width: parent.width / 2 - 0.5 * Theme.horizontalPageMargin
                     //: Button to delete the selected data file
                     //% "Delete file"
                     text: qsTrId("delete-file-button")
@@ -234,7 +252,7 @@ Page {
 
                 Button {
                     id: importButton
-                    width: parent.width / 2 - Theme.horizontalPageMargin
+                    width: parent.width / 2 - 0.5 * Theme.horizontalPageMargin
                     //: Button to import data form the selected file
                     //% "Import data"
                     text: qsTrId("import-button")
