@@ -552,7 +552,7 @@ menu item to switch to settings page</extracomment>
     <message id="refocus-label">
         <source>Refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation>Textfeld wieder fokussieren</translation>
+        <translation>refokussieren beim Hinzufügen</translation>
     </message>
     <message id="list-options-label">
         <source>List options</source>
