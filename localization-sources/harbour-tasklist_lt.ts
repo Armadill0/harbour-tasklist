@@ -195,9 +195,7 @@ menu item to jump to the application information page</extracomment>
     </message>
     <message id="edit-label">
         <source>Edit</source>
-        <extracomment>headline of the editing dialog of a task
-----------
-context menu item to edit a list
+        <extracomment>context menu item to edit a list
 ----------
 context menu item to edit a tag
 ----------
@@ -547,19 +545,14 @@ menu item to switch to settings page</extracomment>
         <translation>Užduoties parinktys</translation>
     </message>
     <message id="open-task-appearance-label">
-        <source>open task appearance</source>
+        <source>Open task appearance</source>
         <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
-        <translation>atidaryti užduoties išvaizdą</translation>
+        <translation type="unfinished"/>
     </message>
     <message id="refocus-label">
-        <source>refocus task add field</source>
+        <source>Refocus task add field</source>
         <extracomment>user option to directly jump back to the input field after a new task has been added by the user</extracomment>
-        <translation>nukreipti dėmesį į užduoties pridėjimo lauką</translation>
-    </message>
-    <message id="strike-through-label">
-        <source>strike through done tasks</source>
-        <extracomment>user option to strike through done tasks for better task overview</extracomment>
-        <translation>perbraukti atliktas užduotis</translation>
+        <translation type="unfinished"/>
     </message>
     <message id="list-options-label">
         <source>List options</source>
@@ -567,9 +560,9 @@ menu item to switch to settings page</extracomment>
         <translation>Sąrašo parinktys</translation>
     </message>
     <message id="show-smartlists-label">
-        <source>show smart lists</source>
+        <source>Show smart lists</source>
         <extracomment>user option to decide whether the smart lists (lists which contain tasks with specific attributes, for example new, done and pending tasks)</extracomment>
-        <translation>rodyti išmaniuosius sąrašus</translation>
+        <translation type="unfinished"/>
     </message>
     <message id="new-task-period-label">
         <source>New task period</source>
@@ -851,6 +844,121 @@ menu item to switch to settings page</extracomment>
         <source>System default</source>
         <extracomment>label for a settings &quot;system default&quot; option</extracomment>
         <translation>Sistemos numatytoji reikšmė</translation>
+    </message>
+    <message id="edit-task-label">
+        <source>Edit task</source>
+        <extracomment>headline of the editing dialog of a task</extracomment>
+        <translation>Keisti užduotį</translation>
+    </message>
+    <message id="taskpage-header">
+        <source>Task page</source>
+        <extracomment>task page header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="new-task-flashing-label">
+        <source>New task is flashing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="new-task-flashing-description">
+        <source>Tap on a newly added task while it&apos;s still flashing. This leads you directly to the Edit page where you can change the details of your task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="add-multiple-tasks-label">
+        <source>Add multiple tasks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="add-multiple-tasks-description">
+        <source>By Copying multiple lines e.g. from an e-mail and pasting those lines to the text field, you can add multiple tasks at once. Each line defines an own task.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tagpage-header">
+        <source>Tag Page</source>
+        <extracomment>tag page header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tag-management-label">
+        <source>Manage Tags</source>
+        <translation>Tvarkyti Žymes</translation>
+    </message>
+    <message id="tag-management-description">
+        <source>Managing tags is currently only possible if you press on the Tag smartlist on the List page. We are examining to rearrange this in the future.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-header">
+        <source>Keyboard Support</source>
+        <extracomment>keyboard header of help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-label">
+        <source>Jump to text field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-tab-description">
+        <source>By pressing Tab on an attached keyboard you can jump into or out of the text fields.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-label">
+        <source>Jump to next/previous list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="keyboard-arrows-lr-description">
+        <source>If the text field on the Task page is NOT focused you can switch between lists by pressing the right (next list) or left (previous list) arrows.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="helppage-header">
+        <source>Help</source>
+        <extracomment>headline for the help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="helppage-description">
+        <source>This page describes all hidden and not apparent features.</source>
+        <oldsource>This page describes all hidden and unapparent features.</oldsource>
+        <translation type="unfinished"/>
+    </message>
+    <message id="help-label">
+        <source>Help</source>
+        <extracomment>menu item to jump to the application's help page</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="tags-header">
+        <source>Your tags</source>
+        <extracomment>headline for the user created tags</extracomment>
+        <translation>Jūsų žymės</translation>
+    </message>
+    <message id="hidden-label">
+        <source>Hidden</source>
+        <oldsource>hidden</oldsource>
+        <extracomment>option to not show done tasks</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="striked-through-label">
+        <source>Striked through</source>
+        <oldsource>striked through</oldsource>
+        <extracomment>option to show done tasks as striked through items</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="status-change-label">
+        <source>Status change</source>
+        <extracomment>option to how done tasks unselected</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message id="done-task-label">
+        <source>Done tasks</source>
+        <extracomment>user option to select closed tasks appearance</extracomment>
+        <translation>Atliktos užduotys</translation>
+    </message>
+    <message id="choose-target-label">
+        <source>Choose target</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="internal-storage-label">
+        <source>Internal storage</source>
+        <translation type="unfinished"/>
+    </message>
+    <message id="sdcard-label">
+        <source>SD-Card %1</source>
+        <extracomment>Label for SD-Cards where %1 represents the increasing number for each card</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
