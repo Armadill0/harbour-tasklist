@@ -547,7 +547,7 @@ menu item to switch to settings page</extracomment>
     <message id="open-task-appearance-label">
         <source>Open task appearance</source>
         <extracomment>user option to choose whether pending tasks should be marked with a checked or not checked bullet</extracomment>
-        <translation type="unfinished"/>
+        <translation>Отмечать открытые задачи</translation>
     </message>
     <message id="refocus-label">
         <source>Refocus task add field</source>
@@ -949,7 +949,7 @@ menu item to switch to settings page</extracomment>
     </message>
     <message id="choose-target-label">
         <source>Choose target</source>
-        <translation type="unfinished"/>
+        <translation>Выберите задачу</translation>
     </message>
     <message id="internal-storage-label">
         <source>Internal storage</source>
