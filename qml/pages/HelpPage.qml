@@ -130,6 +130,16 @@ Page {
                 text: description
                 wrapMode: Text.WordWrap
             }
+
+            Rectangle {
+                width: parent.width
+                height: Theme.paddingMedium
+                color: "transparent"
+                anchors {
+                    left: parent.left
+                    top: itemDescription.bottom
+                }
+            }
         }
     }
 }

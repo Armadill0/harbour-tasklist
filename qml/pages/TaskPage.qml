@@ -400,14 +400,10 @@ Page {
 
                 IconButton {
                     id: nextList
-                    height: taskAdd.height * 0.8
-                    width: height
                     enabled: taskListWindow.coverActionMultiple
 
                     icon {
-                        source: "image://theme/icon-cover-next"
-                        height: parent.height * 0.8
-                        width: height
+                        source: "image://theme/icon-m-right"
                         fillMode: Image.PreserveAspectFit
                     }
                     anchors {
