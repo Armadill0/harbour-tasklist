@@ -311,6 +311,9 @@ Page {
 
                     function addTask(newTask) {
                         var taskNew = (typeof newTask !== 'undefined') ? newTask : taskAdd.text
+                        if(taskNew.trim) {
+                            taskNew = taskNew.trim()
+                        }
                         if (taskNew.length > 0) {
                             // add task to db and tasklist
                             var result = DB.writeTask(listid, taskNew, 1, 0, 0, DB.PRIORITY_DEFAULT, "")
