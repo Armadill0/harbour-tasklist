@@ -1,0 +1,3 @@
+[submodule "src/third_party/QtDropbox"]
+	path = src/third_party/QtDropbox
+	url = https://github.com/lycis/QtDropbox.git
