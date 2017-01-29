@@ -6,6 +6,17 @@ Developing
 ================
 Have a look here to prepare your build environment for TaskList: https://github.com/Armadill0/harbour-tasklist/wiki
 
+### Running tests
+* Option 1: In the emulator console, just run `/usr/share/tst-harbour-tasklist/runTestsOnDevice.sh` Here are instructions on connecting to the emulator's console - https://sailfishos.org/develop-faq.html
+
+* Option 2: Inside SailfishOS IDE
+
+ 1. Toolbar -> Projects -> i486 -> Run -> Run Settings -> Run -> Run configuration -> "src (on Mer Device)" -> "Use this command instead"
+
+ 2. Set "Alternate executable on device:" to `/usr/share/tst-harbour-tasklist/runTestsOnDevice.sh`
+
+ 3. Run the project again, see test results in the console
+
 Pull-Requests
 ================
 Pull-Requests are always welcome. But please respect the following rules to make the life of the collaborators easier. ;-)

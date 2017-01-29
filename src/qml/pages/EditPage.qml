@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "../common.js" as Common
 import "."
 
 Dialog {
@@ -59,7 +60,7 @@ Dialog {
     function checkContent() {
         var ok = true
         var listId = listModel.get(list.currentIndex).id
-        var name = task.text
+        var name = Common.trimmed(task.text)
         var count = DB.checkTask(listId, name)
 
         // if task already exists in target list, display warning
@@ -115,7 +116,7 @@ Dialog {
 
     onAccepted: {
         var ok = DB.updateTask(params.taskid, listModel.get(list.currentIndex).id,
-                               task.text, taskListWindow.statusOpen(status.checked) ? 1 : 0,
+                               Common.trimmed(task.text), taskListWindow.statusOpen(status.checked) ? 1 : 0,
                                params.dueDate, 0, priorityBox.selectedPriority(), notes.text,
                                DB.REPETITION_VARIANTS[repeat.currentIndex].key)
         if (ok)

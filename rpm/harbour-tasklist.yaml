@@ -17,6 +17,9 @@ Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
 Builder: qtc5
+QMakeOptions:
+- VERSION=%{version}
+- RELEASE=%{release}
 
 # This section specifies build dependencies that are resolved using pkgconfig.
 # This is the preferred way of specifying build dependencies for your package.
@@ -36,10 +39,30 @@ Requires:
 
 # All installed files
 Files:
-  - '%{_bindir}'
+# Do not include whole %{_datadir}/applications as that would include tests too
+  - '%defattr(0644,root,root,0755)'
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+  - '%attr(0755,-,-) %{_bindir}/%{name}'
+
+SubPackages:
+    - Name: harbour-tasklist-test
+      Summary: harbour-tasklist tests
+      Group: Qt/Qt
+      Description: |-
+        Tests for the harbour-tasklist package
+      AutoDepend: true
+      PkgConfigBR:
+      - Qt5QuickTest
+      Requires:
+      - qt5-qtdeclarative-import-qttest
+      Files:
+        - '%{_bindir}/tst-harbour-tasklist'
+        - '%{_datadir}/tst-harbour-tasklist/*.qml'
+        # Script for starting tests on emulator and device
+        - '%attr(0755,-,-) %{_datadir}/tst-harbour-tasklist/*.sh'
+
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle

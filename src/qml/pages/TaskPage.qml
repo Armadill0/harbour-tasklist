@@ -20,6 +20,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
+import "../common.js" as Common
 import "."
 
 Page {
@@ -310,7 +311,7 @@ Page {
                     EnterKey.enabled: text.length > 0
 
                     function addTask(newTask) {
-                        var taskNew = (typeof newTask !== 'undefined') ? newTask : taskAdd.text
+                        var taskNew = Common.trimmed((typeof newTask !== 'undefined') ? newTask : taskAdd.text)
                         if (taskNew.length > 0) {
                             // add task to db and tasklist
                             var result = DB.writeTask(listid, taskNew, 1, 0, 0, DB.PRIORITY_DEFAULT, "")

@@ -9,3 +9,5 @@ rpm/harbour-tasklist.spec
 *.o
 localization
 *.qm
+build/
+.directory
