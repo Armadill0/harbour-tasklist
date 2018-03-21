@@ -591,10 +591,11 @@ Page {
                 width: parent.width - 2 * Theme.horizontalPageMargin + 2 * Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: task
-                description: composeTaskLabel(taskListModel.get(index))
                 priorityValue: priority
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
+                
+                Component.onCompleted: { description = composeTaskLabel(taskListModel.get(index)) }
 
                 // show context menu
                 onPressAndHold: {
