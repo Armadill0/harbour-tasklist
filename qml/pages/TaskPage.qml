@@ -591,11 +591,11 @@ Page {
                 width: parent.width - 2 * Theme.horizontalPageMargin + 2 * Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: task
-                description: composeTaskLabel(taskListModel.get(index))
+                description: composeTaskLabel(model)
                 priorityValue: priority
                 automaticCheck: false
                 checked: taskListWindow.statusOpen(taskstatus)
-
+                
                 // show context menu
                 onPressAndHold: {
                     if (blinking)
