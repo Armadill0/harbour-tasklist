@@ -1,3 +1,6 @@
+# This repository is not being maintained anymore because I went back to Android. :disappointed:
+Feel free to fork the repository and continue developing the software.
+
 TaskList
 ================
 A small but mighty program to manage your daily tasks.
